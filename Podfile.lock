@@ -1,0 +1,24 @@
+PODS:
+  - AgoraRtcEngine_iOS (3.1.2)
+  - Pageboy (3.6.2)
+  - Tabman (2.11.1):
+    - Pageboy (~> 3.6.0)
+
+DEPENDENCIES:
+  - AgoraRtcEngine_iOS (~> 3.1.0)
+  - Tabman (~> 2.11)
+
+SPEC REPOS:
+  trunk:
+    - AgoraRtcEngine_iOS
+    - Pageboy
+    - Tabman
+
+SPEC CHECKSUMS:
+  AgoraRtcEngine_iOS: 0628532d3475471d1c352ba548cee98492850cc0
+  Pageboy: cf121b9dd48c63f3f281b2a9ec93d02e0f23879b
+  Tabman: 792ac76fd1ec95af175c93db880a3c47cabedc91
+
+PODFILE CHECKSUM: 0ba17fbd9b8686ca4f6fb7ef84bca748d024b3a0
+
+COCOAPODS: 1.11.2
