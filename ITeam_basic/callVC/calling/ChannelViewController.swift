@@ -13,8 +13,14 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var leaveButton: UIButton!
     @IBOutlet weak var collection: UICollectionView!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+   
     // 입장할 때 입력한 이름 받을 변수
     var name: String = ""
+    
+    var nickname: String = ""
+    var position: String = ""
+    var profile: String = ""
+    
     // agoraRTtcKit
     var agkit: AgoraRtcEngineKit?
     // uid
@@ -26,7 +32,7 @@ class ChannelViewController: UIViewController {
     // 듣고 있는 사람
     var activeAudience: Set<UInt> = []
     // 말하는 사람인지 듣는 사람인지 역할
-    lazy var role:AgoraClientRole = name == "speaker" ? .broadcaster : .audience
+    lazy var role:AgoraClientRole = name == "speaker" || name == "speaker2" ? .broadcaster : .audience
     
     
     override func viewDidLoad() {
@@ -62,7 +68,7 @@ class ChannelViewController: UIViewController {
      }
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IADU0N/x7sNzOArjdiHIf0VBvRLpckkdCHuA+mv7mHmYN5N+wrQAAAAAEADxtVSH/HmnYQEAAQD7eadh", channelId: "testToken1", info: nil, uid: userID,
+        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IAC8ZuxRGW57dPQP2dYFJc8OT2/ton5J1xpMb3LhdoaSDRyKqMQAAAAAEACCxsjXK8utYQEAAQAry61h", channelId: "testToken4", info: nil, uid: userID,
             joinSuccess: {(_, uid, elapsed) in
             self.userID = uid
             if self.role == .audience {
@@ -75,10 +81,13 @@ class ChannelViewController: UIViewController {
         })
     }
     @IBAction func leaveChannel(_ sender: UIButton) {
-        self.agkit?.createRtcChannel("haha")?.leave()
+        self.agkit?.createRtcChannel("testToken4")?.leave()
         self.agkit?.leaveChannel()
         AgoraRtcEngineKit.destroy()
-        self.navigationController?.popViewController(animated: true)
+        
+        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallClosedVC")
+        popupVC.modalPresentationStyle = .overFullScreen
+        present(popupVC, animated: false, completion: nil)
     }
     
 
@@ -122,7 +131,8 @@ extension ChannelViewController: AgoraRtcEngineDelegate {
 extension ChannelViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     //듣는 사람과 말하는 사람 섹션 2개를 만들어줌.
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        //2
+        return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return section == 0 ? activeSpeakers.count : activeAudience.count
@@ -132,9 +142,9 @@ extension ChannelViewController: UICollectionViewDelegate, UICollectionViewDataS
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! UserCollectionViewCell
         
         if indexPath.section == 0 {
-            cell.setUI(isSpeaker:true)
+            cell.setUI(image: profile, nickname: nickname, position: position)
         }else{
-            cell.setUI(isSpeaker:false)
+            cell.setUI(image: profile, nickname: nickname, position: nickname)
         }
         
         return cell
@@ -143,15 +153,11 @@ extension ChannelViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let sectionHeader = collection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ChannelSectionHeader", for: indexPath) as! ChannelSectionHeader
         
-        sectionHeader.headerLabel.text = indexPath.section == 0 ? "Speakers" : "Audience"
+        //sectionHeader.headerLabel.text = indexPath.section == 0 ? "Speakers" : "Audience"
+        sectionHeader.headerLabel.text = indexPath.section == 0 ? "" : "Audience"
         
         return sectionHeader
         
-    }
-    @IBAction func showPopupViewBtn(_ sender: UIButton) {
-        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallClosedVC")
-        popupVC.modalPresentationStyle = .overFullScreen
-        present(popupVC, animated: false, completion: nil)
     }
     
 }

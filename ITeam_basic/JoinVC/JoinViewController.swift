@@ -19,12 +19,20 @@ class JoinViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailViewNextBtn: UIButton!
     // 이메일 인증 확인 멘트 label
     @IBOutlet weak var emailVFLabel: UILabel!
-    
+    // 프로필 사진 선택 button
     @IBOutlet weak var profileImageButton: UIButton!
+    // 파트 선택 button
+    @IBOutlet weak var partBtn: UITextField!
+    @IBOutlet weak var detailPartBtn: UITextField!
+    
+    @IBOutlet var nextBtns: [UIButton]!
     
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
+        for i in 0...nextBtns.count-1 {
+            nextBtns[i].layer.cornerRadius = 8
+        }
         
         DispatchQueue.main.async {
             if let emailBtn = self.emailViewNextBtn  {
@@ -45,9 +53,14 @@ class JoinViewController: UIViewController, UITextFieldDelegate {
             if let nickname = self.nicknameTF {
                 nickname.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
             }
+            if let partBtn = self.partBtn, let detailPart = self.detailPartBtn {
+                partBtn.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
+                detailPart.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
+            }
             if let profileImage = self.profileImageButton {
                 profileImage.layer.borderWidth = 0.5
                 profileImage.layer.borderColor = UIColor(named: "purple_dark")?.cgColor
+                profileImage.layer.backgroundColor = UIColor(named: "purple_light")?.cgColor
                 profileImage.layer.cornerRadius = 75
             }
             

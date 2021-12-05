@@ -9,14 +9,39 @@ import UIKit
 
 class ChannelWaitingViewController: UIViewController {
 
-    @IBOutlet weak var otherPersion: UIImageView!
+    var nickname: String = ""
+    var position: String = ""
+    var name: String = ""
+    var profile: String = ""
+    @IBOutlet weak var profileImg: UIImageView!
+    @IBOutlet weak var positionLabel: UILabel!
+    
+    @IBOutlet weak var nicknameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        otherPersion.layer.cornerRadius = otherPersion.frame.height/2
+        nicknameLabel.text = nickname
+        positionLabel.text = position
+        profileImg.layer.cornerRadius = profileImg.frame.height/2
+        profileImg.image = UIImage(named: "\(profile).png")
+        
+        name = "speaker"
         // Do any additional setup after loading the view.
     }
-    
+    @IBAction func backBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showChannelViewController" {
+            let vc = segue.destination as! ChannelViewController
+            vc.name = name
+            
+            if let destination = segue.destination as? ChannelViewController {
+                destination.nickname = nickname
+                destination.position = position
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

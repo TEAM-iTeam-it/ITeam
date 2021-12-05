@@ -10,10 +10,14 @@ import UIKit
 class UserCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
-
-    func setUI(isSpeaker:Bool) {
+    @IBOutlet weak var otherMemberNameTF: UILabel!
+    @IBOutlet weak var otherMemberPartTF: UILabel!
+    
+    func setUI(image:String, nickname: String, position: String) {
         profileImage.layer.cornerRadius = profileImage.frame.height/2
-        profileImage.image = isSpeaker ? UIImage(named: "person_profile.png") : UIImage(named: "person_profile_yellow.png")
+        profileImage.image = UIImage(named: image)
+        otherMemberNameTF.text = nickname
+        otherMemberPartTF.text = position
         }
     
 }

@@ -10,10 +10,11 @@ import UIKit
 class SettingSuccessViewController: UIViewController {
 
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    @IBOutlet weak var fillProfileBtn: UIButton!
     @IBOutlet weak var popupView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        fillProfileBtn.layer.cornerRadius = 8
         popupView.layer.cornerRadius = 25
         popupView.clipsToBounds = true
         // Do any additional setup after loading the view.

@@ -10,10 +10,11 @@ import UIKit
 class JoinSuccessViewController: UIViewController {
 
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    @IBOutlet weak var successBtn: UIButton!
     @IBOutlet weak var popupView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        successBtn.layer.cornerRadius = 8
         popupView.layer.cornerRadius = 25
         popupView.clipsToBounds = true
     }

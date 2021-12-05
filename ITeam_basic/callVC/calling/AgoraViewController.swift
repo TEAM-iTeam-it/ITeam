@@ -16,6 +16,7 @@ class AgoraViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        name = "speaker"
         // Do any additional setup after loading the view.
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
