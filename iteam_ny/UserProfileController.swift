@@ -8,12 +8,13 @@
 import UIKit
 
 class UserProfileController: UIViewController{
-    @IBOutlet weak var hideButton: UIButton!
     @IBOutlet weak var callButton: UIButton!
     
+    @IBOutlet weak var rectangle35View: UIView!
+    @IBOutlet weak var userImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hideButton.layer.cornerRadius = 0
+        userImage.image = UIImage(named: "img_user4")
     }
 }
