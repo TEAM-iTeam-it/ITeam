@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ce8-cR-c6d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ce8-cR-c6d">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -253,7 +253,7 @@
                             </barButtonItem>
                             <barButtonItem title="Item" style="plain" id="xST-Jj-vjx">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="y2n-iO-PDW">
-                                    <rect key="frame" x="258" y="5" width="46.5" height="34"/>
+                                    <rect key="frame" x="258" y="5" width="47.5" height="34"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system" title="">
@@ -279,7 +279,7 @@
             </objects>
             <point key="canvasLocation" x="-1814.4927536231885" y="646.875"/>
         </scene>
-        <!--Item-->
+        <!--팀 탐색-->
         <scene sceneID="kqg-cp-cqp">
             <objects>
                 <viewController id="Z8s-5g-KJb" sceneMemberID="viewController">
@@ -289,7 +289,7 @@
                         <viewLayoutGuide key="safeArea" id="fUm-fP-uuG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="person.3" catalog="system" id="vDD-er-p6d"/>
+                    <tabBarItem key="tabBarItem" title="팀 탐색" image="person.3" catalog="system" id="vDD-er-p6d"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8L-sb-AaH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -356,6 +356,16 @@
             </objects>
             <point key="canvasLocation" x="-2775" y="1368"/>
         </scene>
+        <!--CallManageVC-->
+        <scene sceneID="eRb-gB-jSZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="JoinPages" referencedIdentifier="CallManageVC" id="mNS-TW-zVS" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="vNF-mY-nco"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yTp-ur-qo7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1994" y="2002"/>
+        </scene>
         <!--Item-->
         <scene sceneID="qRJ-uX-rtf">
             <objects>
@@ -371,7 +381,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ndh-qi-JWr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2775" y="2087"/>
+            <point key="canvasLocation" x="-2775" y="2645"/>
         </scene>
         <!--Item-->
         <scene sceneID="8ah-cE-f0U">
@@ -388,7 +398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xic-fz-Qja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2775" y="2808"/>
+            <point key="canvasLocation" x="-2775" y="3284"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="9nq-n3-rdv">
@@ -849,11 +859,11 @@
             </objects>
             <point key="canvasLocation" x="692.75362318840587" y="1024.5535714285713"/>
         </scene>
-        <!--Item-->
+        <!--홈-->
         <scene sceneID="XFi-Tj-Rjb">
             <objects>
                 <navigationController id="qW4-Fw-JGZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="house" catalog="system" id="us4-qi-gmB"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="house" catalog="system" id="us4-qi-gmB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2kf-JU-hLZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -878,11 +888,31 @@
                     <connections>
                         <segue destination="qW4-Fw-JGZ" kind="relationship" relationship="viewControllers" id="x8B-XO-cRt"/>
                         <segue destination="Z8s-5g-KJb" kind="relationship" relationship="viewControllers" id="rUI-Y2-0Io"/>
+                        <segue destination="CKa-KU-qir" kind="relationship" relationship="viewControllers" id="dlN-c5-Gbj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXy-B6-k9p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3855" y="646"/>
+        </scene>
+        <!--통화-->
+        <scene sceneID="EmQ-HN-I4o">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CKa-KU-qir" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="통화" image="phone" catalog="system" id="QOM-qy-IHZ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vyk-9l-4m2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mNS-TW-zVS" kind="relationship" relationship="rootViewController" id="hDn-aV-2ci"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N9b-Xe-cIk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2775" y="2001"/>
         </scene>
     </scenes>
     <resources>
@@ -893,6 +923,7 @@
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
+        <image name="phone" catalog="system" width="128" height="115"/>
         <image name="pin" catalog="system" width="119" height="128"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
