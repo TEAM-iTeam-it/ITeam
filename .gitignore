@@ -12,3 +12,9 @@ Pods/
 
 # End of https://www.toptal.com/developers/gitignore/api/cocoapods
 
+Pods/Manifest.lock
+Pods/Pods.xcodeproj/project.pbxproj
+Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny-acknowledgements.markdown
+Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny-acknowledgements.plist
+Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig
+Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig
