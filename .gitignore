@@ -9,6 +9,9 @@
 #           - Also handy if you have a large number of dependant pods
 #           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
 Pods/
+.DS_Store
+*.xcuserstate
+
 
 # End of https://www.toptal.com/developers/gitignore/api/cocoapods
 
