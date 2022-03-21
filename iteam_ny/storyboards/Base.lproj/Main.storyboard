@@ -879,7 +879,7 @@
         <!--Tabar Controller-->
         <scene sceneID="Qo7-uM-ah4">
             <objects>
-                <tabBarController id="ce8-cR-c6d" customClass="TabarController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainManageVC" id="ce8-cR-c6d" customClass="TabarController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oK1-el-J4Y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
