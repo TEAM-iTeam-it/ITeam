@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class SettingPurposeViewController: UIViewController {
-
+    
+    // Firebase Realtime Database 루트
+    var ref: DatabaseReference!
+    
     // 목적 저장을 위한 변수
     var purposes: [String] = []
     
@@ -29,6 +35,8 @@ class SettingPurposeViewController: UIViewController {
         for i in 0...purposeBtns.count-1 {
             purposeBtns[i].layer.cornerRadius = 16
         }
+        nextBtn.backgroundColor = UIColor(named: "gray_196")
+        nextBtn.isEnabled = false
         // Do any additional setup after loading the view.
     }
     @IBAction func purposeBtn(_ sender: UIButton) {
@@ -45,7 +53,7 @@ class SettingPurposeViewController: UIViewController {
             default:
                 etcImg.image = nil
             }
-            sender.backgroundColor = UIColor(named: "gray_light3")
+            sender.backgroundColor = UIColor(named: "gray_245")
             sender.layer.borderWidth = 0
             
             
@@ -149,11 +157,34 @@ class SettingPurposeViewController: UIViewController {
                 purposes.append((sender.titleLabel?.text)!)
             }
         }
-        
+        if purposes.count >= 1 {
+            nextBtn.backgroundColor = UIColor(named: "purple_dark")
+            nextBtn.isEnabled = true
+        }
+        else {
+            nextBtn.backgroundColor = UIColor(named: "gray_196")
+            nextBtn.isEnabled = false
+        }
 
         print(purposes)
         
     }
+    
+    @IBAction func purposeNextBtn(_ sender: UIButton) {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        let values: [String: Any] = [ "purpose": purposes]
+        
+        ref = Database.database().reference()
+        // [ 목적 데이터 추가 ]
+        ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
+        
+        let passionVC = self.storyboard?.instantiateViewController(withIdentifier: "passionVC")
+        self.navigationController?.pushViewController(passionVC!, animated: true)
+    }
+    
     @IBAction func goBackBtn(_ sender: UIBarButtonItem) {
         goBack()
     }

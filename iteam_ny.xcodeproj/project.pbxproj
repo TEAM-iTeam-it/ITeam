@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08248AE527D6475900733A12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08248AE427D6475900733A12 /* GoogleService-Info.plist */; };
+		0831AF3627E112180098D753 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0831AF3527E112180098D753 /* LogInViewController.swift */; };
 		0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01427CB5ED20018464B /* Join2ViewController.swift */; };
 		0868B01E27CB6A6C0018464B /* JoinSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */; };
 		0868B01F27CB6A6C0018464B /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01D27CB6A6C0018464B /* JoinViewController.swift */; };
@@ -68,6 +70,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08248AE427D6475900733A12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "iteam_ny/firebase_source/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0831AF3527E112180098D753 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		0868B01427CB5ED20018464B /* Join2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Join2ViewController.swift; sourceTree = "<group>"; };
 		0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinSuccessViewController.swift; path = iteam_ny/JoinVC/JoinSuccessViewController.swift; sourceTree = SOURCE_ROOT; };
 		0868B01D27CB6A6C0018464B /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinViewController.swift; path = iteam_ny/JoinVC/JoinViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -144,6 +148,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08248AE327D6473F00733A12 /* firebase_source */ = {
+			isa = PBXGroup;
+			children = (
+				08248AE427D6475900733A12 /* GoogleService-Info.plist */,
+			);
+			path = firebase_source;
+			sourceTree = "<group>";
+		};
 		0868B02027CB6CD20018464B /* calling */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +198,7 @@
 			children = (
 				0868B01D27CB6A6C0018464B /* JoinViewController.swift */,
 				0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */,
+				0831AF3527E112180098D753 /* LogInViewController.swift */,
 			);
 			path = JoinVC;
 			sourceTree = "<group>";
@@ -264,6 +277,7 @@
 		1F55CF082751F19100CD35EC = {
 			isa = PBXGroup;
 			children = (
+				08248AE327D6473F00733A12 /* firebase_source */,
 				1F55CF132751F19100CD35EC /* iteam_ny */,
 				1F55CF122751F19100CD35EC /* Products */,
 				CADF5B427026CA0DC90EFC80 /* Pods */,
@@ -292,13 +306,13 @@
 				1F55CF5B2755E2B400CD35EC /* Home */,
 				1F55CF142751F19100CD35EC /* AppDelegate.swift */,
 				0868B01427CB5ED20018464B /* Join2ViewController.swift */,
-				1F55CF162751F19100CD35EC /* SceneDelegate.swift */,
 				1FBD3822275D19A5007A5799 /* QuestionViewController.swift */,
 				1FBD3820275D17E4007A5799 /* QuestionCell.swift */,
 				1FBD381E275CDB1F007A5799 /* FixedMemberCell.swift */,
 				1F55CF57275584A200CD35EC /* SearchViewController.swift */,
 				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
 				1F55CF552754B46B00CD35EC /* UserProfileController.swift */,
+				1F55CF162751F19100CD35EC /* SceneDelegate.swift */,
 				1F55CF1D2751F19200CD35EC /* Assets.xcassets */,
 				1F55CF1F2751F19200CD35EC /* LaunchScreen.storyboard */,
 				1F55CF222751F19200CD35EC /* Info.plist */,
@@ -402,6 +416,7 @@
 			files = (
 				0868B07B27CB6F040018464B /* imgUser10@3x.png in Resources */,
 				0868B07727CB6F040018464B /* person_profile.png in Resources */,
+				08248AE527D6475900733A12 /* GoogleService-Info.plist in Resources */,
 				0868B08527CB6F2B0018464B /* asset121@2x.png in Resources */,
 				08D242BA27CB487F008B4FE1 /* JoinPages.storyboard in Resources */,
 				0868B06727CB6ED20018464B /* group97@2x.png in Resources */,
@@ -480,6 +495,7 @@
 				0868B05827CB6E080018464B /* SettingSuccessViewController.swift in Sources */,
 				0868B05627CB6E080018464B /* DetailProfileViewController.swift in Sources */,
 				0868B04827CB6D930018464B /* RequestTableViewCell.swift in Sources */,
+				0831AF3627E112180098D753 /* LogInViewController.swift in Sources */,
 				0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */,
 				1F55CF152751F19100CD35EC /* AppDelegate.swift in Sources */,
 				0868B05727CB6E080018464B /* SettingViewController.swift in Sources */,
@@ -666,11 +682,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3WXYTFH2K7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -694,11 +711,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3WXYTFH2K7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
