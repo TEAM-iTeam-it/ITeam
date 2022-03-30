@@ -114,7 +114,7 @@ class SettingPurposeViewController: UIViewController {
                 }
                 sender.backgroundColor = UIColor(named: "purple_light")
                 sender.layer.borderWidth = 0.5
-                sender.layer.borderColor = UIColor(named: "purple_dark")?.cgColor
+                sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
                 
                 purposes.append((sender.titleLabel?.text)!)
             }
@@ -133,7 +133,7 @@ class SettingPurposeViewController: UIViewController {
                 }
                 sender.backgroundColor = UIColor(named: "purple_light")
                 sender.layer.borderWidth = 0.5
-                sender.layer.borderColor = UIColor(named: "purple_dark")?.cgColor
+                sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
                 
                 purposes.append((sender.titleLabel?.text)!)
             }
@@ -152,13 +152,13 @@ class SettingPurposeViewController: UIViewController {
                 }
                 sender.backgroundColor = UIColor(named: "purple_light")
                 sender.layer.borderWidth = 0.5
-                sender.layer.borderColor = UIColor(named: "purple_dark")?.cgColor
+                sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
                 
                 purposes.append((sender.titleLabel?.text)!)
             }
         }
         if purposes.count >= 1 {
-            nextBtn.backgroundColor = UIColor(named: "purple_dark")
+            nextBtn.backgroundColor = UIColor(named: "purple_184")
             nextBtn.isEnabled = true
         }
         else {

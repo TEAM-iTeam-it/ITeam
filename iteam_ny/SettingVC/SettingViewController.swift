@@ -56,10 +56,10 @@ class SettingViewController: UIViewController {
         if !checkedBtn_region.contains((sender.titleLabel?.text)!) {
             checkedBtn_region.append((sender.titleLabel?.text)!)
             
-            sender.configuration?.background.backgroundColor = UIColor(named: "purple_dark")
+            sender.configuration?.background.backgroundColor = UIColor(named: "purple_184")
             sender.layer.borderWidth = 0.5
             sender.layer.cornerRadius = sender.frame.height/2
-            sender.layer.borderColor = UIColor(named: "purple_dark")?.cgColor
+            sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
             sender.configuration?.baseForegroundColor = .white
         }
         else {
@@ -73,7 +73,7 @@ class SettingViewController: UIViewController {
             sender.configuration?.baseForegroundColor  = .black
         }
         if checkedBtn_region.count >= 1 {
-            self.regionBtn.backgroundColor = UIColor(named: "purple_dark")
+            self.regionBtn.backgroundColor = UIColor(named: "purple_184")
             self.regionBtn.isEnabled = true
         }
         else {
@@ -90,9 +90,9 @@ class SettingViewController: UIViewController {
         if !checkedBtn_property.contains((sender.titleLabel?.text)!) {
             checkedBtn_property.append((sender.titleLabel?.text)!)
             
-            sender.configuration?.background.backgroundColor = UIColor(named: "purple_dark")
+            sender.configuration?.background.backgroundColor = UIColor(named: "purple_184")
            
-            sender.layer.borderColor = UIColor(named: "purple_dark")?.cgColor
+            sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
             sender.configuration?.baseForegroundColor = .white
         }
         else {
@@ -115,7 +115,7 @@ class SettingViewController: UIViewController {
                 }
             }
             
-            propertyBtn.backgroundColor = UIColor(named: "purple_dark")
+            propertyBtn.backgroundColor = UIColor(named: "purple_184")
             propertyBtn.isEnabled = true
         }
         else {
@@ -134,7 +134,7 @@ class SettingViewController: UIViewController {
     @IBAction func noRegion(_ sender: UIButton) {
         sender.setImage(UIImage(systemName: "checkmark.square.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
         if isRegionON {
-            sender.tintColor = UIColor(named: "purple_dark")
+            sender.tintColor = UIColor(named: "purple_184")
             isRegionON = false
             // 버튼 비활성화 및 초기화
             checkedBtn_region.removeAll()
@@ -142,7 +142,7 @@ class SettingViewController: UIViewController {
                 regionBtnInit()
                 regionBtns[i].isEnabled = false
             }
-            self.regionBtn.backgroundColor = UIColor(named: "purple_dark")
+            self.regionBtn.backgroundColor = UIColor(named: "purple_184")
             self.regionBtn.isEnabled = true
         }
         else {
@@ -208,6 +208,12 @@ class SettingViewController: UIViewController {
             regionBtns[i].configuration?.background.backgroundColor = .white
             regionBtns[i].configuration?
                 .baseForegroundColor  = .black
+         
+            regionBtns[i].titleLabel?.numberOfLines = 2
+            regionBtns[i].titleLabel?.lineBreakMode = NSLineBreakMode.byTruncatingTail
+            regionBtns[i].titleLabel?.adjustsFontSizeToFitWidth = true
+            regionBtns[i].titleLabel!.minimumScaleFactor = 0.1
+            
         }
     }
     func propertyBtnInit() {
@@ -220,6 +226,13 @@ class SettingViewController: UIViewController {
                 .baseForegroundColor  = .black
         }
     }
+    func resolutionFontSize(size: CGFloat) -> CGFloat {
+        let size_formatter = size/900
+        let result = UIScreen.main.bounds.width * size_formatter
+        return result
+    }
+    
+    
     // [Button action] 조건 설정 완료 팝업
     @IBAction func showPopupViewBtn(_ sender: UIButton) {
         // [수식어 데이터 추가]

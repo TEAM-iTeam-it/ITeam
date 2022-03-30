@@ -25,6 +25,8 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var emailVFLabel: UILabel!
     // 프로필 사진 선택 button
     @IBOutlet weak var profileImageButton: UIButton!
+    // 프로필 사진 편집 image
+    @IBOutlet weak var editImage: UIImageView!
     // 파트 선택 button
     @IBOutlet weak var partBtn: UIButton!
     @IBOutlet weak var detailPartBtn: UIButton!
@@ -32,6 +34,8 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet var nextBtns: [UIButton]!
     // 인증 메일 받기 button
     @IBOutlet weak var emailVFBtn: UIButton!
+    // 인증 확인 버튼
+    @IBOutlet weak var emailVFAfter: UIButton!
     // 비밀번호 view nextBtn
     @IBOutlet weak var passwordNextBtn: UIButton!
     // 비밀번호 확인 멘트 label
@@ -50,7 +54,8 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     var imageURL: URL  = NSURL() as URL
     // 닉네임 중복 검사를 위한 변수
     var nicknameCount: Bool = false
-
+    
+    var handle: AuthStateDidChangeListenerHandle!
     
     
     // Firebase Realtime Database 루트
@@ -70,9 +75,19 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         DispatchQueue.main.async {
             if let emailBtn = self.emailViewNextBtn  {
+                emailBtn.isEnabled = false
                 emailBtn.isHidden = true
-                emailBtn.isEnabled = true
-                emailBtn.backgroundColor = UIColor(named: "purple_dark")
+                emailBtn.backgroundColor = UIColor(named: "gray_196")
+            }
+            if let emailVFBtn = self.emailVFBtn {
+                emailVFBtn.titleLabel?.numberOfLines = 1
+                emailVFBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byTruncatingTail
+                // 0.4 이하는 너무 작게 표시됨
+                emailVFBtn.titleLabel!.minimumScaleFactor = 0.5
+                emailVFBtn.titleLabel?.adjustsFontSizeToFitWidth = true
+            }
+            if let emailVFAfter = self.emailVFAfter {
+                emailVFAfter.isHidden = true
             }
             if let pwdBtn = self.passwordNextBtn  {
                 pwdBtn.isEnabled = false
@@ -100,26 +115,30 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             // textfield 좌측 공백
             if let email = self.emailTF {
                 email.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
+                email.layer.cornerRadius = 8
             }
             if let password = self.passwordTF {
                 password.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
+                password.layer.cornerRadius = 8
             }
             if let nickname = self.nicknameTF {
                 nickname.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
+                nickname.layer.cornerRadius = 8
                 nickname.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
             }
-            if let profileImage = self.profileImageButton {
+            if let profileImage = self.profileImageButton, let editImage = self.editImage {
                 profileImage.layer.borderWidth = 0.5
-                profileImage.layer.borderColor = UIColor(named: "purple_dark")?.cgColor
+                profileImage.layer.borderColor = UIColor(named: "purple_184")?.cgColor
                 profileImage.layer.backgroundColor = UIColor(named: "purple_light")?.cgColor
+              //  profileImage.addSubview(editImage)
                 profileImage.layer.cornerRadius = 75
             }
-            
+             
             // 파트에 따른 세부 파트 설정
           
             let aa = UIAction(title: "위 파트를 먼저 선택해주세요", handler: { _ in print("기획자") })
             var detailPartMenu = UIMenu(title: "알림", children: [aa])
-            
+            let partTitleMenu = UIAction(title: "파트",attributes: .hidden, state: .off, handler: {_ in })
             let organizerMenu = UIAction(title: "기획자", handler: { _ in
                 print("기획자")
                 let app = UIAction(title:"앱 기획자", handler: { _ in
@@ -175,7 +194,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 self.detailPartBtn.menu = detailPartMenu
             })
             
-            let partMenu = UIMenu(title: "파트", children: [organizerMenu, designerMenu, developerMenu])
+            let partMenu = UIMenu(title: "파트" ,children: [partTitleMenu, organizerMenu, designerMenu, developerMenu])
             if let partBtn = self.partBtn {
                 partBtn.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
                 // 오류 발생
@@ -281,13 +300,13 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                     
                     
                     // [이메일 인증]
-                    self.emailVFLabel.text = "인증 메일을 보냈습니다. 이메일을 확인해주시고 다음을 눌러주세요."
-                    self.emailVFLabel.textColor = UIColor(named: "purple_175")
-                    sender.isHidden = true
-                    self.emailViewNextBtn.isHidden = false
-                    self.emailViewNextBtn.backgroundColor = UIColor(named: "gray_196")
-                    self.emailViewNextBtn.isEnabled = true
+                    self.emailVFLabel.text = "인증 메일이 발송되었습니다. 메일함을 확인해 주세요!"
+                    self.emailVFLabel.textColor = UIColor(named: "purple_184")
                     self.emailVFLabel.isHidden = false
+                    self.emailVFAfter.isHidden = false
+                    self.emailVFAfter.backgroundColor = UIColor(named: "purple_184")
+                    self.emailVFBtn.setTitle("인증 재요청", for: .normal)
+                    
                     
                     // 이메일 보내는 부분
                     Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
@@ -298,8 +317,8 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                             
                         }
                     })
-                    
-                    
+                    Auth.auth().currentUser?.reload()
+                    self.emailVertify()
                 }
             }
         }
@@ -312,29 +331,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         else {
             self.emailVFLabel.text = "올바르지 않은 이메일 주소입니다"
         }
-        
-        // firebase 인증
-//        Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }
-//            else {
-//                if Auth.auth().currentUser != nil && Auth.auth().currentUser!.isEmailVerified {
-//                    print("yes")
-//                    DispatchQueue.main.async {
-//                        sender.isHidden = true
-//                        self.emailViewNextBtn.isHidden = false
-//                        self.emailViewNextBtn.isEnabled = true
-//                        self.emailVFLabel.isHidden = false
-//
-//                        self.emailTF.isEnabled = false
-//                    }
-//                } else {
-////                    print(Auth.auth().currentUser!.isEmailVerified)
-//                    print("nono")
-//                }
-//            }
-//        })
+ 
         
     }
 
@@ -347,36 +344,20 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @objc func goBack() {
            self.navigationController?.popViewController(animated: true)
     }
+    // [Button action] 이메일 인증 확인하기
+    @IBAction func emailVFAfterBtn(_ sender: UIButton) {
+        Auth.auth().currentUser?.reload()
+        emailVertify()
+        
+        Auth.auth().currentUser?.reload()
+        emailVertify()
+    }
+    
+    
     // [Button action] 이메일 다음
     @IBAction func emailNextBtn(_ sender: UIButton) {
-        Auth.auth().currentUser?.reload()
-        Auth.auth().currentUser?.reload()
-        // 이메일 확인
-        Auth.auth().addStateDidChangeListener({(user, error) in
-            if Auth.auth().currentUser != nil && Auth.auth().currentUser!.isEmailVerified {
-                print("이메일 인증됨")
-                self.emailVFLabel.textColor = UIColor(named: "purple_175")
-                self.emailVFLabel.text = "인증되었습니다"
-                self.emailTF.setIcon(UIImage(systemName: "checkmark")!)
-                sender.isHidden = true
-                self.emailViewNextBtn.isHidden = false
-                self.emailViewNextBtn.isEnabled = true
-                self.emailViewNextBtn.backgroundColor = UIColor(named: "purple_dark")
-                self.emailVFLabel.isHidden = false
-
-                self.emailTF.isEnabled = false
-                
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                  // 1초 후 실행될 부분
-                    let passwordVC = self.storyboard?.instantiateViewController(withIdentifier: "passwordVC")
-                    self.navigationController?.pushViewController(passwordVC!, animated: true)
-                }
-                
-            } else {
-                print("이메일 인증 실패")
-            }
-
-        })
+        let passwordVC = self.storyboard?.instantiateViewController(withIdentifier: "passwordVC")
+        self.navigationController?.pushViewController(passwordVC!, animated: true)
     }
     // [Button action] 비밀번호 다음
     @IBAction func passwdBtn(_ sender: UIButton) {
@@ -408,12 +389,14 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
         let values: [String: Any] = [ "nickname": nickname]
         
         ref = Database.database().reference()
         // 데이터 추가
         ref.child("user").child(user.uid).child("userProfile").updateChildValues(values)
+        
+        nicknameLabel.text = ""
+        nicknameLabel.isHidden = true
         
         let imageVC = self.storyboard?.instantiateViewController(withIdentifier: "imageVC")
         self.navigationController?.pushViewController(imageVC!, animated: true)
@@ -421,9 +404,6 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     }
     // [Button action] 이미지 다음
     @IBAction func imageBtn(_ sender: UIButton) {
-        
-        
-        
         let partVC = self.storyboard?.instantiateViewController(withIdentifier: "partVC")
         self.navigationController?.pushViewController(partVC!, animated: true)
     }
@@ -454,6 +434,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         present(popupVC, animated: false, completion: nil)
     }
     
+    // [Button action] 프로필 이미지 설정 버튼
     @IBAction func profileImageSetBtn(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -480,7 +461,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                     else {
                         self.emailVFLabel.text = ""
                     }
-                    self.emailVFBtn.backgroundColor = UIColor(named: "purple_dark")
+                    self.emailVFBtn.backgroundColor = UIColor(named: "purple_184")
                 }
             }
         }
@@ -499,7 +480,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                     self.passwordLabel.isHidden = false
                 }
                 else {
-                    self.passwordNextBtn.backgroundColor = UIColor(named: "purple_dark")
+                    self.passwordNextBtn.backgroundColor = UIColor(named: "purple_184")
                     self.passwordNextBtn.isEnabled = true
                     self.passwordLabel.isHidden = true
                     self.passwordTF.setIcon(UIImage(systemName: "checkmark")!)
@@ -544,7 +525,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                     self.nicknameNextBtn.isEnabled = false
                 }
                 else {
-                    self.nicknameNextBtn.backgroundColor = UIColor(named: "purple_dark")
+                    self.nicknameNextBtn.backgroundColor = UIColor(named: "purple_184")
                     self.nicknameNextBtn.isEnabled = true
                     self.nicknameLabel.isHidden = true
                     self.nicknameTF.setIcon(UIImage(systemName: "checkmark")!)
@@ -553,6 +534,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
         self.view.endEditing(true)
     }
+    
     // [Keyboard setting] return시 제거
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -571,7 +553,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                     else {
                         self.emailVFLabel.text = ""
                     }
-                    self.emailVFBtn.backgroundColor = UIColor(named: "purple_dark")
+                    self.emailVFBtn.backgroundColor = UIColor(named: "purple_184")
                 }
             }
         }
@@ -590,7 +572,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                     self.passwordLabel.isHidden = false
                 }
                 else {
-                    self.passwordNextBtn.backgroundColor = UIColor(named: "purple_dark")
+                    self.passwordNextBtn.backgroundColor = UIColor(named: "purple_184")
                     self.passwordNextBtn.isEnabled = true
                     self.passwordLabel.isHidden = true
                     self.passwordTF.setIcon(UIImage(systemName: "checkmark")!)
@@ -631,7 +613,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                     self.nicknameNextBtn.isEnabled = false
                 }
                 else {
-                    self.nicknameNextBtn.backgroundColor = UIColor(named: "purple_dark")
+                    self.nicknameNextBtn.backgroundColor = UIColor(named: "purple_184")
                     self.nicknameNextBtn.isEnabled = true
                     self.nicknameLabel.isHidden = true
                     self.nicknameTF.setIcon(UIImage(systemName: "checkmark")!)
@@ -644,6 +626,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         return true
     }
+    
     // [image picker setting] firebase storage에 추가
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! URL
@@ -670,8 +653,15 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                         let resizedImage = self.resizeImage(image: UIImage(data: data!)!, width: 150, height: 150)
                         self.profileImageButton.setImage(resizedImage, for: .normal)
                         self.profileImageButton.clipsToBounds = true
+//
+//                        let bounds = self.profileImageButton.bounds
+//                        let pathCircle = UIBezierPath(ovalIn: bounds)
+//                        let layer = CAShapeLayer()
+//                        layer.path = pathCircle.cgPath
+//                        self.editImage.layer.mask = layer
+//                        self.editImage.clipsToBounds = true
                         self.profileImageButton.layer.borderWidth = 0.0
-                        self.imageNextBtn.backgroundColor = UIColor(named: "purple_dark")
+                        self.imageNextBtn.backgroundColor = UIColor(named: "purple_184")
                         self.imageNextBtn.isEnabled = true
                     }
                 }
@@ -701,7 +691,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
         partSuccess += 1
         if partSuccess >= 2 {
-            self.partNextBtn.backgroundColor = UIColor(named: "purple_dark")
+            self.partNextBtn.backgroundColor = UIColor(named: "purple_184")
             self.partNextBtn.isEnabled = true
         }
     }
@@ -732,6 +722,38 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @objc func textFieldDidChange(textField: UITextField) {
         self.nicknameCount = false
         print(self.nicknameCount)
+    }
+    
+    // [email checking] 이메일 인증 확인
+    func emailVertify() {
+        Auth.auth().addStateDidChangeListener({(user, error) in
+            if Auth.auth().currentUser != nil && Auth.auth().currentUser!.isEmailVerified {
+                print("이메일 인증됨")
+                self.emailVFLabel.textColor = UIColor(named: "purple_184")
+                self.emailVFLabel.text = "인증이 완료되었습니다."
+                
+                self.emailTF.setIcon(UIImage(systemName: "checkmark")!)
+                
+                self.emailVFBtn.isEnabled = false
+                self.emailVFBtn.setTitleColor(.white, for: .normal)
+                self.emailVFBtn.backgroundColor = UIColor(named: "gray_196")
+                self.emailVFAfter.isEnabled = false
+                self.emailVFAfter.backgroundColor = UIColor(named: "gray_196")
+                
+                self.emailViewNextBtn.isEnabled = true
+                self.emailViewNextBtn.backgroundColor = UIColor(named: "purple_184")
+                self.emailViewNextBtn.isHidden = false
+                self.emailVFLabel.isHidden = false
+                self.emailTF.isEnabled = false
+           
+                
+            } else {
+                print("이메일 인증 실패")
+                print("currentUser" + String(Auth.auth().currentUser != nil) )
+                print("isEmailvertify \( String(describing: Auth.auth().currentUser?.isEmailVerified))")
+            }
+
+        })
     }
 }
 
