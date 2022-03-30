@@ -19,7 +19,11 @@ Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny-acknowledgements.plist
 Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig
 Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig
 
+Podfile
+Podfile.lock
+
 .DS_Store
 *.xcuserstate
 iteam_ny.xcodeproj/xcuserdata/kimhaneul.xcuserdatad/xcschemes/xcschememanagement.plist
 iteam_ny.xcodeproj/project.pbxproj
+
