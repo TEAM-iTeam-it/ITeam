@@ -4,8 +4,6 @@
 <dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>카메라를 사용을 승인해주세요</string>
-	<key></key>
-	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -20,7 +18,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>TeamPages</string>
 				</dict>
 			</array>
 		</dict>

@@ -15,12 +15,19 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var idTF: UITextField!
     @IBOutlet weak var passwdTF: UITextField!
     @IBOutlet weak var subLabel: UILabel!
+    @IBOutlet weak var loginBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         if let user = Auth.auth().currentUser {
             idTF.placeholder = "이미 로그인 된 상태입니다."
             passwdTF.placeholder = "이미 로그인 된 상태입니다."
         }
+        subLabel.text = ""
+        idTF.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
+        idTF.layer.cornerRadius = 8
+        passwdTF.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
+        passwdTF.layer.cornerRadius = 8
+        loginBtn.layer.cornerRadius = 8
 
         // Do any additional setup after loading the view.
     }
@@ -43,7 +50,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
               }
     }
     
-
+    @IBAction func backBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

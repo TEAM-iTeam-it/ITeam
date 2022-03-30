@@ -68,7 +68,7 @@ class ChannelViewController: UIViewController {
      }
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IAB9ag+UYI3yPcm4IHGPkMLj5WuTjm5M8aUPRk7KFZjSNKH2GboAAAAAEACYVs+KlD0nYgEAAQCUPSdi", channelId: "testToken9", info: nil, uid: userID,
+        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABAPF8+CLYql/tsBHY/w7V5QqFLqB3x0ZVxqoGK6Cq6J6HfaZ0AAAAAEABqGbu46CA8YgEAAQDnIDxi", channelId: "testToken10", info: nil, uid: userID,
             joinSuccess: {(_, uid, elapsed) in
             self.userID = uid
             if self.role == .audience {
@@ -81,7 +81,7 @@ class ChannelViewController: UIViewController {
         })
     }
     @IBAction func leaveChannel(_ sender: UIButton) {
-        self.agkit?.createRtcChannel("testToken9")?.leave()
+        self.agkit?.createRtcChannel("testToken10")?.leave()
         self.agkit?.leaveChannel()
         AgoraRtcEngineKit.destroy()
         

@@ -41,6 +41,10 @@ class ChannelWaitingViewController: UIViewController {
                 destination.position = position
             }
         }
+        if segue.identifier == "showQuestionVC" {
+            let vc = segue.destination as! QuestionnaireViewController
+            vc.nickname = nickname
+        }
     }
 
     /*
