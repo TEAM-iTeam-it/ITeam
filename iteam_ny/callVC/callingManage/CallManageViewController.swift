@@ -74,14 +74,14 @@ class CallManageViewController: TabmanViewController, PageboyViewControllerDataS
         // 선택 / 안선택 색 + font size
         ctBar.buttons.customize { (button) in
             button.tintColor = .gray
-            button.selectedTintColor = UIColor(named: "purple_dark")
+            button.selectedTintColor = UIColor(named: "purple_184")
             button.font = UIFont.systemFont(ofSize: 16)
             button.selectedFont = UIFont.systemFont(ofSize: 16, weight: .medium)
         }
         
         // 인디케이터
         ctBar.indicator.weight = .custom(value: 2)
-        ctBar.indicator.tintColor = UIColor(named: "purple_dark")
+        ctBar.indicator.tintColor = UIColor(named: "purple_184")
     }
     /*
     // MARK: - Navigation
