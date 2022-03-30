@@ -25,3 +25,5 @@ Podfile.lock
 .DS_Store
 *.xcuserstate
 iteam_ny.xcodeproj/xcuserdata/kimhaneul.xcuserdatad/xcschemes/xcschememanagement.plist
+iteam_ny.xcodeproj/project.pbxproj
+
