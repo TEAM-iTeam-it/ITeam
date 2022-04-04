@@ -32,25 +32,12 @@ class MakingAppTeamViewController: UIViewController {
 
     }
     @IBAction func moreTeamBtn(_ sender: UIButton) {
-        guard let allTeamsVC = self.storyboard?.instantiateViewController(withIdentifier: "allTeamsVC") else {
-            return
-        }
-        allTeamsVC.modalPresentationStyle = .fullScreen
-        present(allTeamsVC, animated: true, completion: nil)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! AllTeamViewController
-        if segue.identifier == "favor" {
-            destination.teamKind = .favor
-        }
-        if segue.identifier == "app" {
-            destination.teamKind = .app
-        }
-        if segue.identifier == "web" {
-            destination.teamKind = .web
-        }
-        if segue.identifier == "game" {
-            destination.teamKind = .game
+        let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
+        if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
+            allTeamVC.teamKind = .app
+            allTeamNavigation.modalPresentationStyle = .fullScreen
+           
+            present(allTeamNavigation, animated: true, completion: nil)
         }
     }
 }
