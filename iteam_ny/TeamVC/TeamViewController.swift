@@ -22,6 +22,10 @@ class TeamViewController: UIViewController {
         myteamBtn.layer.shadowOffset = CGSize(width: 0, height: 0)
         myteamBtn.layer.shadowOpacity = 0.2
         myteamBtn.layer.shadowRadius = 10
+        self.navigationController?.isNavigationBarHidden = true
+        
+        // 로고 이미지 비활성화, 색상 유지
+      
         
         
     }
@@ -30,6 +34,8 @@ class TeamViewController: UIViewController {
     @IBAction func createMyTeam(_ sender: UIButton) {
         
     }
+    
+  
     
     /*
     // MARK: - Navigation
