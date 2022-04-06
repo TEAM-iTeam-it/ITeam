@@ -243,6 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFr-iP-3hR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="-2034.7826086956522" y="637.5"/>
         </scene>
         <!--팀 탐색-->
@@ -261,6 +262,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8L-sb-AaH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2775" y="-201"/>
+=======
+            <point key="canvasLocation" x="-1246" y="23"/>
+>>>>>>> origin
         </scene>
         <!--Item-->
         <scene sceneID="z9P-iK-4gY">
@@ -277,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8B5-iD-5z0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1961" y="1359"/>
+            <point key="canvasLocation" x="-1374" y="743"/>
         </scene>
         <!--CallManageVC-->
         <scene sceneID="eRb-gB-jSZ">
@@ -287,7 +291,37 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTp-ur-qo7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1994" y="2002"/>
+            <point key="canvasLocation" x="-1407" y="1385"/>
+        </scene>
+        <!--teamVC-->
+        <scene sceneID="DLo-h6-KjW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TeamPages" referencedIdentifier="teamVC" id="bbF-kY-z2s" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Jow-4s-6Y1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w7S-SS-8qr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1425" y="2144"/>
+        </scene>
+        <!--notifyVC-->
+        <scene sceneID="M9w-le-G9b">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NotifyPages" referencedIdentifier="notifyVC" id="TKv-lk-3dp" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="HN7-9Y-KHp"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HW2-bT-K0Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1402" y="2928"/>
+        </scene>
+        <!--mypageVC-->
+        <scene sceneID="UvD-BH-HfY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Mypages" referencedIdentifier="mypageVC" id="H7X-x8-Kb3" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5FR-5m-AHa"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dDX-pU-rQ1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1279" y="3635"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="9nq-n3-rdv">
@@ -310,7 +344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEc-hI-Dgs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1013.0434782608696" y="274.55357142857139"/>
+            <point key="canvasLocation" x="-445" y="-350"/>
         </scene>
         <!--프로필-->
         <scene sceneID="cGs-mu-Y3i">
@@ -701,7 +735,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WmW-JT-kCj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1013.0434782608696" y="1024.5535714285713"/>
+            <point key="canvasLocation" x="-445" y="400"/>
         </scene>
         <!--Choose Time View Controller-->
         <scene sceneID="Yra-gH-BF3">
@@ -800,7 +834,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzU-3p-pgk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145" y="1025"/>
+            <point key="canvasLocation" x="422" y="400"/>
         </scene>
         <!--Question View Controller-->
         <scene sceneID="8uk-8a-Yv5">
@@ -889,7 +923,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CIO-Hh-XO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="692.75362318840587" y="1024.5535714285713"/>
+            <point key="canvasLocation" x="1261" y="400"/>
         </scene>
         <!--홈-->
         <scene sceneID="XFi-Tj-Rjb">
@@ -906,21 +940,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CFI-Ea-G3R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2775" y="647"/>
+            <point key="canvasLocation" x="-2207" y="23"/>
         </scene>
         <!--Tabar Controller-->
         <scene sceneID="Qo7-uM-ah4">
             <objects>
-                <tabBarController id="ce8-cR-c6d" customClass="TabarController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainManageVC" id="ce8-cR-c6d" customClass="TabarController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oK1-el-J4Y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="gray_51"/>
+                        <color key="selectedImageTintColor" name="gray_51"/>
                     </tabBar>
                     <connections>
                         <segue destination="qW4-Fw-JGZ" kind="relationship" relationship="viewControllers" id="x8B-XO-cRt"/>
-                        <segue destination="Z8s-5g-KJb" kind="relationship" relationship="viewControllers" id="rUI-Y2-0Io"/>
                         <segue destination="CKa-KU-qir" kind="relationship" relationship="viewControllers" id="dlN-c5-Gbj"/>
+                        <segue destination="WXn-2x-2nL" kind="relationship" relationship="viewControllers" id="uG1-8W-dt9"/>
+                        <segue destination="Yhl-6v-NtX" kind="relationship" relationship="viewControllers" id="xMb-Ms-0iq"/>
+                        <segue destination="xIk-t2-GYh" kind="relationship" relationship="viewControllers" id="k67-1s-2Ii"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXy-B6-k9p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -944,7 +982,64 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9b-Xe-cIk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2775" y="2001"/>
+            <point key="canvasLocation" x="-2187" y="1385"/>
+        </scene>
+        <!--팀 탐색-->
+        <scene sceneID="yDG-6A-7IS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WXn-2x-2nL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="팀 탐색" image="person.2" catalog="system" selectedImage="person.2" id="9ks-k3-6tG"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O9N-0R-cmu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bbF-kY-z2s" kind="relationship" relationship="rootViewController" id="FWn-dg-h7s"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1W6-7z-a80" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2207" y="2144"/>
+        </scene>
+        <!--알림-->
+        <scene sceneID="7fq-b5-adI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yhl-6v-NtX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="알림" image="bell" catalog="system" selectedImage="bell" id="vpK-Ce-sdv"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aeA-7i-61Q">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TKv-lk-3dp" kind="relationship" relationship="rootViewController" id="lh7-qH-sOl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qxw-ZT-cpG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2187" y="2928"/>
+        </scene>
+        <!--마이페이지-->
+        <scene sceneID="GPb-Xp-av9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xIk-t2-GYh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="마이페이지" image="person.crop.circle" catalog="system" selectedImage="person.crop.circle" id="VQ4-kg-FWP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="15j-Yv-lDC">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="H7X-x8-Kb3" kind="relationship" relationship="rootViewController" id="wMa-w5-Cwd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KXA-3J-ePY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2187" y="3635"/>
         </scene>
     </scenes>
     <designables>
@@ -953,10 +1048,14 @@
         </designable>
     </designables>
     <resources>
+<<<<<<< HEAD
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="btn_close.png" width="28" height="28"/>
         <image name="btn_option.png" width="32" height="32"/>
         <image name="btn_pin2.png" width="32" height="32"/>
+=======
+        <image name="bell" catalog="system" width="128" height="124"/>
+>>>>>>> origin
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="circle" catalog="system" width="128" height="121"/>
@@ -966,14 +1065,22 @@
         <image name="img_logo2.png" width="95" height="25"/>
         <image name="img_user1.png" width="70" height="70"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
-        <image name="person.3" catalog="system" width="128" height="62"/>
+        <image name="person.2" catalog="system" width="128" height="81"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="phone" catalog="system" width="128" height="115"/>
+<<<<<<< HEAD
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="gray_light">
             <color red="0.7686274509803922" green="0.7686274509803922" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_light2">
             <color red="0.85490196078431369" green="0.85490196078431369" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+=======
+        <image name="plus.circle" catalog="system" width="128" height="121"/>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
+        <namedColor name="gray_51">
+            <color red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+>>>>>>> origin
         </namedColor>
         <namedColor name="gray_light3">
             <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

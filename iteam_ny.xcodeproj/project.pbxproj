@@ -7,6 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080F9C1E27E9DCE80055FAF8 /* icCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C1B27E9DCE60055FAF8 /* icCheck.png */; };
+		080F9C1F27E9DCE80055FAF8 /* icCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C1C27E9DCE60055FAF8 /* icCheck@2x.png */; };
+		080F9C2027E9DCE80055FAF8 /* icCheck@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C1D27E9DCE80055FAF8 /* icCheck@3x.png */; };
+		080F9C2427E9DEA70055FAF8 /* QuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */; };
+		080F9C2627E9EBE00055FAF8 /* CallRequstHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080F9C2527E9EBE00055FAF8 /* CallRequstHistoryViewController.swift */; };
+		080F9C2A27EA04240055FAF8 /* icCheckPurple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2727EA04220055FAF8 /* icCheckPurple@2x.png */; };
+		080F9C2B27EA04240055FAF8 /* icCheckPurple@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2827EA04230055FAF8 /* icCheckPurple@3x.png */; };
+		080F9C2C27EA04240055FAF8 /* icCheckPurple.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2927EA04230055FAF8 /* icCheckPurple.png */; };
+		080F9C3027EA17470055FAF8 /* btnAdd1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2D27EA17460055FAF8 /* btnAdd1@2x.png */; };
+		080F9C3127EA17470055FAF8 /* btnAdd1.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2E27EA17460055FAF8 /* btnAdd1.png */; };
+		080F9C3227EA17470055FAF8 /* btnAdd1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2F27EA17470055FAF8 /* btnAdd1@3x.png */; };
+		081F264C27F3878000F17332 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264B27F3878000F17332 /* TeamViewController.swift */; };
+		081F264E27F38ADB00F17332 /* MakingAppTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */; };
+		081F265027F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */; };
+		081F265227F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F265127F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift */; };
+		081F265427F3903D00F17332 /* MakingWebTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F265327F3903D00F17332 /* MakingWebTeamViewController.swift */; };
+		081F265627F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F265527F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift */; };
+		081F265827F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F265727F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift */; };
+		081F266227F393C100F17332 /* imgUser8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F265927F393C000F17332 /* imgUser8@2x.png */; };
+		081F266327F393C100F17332 /* imgUser3.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F265A27F393C000F17332 /* imgUser3.png */; };
+		081F266427F393C100F17332 /* imgUser8.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F265B27F393C000F17332 /* imgUser8.png */; };
+		081F266527F393C100F17332 /* imgUser3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F265C27F393C000F17332 /* imgUser3@3x.png */; };
+		081F266627F393C100F17332 /* imgUser2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F265D27F393C000F17332 /* imgUser2@3x.png */; };
+		081F266727F393C100F17332 /* imgUser8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F265E27F393C100F17332 /* imgUser8@3x.png */; };
+		081F266827F393C100F17332 /* imgUser3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F265F27F393C100F17332 /* imgUser3@2x.png */; };
+		081F266927F393C100F17332 /* imgUser2.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F266027F393C100F17332 /* imgUser2.png */; };
+		081F266A27F393C100F17332 /* imgUser2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F266127F393C100F17332 /* imgUser2@2x.png */; };
+		081F267027F3960300F17332 /* MakingGameTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F266F27F3960300F17332 /* MakingGameTeamViewController.swift */; };
+		081F267227F396C500F17332 /* MakingGameTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F267127F396C500F17332 /* MakingGameTeamCollectionViewCell.swift */; };
+		081F267427F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F267327F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift */; };
+		081F267827F3988000F17332 /* imgUser6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F267527F3987F00F17332 /* imgUser6@2x.png */; };
+		081F267927F3988000F17332 /* imgUser6@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F267627F3988000F17332 /* imgUser6@3x.png */; };
+		081F267A27F3988000F17332 /* imgUser6.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F267727F3988000F17332 /* imgUser6.png */; };
+		081F267E27F399C100F17332 /* imgUser7.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F267B27F399C100F17332 /* imgUser7.png */; };
+		081F267F27F399C100F17332 /* imgUser7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F267C27F399C100F17332 /* imgUser7@3x.png */; };
+		081F268027F399C100F17332 /* imgUser7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F267D27F399C100F17332 /* imgUser7@2x.png */; };
+		081F268227F435C700F17332 /* AllTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F268127F435C700F17332 /* AllTeamViewController.swift */; };
+		081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */; };
+		08248AE527D6475900733A12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08248AE427D6475900733A12 /* GoogleService-Info.plist */; };
+		082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082EF64727F58D8200C36736 /* NotifyPages.storyboard */; };
+		0831AF3627E112180098D753 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0831AF3527E112180098D753 /* LogInViewController.swift */; };
+		0833416B27F3317F005B4F31 /* sliderIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0833416827F3317F005B4F31 /* sliderIcon@3x.png */; };
+		0833416C27F3317F005B4F31 /* sliderIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0833416927F3317F005B4F31 /* sliderIcon@2x.png */; };
+		0833416D27F3317F005B4F31 /* sliderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0833416A27F3317F005B4F31 /* sliderIcon.png */; };
+		0833417127F33252005B4F31 /* searchIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0833416E27F33252005B4F31 /* searchIcon.png */; };
+		0833417227F33252005B4F31 /* searchIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0833416F27F33252005B4F31 /* searchIcon@2x.png */; };
+		0833417327F33252005B4F31 /* searchIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0833417027F33252005B4F31 /* searchIcon@3x.png */; };
+		0833417827F3437E005B4F31 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833417727F3437D005B4F31 /* Team.swift */; };
+		0833418627F35A80005B4F31 /* FavorTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833418527F35A80005B4F31 /* FavorTeamViewController.swift */; };
+		0833418827F35B07005B4F31 /* FavorTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */; };
+		0833418F27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */; };
+		0835C36F27EDBF5900968626 /* TeamPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0835C36E27EDBF5900968626 /* TeamPages.storyboard */; };
+		08657BE027F4874B00FDEACD /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BDF27F4874B00FDEACD /* QuestionViewController.swift */; };
+		08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE127F487DA00FDEACD /* QuestionCell.swift */; };
+		08657BE427F4884C00FDEACD /* FixedMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE327F4884C00FDEACD /* FixedMemberCell.swift */; };
+		08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE527F4887100FDEACD /* SearchViewController.swift */; };
 		0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01427CB5ED20018464B /* Join2ViewController.swift */; };
 		0868B01E27CB6A6C0018464B /* JoinSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */; };
 		0868B01F27CB6A6C0018464B /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01D27CB6A6C0018464B /* JoinViewController.swift */; };
@@ -38,8 +94,26 @@
 		0868B07C27CB6F040018464B /* imgUser4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0868B07127CB6F030018464B /* imgUser4.png */; };
 		0868B07D27CB6F040018464B /* person_profile_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0868B07227CB6F030018464B /* person_profile_yellow.png */; };
 		0868B08427CB6F2B0018464B /* asset121.png in Resources */ = {isa = PBXBuildFile; fileRef = 0868B08127CB6F2A0018464B /* asset121.png */; };
+		0868B08527CB6F2B0018464B /* asset121@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0868B08227CB6F2B0018464B /* asset121@2x.png */; };
+		0868B08627CB6F2B0018464B /* asset121@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0868B08327CB6F2B0018464B /* asset121@3x.png */; };
+		087A23DB27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */; };
+		087A23E327FACAB700E76893 /* icArrowDropDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */; };
+		087A23E427FACAB700E76893 /* icArrowDropDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23E127FACAB600E76893 /* icArrowDropDown.png */; };
+		087A23E527FACAB700E76893 /* icArrowDropDown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23E227FACAB600E76893 /* icArrowDropDown@3x.png */; };
+		087A23E827FAEF7400E76893 /* CreateTeamPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23E727FAEF7400E76893 /* CreateTeamPartViewController.swift */; };
+		087A23EA27FAF23800E76893 /* CreateTeamPartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23E927FAF23800E76893 /* CreateTeamPartTableViewCell.swift */; };
+		087FA8C027E9B942000E741B /* rectangleEditImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BD27E9B941000E741B /* rectangleEditImage.png */; };
+		087FA8C127E9B942000E741B /* rectangleEditImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */; };
+		087FA8C227E9B942000E741B /* rectangleEditImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */; };
+		08B2F2ED27F75A05008F7085 /* teamPageLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2EA27F75A04008F7085 /* teamPageLogo@2x.png */; };
+		08B2F2EE27F75A05008F7085 /* teamPageLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2EB27F75A05008F7085 /* teamPageLogo@3x.png */; };
+		08B2F2EF27F75A05008F7085 /* teamPageLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2EC27F75A05008F7085 /* teamPageLogo.png */; };
+		08B2F2F127F77A0F008F7085 /* TeamPages_AllTeams.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */; };
+		08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */; };
+		08BFBE9727F590D800A6F6B0 /* Mypages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */; };
+		08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */; };
+		08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */; };
 		08D242BA27CB487F008B4FE1 /* JoinPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D242B827CB487F008B4FE1 /* JoinPages.storyboard */; };
-		1F0208BC27E9274C00148FD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F0208BB27E9274C00148FD9 /* GoogleService-Info.plist */; };
 		1F55CF152751F19100CD35EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF142751F19100CD35EC /* AppDelegate.swift */; };
 		1F55CF172751F19100CD35EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF162751F19100CD35EC /* SceneDelegate.swift */; };
 		1F55CF1C2751F19100CD35EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F55CF1A2751F19100CD35EC /* Main.storyboard */; };
@@ -49,10 +123,10 @@
 		1F55CF2D2751FCA800CD35EC /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF2C2751FCA800CD35EC /* TabbarController.swift */; };
 		1F55CF502754A98C00CD35EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF4F2754A98C00CD35EC /* User.swift */; };
 		1F55CF562754B46B00CD35EC /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF552754B46B00CD35EC /* UserProfileController.swift */; };
-		1F55CF58275584A200CD35EC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF57275584A200CD35EC /* SearchViewController.swift */; };
 		1F5AC97127D6BCE800146C0E /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5AC97027D6BCE800146C0E /* UserProfile.swift */; };
 		1F5AC97427D6BEB600146C0E /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5AC97227D6BEB600146C0E /* UserListCell.swift */; };
 		1F5AC97527D6BEB600146C0E /* UserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5AC97327D6BEB600146C0E /* UserListCell.xib */; };
+<<<<<<< HEAD
 		1F95AE7227FD061400AB1377 /* btn_pin2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F95AE6F27FD061400AB1377 /* btn_pin2@3x.png */; };
 		1F95AE7327FD061400AB1377 /* btn_pin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F95AE7027FD061400AB1377 /* btn_pin2.png */; };
 		1F95AE7427FD061400AB1377 /* btn_pin2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F95AE7127FD061400AB1377 /* btn_pin2@2x.png */; };
@@ -74,10 +148,68 @@
 		1FFD2E4227FC02650068520D /* ic_rate.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E3F27FC02650068520D /* ic_rate.png */; };
 		1FFD2E4327FC02650068520D /* ic_rate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E4027FC02650068520D /* ic_rate@2x.png */; };
 		1FFD2E4427FC02650068520D /* ic_rate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E4127FC02650068520D /* ic_rate@3x.png */; };
+=======
+>>>>>>> origin
 		43776BEEDCB8AEF92363A99B /* Pods_iteam_ny.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA1CB3D1B120506DE83DA6F /* Pods_iteam_ny.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		080F9C1B27E9DCE60055FAF8 /* icCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icCheck.png; sourceTree = "<group>"; };
+		080F9C1C27E9DCE60055FAF8 /* icCheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icCheck@2x.png"; sourceTree = "<group>"; };
+		080F9C1D27E9DCE80055FAF8 /* icCheck@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icCheck@3x.png"; sourceTree = "<group>"; };
+		080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireViewController.swift; sourceTree = "<group>"; };
+		080F9C2527E9EBE00055FAF8 /* CallRequstHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRequstHistoryViewController.swift; sourceTree = "<group>"; };
+		080F9C2727EA04220055FAF8 /* icCheckPurple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icCheckPurple@2x.png"; sourceTree = "<group>"; };
+		080F9C2827EA04230055FAF8 /* icCheckPurple@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icCheckPurple@3x.png"; sourceTree = "<group>"; };
+		080F9C2927EA04230055FAF8 /* icCheckPurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icCheckPurple.png; sourceTree = "<group>"; };
+		080F9C2D27EA17460055FAF8 /* btnAdd1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnAdd1@2x.png"; sourceTree = "<group>"; };
+		080F9C2E27EA17460055FAF8 /* btnAdd1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnAdd1.png; sourceTree = "<group>"; };
+		080F9C2F27EA17470055FAF8 /* btnAdd1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnAdd1@3x.png"; sourceTree = "<group>"; };
+		081F264B27F3878000F17332 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingAppTeamViewController.swift; sourceTree = "<group>"; };
+		081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingAppTeamCollectionViewCell.swift; sourceTree = "<group>"; };
+		081F265127F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingAppTeamImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		081F265327F3903D00F17332 /* MakingWebTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingWebTeamViewController.swift; sourceTree = "<group>"; };
+		081F265527F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingWebTeamCollectionViewCell.swift; sourceTree = "<group>"; };
+		081F265727F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingWebTeamImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		081F265927F393C000F17332 /* imgUser8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser8@2x.png"; sourceTree = "<group>"; };
+		081F265A27F393C000F17332 /* imgUser3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgUser3.png; sourceTree = "<group>"; };
+		081F265B27F393C000F17332 /* imgUser8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgUser8.png; sourceTree = "<group>"; };
+		081F265C27F393C000F17332 /* imgUser3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser3@3x.png"; sourceTree = "<group>"; };
+		081F265D27F393C000F17332 /* imgUser2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser2@3x.png"; sourceTree = "<group>"; };
+		081F265E27F393C100F17332 /* imgUser8@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser8@3x.png"; sourceTree = "<group>"; };
+		081F265F27F393C100F17332 /* imgUser3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser3@2x.png"; sourceTree = "<group>"; };
+		081F266027F393C100F17332 /* imgUser2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgUser2.png; sourceTree = "<group>"; };
+		081F266127F393C100F17332 /* imgUser2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser2@2x.png"; sourceTree = "<group>"; };
+		081F266F27F3960300F17332 /* MakingGameTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingGameTeamViewController.swift; sourceTree = "<group>"; };
+		081F267127F396C500F17332 /* MakingGameTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingGameTeamCollectionViewCell.swift; sourceTree = "<group>"; };
+		081F267327F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingGameTeamImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		081F267527F3987F00F17332 /* imgUser6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser6@2x.png"; sourceTree = "<group>"; };
+		081F267627F3988000F17332 /* imgUser6@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser6@3x.png"; sourceTree = "<group>"; };
+		081F267727F3988000F17332 /* imgUser6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgUser6.png; sourceTree = "<group>"; };
+		081F267B27F399C100F17332 /* imgUser7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgUser7.png; sourceTree = "<group>"; };
+		081F267C27F399C100F17332 /* imgUser7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser7@3x.png"; sourceTree = "<group>"; };
+		081F267D27F399C100F17332 /* imgUser7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser7@2x.png"; sourceTree = "<group>"; };
+		081F268127F435C700F17332 /* AllTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeamViewController.swift; sourceTree = "<group>"; };
+		081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeamListTableViewCell.swift; sourceTree = "<group>"; };
+		08248AE427D6475900733A12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "firebase_source/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		082EF64727F58D8200C36736 /* NotifyPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotifyPages.storyboard; sourceTree = "<group>"; };
+		0831AF3527E112180098D753 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		0833416827F3317F005B4F31 /* sliderIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderIcon@3x.png"; sourceTree = "<group>"; };
+		0833416927F3317F005B4F31 /* sliderIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderIcon@2x.png"; sourceTree = "<group>"; };
+		0833416A27F3317F005B4F31 /* sliderIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderIcon.png; sourceTree = "<group>"; };
+		0833416E27F33252005B4F31 /* searchIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchIcon.png; sourceTree = "<group>"; };
+		0833416F27F33252005B4F31 /* searchIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchIcon@2x.png"; sourceTree = "<group>"; };
+		0833417027F33252005B4F31 /* searchIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchIcon@3x.png"; sourceTree = "<group>"; };
+		0833417727F3437D005B4F31 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		0833418527F35A80005B4F31 /* FavorTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorTeamViewController.swift; sourceTree = "<group>"; };
+		0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorTeamCollectionViewCell.swift; sourceTree = "<group>"; };
+		0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorTeamImagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		0835C36E27EDBF5900968626 /* TeamPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamPages.storyboard; sourceTree = "<group>"; };
+		08657BDF27F4874B00FDEACD /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		08657BE127F487DA00FDEACD /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
+		08657BE327F4884C00FDEACD /* FixedMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedMemberCell.swift; sourceTree = "<group>"; };
+		08657BE527F4887100FDEACD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0868B01427CB5ED20018464B /* Join2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Join2ViewController.swift; sourceTree = "<group>"; };
 		0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinSuccessViewController.swift; path = iteam_ny/JoinVC/JoinSuccessViewController.swift; sourceTree = SOURCE_ROOT; };
 		0868B01D27CB6A6C0018464B /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinViewController.swift; path = iteam_ny/JoinVC/JoinViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -120,9 +252,25 @@
 		0868B08127CB6F2A0018464B /* asset121.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asset121.png; sourceTree = "<group>"; };
 		0868B08227CB6F2B0018464B /* asset121@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asset121@2x.png"; sourceTree = "<group>"; };
 		0868B08327CB6F2B0018464B /* asset121@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asset121@3x.png"; sourceTree = "<group>"; };
+		087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icArrowDropDown@2x.png"; sourceTree = "<group>"; };
+		087A23E127FACAB600E76893 /* icArrowDropDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icArrowDropDown.png; sourceTree = "<group>"; };
+		087A23E227FACAB600E76893 /* icArrowDropDown@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icArrowDropDown@3x.png"; sourceTree = "<group>"; };
+		087A23E727FAEF7400E76893 /* CreateTeamPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamPartViewController.swift; sourceTree = "<group>"; };
+		087A23E927FAF23800E76893 /* CreateTeamPartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamPartTableViewCell.swift; sourceTree = "<group>"; };
+		087FA8BD27E9B941000E741B /* rectangleEditImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rectangleEditImage.png; sourceTree = "<group>"; };
+		087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@2x.png"; sourceTree = "<group>"; };
+		087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@3x.png"; sourceTree = "<group>"; };
+		08B2F2EA27F75A04008F7085 /* teamPageLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teamPageLogo@2x.png"; sourceTree = "<group>"; };
+		08B2F2EB27F75A05008F7085 /* teamPageLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teamPageLogo@3x.png"; sourceTree = "<group>"; };
+		08B2F2EC27F75A05008F7085 /* teamPageLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teamPageLogo.png; sourceTree = "<group>"; };
+		08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeamPages_AllTeams.storyboard; sourceTree = "<group>"; };
+		08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileViewController.swift; sourceTree = "<group>"; };
+		08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypages.storyboard; sourceTree = "<group>"; };
+		08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileViewController.swift; sourceTree = "<group>"; };
+		08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		08D242B927CB487F008B4FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iteam_ny/Base.lproj/JoinPages.storyboard; sourceTree = SOURCE_ROOT; };
 		1AA33962F2ADE98770A83FFD /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
-		1F0208BB27E9274C00148FD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F55CF112751F19100CD35EC /* iteam_ny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iteam_ny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F55CF142751F19100CD35EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F55CF162751F19100CD35EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,10 +282,10 @@
 		1F55CF2C2751FCA800CD35EC /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		1F55CF4F2754A98C00CD35EC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1F55CF552754B46B00CD35EC /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
-		1F55CF57275584A200CD35EC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1F5AC97027D6BCE800146C0E /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		1F5AC97227D6BEB600146C0E /* UserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
 		1F5AC97327D6BEB600146C0E /* UserListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserListCell.xib; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		1F95AE6F27FD061400AB1377 /* btn_pin2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pin2@3x.png"; sourceTree = "<group>"; };
 		1F95AE7027FD061400AB1377 /* btn_pin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_pin2.png; sourceTree = "<group>"; };
 		1F95AE7127FD061400AB1377 /* btn_pin2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pin2@2x.png"; sourceTree = "<group>"; };
@@ -159,6 +307,8 @@
 		1FFD2E3F27FC02650068520D /* ic_rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_rate.png; sourceTree = "<group>"; };
 		1FFD2E4027FC02650068520D /* ic_rate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_rate@2x.png"; sourceTree = "<group>"; };
 		1FFD2E4127FC02650068520D /* ic_rate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_rate@3x.png"; sourceTree = "<group>"; };
+=======
+>>>>>>> origin
 		41D6D78F5AF719996BB65CCC /* Pods-iteam_ny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.debug.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig"; sourceTree = "<group>"; };
 		8FA1CB3D1B120506DE83DA6F /* Pods_iteam_ny.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iteam_ny.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -175,9 +325,91 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		080F9C1A27E9DC4B0055FAF8 /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				087A23E127FACAB600E76893 /* icArrowDropDown.png */,
+				087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */,
+				087A23E227FACAB600E76893 /* icArrowDropDown@3x.png */,
+				0833416E27F33252005B4F31 /* searchIcon.png */,
+				0833416F27F33252005B4F31 /* searchIcon@2x.png */,
+				0833417027F33252005B4F31 /* searchIcon@3x.png */,
+				0833416A27F3317F005B4F31 /* sliderIcon.png */,
+				0833416927F3317F005B4F31 /* sliderIcon@2x.png */,
+				0833416827F3317F005B4F31 /* sliderIcon@3x.png */,
+				080F9C2E27EA17460055FAF8 /* btnAdd1.png */,
+				080F9C2D27EA17460055FAF8 /* btnAdd1@2x.png */,
+				080F9C2F27EA17470055FAF8 /* btnAdd1@3x.png */,
+				080F9C2927EA04230055FAF8 /* icCheckPurple.png */,
+				080F9C2727EA04220055FAF8 /* icCheckPurple@2x.png */,
+				080F9C2827EA04230055FAF8 /* icCheckPurple@3x.png */,
+				080F9C1B27E9DCE60055FAF8 /* icCheck.png */,
+				080F9C1C27E9DCE60055FAF8 /* icCheck@2x.png */,
+				080F9C1D27E9DCE80055FAF8 /* icCheck@3x.png */,
+			);
+			path = icon;
+			sourceTree = "<group>";
+		};
+		081F266B27F395B000F17332 /* FavorTeam */ = {
+			isa = PBXGroup;
+			children = (
+				0833418527F35A80005B4F31 /* FavorTeamViewController.swift */,
+				0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */,
+				0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */,
+			);
+			path = FavorTeam;
+			sourceTree = "<group>";
+		};
+		081F266C27F395C300F17332 /* AppTeam */ = {
+			isa = PBXGroup;
+			children = (
+				081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */,
+				081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */,
+				081F265127F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift */,
+			);
+			path = AppTeam;
+			sourceTree = "<group>";
+		};
+		081F266D27F395D300F17332 /* WebTeam */ = {
+			isa = PBXGroup;
+			children = (
+				081F265327F3903D00F17332 /* MakingWebTeamViewController.swift */,
+				081F265527F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift */,
+				081F265727F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift */,
+			);
+			path = WebTeam;
+			sourceTree = "<group>";
+		};
+		081F266E27F395E800F17332 /* GameTeam */ = {
+			isa = PBXGroup;
+			children = (
+				081F266F27F3960300F17332 /* MakingGameTeamViewController.swift */,
+				081F267127F396C500F17332 /* MakingGameTeamCollectionViewCell.swift */,
+				081F267327F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift */,
+			);
+			path = GameTeam;
+			sourceTree = "<group>";
+		};
+		0833417427F342D1005B4F31 /* TeamVC */ = {
+			isa = PBXGroup;
+			children = (
+				087A23E627FAEF4D00E76893 /* CreateTeam */,
+				08BFBE9B27F5AE6900A6F6B0 /* DetailTeamProfile */,
+				081F266E27F395E800F17332 /* GameTeam */,
+				081F266D27F395D300F17332 /* WebTeam */,
+				081F266C27F395C300F17332 /* AppTeam */,
+				081F266B27F395B000F17332 /* FavorTeam */,
+				081F264B27F3878000F17332 /* TeamViewController.swift */,
+				081F268127F435C700F17332 /* AllTeamViewController.swift */,
+				081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */,
+			);
+			path = TeamVC;
+			sourceTree = "<group>";
+		};
 		0868B02027CB6CD20018464B /* calling */ = {
 			isa = PBXGroup;
 			children = (
+				080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */,
 				0868B03427CB6D820018464B /* AddMemberAlertViewController.swift */,
 				0868B03627CB6D820018464B /* AgoraViewController.swift */,
 				0868B03127CB6D820018464B /* CallClosedViewController.swift */,
@@ -199,6 +431,7 @@
 				0868B04227CB6D930018464B /* EvaluateViewController.swift */,
 				0868B03F27CB6D930018464B /* Person.swift */,
 				0868B04127CB6D930018464B /* RequestTableViewCell.swift */,
+				080F9C2527E9EBE00055FAF8 /* CallRequstHistoryViewController.swift */,
 			);
 			path = callingManage;
 			sourceTree = "<group>";
@@ -217,6 +450,7 @@
 			children = (
 				0868B01D27CB6A6C0018464B /* JoinViewController.swift */,
 				0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */,
+				0831AF3527E112180098D753 /* LogInViewController.swift */,
 			);
 			path = JoinVC;
 			sourceTree = "<group>";
@@ -261,6 +495,10 @@
 		0868B06227CB6EBE0018464B /* image_source */ = {
 			isa = PBXGroup;
 			children = (
+				080F9C1A27E9DC4B0055FAF8 /* icon */,
+				087FA8BD27E9B941000E741B /* rectangleEditImage.png */,
+				087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */,
+				087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */,
 				0868B08027CB6F180018464B /* logo */,
 				0868B06927CB6EDA0018464B /* user */,
 				0868B06327CB6ED20018464B /* group97.png */,
@@ -273,9 +511,27 @@
 		0868B06927CB6EDA0018464B /* user */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				1FFD2E3B27FBF0BF0068520D /* img_user1.png */,
 				1FFD2E3927FBF0BF0068520D /* img_user1@2x.png */,
 				1FFD2E3A27FBF0BF0068520D /* img_user1@3x.png */,
+=======
+				081F267B27F399C100F17332 /* imgUser7.png */,
+				081F267D27F399C100F17332 /* imgUser7@2x.png */,
+				081F267C27F399C100F17332 /* imgUser7@3x.png */,
+				081F267727F3988000F17332 /* imgUser6.png */,
+				081F267527F3987F00F17332 /* imgUser6@2x.png */,
+				081F267627F3988000F17332 /* imgUser6@3x.png */,
+				081F266027F393C100F17332 /* imgUser2.png */,
+				081F266127F393C100F17332 /* imgUser2@2x.png */,
+				081F265D27F393C000F17332 /* imgUser2@3x.png */,
+				081F265A27F393C000F17332 /* imgUser3.png */,
+				081F265F27F393C100F17332 /* imgUser3@2x.png */,
+				081F265C27F393C000F17332 /* imgUser3@3x.png */,
+				081F265B27F393C000F17332 /* imgUser8.png */,
+				081F265927F393C000F17332 /* imgUser8@2x.png */,
+				081F265E27F393C100F17332 /* imgUser8@3x.png */,
+>>>>>>> origin
 				0868B07127CB6F030018464B /* imgUser4.png */,
 				0868B06B27CB6F010018464B /* imgUser4@2x.png */,
 				0868B07427CB6F040018464B /* imgUser4@3x.png */,
@@ -294,6 +550,9 @@
 		0868B08027CB6F180018464B /* logo */ = {
 			isa = PBXGroup;
 			children = (
+				08B2F2EC27F75A05008F7085 /* teamPageLogo.png */,
+				08B2F2EA27F75A04008F7085 /* teamPageLogo@2x.png */,
+				08B2F2EB27F75A05008F7085 /* teamPageLogo@3x.png */,
 				0868B08127CB6F2A0018464B /* asset121.png */,
 				0868B08227CB6F2B0018464B /* asset121@2x.png */,
 				0868B08327CB6F2B0018464B /* asset121@3x.png */,
@@ -302,11 +561,43 @@
 			path = logo;
 			sourceTree = "<group>";
 		};
+		087A23E627FAEF4D00E76893 /* CreateTeam */ = {
+			isa = PBXGroup;
+			children = (
+				087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */,
+				08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */,
+				087A23E727FAEF7400E76893 /* CreateTeamPartViewController.swift */,
+				087A23E927FAF23800E76893 /* CreateTeamPartTableViewCell.swift */,
+			);
+			path = CreateTeam;
+			sourceTree = "<group>";
+		};
+		08BFBE9827F596B600A6F6B0 /* firebase_source */ = {
+			isa = PBXGroup;
+			children = (
+				08248AE427D6475900733A12 /* GoogleService-Info.plist */,
+			);
+			path = firebase_source;
+			sourceTree = "<group>";
+		};
+		08BFBE9B27F5AE6900A6F6B0 /* DetailTeamProfile */ = {
+			isa = PBXGroup;
+			children = (
+				08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */,
+				08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */,
+			);
+			path = DetailTeamProfile;
+			sourceTree = "<group>";
+		};
 		08D242B727CB4839008B4FE1 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				08D242B827CB487F008B4FE1 /* JoinPages.storyboard */,
 				1F55CF1A2751F19100CD35EC /* Main.storyboard */,
+				0835C36E27EDBF5900968626 /* TeamPages.storyboard */,
+				08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */,
+				082EF64727F58D8200C36736 /* NotifyPages.storyboard */,
+				08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -314,6 +605,7 @@
 		1F55CF082751F19100CD35EC = {
 			isa = PBXGroup;
 			children = (
+				08BFBE9827F596B600A6F6B0 /* firebase_source */,
 				1F55CF132751F19100CD35EC /* iteam_ny */,
 				1F55CF122751F19100CD35EC /* Products */,
 				31B0739A0D86B84446828D2C /* Pods */,
@@ -334,6 +626,7 @@
 			children = (
 				1F5AC96F27D6BC6700146C0E /* UserVC */,
 				1F5AC96E27D6BC4B00146C0E /* QuestionVC */,
+				0833417427F342D1005B4F31 /* TeamVC */,
 				0868B06227CB6EBE0018464B /* image_source */,
 				0868B05B27CB6E9E0018464B /* button_source */,
 				0868B05027CB6DF60018464B /* SettingVC */,
@@ -344,13 +637,12 @@
 				1F55CF5B2755E2B400CD35EC /* Home */,
 				1F55CF142751F19100CD35EC /* AppDelegate.swift */,
 				0868B01427CB5ED20018464B /* Join2ViewController.swift */,
-				1F55CF162751F19100CD35EC /* SceneDelegate.swift */,
 				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
 				1F55CF552754B46B00CD35EC /* UserProfileController.swift */,
+				1F55CF162751F19100CD35EC /* SceneDelegate.swift */,
 				1F55CF1D2751F19200CD35EC /* Assets.xcassets */,
 				1F55CF1F2751F19200CD35EC /* LaunchScreen.storyboard */,
 				1F55CF222751F19200CD35EC /* Info.plist */,
-				1F0208BB27E9274C00148FD9 /* GoogleService-Info.plist */,
 			);
 			path = iteam_ny;
 			sourceTree = "<group>";
@@ -358,8 +650,13 @@
 		1F55CF5B2755E2B400CD35EC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				1F55CF57275584A200CD35EC /* SearchViewController.swift */,
+=======
+>>>>>>> origin
 				1F55CF282751F71A00CD35EC /* HomeViewController.swift */,
+				08657BE327F4884C00FDEACD /* FixedMemberCell.swift */,
+				08657BE527F4887100FDEACD /* SearchViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -369,6 +666,7 @@
 			children = (
 				1F5AC97027D6BCE800146C0E /* UserProfile.swift */,
 				1F55CF4F2754A98C00CD35EC /* User.swift */,
+				0833417727F3437D005B4F31 /* Team.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -376,8 +674,8 @@
 		1F5AC96E27D6BC4B00146C0E /* QuestionVC */ = {
 			isa = PBXGroup;
 			children = (
-				1FBD3820275D17E4007A5799 /* QuestionCell.swift */,
-				1FBD3822275D19A5007A5799 /* QuestionViewController.swift */,
+				08657BDF27F4874B00FDEACD /* QuestionViewController.swift */,
+				08657BE127F487DA00FDEACD /* QuestionCell.swift */,
 			);
 			path = QuestionVC;
 			sourceTree = "<group>";
@@ -468,7 +766,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				081F266A27F393C100F17332 /* imgUser2@2x.png in Resources */,
 				0868B07727CB6F040018464B /* person_profile.png in Resources */,
+<<<<<<< HEAD
 				1FFD2E4227FC02650068520D /* ic_rate.png in Resources */,
 				08D242BA27CB487F008B4FE1 /* JoinPages.storyboard in Resources */,
 				1FFD2E3D27FBF0BF0068520D /* img_user1@3x.png in Resources */,
@@ -482,11 +782,48 @@
 				1FFD2E3827FBEE420068520D /* btn_option@2x.png in Resources */,
 				0868B07C27CB6F040018464B /* imgUser4.png in Resources */,
 				1F95AE7A27FD08C400AB1377 /* btn_close.png in Resources */,
+=======
+				087A23E427FACAB700E76893 /* icArrowDropDown.png in Resources */,
+				0833416C27F3317F005B4F31 /* sliderIcon@2x.png in Resources */,
+				08248AE527D6475900733A12 /* GoogleService-Info.plist in Resources */,
+				08D242BA27CB487F008B4FE1 /* JoinPages.storyboard in Resources */,
+				081F266627F393C100F17332 /* imgUser2@3x.png in Resources */,
+				081F267827F3988000F17332 /* imgUser6@2x.png in Resources */,
+				0868B08527CB6F2B0018464B /* asset121@2x.png in Resources */,
+				081F266427F393C100F17332 /* imgUser8.png in Resources */,
+				081F267A27F3988000F17332 /* imgUser6.png in Resources */,
+				082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */,
+				081F267927F3988000F17332 /* imgUser6@3x.png in Resources */,
+				08D242BA27CB487F008B4FE1 /* JoinPages.storyboard in Resources */,
+				080F9C1F27E9DCE80055FAF8 /* icCheck@2x.png in Resources */,
+				08B2F2EE27F75A05008F7085 /* teamPageLogo@3x.png in Resources */,
+				087FA8C127E9B942000E741B /* rectangleEditImage@2x.png in Resources */,
+				080F9C1E27E9DCE80055FAF8 /* icCheck.png in Resources */,
+				081F266527F393C100F17332 /* imgUser3@3x.png in Resources */,
+				087A23E527FACAB700E76893 /* icArrowDropDown@3x.png in Resources */,
+				0835C36F27EDBF5900968626 /* TeamPages.storyboard in Resources */,
+				0868B07527CB6F040018464B /* imgUser5.png in Resources */,
+				081F267F27F399C100F17332 /* imgUser7@3x.png in Resources */,
+				087A23E327FACAB700E76893 /* icArrowDropDown@2x.png in Resources */,
+				0868B07C27CB6F040018464B /* imgUser4.png in Resources */,
+				080F9C2027E9DCE80055FAF8 /* icCheck@3x.png in Resources */,
+>>>>>>> origin
 				0868B08427CB6F2B0018464B /* asset121.png in Resources */,
 				1F55CF212751F19200CD35EC /* LaunchScreen.storyboard in Resources */,
+				080F9C3227EA17470055FAF8 /* btnAdd1@3x.png in Resources */,
+				08B2F2EF27F75A05008F7085 /* teamPageLogo.png in Resources */,
+				08B2F2F127F77A0F008F7085 /* TeamPages_AllTeams.storyboard in Resources */,
+				08BFBE9727F590D800A6F6B0 /* Mypages.storyboard in Resources */,
+				081F267E27F399C100F17332 /* imgUser7.png in Resources */,
+				080F9C3127EA17470055FAF8 /* btnAdd1.png in Resources */,
+				0833417127F33252005B4F31 /* searchIcon.png in Resources */,
 				0868B07927CB6F040018464B /* imgUser10.png in Resources */,
+				081F266927F393C100F17332 /* imgUser2.png in Resources */,
+				081F266727F393C100F17332 /* imgUser8@3x.png in Resources */,
+				0833416D27F3317F005B4F31 /* sliderIcon.png in Resources */,
 				0868B07627CB6F040018464B /* imgUser4@2x.png in Resources */,
 				1F55CF1E2751F19200CD35EC /* Assets.xcassets in Resources */,
+<<<<<<< HEAD
 				1FFD2E3227FBEA9C0068520D /* btn_pin1@3x.png in Resources */,
 				0868B06627CB6ED20018464B /* group97.png in Resources */,
 				1F55CF1C2751F19100CD35EC /* Main.storyboard in Resources */,
@@ -502,6 +839,28 @@
 				0868B05F27CB6EBB0018464B /* iconsCallOffFillInCircle.png in Resources */,
 				1FFD2E3127FBEA9C0068520D /* btn_pin1.png in Resources */,
 				1FFD2E2C27FBEA070068520D /* img_logo2.png in Resources */,
+=======
+				080F9C3027EA17470055FAF8 /* btnAdd1@2x.png in Resources */,
+				081F266827F393C100F17332 /* imgUser3@2x.png in Resources */,
+				08B2F2ED27F75A05008F7085 /* teamPageLogo@2x.png in Resources */,
+				080F9C2A27EA04240055FAF8 /* icCheckPurple@2x.png in Resources */,
+				0868B06627CB6ED20018464B /* group97.png in Resources */,
+				1F5AC97527D6BEB600146C0E /* UserListCell.xib in Resources */,
+				081F266327F393C100F17332 /* imgUser3.png in Resources */,
+				1F55CF1C2751F19100CD35EC /* Main.storyboard in Resources */,
+				0868B08627CB6F2B0018464B /* asset121@3x.png in Resources */,
+				087FA8C027E9B942000E741B /* rectangleEditImage.png in Resources */,
+				081F266227F393C100F17332 /* imgUser8@2x.png in Resources */,
+				087FA8C227E9B942000E741B /* rectangleEditImage@3x.png in Resources */,
+				080F9C2C27EA04240055FAF8 /* icCheckPurple.png in Resources */,
+				0833416B27F3317F005B4F31 /* sliderIcon@3x.png in Resources */,
+				080F9C2B27EA04240055FAF8 /* icCheckPurple@3x.png in Resources */,
+				0868B07D27CB6F040018464B /* person_profile_yellow.png in Resources */,
+				0833417227F33252005B4F31 /* searchIcon@2x.png in Resources */,
+				0868B05F27CB6EBB0018464B /* iconsCallOffFillInCircle.png in Resources */,
+				0833417327F33252005B4F31 /* searchIcon@3x.png in Resources */,
+				081F268027F399C100F17332 /* imgUser7@2x.png in Resources */,
+>>>>>>> origin
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,39 +913,65 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08657BE427F4884C00FDEACD /* FixedMemberCell.swift in Sources */,
 				1F5AC97427D6BEB600146C0E /* UserListCell.swift in Sources */,
 				0868B05827CB6E080018464B /* SettingSuccessViewController.swift in Sources */,
+				0833417827F3437E005B4F31 /* Team.swift in Sources */,
 				0868B05627CB6E080018464B /* DetailProfileViewController.swift in Sources */,
+				081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */,
+				081F267027F3960300F17332 /* MakingGameTeamViewController.swift in Sources */,
+				081F265427F3903D00F17332 /* MakingWebTeamViewController.swift in Sources */,
 				0868B04827CB6D930018464B /* RequestTableViewCell.swift in Sources */,
+				0831AF3627E112180098D753 /* LogInViewController.swift in Sources */,
+				0833418827F35B07005B4F31 /* FavorTeamCollectionViewCell.swift in Sources */,
 				0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */,
+				081F267427F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift in Sources */,
 				1F55CF152751F19100CD35EC /* AppDelegate.swift in Sources */,
+				081F267227F396C500F17332 /* MakingGameTeamCollectionViewCell.swift in Sources */,
 				0868B05727CB6E080018464B /* SettingViewController.swift in Sources */,
 				0868B04A27CB6D930018464B /* CallAnswerViewController.swift in Sources */,
+				081F268227F435C700F17332 /* AllTeamViewController.swift in Sources */,
 				0868B05927CB6E080018464B /* SettingPurposeViewController.swift in Sources */,
+				0833418F27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift in Sources */,
+				081F265027F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift in Sources */,
 				1F55CF2D2751FCA800CD35EC /* TabbarController.swift in Sources */,
+				087A23EA27FAF23800E76893 /* CreateTeamPartTableViewCell.swift in Sources */,
 				0868B03D27CB6D830018464B /* AgoraViewController.swift in Sources */,
 				0868B04727CB6D930018464B /* CallManageViewController.swift in Sources */,
 				0868B03A27CB6D830018464B /* ChannelSectionHeader.swift in Sources */,
+				08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */,
 				0868B01E27CB6A6C0018464B /* JoinSuccessViewController.swift in Sources */,
-				1F55CF58275584A200CD35EC /* SearchViewController.swift in Sources */,
+				08657BE027F4874B00FDEACD /* QuestionViewController.swift in Sources */,
 				0868B01F27CB6A6C0018464B /* JoinViewController.swift in Sources */,
 				1F5AC97127D6BCE800146C0E /* UserProfile.swift in Sources */,
 				0868B04627CB6D930018464B /* Person.swift in Sources */,
 				0868B04527CB6D930018464B /* AnswerTableViewCell.swift in Sources */,
 				1F55CF562754B46B00CD35EC /* UserProfileController.swift in Sources */,
 				1F55CF172751F19100CD35EC /* SceneDelegate.swift in Sources */,
+				08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */,
 				0868B03727CB6D830018464B /* UserCollectionViewCell.swift in Sources */,
 				1F55CF502754A98C00CD35EC /* User.swift in Sources */,
 				0868B03C27CB6D830018464B /* ChannelWaitingViewController.swift in Sources */,
+				0833418627F35A80005B4F31 /* FavorTeamViewController.swift in Sources */,
+				081F264C27F3878000F17332 /* TeamViewController.swift in Sources */,
+				087A23E827FAEF7400E76893 /* CreateTeamPartViewController.swift in Sources */,
+				080F9C2627E9EBE00055FAF8 /* CallRequstHistoryViewController.swift in Sources */,
 				1F55CF292751F71A00CD35EC /* HomeViewController.swift in Sources */,
+				087A23DB27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift in Sources */,
+				081F264E27F38ADB00F17332 /* MakingAppTeamViewController.swift in Sources */,
+				08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */,
+				081F265627F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift in Sources */,
+				081F265227F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift in Sources */,
 				0868B05A27CB6E080018464B /* SettingPassionViewController.swift in Sources */,
 				0868B03B27CB6D830018464B /* AddMemberAlertViewController.swift in Sources */,
-				1FBD3821275D17E4007A5799 /* QuestionCell.swift in Sources */,
 				0868B03827CB6D830018464B /* CallClosedViewController.swift in Sources */,
+				081F265827F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift in Sources */,
+				08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */,
 				0868B04927CB6D930018464B /* EvaluateViewController.swift in Sources */,
+				080F9C2427E9DEA70055FAF8 /* QuestionnaireViewController.swift in Sources */,
 				0868B03927CB6D830018464B /* ChannelViewController.swift in Sources */,
+				08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */,
 				0868B04B27CB6D930018464B /* CallRequestViewController.swift in Sources */,
-				1FBD3823275D19A5007A5799 /* QuestionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,12 +1132,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				DEVELOPMENT_TEAM = 3WXYTFH2K7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -776,12 +1161,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				DEVELOPMENT_TEAM = 3WXYTFH2K7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
