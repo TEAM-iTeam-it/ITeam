@@ -9,7 +9,6 @@ target 'iteam_ny' do
   pod 'Tabman', '~>2.11'
   pod 'Firebase/Database'
 
-
 post_install do |installer|
      installer.pods_project.targets.each do |target|
          target.build_configurations.each do |config|
@@ -24,5 +23,5 @@ post_install do |installer|
 
 
   # Pods for iteam_ny
-
 end
+
