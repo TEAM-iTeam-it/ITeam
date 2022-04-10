@@ -41,7 +41,7 @@ class EvaluateViewController: UIViewController {
             }
             sender.isSelected = true
             sender.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            sender.tintColor = UIColor(named: "purple_dark")
+            sender.tintColor = UIColor(named: "purple_184")
             selectedBtn.append((sender.titleLabel?.text)!.trimmingCharacters(in: .whitespaces))
           
         }

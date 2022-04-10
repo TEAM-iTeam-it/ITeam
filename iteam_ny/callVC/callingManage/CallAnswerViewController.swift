@@ -50,8 +50,8 @@ class CallAnswerViewController: UIViewController, UITableViewDelegate, UITableVi
         // 같은 학교 처리
         if cell.nicknameLabel.text == "레인" {
             cell.sameSchoolLabel.layer.borderWidth = 0.5
-            cell.sameSchoolLabel.layer.borderColor = UIColor(named: "purple_175")?.cgColor
-            cell.sameSchoolLabel.textColor = UIColor(named: "purple_175")
+            cell.sameSchoolLabel.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+            cell.sameSchoolLabel.textColor = UIColor(named: "purple_184")
             
             cell.sameSchoolLabel.layer.cornerRadius = cell.sameSchoolLabel.frame.height/2
             cell.sameSchoolLabel.text = "같은 학교"
@@ -62,7 +62,7 @@ class CallAnswerViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.sameSchoolLabel.isHidden = true
         }
         cell.positionLabel.text = personList[indexPath.row].position
-        cell.callStateBtn.titleLabel?.font = .systemFont(ofSize: 13)
+     //   cell.callStateBtn.titleLabel?.font = .systemFont(ofSize: 13)
         cell.callStateBtn.layer.cornerRadius = cell.callStateBtn.frame.height/2
         cell.callStateBtn.setTitle("\(personList[indexPath.row].callStm)", for: .normal)
         cell.profileImg.image = UIImage(named: "\(personList[indexPath.row].profileImg)")
@@ -89,14 +89,15 @@ class CallAnswerViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         else if personList[indexPath.row].callStm == "요청됨" {
             cell.callStateBtn.layer.borderWidth = 0.5
-            cell.callStateBtn.layer.borderColor = UIColor(named: "gray_light")?.cgColor
+            cell.callStateBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+            cell.callStateBtn.setTitleColor(UIColor(named: "gray_51"), for: .normal)
             cell.callStateBtn.backgroundColor = nil
         }
         else if personList[indexPath.row].callStm == "통화대기" {
             cell.callStateBtn.isHidden = false
             cell.callStateBtn.setTitle("통화", for: .normal)
             cell.callStateBtn.setTitleColor(.white, for: .normal)
-            cell.callStateBtn.backgroundColor = UIColor(named: "purple_175")
+            cell.callStateBtn.backgroundColor = UIColor(named: "purple_184")
         }
         else if personList[indexPath.row].callStm == "통화시작" {
             cell.callStateBtn.isHidden = false
@@ -108,7 +109,7 @@ class CallAnswerViewController: UIViewController, UITableViewDelegate, UITableVi
             // 버튼 그라디언트
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = cell.callStateBtn.bounds
-            gradientLayer.colors = [UIColor(named: "purple_179")?.cgColor, UIColor(named: "green_151")?.cgColor]
+            gradientLayer.colors = [UIColor(named: "purple_184")?.cgColor, UIColor(named: "green_151")?.cgColor]
             gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
             gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
             gradientLayer.frame = cell.callStateBtn.bounds
@@ -123,8 +124,8 @@ class CallAnswerViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if personList[indexPath.row].callStm == "요청수락" {
-            performSegue(withIdentifier: "waitingVC", sender: indexPath.row)
+        if personList[indexPath.row].callStm == "요청됨" {
+            performSegue(withIdentifier: "HistoryVC", sender: indexPath.row)
         }
         else if personList[indexPath.row].callStm == "통화대기" {
             performSegue(withIdentifier: "waitingVC", sender: indexPath.row)

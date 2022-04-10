@@ -26,6 +26,9 @@ import Foundation
 //    let activeZone : ActiveZone
 //    let character : Character
 //    let purpose : Purpose
+//let names : Array<String>
+//let tags: [String]
+
 //}
 //
 //struct ActiveZone: Codable{
@@ -55,6 +58,7 @@ struct UserProfile: Codable{
 
 struct UserProfileDetail: Codable{
     let name : String
+//    let userImageURL : String
     let part : String
     let purpose : String
     let character: String

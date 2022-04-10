@@ -5,10 +5,14 @@ target 'iteam_ny' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'AgoraRtcEngine_iOS', '~> 3.1.0'  
-  pod 'Tabman', '~>2.11'
+  # Pods for iteam_ny
+  pod 'AgoraRtcEngine_iOS', '~> 3.1.0'
+  pod 'Tabman', '~>2.11'  
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
   pod 'Firebase/Database'
-
+  pod 'Firebase/Storage'
+end
 
 post_install do |installer|
      installer.pods_project.targets.each do |target|
@@ -21,8 +25,3 @@ post_install do |installer|
          end
      end
  end
-
-
-  # Pods for iteam_ny
-
-end
