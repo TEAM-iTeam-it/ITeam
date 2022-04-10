@@ -12,7 +12,7 @@
         <!--Home View Controller-->
         <scene sceneID="5Dc-JZ-Ec8">
             <objects>
-                <viewController id="dtO-Eu-nIi" customClass="HomeViewController" customModule="iteam_ny" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainManageVC" id="dtO-Eu-nIi" customClass="HomeViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="skV-AW-O2Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -620,7 +620,7 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="hLL-J5-Y9M"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Wgx-xp-vRV"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DF-7p-91J" customClass="ActualGradientButton" customModule="iteam_ny" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DF-7p-91J" customClass="ActualGradientButton2" customModule="iteam_ny" customModuleProvider="target">
                                 <rect key="frame" x="20" y="810" width="374" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="Uge-e2-kTr"/>
@@ -680,7 +680,7 @@
         <!--Choose Time View Controller-->
         <scene sceneID="Yra-gH-BF3">
             <objects>
-                <viewController id="sYu-cz-XiC" customClass="ChooseTimeViewController" customModule="iteam_ny" sceneMemberID="viewController">
+                <viewController id="sYu-cz-XiC" customClass="ChooseTimeViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VD2-v5-tnz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

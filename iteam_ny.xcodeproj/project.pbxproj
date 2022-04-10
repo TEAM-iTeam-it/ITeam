@@ -114,7 +114,6 @@
 		08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */; };
 		1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3B27FD868500A5DE47 /* Main.storyboard */; };
 		1F304C3F27FD86D000A5DE47 /* JoinPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */; };
-		1F304C4127FD876900A5DE47 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F304C4027FD876900A5DE47 /* SearchViewController.swift */; };
 		1F55CF152751F19100CD35EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF142751F19100CD35EC /* AppDelegate.swift */; };
 		1F55CF172751F19100CD35EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF162751F19100CD35EC /* SceneDelegate.swift */; };
 		1F55CF1E2751F19200CD35EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F55CF1D2751F19200CD35EC /* Assets.xcassets */; };
@@ -884,7 +883,6 @@
 				081F267427F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift in Sources */,
 				1F55CF152751F19100CD35EC /* AppDelegate.swift in Sources */,
 				081F267227F396C500F17332 /* MakingGameTeamCollectionViewCell.swift in Sources */,
-				1F304C4127FD876900A5DE47 /* SearchViewController.swift in Sources */,
 				0868B05727CB6E080018464B /* SettingViewController.swift in Sources */,
 				0868B04A27CB6D930018464B /* CallAnswerViewController.swift in Sources */,
 				081F268227F435C700F17332 /* AllTeamViewController.swift in Sources */,

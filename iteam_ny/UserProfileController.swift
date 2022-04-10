@@ -75,7 +75,7 @@ class UserProfileController: UIViewController{
     
 }
 
-class ActualGradientButton: UIButton {
+class ActualGradientButton2: UIButton {
 
     override func layoutSubviews() {
         super.layoutSubviews()
