@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import MaterialComponents.MaterialBottomSheet
 
-class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate, SendCallTimeDataDelegate {
+class CreateTeamProfileViewController: UIViewController, SendCallTimeDataDelegate {
     
 
     @IBOutlet weak var saveBtn: UIButton!
@@ -25,8 +25,34 @@ class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UI
     @IBOutlet weak var callTimeBtn: UIButton!
     @IBOutlet weak var partLabel: UILabel!
     @IBOutlet weak var regionLabel: UILabel!
+    @IBOutlet weak var partLabelConstraintTop: NSLayoutConstraint!
+    @IBOutlet weak var partLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var regionLabelConstraintTop: NSLayoutConstraint!
+    @IBOutlet weak var regionLabelHeight: NSLayoutConstraint!
+    
+    
     
     @IBOutlet var serviceTypeBtns: [UIButton]!
+    var didTeamNameWrote: Int = 0
+    var didPurpleWrote: Int = 0
+    var didPartWrote: Bool = false
+    var didRegionWrote: Bool = false
+    
+    var didWroteAllAnswer: Int = 0 {
+        willSet(newValue) {
+            print("newvalue = \(newValue)")
+            if newValue >= 5 {
+                saveBtn.backgroundColor = UIColor(named: "purple_184")
+                saveBtn.setTitleColor(UIColor.white, for: .normal)
+                saveBtn.isEnabled = true
+            }
+            else {
+                saveBtn.backgroundColor = UIColor(named: "gray_196")
+                saveBtn.setTitleColor(UIColor.white, for: .normal)
+                saveBtn.isEnabled = false
+            }
+        }
+    }
   
     // Firebase Realtime Database 루트
     var ref: DatabaseReference!
@@ -40,10 +66,34 @@ class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UI
     let teamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
     var teamMembers: [CustomUser] = []
     
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setUI()
+        // 데이터 기입 여부에 따라 constraint 변경
+        // 라벨 세팅
+        if partLabel.text == "" {
+            partLabel.isHidden = true
+            partLabelConstraintTop.constant = 0
+            partLabelHeight.constant = 0
+        }
+        else {
+            partLabel.isHidden = false
+            partLabelConstraintTop.constant = 15
+            partLabelHeight.constant = 25
+        }
+        if regionLabel.text == "" {
+            regionLabel.isHidden = true
+            regionLabelConstraintTop.constant = 0
+            regionLabelHeight.constant = 0
+        }
+        else {
+            regionLabel.isHidden = false
+            regionLabelConstraintTop.constant = 15
+            regionLabelHeight.constant = 25
+        }
 
     }
     
@@ -57,6 +107,8 @@ class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UI
         singleTapGestureRecognizer.isEnabled = true
         singleTapGestureRecognizer.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+        
+        setUI()
         
         partLabel.isHidden = true
         regionLabel.isHidden = true
@@ -77,6 +129,9 @@ class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UI
         
         // 버튼 디자인 세팅
         saveBtn.layer.cornerRadius = 8
+        saveBtn.setTitleColor(UIColor.white, for: .normal)
+        saveBtn.backgroundColor = UIColor(named: "gray_196")
+        saveBtn.isEnabled = false
         
         for i in 0..<serviceTypeBtns.count {
             serviceTypeBtns[i].layer.cornerRadius = serviceTypeBtns[i].frame.height/2
@@ -145,6 +200,18 @@ class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UI
         purposeBtn.menu = purposeMenu
         
         
+        // 라벨 세팅
+        partLabel.text = ""
+        partLabel.isHidden = true
+        partLabelConstraintTop.constant = 0
+        partLabelHeight.constant = 0
+        
+        // 라벨 세팅
+        regionLabel.text = ""
+        regionLabel.isHidden = true
+        regionLabelConstraintTop.constant = 0
+        regionLabelHeight.constant = 0
+        
         
     }
     
@@ -156,10 +223,14 @@ class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UI
     
         // 필수 항목 기입 확인
         if teamNameTF.text!.isEmpty || purposeBtn.titleLabel?.text == "팀빌딩을 진행하는 목적을 선택해 주세요" || serviceType.isEmpty || partLabel.text == "" || regionLabel.text == "" {
-            showAlertAction()
+            saveBtn.backgroundColor = UIColor(named: "gray_196")
+            saveBtn.isEnabled = false
+            // showAlertAction()
         }
         else {
             // 팀 이름 중복 검사
+            saveBtn.backgroundColor = UIColor(named: "purple_184")
+            saveBtn.isEnabled = true
             if let teamName = self.teamNameTF {
                 if let teamNameText = teamName.text {
                     
@@ -239,19 +310,23 @@ class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UI
     
     // [Button Action] 서비스 유형 선택 - 단일 선택 처리
     @IBAction func serviceTypeAction(_ sender: UIButton) {
+        
+        // 이미 클릭한 경우 -> 클릭 취소
         if serviceType.contains((sender.titleLabel?.text)!) {
             sender.layer.backgroundColor = UIColor.clear.cgColor
             sender.setTitleColor(UIColor.black, for: .normal)
             sender.layer.borderColor = UIColor(named: "gray_196")?.cgColor
             sender.titleLabel?.font = UIFont.fontWithName(type: .regular, size: 14)
-            
+            didWroteAllAnswer -= 1
             for i in 0...serviceType.count-1 {
                 if serviceType[i] == sender.titleLabel?.text {
                     serviceType.remove(at: i)
                 }
             }
         }
+        // 새로 클릭하는 경우
         else {
+            // 선택된게 없는 경우
             if serviceType.isEmpty {
                 sender.layer.backgroundColor = UIColor(named: "purple_247")?.cgColor
                 sender.setTitleColor(UIColor(named: "purple_184"), for: .normal)
@@ -260,7 +335,9 @@ class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UI
                 sender.titleLabel?.font = UIFont.fontWithName(type: .medium, size: 14)
 
                 serviceType.append((sender.titleLabel?.text)!)
+                didWroteAllAnswer += 1
             }
+            // 이미 다른 버튼이 선택된 경우
             else {
                 serviceType.removeAll()
                 for i in 0...serviceTypeBtns.count-1 {
@@ -290,37 +367,67 @@ class CreateTeamProfileViewController: UIViewController, UITextFieldDelegate, UI
         
         present(callTimeVC!, animated: true, completion: nil)
     }
+    
     func sendCallTimeData(data: String) {
         self.callTimeBtn.setTitle(data, for: .normal)
         self.callTimeBtn.setTitleColor(UIColor.black, for: .normal)
     }
 
     
-    
     // [PullDownButton setting] 타이틀 색상 변경
     func detailPartPullDownBtnSetting() {
         if let purposeBtn = self.purposeBtn {
             purposeBtn.setTitleColor(.black, for: .normal)
+            
+            if didPurpleWrote != 1 {
+                didPurpleWrote = 1
+                didWroteAllAnswer += 1
+            }
         }
     }
-    
+}
+
+// textfield, 스크롤 제어
+extension CreateTeamProfileViewController: UITextFieldDelegate, UIScrollViewDelegate {
     
     // [Keyboard setting] return시 제거
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        addFillCount()
         textField.resignFirstResponder()
         return true
     }
+    
     @objc func TapMethod(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+        
+        addFillCount()
         self.view.endEditing(true)
     }
-
     
-    
+    // 완료 버튼을 제어하기 위해 텍스트 필드 입력을 감지하는 함수
+    func addFillCount() {
+        if teamNameTF.hasText {
+            if didTeamNameWrote == 1 {
+            }
+            else {
+                didTeamNameWrote = 1
+                didWroteAllAnswer += didTeamNameWrote
+            }
+        }
+        else {
+            if didTeamNameWrote == 1 {
+                didWroteAllAnswer -= 1
+                didTeamNameWrote = 0
+            }
+            
+        }
+    }
 }
+
+
 extension CreateTeamProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return teamMembers.count
@@ -339,6 +446,7 @@ extension CreateTeamProfileViewController: UICollectionViewDelegate, UICollectio
         
     }
 }
+
 extension CreateTeamProfileViewController: UICollectionViewDelegateFlowLayout {
 
     // 옆 간격
@@ -375,9 +483,9 @@ extension UIFont {
     }
 }
 
+
+// 다른 화면에서 데이터 넘겨받고 뷰 세팅
 extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataDelegate {
-    
-    
     
     func sendData(data: [String]) {
         var part: String = ""
@@ -392,6 +500,21 @@ extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataD
         }
         self.partLabel.isHidden = false
         self.partLabel.text = part
+      
+        // 포지션이 채워지면 카운트를 올려줌
+        if !self.partLabel.text!.isEmpty {
+            didWroteAllAnswer += 1
+            didPartWrote = true
+        }
+        else {
+            // 포지션을 채웠다가 비우면 카운트를 내려줌
+            // 처음 입력 시부터 입력하지 않았다면 카운트 변경 없음
+            if didPartWrote {
+                didWroteAllAnswer -= 1
+                didPartWrote = false
+            }
+        }
+        
     }
     
     func sendRegionData(data: [String]) {
@@ -407,6 +530,20 @@ extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataD
         }
         self.regionLabel.isHidden = false
         self.regionLabel.text = region
+        
+        // 지역이 채워지면 카운트를 올려줌
+        if !self.regionLabel.text!.isEmpty {
+            didWroteAllAnswer += 1
+            didRegionWrote = true
+        }
+        else {
+            // 포지션을 채웠다가 비우면 카운트를 내려줌
+            // 처음 입력 시부터 입력하지 않았다면 카운트 변경 없음
+            if didRegionWrote {
+                didWroteAllAnswer -= 1
+                didPartWrote = false
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
