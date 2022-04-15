@@ -26,7 +26,9 @@ class TeamProfileViewController: UIViewController {
     let teamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController!.navigationBar.shadowImage = UIImage()
+        if let navigationController = self.navigationController{
+            navigationController.navigationBar.shadowImage = UIImage()
+        }
         teamImageColl.semanticContentAttribute = UISemanticContentAttribute.forceRightToLeft
 
         callRequestBtn.layer.cornerRadius = 8

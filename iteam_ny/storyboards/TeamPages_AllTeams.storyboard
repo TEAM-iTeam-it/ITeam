@@ -45,7 +45,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공모전•디자이너, 개발자 구인 중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFL-1S-MVu">
                                                     <rect key="frame" x="80" y="39" width="171" height="16"/>
-                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="13"/>
                                                     <color key="textColor" name="gray_121"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -328,6 +328,11 @@
                                                             <outlet property="delegate" destination="l5p-RZ-a5r" id="zGf-AO-KMT"/>
                                                         </connections>
                                                     </collectionView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Cj-Xd-bXv">
+                                                        <rect key="frame" x="175" y="30" width="24" height="14"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -339,9 +344,11 @@
                                                     <constraint firstItem="ojW-yh-lNc" firstAttribute="top" secondItem="pLL-4N-pWx" secondAttribute="bottom" constant="30" id="TEJ-Ne-C0G"/>
                                                     <constraint firstItem="8Te-9V-RH4" firstAttribute="centerX" secondItem="yux-yd-ruW" secondAttribute="centerX" id="UW7-dy-PKM"/>
                                                     <constraint firstAttribute="height" constant="259" id="kDB-Kl-VF5"/>
+                                                    <constraint firstItem="9Cj-Xd-bXv" firstAttribute="top" secondItem="Vbs-BY-U9J" secondAttribute="top" constant="30" id="kXd-BJ-9Tj"/>
                                                     <constraint firstItem="8Te-9V-RH4" firstAttribute="top" secondItem="yux-yd-ruW" secondAttribute="bottom" constant="15" id="lGT-KT-AOs"/>
                                                     <constraint firstItem="yux-yd-ruW" firstAttribute="top" secondItem="W1e-QL-uhY" secondAttribute="bottom" constant="3" id="lNh-EL-HWE"/>
                                                     <constraint firstItem="pLL-4N-pWx" firstAttribute="centerX" secondItem="Vbs-BY-U9J" secondAttribute="centerX" id="nfa-X5-FVU"/>
+                                                    <constraint firstItem="9Cj-Xd-bXv" firstAttribute="centerX" secondItem="pLL-4N-pWx" secondAttribute="centerX" id="qIa-Ne-VZw"/>
                                                     <constraint firstItem="W1e-QL-uhY" firstAttribute="top" secondItem="ojW-yh-lNc" secondAttribute="bottom" constant="15" id="yx1-fM-qzU"/>
                                                 </constraints>
                                             </view>
@@ -452,6 +459,84 @@
             </objects>
             <point key="canvasLocation" x="4794.202898550725" y="1039.9553571428571"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Q4y-Tn-bRo">
+            <objects>
+                <viewController id="ukd-mk-5o6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fUU-Gb-S93">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀원 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohK-ph-dRj">
+                                <rect key="frame" x="20" y="74" width="75" height="24"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0Ov-7w-eW6">
+                                <rect key="frame" x="20" y="128" width="374" height="347"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="teamMemberListCell" rowHeight="70" id="okQ-cm-QBe" customClass="AllTeamListTableViewCell" customModule="iteam_ny" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="okQ-cm-QBe" id="BCP-eh-MKp">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzP-3S-KVX">
+                                                    <rect key="frame" x="60" y="18" width="26" height="18"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="백엔드 개발•포트폴리오/해커톤/창업" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaX-yy-10w">
+                                                    <rect key="frame" x="60" y="39" width="193" height="16"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
+                                                    <color key="textColor" name="gray_121"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser10.png" translatesAutoresizingMaskIntoConstraints="NO" id="mum-tQ-SYY">
+                                                    <rect key="frame" x="0.0" y="10" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="fib-9d-x27"/>
+                                                        <constraint firstAttribute="height" constant="50" id="om2-6y-Vtx"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eaX-yy-10w" firstAttribute="top" secondItem="kzP-3S-KVX" secondAttribute="bottom" constant="3" id="128-0a-uBv"/>
+                                                <constraint firstItem="mum-tQ-SYY" firstAttribute="centerY" secondItem="BCP-eh-MKp" secondAttribute="centerY" id="6Ex-zy-q1q"/>
+                                                <constraint firstItem="mum-tQ-SYY" firstAttribute="leading" secondItem="BCP-eh-MKp" secondAttribute="leading" id="P7Z-Hx-ARY"/>
+                                                <constraint firstItem="kzP-3S-KVX" firstAttribute="leading" secondItem="mum-tQ-SYY" secondAttribute="trailing" constant="10" id="bYb-ba-Xtf"/>
+                                                <constraint firstItem="kzP-3S-KVX" firstAttribute="top" secondItem="BCP-eh-MKp" secondAttribute="top" constant="18" id="i0J-8P-Sjh"/>
+                                                <constraint firstAttribute="bottom" secondItem="eaX-yy-10w" secondAttribute="bottom" constant="15" id="swf-nz-8z9"/>
+                                                <constraint firstItem="eaX-yy-10w" firstAttribute="leading" secondItem="kzP-3S-KVX" secondAttribute="leading" id="ypM-1T-5AA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="part" destination="eaX-yy-10w" id="Aw5-KF-68e"/>
+                                            <outlet property="teamName" destination="kzP-3S-KVX" id="dT3-cz-1fF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="L8a-0O-1O2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ohK-ph-dRj" firstAttribute="leading" secondItem="L8a-0O-1O2" secondAttribute="leading" constant="20" id="0mC-6z-yKR"/>
+                            <constraint firstItem="0Ov-7w-eW6" firstAttribute="top" secondItem="ohK-ph-dRj" secondAttribute="bottom" constant="30" id="DCr-ql-RDV"/>
+                            <constraint firstItem="0Ov-7w-eW6" firstAttribute="leading" secondItem="L8a-0O-1O2" secondAttribute="leading" constant="20" id="YwW-9h-ySx"/>
+                            <constraint firstItem="ohK-ph-dRj" firstAttribute="top" secondItem="L8a-0O-1O2" secondAttribute="top" constant="30" id="gYj-Xx-B1j"/>
+                            <constraint firstItem="L8a-0O-1O2" firstAttribute="trailing" secondItem="0Ov-7w-eW6" secondAttribute="trailing" constant="20" id="i5e-Tu-YR2"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dyJ-dk-fDB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5734.7826086956529" y="1000.4464285714286"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="4ht-Ct-nS3">
             <objects>
@@ -476,6 +561,7 @@
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="chevron.down" catalog="system" width="128" height="72"/>
+        <image name="imgUser10.png" width="50" height="50"/>
         <image name="imgUser4.png" width="50" height="50"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="suit.heart.fill" catalog="system" width="128" height="109"/>

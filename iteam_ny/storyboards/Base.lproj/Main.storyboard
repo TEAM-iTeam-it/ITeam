@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -786,7 +787,10 @@
         <scene sceneID="XFi-Tj-Rjb">
             <objects>
                 <navigationController autoresizesArchivedViewToFullSize="NO" id="qW4-Fw-JGZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" image="house" catalog="system" id="us4-qi-gmB"/>
+                    <tabBarItem key="tabBarItem" title="홈" id="us4-qi-gmB">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="medium"/>
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2kf-JU-hLZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -826,7 +830,10 @@
         <scene sceneID="EmQ-HN-I4o">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CKa-KU-qir" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="통화" image="phone" catalog="system" id="QOM-qy-IHZ"/>
+                    <tabBarItem key="tabBarItem" title="통화" id="QOM-qy-IHZ">
+                        <imageReference key="image" image="phone" catalog="system" symbolScale="medium"/>
+                        <imageReference key="selectedImage" image="phone.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vyk-9l-4m2">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -845,7 +852,10 @@
         <scene sceneID="yDG-6A-7IS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WXn-2x-2nL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="팀 탐색" image="person.2" catalog="system" selectedImage="person.2" id="9ks-k3-6tG"/>
+                    <tabBarItem key="tabBarItem" title="팀 탐색" id="9ks-k3-6tG">
+                        <imageReference key="image" image="person.2" catalog="system" symbolScale="medium"/>
+                        <imageReference key="selectedImage" image="person.2.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O9N-0R-cmu">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -864,7 +874,10 @@
         <scene sceneID="7fq-b5-adI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yhl-6v-NtX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="알림" image="bell" catalog="system" selectedImage="bell" id="vpK-Ce-sdv"/>
+                    <tabBarItem key="tabBarItem" title="알림" id="vpK-Ce-sdv">
+                        <imageReference key="image" image="bell" catalog="system" symbolScale="medium"/>
+                        <imageReference key="selectedImage" image="bell.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aeA-7i-61Q">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -883,7 +896,10 @@
         <scene sceneID="GPb-Xp-av9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xIk-t2-GYh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="마이페이지" image="person.crop.circle" catalog="system" selectedImage="person.crop.circle" id="VQ4-kg-FWP"/>
+                    <tabBarItem key="tabBarItem" title="마이페이지" id="VQ4-kg-FWP">
+                        <imageReference key="image" image="person.crop.circle" catalog="system" symbolScale="medium"/>
+                        <imageReference key="selectedImage" image="person.crop.circle.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="15j-Yv-lDC">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -901,14 +917,19 @@
     </scenes>
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>
+        <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.2" catalog="system" width="128" height="81"/>
+        <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="phone" catalog="system" width="128" height="115"/>
+        <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <namedColor name="gray_51">
