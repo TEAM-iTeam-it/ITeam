@@ -16,26 +16,37 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var successBtn: UIButton!
     @IBOutlet weak var exTableView: DetailProfileExTableView!
     @IBOutlet weak var interestLabel: UILabel!
+    @IBOutlet weak var tableviewHeight: NSLayoutConstraint!
+    @IBOutlet weak var tableviewConstraintTop: NSLayoutConstraint!
+    @IBOutlet weak var intersetContraintTop: NSLayoutConstraint!
+    @IBOutlet weak var interestLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var toolNLangConstraintTop: NSLayoutConstraint!
     var projects: [ProjectEx] = []
     
     @IBAction func goBackToPopupBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         settingViewDesign()
-        
-        let project1 = ProjectEx(date: "2021.06(2개월)", details: "환경을 위한 패션 앱 프로젝트")
-        let project2 = ProjectEx(date: "2021.12(3개월)", details: "제로웨이스트 해커톤 참가")
-        projects.append(project1)
-        projects.append(project2)
-        projects.append(project1)
-        projects.append(project2)
-        projects.append(project1)
-        projects.append(project2)
+    
+        exTableView.reloadData()
+        tableviewHeight.constant = exTableView.intrinsicContentSize.height
+        if projects.count >= 1 {
+            tableviewConstraintTop.constant = 15
+        }
+        else {
+            tableviewConstraintTop.constant = 0
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableviewHeight.constant = 0
+        
+        interestLabel.text = ""
+        intersetContraintTop.constant = 0
+        interestLabelHeight.constant = 0
 
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -64,6 +75,15 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
         callLinkTF.layer.cornerRadius = 8
         
     }
+    @IBAction func addProjectExAction(_ sender: Any) {
+        let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
+        let projectExVC = thisStoryboard.instantiateViewController(withIdentifier: "projectExVC") as? DetailProfileProjectExViewController
+        projectExVC?.modalPresentationStyle = .fullScreen
+        projectExVC?.delegate = self
+        present(projectExVC!, animated: true, completion: nil)
+    }
+    
+    
 }
 extension DetailProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,6 +125,51 @@ class ProjectEx {
         self.details = details
     }
 }
+extension DetailProfileViewController: SendProjectExDelegate {
+    func sendProjectExData(data: [String]) {
+     
+        let startDate: Date = StringToDateType(string: data[0])!
+        let startDateString: String = dateToStringType(date: startDate)
+        let endDate: Date = StringToDateType(string: data[1])!
+        let endDateString: String = dateToStringType(date: endDate)
+        
+        let calendar = Calendar.current
+        let dateGap = calendar.dateComponents([.year,.month], from: startDate, to: endDate)
+
+        var dateGapString: String = ""
+        if case let (y?, m?) = (dateGap.year , dateGap.month) {
+            if y == 0 {
+                dateGapString = "\(m)개월"
+            }
+            else {
+                dateGapString = "\(y)년 \(m)개월"
+            }
+        }
+        
+        var fullDateString: String = ""
+        fullDateString.append(startDateString)
+        fullDateString.append("(\(dateGapString))")
+        
+        var project = ProjectEx(date: fullDateString, details: data[2])
+
+        projects.append(project)
+        exTableView.reloadData()
+        
+    }
+    // "yyyy년 MM월" -> Date()
+    func StringToDateType(string : String) -> Date?{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월"
+        return formatter.date(from: string)
+    }
+    // Date() -> "yyyy.MM"
+    func dateToStringType(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM"
+        return formatter.string(from: date)
+    }
+  
+}
 extension DetailProfileViewController: SendDataDelegate {
     func sendData(data: [String]) {
         var interest: String = ""
@@ -118,6 +183,14 @@ extension DetailProfileViewController: SendDataDelegate {
             
         }
         self.interestLabel.text = interest
+        if interest != "" {
+            intersetContraintTop.constant = 15
+            interestLabelHeight.constant = 18
+        }
+        else {
+            intersetContraintTop.constant = 0
+            interestLabelHeight.constant = 0
+        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 

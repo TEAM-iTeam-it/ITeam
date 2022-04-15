@@ -1781,7 +1781,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHj-GK-wCH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5596" y="824"/>
+            <point key="canvasLocation" x="5667" y="822"/>
         </scene>
         <!--Making Web Team View Controller-->
         <scene sceneID="UDo-Vv-JHl">

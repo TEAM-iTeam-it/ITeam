@@ -41,12 +41,6 @@ class CallTimePickerViewController: UIViewController {
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        
-        
-    }
     
     @IBAction func saveBtn(_ sender: UIBarButtonItem) {
         callTime += "\(fullTime[0]) "

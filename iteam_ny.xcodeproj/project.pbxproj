@@ -45,6 +45,7 @@
 		081F268027F399C100F17332 /* imgUser7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 081F267D27F399C100F17332 /* imgUser7@2x.png */; };
 		081F268227F435C700F17332 /* AllTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F268127F435C700F17332 /* AllTeamViewController.swift */; };
 		081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */; };
+		0820449A2809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082044992809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift */; };
 		08248AE527D6475900733A12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08248AE427D6475900733A12 /* GoogleService-Info.plist */; };
 		082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082EF64727F58D8200C36736 /* NotifyPages.storyboard */; };
 		0831AF3627E112180098D753 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0831AF3527E112180098D753 /* LogInViewController.swift */; };
@@ -200,6 +201,7 @@
 		081F267D27F399C100F17332 /* imgUser7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgUser7@2x.png"; sourceTree = "<group>"; };
 		081F268127F435C700F17332 /* AllTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeamViewController.swift; sourceTree = "<group>"; };
 		081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeamListTableViewCell.swift; sourceTree = "<group>"; };
+		082044992809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileProjectStartDateViewController.swift; sourceTree = "<group>"; };
 		08248AE427D6475900733A12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "firebase_source/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		082EF64727F58D8200C36736 /* NotifyPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotifyPages.storyboard; sourceTree = "<group>"; };
 		0831AF3527E112180098D753 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -422,6 +424,22 @@
 			path = GameTeam;
 			sourceTree = "<group>";
 		};
+		082044962809BCEB008DB9A1 /* DetailJoinSetting */ = {
+			isa = PBXGroup;
+			children = (
+				0868B05127CB6E080018464B /* DetailProfileViewController.swift */,
+				0832B26428040FD000DED89B /* DetailProfileProjectTableViewCell.swift */,
+				0832B2662804156900DED89B /* DetailProfileExTableView.swift */,
+				0832B26828042FA700DED89B /* DetailProfileInterestViewController.swift */,
+				08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */,
+				08AE4190280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift */,
+				08AE41942805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift */,
+				08AE41962805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift */,
+				082044992809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift */,
+			);
+			path = DetailJoinSetting;
+			sourceTree = "<group>";
+		};
 		0833417427F342D1005B4F31 /* TeamVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,18 +508,11 @@
 		0868B05027CB6DF60018464B /* SettingVC */ = {
 			isa = PBXGroup;
 			children = (
-				0868B05127CB6E080018464B /* DetailProfileViewController.swift */,
-				0832B26428040FD000DED89B /* DetailProfileProjectTableViewCell.swift */,
+				082044962809BCEB008DB9A1 /* DetailJoinSetting */,
 				0868B05527CB6E080018464B /* SettingPassionViewController.swift */,
 				0868B05427CB6E080018464B /* SettingPurposeViewController.swift */,
 				0868B05327CB6E080018464B /* SettingSuccessViewController.swift */,
 				0868B05227CB6E080018464B /* SettingViewController.swift */,
-				0832B2662804156900DED89B /* DetailProfileExTableView.swift */,
-				0832B26828042FA700DED89B /* DetailProfileInterestViewController.swift */,
-				08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */,
-				08AE4190280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift */,
-				08AE41942805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift */,
-				08AE41962805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = SettingVC;
 			sourceTree = "<group>";
@@ -996,6 +1007,7 @@
 				08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */,
 				0868B03727CB6D830018464B /* UserCollectionViewCell.swift in Sources */,
 				1F55CF502754A98C00CD35EC /* User.swift in Sources */,
+				0820449A2809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift in Sources */,
 				0868B03C27CB6D830018464B /* ChannelWaitingViewController.swift in Sources */,
 				0833418627F35A80005B4F31 /* FavorTeamViewController.swift in Sources */,
 				081F264C27F3878000F17332 /* TeamViewController.swift in Sources */,
