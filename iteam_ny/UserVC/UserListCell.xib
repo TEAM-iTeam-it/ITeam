@@ -20,7 +20,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WuC-4q-S4y">
                         <rect key="frame" x="20" y="0.0" width="344" height="70"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person_profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="NxP-QP-Vrh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser5.png" translatesAutoresizingMaskIntoConstraints="NO" id="NxP-QP-Vrh">
                                 <rect key="frame" x="0.0" y="10" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="CPP-o1-qQz"/>
@@ -28,7 +28,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="cWd-wp-qAo">
-                                <rect key="frame" x="60" y="20.5" width="254" height="29"/>
+                                <rect key="frame" x="60" y="20.5" width="250" height="29"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="G25-X7-Xh0">
                                         <rect key="frame" x="0.0" y="0.0" width="78" height="13"/>
@@ -71,10 +71,14 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OHF-qH-Lwq">
-                                <rect key="frame" x="324" y="24.5" width="20" height="21.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_pin1.png" translatesAutoresizingMaskIntoConstraints="NO" id="OHF-qH-Lwq">
+                                <rect key="frame" x="320" y="23" width="24" height="24"/>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="NxP-QP-Vrh" firstAttribute="top" secondItem="WuC-4q-S4y" secondAttribute="top" constant="10" id="HxA-DY-KgX"/>
+                            <constraint firstAttribute="bottom" secondItem="NxP-QP-Vrh" secondAttribute="bottom" constant="10" id="ag2-CE-ZOt"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
@@ -97,8 +101,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="person_profile.png" width="1280" height="1280"/>
-        <image name="pin" catalog="system" width="119" height="128"/>
+        <image name="btn_pin1.png" width="24" height="24"/>
+        <image name="imgUser5.png" width="50" height="50"/>
         <namedColor name="gray_light">
             <color red="0.7686274509803922" green="0.7686274509803922" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
