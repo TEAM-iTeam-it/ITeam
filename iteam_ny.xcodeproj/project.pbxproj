@@ -694,10 +694,10 @@
 				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
 				1F55CF552754B46B00CD35EC /* UserProfileController.swift */,
 				1F55CF162751F19100CD35EC /* SceneDelegate.swift */,
+				08B83199280955FA00135893 /* FirstEntryViewController.swift */,
 				1F55CF1D2751F19200CD35EC /* Assets.xcassets */,
 				1F55CF1F2751F19200CD35EC /* LaunchScreen.storyboard */,
 				1F55CF222751F19200CD35EC /* Info.plist */,
-				08B83199280955FA00135893 /* FirstEntryViewController.swift */,
 			);
 			path = iteam_ny;
 			sourceTree = "<group>";
@@ -822,7 +822,6 @@
 				0833416C27F3317F005B4F31 /* sliderIcon@2x.png in Resources */,
 				0832B263280186CF00DED89B /* btnEdit.png in Resources */,
 				08248AE527D6475900733A12 /* GoogleService-Info.plist in Resources */,
-				08D242BA27CB487F008B4FE1 /* JoinPages.storyboard in Resources */,
 				087A23F927FC3D7F00E76893 /* icMoreRight@2x.png in Resources */,
 				1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */,
 				081F266627F393C100F17332 /* imgUser2@3x.png in Resources */,
@@ -949,8 +948,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0832B26928042FA700DED89B /* DetailProfileInterestViewController.swift in Sources */,
-				08657BE427F4884C00FDEACD /* FixedMemberCell.swift in Sources */,
-
 				1F5AC97427D6BEB600146C0E /* UserListCell.swift in Sources */,
 				0868B05827CB6E080018464B /* SettingSuccessViewController.swift in Sources */,
 				0833417827F3437E005B4F31 /* Team.swift in Sources */,

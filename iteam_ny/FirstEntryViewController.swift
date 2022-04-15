@@ -23,7 +23,9 @@ class FirstEntryViewController: UIViewController {
                
                 tabBarVC.modalPresentationStyle = .fullScreen
                 present(tabBarVC, animated: false, completion: nil)
+                print("자동 로그인 성공~")
             }
+            print(Auth.auth().currentUser?.uid)
         }
         else {
             let storyboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
@@ -31,6 +33,7 @@ class FirstEntryViewController: UIViewController {
                
                 viewController.modalPresentationStyle = .fullScreen
                 present(viewController, animated: false, completion: nil)
+                print("가입되지 않은 사용자~~")
             }
         }
         
