@@ -10,20 +10,30 @@ import UIKit
 class CreateTeamPartViewController: UIViewController {
     @IBOutlet weak var partTableview: UITableView!
     @IBOutlet weak var detailPartTableView: UITableView!
+    @IBOutlet weak var chipCollectionView: UICollectionView!
     
+    @IBOutlet weak var partNavigationBar: UINavigationBar!
+    
+    var delegate: SendPartDataDelegate?
     
     let part: [String] = ["기획자", "디자이너", "개발자"]
     var detailPart: [String] = []
     var plannerDetailPart: [String] = ["앱 기획자", "웹 기획자", "게임 기획자"]
     var designerDetailPart: [String] = ["UI/UX 디자이너", "일러스트레이터", "모델러"]
     var devDetailPart: [String] = ["Android 개발", "iOS 개발", "웹 개발", "백엔드 개발", "게임 개발"]
-    var didClicked: Bool = false
+    var didClicked: [Bool] = [false, false, false]
     var detailPartDidClicked: [Bool] = []
+    var clickedPart: [String] = []
+    var clckedDetailPart: [String] = []
     var num: Int = 0 {
         willSet(newValue) {
             print(newValue)
             if newValue == 1 {
                 detailPart = plannerDetailPart
+                didClicked[0] = true
+                didClicked[1] = false
+                didClicked[2] = false
+                
                 detailPartDidClicked.removeAll()
                 for _ in 0..<plannerDetailPart.count {
                     detailPartDidClicked.append(false)
@@ -31,6 +41,10 @@ class CreateTeamPartViewController: UIViewController {
             }
             else if newValue == 2 {
                 detailPart = designerDetailPart
+                didClicked[0] = false
+                didClicked[1] = true
+                didClicked[2] = false
+                
                 detailPartDidClicked.removeAll()
                 for _ in 0..<designerDetailPart.count {
                     detailPartDidClicked.append(false)
@@ -38,6 +52,10 @@ class CreateTeamPartViewController: UIViewController {
             }
             else if newValue == 3 {
                 detailPart = devDetailPart
+                didClicked[0] = false
+                didClicked[1] = false
+                didClicked[2] = true
+                
                 detailPartDidClicked.removeAll()
                 for _ in 0..<devDetailPart.count {
                     detailPartDidClicked.append(false)
@@ -47,16 +65,33 @@ class CreateTeamPartViewController: UIViewController {
         }
     }
     
+    // 칩을 위한 변수
+    var parts: [String] = ["웹", "웹 개발", "백엔드 개발"]
+    
+    override func viewWillAppear(_ animated: Bool) {
+        parts.append("eieiie")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        partTableview.separatorStyle = .none
+        detailPartTableView.separatorStyle = .none
+        partNavigationBar.shadowImage = UIImage()
         detailPart = plannerDetailPart
+        self.chipCollectionView.delegate = self
+        self.chipCollectionView.dataSource = self
         
-
     }
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func saveBtn(_ sender: Any) {
+        delegate?.sendData(data: clckedDetailPart)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
 extension CreateTeamPartViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,31 +105,53 @@ extension CreateTeamPartViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "partCell", for: indexPath) as! CreateTeamPartTableViewCell
+        
         if tableView == partTableview {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "partCell", for: indexPath) as! CreateTeamPartTableViewCell
             cell.partLabel.text = part[indexPath.row]
+            if didClicked[indexPath.row] == false {
+                cell.backgroundColor = UIColor.clear
+                cell.partLabel.textColor = UIColor.black
+            }
+            else {
+                cell.backgroundColor = UIColor(named: "purple_247")
+                cell.partLabel.textColor = UIColor(named: "purple_184")
+            }
             return cell
         }
-        else if tableView == detailPartTableView {
-            cell.partLabel.text = detailPart[indexPath.row]
-            return cell
+        else  {
+            let detailCell = tableView.dequeueReusableCell(withIdentifier: "partDetailCell", for: indexPath) as! CreateTeamProfileDetailPartTableViewCell
+            detailCell.partLabel.text = detailPart[indexPath.row]
+        
+            if clckedDetailPart.contains(detailPart[indexPath.row]) {
+                detailCell.partLabel.textColor = UIColor(named: "purple_184")
+                detailCell.checkImageView.isHidden = false
+            }
+            else {
+                detailCell.backgroundColor = UIColor.clear
+                detailCell.partLabel.textColor = UIColor.black
+                detailCell.checkImageView.isHidden = true
+            }
+            return detailCell
         }
-        return cell
     
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if tableView == partTableview {
             let cell = tableView.cellForRow(at: indexPath)! as! CreateTeamPartTableViewCell
-            if didClicked == false {
-                didClicked = true
-                cell.backgroundColor = UIColor(named: "purple_247")
-                cell.partLabel.textColor = UIColor(named: "purple_184")
+            if clickedPart.isEmpty == false {
+                if clickedPart[0] == part[indexPath.row] {
+                    cell.backgroundColor = UIColor.clear
+                    cell.partLabel.textColor = UIColor.black
+                }
+                else {
+                    clickedPart.removeAll()
+                    clickedPart.append(part[indexPath.row])
+                }
             }
             else {
-                didClicked = false
-                cell.backgroundColor = UIColor.clear
-                cell.partLabel.textColor = UIColor.black
+                clickedPart.append(part[indexPath.row])
             }
            
             switch indexPath.row {
@@ -110,10 +167,65 @@ extension CreateTeamPartViewController: UITableViewDelegate, UITableViewDataSour
             default:
                 return
             }
+            partTableview.reloadData()
         }
         else if tableView == detailPartTableView {
-            let cell = tableView.cellForRow(at: indexPath)! as! CreateTeamPartTableViewCell
-            cell.partLabel.textColor = UIColor(named: "purple_184")
+            
+            let detai2Cell = tableView.cellForRow(at: indexPath)! as! CreateTeamProfileDetailPartTableViewCell
+            
+            
+            if detailPartDidClicked[indexPath.row] == false {
+                detailPartDidClicked[indexPath.row] = true
+                
+                detai2Cell.checkImageView.isHidden = false
+                detai2Cell.partLabel.textColor = UIColor(named: "purple_184")
+                
+                
+                if clckedDetailPart.contains(detai2Cell.partLabel.text!) {
+                    
+                }
+                else {
+                    clckedDetailPart.append(detai2Cell.partLabel.text!)
+                    print("detailCell : \(detai2Cell.partLabel.text!)")
+                }
+            }
+            else {
+                detailPartDidClicked[indexPath.row] = false
+                detai2Cell.checkImageView.isHidden = false
+                detai2Cell.partLabel.textColor = UIColor.black
+                for i in 0...clckedDetailPart.count-1 {
+                    if clckedDetailPart[i] == detai2Cell.partLabel.text {
+                        clckedDetailPart.remove(at: i)
+                        break
+                    }
+                }
+            }
+            
+            
         }
+        parts = clckedDetailPart
+        chipCollectionView.reloadData()
+        print(clckedDetailPart)
     }
+}
+extension CreateTeamPartViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+   
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return parts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partNameCell", for: indexPath) as! CreateTeamProfilePartCollectionViewCell
+        cell.partName.setTitle(parts[indexPath.row], for: .normal)
+        
+        cell.partName.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+        
+        cell.partName.layer.borderWidth = 0.5
+        cell.partName.layer.cornerRadius = cell.partName.frame.height/2
+        return cell
+    }
+}
+protocol SendPartDataDelegate {
+    func sendData(data: [String])
 }

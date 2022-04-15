@@ -26,9 +26,11 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     // 프로필 사진 선택 button
     @IBOutlet weak var profileImageButton: UIButton!
     // 프로필 사진 편집 image
+    @IBOutlet weak var editImageBtn: UIButton!
     @IBOutlet weak var editImage: UIImageView!
-    // 파트 선택 button
+    @IBOutlet weak var profileImageEditView: UIView!
     @IBOutlet weak var partBtn: UIButton!
+    // 파트 선택 button
     @IBOutlet weak var detailPartBtn: UIButton!
     // 다음 button
     @IBOutlet var nextBtns: [UIButton]!
@@ -65,15 +67,25 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        setUI()
+    }
+
+    // UI setting
+    func setUI() {
         // 다음 버튼 디자인
-        for i in 0...nextBtns.count-1 {
-            nextBtns[i].layer.cornerRadius = 8
-            if nextBtns[i].titleLabel?.text != "시작하기" {
-                nextBtns[i].layer.backgroundColor = UIColor(named: "gray_196")?.cgColor
-            }
-        }
+        
         
         DispatchQueue.main.async {
+            if self.nextBtns != nil {
+                for i in 0...self.nextBtns.count-1 {
+                    self.nextBtns[i].layer.cornerRadius = 8
+                    if self.nextBtns[i].titleLabel?.text != "시작하기" {
+                        self.nextBtns[i].layer.backgroundColor = UIColor(named: "gray_196")?.cgColor
+                    }
+                }
+            }
             if let emailBtn = self.emailViewNextBtn  {
                 emailBtn.isEnabled = false
                 emailBtn.isHidden = true
@@ -85,6 +97,13 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 // 0.4 이하는 너무 작게 표시됨
                 emailVFBtn.titleLabel!.minimumScaleFactor = 0.5
                 emailVFBtn.titleLabel?.adjustsFontSizeToFitWidth = true
+                emailVFBtn.backgroundColor = UIColor.white
+                emailVFBtn.layer.borderWidth = 1
+                emailVFBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+                emailVFBtn.setTitleColor(UIColor(named: "gray_196"), for: .normal)
+                emailVFBtn.layer.cornerRadius = 8
+                
+                
             }
             if let emailVFAfter = self.emailVFAfter {
                 emailVFAfter.isHidden = true
@@ -98,17 +117,22 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             if let imageBtn = self.imageNextBtn {
                 imageBtn.isEnabled = false
             }
-            if let partBtn = self.partNextBtn {
-                partBtn.isEnabled = false
+            if let partNextBtn = self.partNextBtn {
+                partNextBtn.isEnabled = false
             }
             if let emailLabel = self.emailVFLabel  {
                 emailLabel.isHidden = true
+                emailLabel.sizeToFit()
             }
             if let pwdLabel = self.passwordLabel  {
                 pwdLabel.isHidden = true
             }
             if let nicknameLabel = self.nicknameLabel  {
                 nicknameLabel.isHidden = true
+            }
+            if let partBtn = self.partBtn, let detailPartBtn = self.detailPartBtn {
+                partBtn.layer.cornerRadius = 8
+                detailPartBtn.layer.cornerRadius = 8
             }
             
             
@@ -126,12 +150,12 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 nickname.layer.cornerRadius = 8
                 nickname.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
             }
-            if let profileImage = self.profileImageButton, let editImage = self.editImage {
+            if let profileImage = self.profileImageButton, let profileImageEditView = self.profileImageEditView {
                 profileImage.layer.borderWidth = 0.5
                 profileImage.layer.borderColor = UIColor(named: "purple_184")?.cgColor
                 profileImage.layer.backgroundColor = UIColor(named: "purple_light")?.cgColor
-              //  profileImage.addSubview(editImage)
                 profileImage.layer.cornerRadius = 75
+                profileImageEditView.isHidden = true
             }
              
             // 파트에 따른 세부 파트 설정
@@ -211,9 +235,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             }
         }
         Auth.auth().currentUser?.reload()
-      
         
-        // Do any additional setup after loading the view.
     }
     // 삭제얘정
     @IBAction func testLogout(_ sender: UIButton) {
@@ -246,7 +268,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             return
         }
         let pw = "11111111111"
-        // 학교 이메일만 가능하도록 처리
+        // [수정 필요] 학교 이메일만 가능하도록 처리
         if id.contains("swu.ac.kr") || id.contains("naver.com") {
             Auth.auth().createUser(withEmail: id, password: pw) { authResult, error in
                 if(error != nil) {
@@ -304,7 +326,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                     self.emailVFLabel.textColor = UIColor(named: "purple_184")
                     self.emailVFLabel.isHidden = false
                     self.emailVFAfter.isHidden = false
-                    self.emailVFAfter.backgroundColor = UIColor(named: "purple_184")
+                    self.emailVFAfter.backgroundColor = UIColor(named: "gray_93")
                     self.emailVFBtn.setTitle("인증 재요청", for: .normal)
                     
                     
@@ -435,13 +457,14 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     }
     
     // [Button action] 프로필 이미지 설정 버튼
-    @IBAction func profileImageSetBtn(_ sender: UIButton) {
+    @IBAction func profileImageSetBtn(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         self.present(imagePicker, animated: true, completion: nil)
     }
+
     
     
     // [Keyboard setting] 화면 클릭시 제거
@@ -451,17 +474,29 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             self.emailVFLabel.isHidden = false
             if let emailText = email.text {
                 if emailText.isEmpty {
-                    self.emailVFBtn.backgroundColor = UIColor(named: "gray_196")
+                    self.emailVFBtn.backgroundColor = UIColor.white
+                    self.emailVFBtn.layer.borderWidth = 1
+                    self.emailVFBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+                    self.emailVFBtn.setTitleColor(UIColor(named: "gray_196"), for: .normal)
                 }
                 else {
+                    self.emailVFBtn.setTitleColor(UIColor(named: "purple_184"), for: .normal)
                     // 학교 이메일로 수정 필요 ("ac.kr")
                     if !emailText.contains("@") {
                         self.emailVFLabel.text = "올바르지 않은 이메일 주소입니다."
+                        self.emailVFBtn.backgroundColor = UIColor.white
+                        self.emailVFBtn.layer.borderWidth = 1
+                        self.emailVFBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+                        self.emailVFBtn.setTitleColor(UIColor(named: "gray_196"), for: .normal)
+                        
                     }
                     else {
                         self.emailVFLabel.text = ""
+                        self.emailVFBtn.backgroundColor = UIColor.white
+                        self.emailVFBtn.layer.borderWidth = 1
+                        self.emailVFBtn.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+                        self.emailVFBtn.setTitleColor(UIColor(named: "purple_184"), for: .normal)
                     }
-                    self.emailVFBtn.backgroundColor = UIColor(named: "purple_184")
                 }
             }
         }
@@ -542,18 +577,29 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         if let email = self.emailTF {
             self.emailVFLabel.isHidden = false
             if let emailText = email.text {
+                self.emailVFBtn.setTitleColor(UIColor(named: "purple_184"), for: .normal)
                 if emailText.isEmpty {
-                    self.emailVFBtn.backgroundColor = UIColor(named: "gray_196")
+                    self.emailVFBtn.backgroundColor = UIColor.white
+                    self.emailVFBtn.layer.borderWidth = 1
+                    self.emailVFBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+                    self.emailVFBtn.setTitleColor(UIColor(named: "gray_196"), for: .normal)
                 }
                 else {
                     // 학교 이메일로 수정 필요 ("ac.kr")
                     if !emailText.contains("@") {
                         self.emailVFLabel.text = "올바르지 않은 이메일 주소입니다."
+                        self.emailVFBtn.backgroundColor = UIColor.white
+                        self.emailVFBtn.layer.borderWidth = 1
+                        self.emailVFBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+                        self.emailVFBtn.setTitleColor(UIColor(named: "gray_196"), for: .normal)
                     }
                     else {
                         self.emailVFLabel.text = ""
+                        self.emailVFBtn.backgroundColor = UIColor.white
+                        self.emailVFBtn.layer.borderWidth = 1
+                        self.emailVFBtn.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+                        self.emailVFBtn.setTitleColor(UIColor(named: "purple_184"), for: .normal)
                     }
-                    self.emailVFBtn.backgroundColor = UIColor(named: "purple_184")
                 }
             }
         }
@@ -653,13 +699,6 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                         let resizedImage = self.resizeImage(image: UIImage(data: data!)!, width: 150, height: 150)
                         self.profileImageButton.setImage(resizedImage, for: .normal)
                         self.profileImageButton.clipsToBounds = true
-//
-//                        let bounds = self.profileImageButton.bounds
-//                        let pathCircle = UIBezierPath(ovalIn: bounds)
-//                        let layer = CAShapeLayer()
-//                        layer.path = pathCircle.cgPath
-//                        self.editImage.layer.mask = layer
-//                        self.editImage.clipsToBounds = true
                         self.profileImageButton.layer.borderWidth = 0.0
                         self.imageNextBtn.backgroundColor = UIColor(named: "purple_184")
                         self.imageNextBtn.isEnabled = true
@@ -667,6 +706,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 }
             }
         }
+        editImage.isHidden = false
     }
     
     
@@ -706,6 +746,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             print("다운로드 성공")
             self.dismiss(animated: true, completion: nil)
             self.imageURL = url!
+            self.profileImageEditView.isHidden = false
         }
     }
     
@@ -735,8 +776,11 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 self.emailTF.setIcon(UIImage(systemName: "checkmark")!)
                 
                 self.emailVFBtn.isEnabled = false
-                self.emailVFBtn.setTitleColor(.white, for: .normal)
-                self.emailVFBtn.backgroundColor = UIColor(named: "gray_196")
+                self.emailVFBtn.backgroundColor = UIColor.white
+                self.emailVFBtn.layer.borderWidth = 1
+                self.emailVFBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+                self.emailVFBtn.setTitleColor(UIColor(named: "gray_196"), for: .normal)
+                
                 self.emailVFAfter.isEnabled = false
                 self.emailVFAfter.backgroundColor = UIColor(named: "gray_196")
                 

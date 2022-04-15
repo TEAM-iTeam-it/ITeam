@@ -48,6 +48,12 @@
 		08248AE527D6475900733A12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08248AE427D6475900733A12 /* GoogleService-Info.plist */; };
 		082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082EF64727F58D8200C36736 /* NotifyPages.storyboard */; };
 		0831AF3627E112180098D753 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0831AF3527E112180098D753 /* LogInViewController.swift */; };
+		0832B261280186CF00DED89B /* btnEdit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0832B25E280186CD00DED89B /* btnEdit@2x.png */; };
+		0832B262280186CF00DED89B /* btnEdit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0832B25F280186CE00DED89B /* btnEdit@3x.png */; };
+		0832B263280186CF00DED89B /* btnEdit.png in Resources */ = {isa = PBXBuildFile; fileRef = 0832B260280186CE00DED89B /* btnEdit.png */; };
+		0832B26528040FD000DED89B /* DetailProfileProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0832B26428040FD000DED89B /* DetailProfileProjectTableViewCell.swift */; };
+		0832B2672804156900DED89B /* DetailProfileExTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0832B2662804156900DED89B /* DetailProfileExTableView.swift */; };
+		0832B26928042FA700DED89B /* DetailProfileInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0832B26828042FA700DED89B /* DetailProfileInterestViewController.swift */; };
 		0833416B27F3317F005B4F31 /* sliderIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0833416827F3317F005B4F31 /* sliderIcon@3x.png */; };
 		0833416C27F3317F005B4F31 /* sliderIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0833416927F3317F005B4F31 /* sliderIcon@2x.png */; };
 		0833416D27F3317F005B4F31 /* sliderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0833416A27F3317F005B4F31 /* sliderIcon.png */; };
@@ -59,6 +65,10 @@
 		0833418827F35B07005B4F31 /* FavorTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */; };
 		0833418F27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */; };
 		0835C36F27EDBF5900968626 /* TeamPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0835C36E27EDBF5900968626 /* TeamPages.storyboard */; };
+		0841522A27FD525000ADA61F /* TeamProfileBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0841522927FD525000ADA61F /* TeamProfileBottomSheetViewController.swift */; };
+		0841522E27FD71C400ADA61F /* btnClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 0841522B27FD71C100ADA61F /* btnClose.png */; };
+		0841522F27FD71C400ADA61F /* btnClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0841522C27FD71C200ADA61F /* btnClose@2x.png */; };
+		0841523027FD71C400ADA61F /* btnClose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0841522D27FD71C300ADA61F /* btnClose@3x.png */; };
 		08657BE027F4874B00FDEACD /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BDF27F4874B00FDEACD /* QuestionViewController.swift */; };
 		08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE127F487DA00FDEACD /* QuestionCell.swift */; };
 		08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE527F4887100FDEACD /* SearchViewController.swift */; };
@@ -101,14 +111,27 @@
 		087A23E527FACAB700E76893 /* icArrowDropDown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23E227FACAB600E76893 /* icArrowDropDown@3x.png */; };
 		087A23E827FAEF7400E76893 /* CreateTeamPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23E727FAEF7400E76893 /* CreateTeamPartViewController.swift */; };
 		087A23EA27FAF23800E76893 /* CreateTeamPartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23E927FAF23800E76893 /* CreateTeamPartTableViewCell.swift */; };
+		087A23F127FB495900E76893 /* CreateTeamProfilePartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23F027FB495900E76893 /* CreateTeamProfilePartCollectionViewCell.swift */; };
+		087A23F327FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23F227FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift */; };
+		087A23F527FB654900E76893 /* CreateTeamRegionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23F427FB654900E76893 /* CreateTeamRegionViewController.swift */; };
+		087A23F927FC3D7F00E76893 /* icMoreRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23F627FC3D7C00E76893 /* icMoreRight@2x.png */; };
+		087A23FA27FC3D7F00E76893 /* icMoreRight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23F727FC3D7E00E76893 /* icMoreRight@3x.png */; };
+		087A23FB27FC3D7F00E76893 /* icMoreRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23F827FC3D7E00E76893 /* icMoreRight.png */; };
+		087A23FD27FC6F4000E76893 /* CallTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23FC27FC6F4000E76893 /* CallTimePickerViewController.swift */; };
 		087FA8C027E9B942000E741B /* rectangleEditImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BD27E9B941000E741B /* rectangleEditImage.png */; };
 		087FA8C127E9B942000E741B /* rectangleEditImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */; };
 		087FA8C227E9B942000E741B /* rectangleEditImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */; };
+		08AE418D28057C0E007CBE5F /* DetailProfileProjectExViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */; };
+		08AE4191280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4190280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift */; };
+		08AE41952805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE41942805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift */; };
+		08AE41972805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE41962805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		08AE41992805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE41982805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift */; };
 		08B2F2ED27F75A05008F7085 /* teamPageLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2EA27F75A04008F7085 /* teamPageLogo@2x.png */; };
 		08B2F2EE27F75A05008F7085 /* teamPageLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2EB27F75A05008F7085 /* teamPageLogo@3x.png */; };
 		08B2F2EF27F75A05008F7085 /* teamPageLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2EC27F75A05008F7085 /* teamPageLogo.png */; };
 		08B2F2F127F77A0F008F7085 /* TeamPages_AllTeams.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */; };
 		08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */; };
+		08B8319A280955FA00135893 /* FirstEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B83199280955FA00135893 /* FirstEntryViewController.swift */; };
 		08BFBE9727F590D800A6F6B0 /* Mypages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */; };
 		08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */; };
 		08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */; };
@@ -180,6 +203,12 @@
 		08248AE427D6475900733A12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "firebase_source/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		082EF64727F58D8200C36736 /* NotifyPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotifyPages.storyboard; sourceTree = "<group>"; };
 		0831AF3527E112180098D753 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		0832B25E280186CD00DED89B /* btnEdit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnEdit@2x.png"; sourceTree = "<group>"; };
+		0832B25F280186CE00DED89B /* btnEdit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnEdit@3x.png"; sourceTree = "<group>"; };
+		0832B260280186CE00DED89B /* btnEdit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnEdit.png; sourceTree = "<group>"; };
+		0832B26428040FD000DED89B /* DetailProfileProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileProjectTableViewCell.swift; sourceTree = "<group>"; };
+		0832B2662804156900DED89B /* DetailProfileExTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileExTableView.swift; sourceTree = "<group>"; };
+		0832B26828042FA700DED89B /* DetailProfileInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileInterestViewController.swift; sourceTree = "<group>"; };
 		0833416827F3317F005B4F31 /* sliderIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderIcon@3x.png"; sourceTree = "<group>"; };
 		0833416927F3317F005B4F31 /* sliderIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderIcon@2x.png"; sourceTree = "<group>"; };
 		0833416A27F3317F005B4F31 /* sliderIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderIcon.png; sourceTree = "<group>"; };
@@ -191,6 +220,10 @@
 		0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorTeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorTeamImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		0835C36E27EDBF5900968626 /* TeamPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamPages.storyboard; sourceTree = "<group>"; };
+		0841522927FD525000ADA61F /* TeamProfileBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileBottomSheetViewController.swift; sourceTree = "<group>"; };
+		0841522B27FD71C100ADA61F /* btnClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnClose.png; sourceTree = "<group>"; };
+		0841522C27FD71C200ADA61F /* btnClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnClose@2x.png"; sourceTree = "<group>"; };
+		0841522D27FD71C300ADA61F /* btnClose@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnClose@3x.png"; sourceTree = "<group>"; };
 		08657BDF27F4874B00FDEACD /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		08657BE127F487DA00FDEACD /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		08657BE527F4887100FDEACD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -242,14 +275,27 @@
 		087A23E227FACAB600E76893 /* icArrowDropDown@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icArrowDropDown@3x.png"; sourceTree = "<group>"; };
 		087A23E727FAEF7400E76893 /* CreateTeamPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamPartViewController.swift; sourceTree = "<group>"; };
 		087A23E927FAF23800E76893 /* CreateTeamPartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamPartTableViewCell.swift; sourceTree = "<group>"; };
+		087A23F027FB495900E76893 /* CreateTeamProfilePartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfilePartCollectionViewCell.swift; sourceTree = "<group>"; };
+		087A23F227FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfilePartChipViewController.swift; sourceTree = "<group>"; };
+		087A23F427FB654900E76893 /* CreateTeamRegionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamRegionViewController.swift; sourceTree = "<group>"; };
+		087A23F627FC3D7C00E76893 /* icMoreRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icMoreRight@2x.png"; sourceTree = "<group>"; };
+		087A23F727FC3D7E00E76893 /* icMoreRight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icMoreRight@3x.png"; sourceTree = "<group>"; };
+		087A23F827FC3D7E00E76893 /* icMoreRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icMoreRight.png; sourceTree = "<group>"; };
+		087A23FC27FC6F4000E76893 /* CallTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallTimePickerViewController.swift; sourceTree = "<group>"; };
 		087FA8BD27E9B941000E741B /* rectangleEditImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rectangleEditImage.png; sourceTree = "<group>"; };
 		087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@2x.png"; sourceTree = "<group>"; };
 		087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@3x.png"; sourceTree = "<group>"; };
+		08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileProjectExViewController.swift; sourceTree = "<group>"; };
+		08AE4190280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileToolNLanguageViewController.swift; sourceTree = "<group>"; };
+		08AE41942805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileAllToolNLangCollectionViewCell.swift; sourceTree = "<group>"; };
+		08AE41962805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		08AE41982805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileDetailPartTableViewCell.swift; sourceTree = "<group>"; };
 		08B2F2EA27F75A04008F7085 /* teamPageLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teamPageLogo@2x.png"; sourceTree = "<group>"; };
 		08B2F2EB27F75A05008F7085 /* teamPageLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teamPageLogo@3x.png"; sourceTree = "<group>"; };
 		08B2F2EC27F75A05008F7085 /* teamPageLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teamPageLogo.png; sourceTree = "<group>"; };
 		08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeamPages_AllTeams.storyboard; sourceTree = "<group>"; };
 		08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileViewController.swift; sourceTree = "<group>"; };
+		08B83199280955FA00135893 /* FirstEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEntryViewController.swift; sourceTree = "<group>"; };
 		08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypages.storyboard; sourceTree = "<group>"; };
 		08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileViewController.swift; sourceTree = "<group>"; };
 		08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -308,6 +354,12 @@
 		080F9C1A27E9DC4B0055FAF8 /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				0841522B27FD71C100ADA61F /* btnClose.png */,
+				0841522C27FD71C200ADA61F /* btnClose@2x.png */,
+				0841522D27FD71C300ADA61F /* btnClose@3x.png */,
+				087A23F827FC3D7E00E76893 /* icMoreRight.png */,
+				087A23F627FC3D7C00E76893 /* icMoreRight@2x.png */,
+				087A23F727FC3D7E00E76893 /* icMoreRight@3x.png */,
 				087A23E127FACAB600E76893 /* icArrowDropDown.png */,
 				087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */,
 				087A23E227FACAB600E76893 /* icArrowDropDown@3x.png */,
@@ -439,10 +491,17 @@
 			isa = PBXGroup;
 			children = (
 				0868B05127CB6E080018464B /* DetailProfileViewController.swift */,
+				0832B26428040FD000DED89B /* DetailProfileProjectTableViewCell.swift */,
 				0868B05527CB6E080018464B /* SettingPassionViewController.swift */,
 				0868B05427CB6E080018464B /* SettingPurposeViewController.swift */,
 				0868B05327CB6E080018464B /* SettingSuccessViewController.swift */,
 				0868B05227CB6E080018464B /* SettingViewController.swift */,
+				0832B2662804156900DED89B /* DetailProfileExTableView.swift */,
+				0832B26828042FA700DED89B /* DetailProfileInterestViewController.swift */,
+				08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */,
+				08AE4190280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift */,
+				08AE41942805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift */,
+				08AE41962805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = SettingVC;
 			sourceTree = "<group>";
@@ -475,6 +534,9 @@
 		0868B06227CB6EBE0018464B /* image_source */ = {
 			isa = PBXGroup;
 			children = (
+				0832B260280186CE00DED89B /* btnEdit.png */,
+				0832B25E280186CD00DED89B /* btnEdit@2x.png */,
+				0832B25F280186CE00DED89B /* btnEdit@3x.png */,
 				080F9C1A27E9DC4B0055FAF8 /* icon */,
 				087FA8BD27E9B941000E741B /* rectangleEditImage.png */,
 				087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */,
@@ -545,6 +607,11 @@
 				08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */,
 				087A23E727FAEF7400E76893 /* CreateTeamPartViewController.swift */,
 				087A23E927FAF23800E76893 /* CreateTeamPartTableViewCell.swift */,
+				08AE41982805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift */,
+				087A23F027FB495900E76893 /* CreateTeamProfilePartCollectionViewCell.swift */,
+				087A23F227FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift */,
+				087A23F427FB654900E76893 /* CreateTeamRegionViewController.swift */,
+				087A23FC27FC6F4000E76893 /* CallTimePickerViewController.swift */,
 			);
 			path = CreateTeam;
 			sourceTree = "<group>";
@@ -562,6 +629,7 @@
 			children = (
 				08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */,
 				08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */,
+				0841522927FD525000ADA61F /* TeamProfileBottomSheetViewController.swift */,
 			);
 			path = DetailTeamProfile;
 			sourceTree = "<group>";
@@ -626,6 +694,7 @@
 				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
 				1F55CF552754B46B00CD35EC /* UserProfileController.swift */,
 				1F55CF162751F19100CD35EC /* SceneDelegate.swift */,
+				08B83199280955FA00135893 /* FirstEntryViewController.swift */,
 				1F55CF1D2751F19200CD35EC /* Assets.xcassets */,
 				1F55CF1F2751F19200CD35EC /* LaunchScreen.storyboard */,
 				1F55CF222751F19200CD35EC /* Info.plist */,
@@ -751,11 +820,14 @@
 				0868B07727CB6F040018464B /* person_profile.png in Resources */,
 				087A23E427FACAB700E76893 /* icArrowDropDown.png in Resources */,
 				0833416C27F3317F005B4F31 /* sliderIcon@2x.png in Resources */,
+				0832B263280186CF00DED89B /* btnEdit.png in Resources */,
 				08248AE527D6475900733A12 /* GoogleService-Info.plist in Resources */,
+				087A23F927FC3D7F00E76893 /* icMoreRight@2x.png in Resources */,
 				1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */,
 				081F266627F393C100F17332 /* imgUser2@3x.png in Resources */,
 				081F267827F3988000F17332 /* imgUser6@2x.png in Resources */,
 				0868B08527CB6F2B0018464B /* asset121@2x.png in Resources */,
+				0841522E27FD71C400ADA61F /* btnClose.png in Resources */,
 				081F266427F393C100F17332 /* imgUser8.png in Resources */,
 				081F267A27F3988000F17332 /* imgUser6.png in Resources */,
 				082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */,
@@ -775,6 +847,9 @@
 				0868B08427CB6F2B0018464B /* asset121.png in Resources */,
 				1F55CF212751F19200CD35EC /* LaunchScreen.storyboard in Resources */,
 				080F9C3227EA17470055FAF8 /* btnAdd1@3x.png in Resources */,
+				0841523027FD71C400ADA61F /* btnClose@3x.png in Resources */,
+				087A23FA27FC3D7F00E76893 /* icMoreRight@3x.png in Resources */,
+				087A23FB27FC3D7F00E76893 /* icMoreRight.png in Resources */,
 				08B2F2EF27F75A05008F7085 /* teamPageLogo.png in Resources */,
 				08B2F2F127F77A0F008F7085 /* TeamPages_AllTeams.storyboard in Resources */,
 				08BFBE9727F590D800A6F6B0 /* Mypages.storyboard in Resources */,
@@ -784,6 +859,7 @@
 				0868B07927CB6F040018464B /* imgUser10.png in Resources */,
 				081F266927F393C100F17332 /* imgUser2.png in Resources */,
 				081F266727F393C100F17332 /* imgUser8@3x.png in Resources */,
+				0832B262280186CF00DED89B /* btnEdit@3x.png in Resources */,
 				0833416D27F3317F005B4F31 /* sliderIcon.png in Resources */,
 				0868B07627CB6F040018464B /* imgUser4@2x.png in Resources */,
 				1F55CF1E2751F19200CD35EC /* Assets.xcassets in Resources */,
@@ -801,6 +877,7 @@
 				080F9C3027EA17470055FAF8 /* btnAdd1@2x.png in Resources */,
 				081F266827F393C100F17332 /* imgUser3@2x.png in Resources */,
 				08B2F2ED27F75A05008F7085 /* teamPageLogo@2x.png in Resources */,
+				0832B261280186CF00DED89B /* btnEdit@2x.png in Resources */,
 				080F9C2A27EA04240055FAF8 /* icCheckPurple@2x.png in Resources */,
 				1F304C3F27FD86D000A5DE47 /* JoinPages.storyboard in Resources */,
 				0868B06627CB6ED20018464B /* group97.png in Resources */,
@@ -808,6 +885,7 @@
 				0868B08627CB6F2B0018464B /* asset121@3x.png in Resources */,
 				087FA8C027E9B942000E741B /* rectangleEditImage.png in Resources */,
 				081F266227F393C100F17332 /* imgUser8@2x.png in Resources */,
+				0841522F27FD71C400ADA61F /* btnClose@2x.png in Resources */,
 				087FA8C227E9B942000E741B /* rectangleEditImage@3x.png in Resources */,
 				080F9C2C27EA04240055FAF8 /* icCheckPurple.png in Resources */,
 				0833416B27F3317F005B4F31 /* sliderIcon@3x.png in Resources */,
@@ -869,22 +947,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0832B26928042FA700DED89B /* DetailProfileInterestViewController.swift in Sources */,
 				1F5AC97427D6BEB600146C0E /* UserListCell.swift in Sources */,
 				0868B05827CB6E080018464B /* SettingSuccessViewController.swift in Sources */,
 				0833417827F3437E005B4F31 /* Team.swift in Sources */,
 				0868B05627CB6E080018464B /* DetailProfileViewController.swift in Sources */,
+				08AE41952805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift in Sources */,
 				081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */,
 				081F267027F3960300F17332 /* MakingGameTeamViewController.swift in Sources */,
 				081F265427F3903D00F17332 /* MakingWebTeamViewController.swift in Sources */,
 				0868B04827CB6D930018464B /* RequestTableViewCell.swift in Sources */,
+				08B8319A280955FA00135893 /* FirstEntryViewController.swift in Sources */,
 				0831AF3627E112180098D753 /* LogInViewController.swift in Sources */,
+				08AE4191280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift in Sources */,
+				0841522A27FD525000ADA61F /* TeamProfileBottomSheetViewController.swift in Sources */,
 				0833418827F35B07005B4F31 /* FavorTeamCollectionViewCell.swift in Sources */,
 				0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */,
+				087A23F127FB495900E76893 /* CreateTeamProfilePartCollectionViewCell.swift in Sources */,
 				081F267427F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift in Sources */,
 				1F55CF152751F19100CD35EC /* AppDelegate.swift in Sources */,
 				081F267227F396C500F17332 /* MakingGameTeamCollectionViewCell.swift in Sources */,
 				0868B05727CB6E080018464B /* SettingViewController.swift in Sources */,
 				0868B04A27CB6D930018464B /* CallAnswerViewController.swift in Sources */,
+				087A23FD27FC6F4000E76893 /* CallTimePickerViewController.swift in Sources */,
 				081F268227F435C700F17332 /* AllTeamViewController.swift in Sources */,
 				0868B05927CB6E080018464B /* SettingPurposeViewController.swift in Sources */,
 				0833418F27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift in Sources */,
@@ -892,6 +977,7 @@
 				1F55CF2D2751FCA800CD35EC /* TabbarController.swift in Sources */,
 				087A23EA27FAF23800E76893 /* CreateTeamPartTableViewCell.swift in Sources */,
 				0868B03D27CB6D830018464B /* AgoraViewController.swift in Sources */,
+				08AE418D28057C0E007CBE5F /* DetailProfileProjectExViewController.swift in Sources */,
 				0868B04727CB6D930018464B /* CallManageViewController.swift in Sources */,
 				0868B03A27CB6D830018464B /* ChannelSectionHeader.swift in Sources */,
 				08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */,
@@ -901,8 +987,12 @@
 				1F5AC97127D6BCE800146C0E /* UserProfile.swift in Sources */,
 				0868B04627CB6D930018464B /* Person.swift in Sources */,
 				0868B04527CB6D930018464B /* AnswerTableViewCell.swift in Sources */,
+				087A23F327FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift in Sources */,
 				1F55CF562754B46B00CD35EC /* UserProfileController.swift in Sources */,
+				08AE41992805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift in Sources */,
+				08AE41972805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				1F55CF172751F19100CD35EC /* SceneDelegate.swift in Sources */,
+				0832B2672804156900DED89B /* DetailProfileExTableView.swift in Sources */,
 				08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */,
 				0868B03727CB6D830018464B /* UserCollectionViewCell.swift in Sources */,
 				1F55CF502754A98C00CD35EC /* User.swift in Sources */,
@@ -910,6 +1000,7 @@
 				0833418627F35A80005B4F31 /* FavorTeamViewController.swift in Sources */,
 				081F264C27F3878000F17332 /* TeamViewController.swift in Sources */,
 				087A23E827FAEF7400E76893 /* CreateTeamPartViewController.swift in Sources */,
+				0832B26528040FD000DED89B /* DetailProfileProjectTableViewCell.swift in Sources */,
 				080F9C2627E9EBE00055FAF8 /* CallRequstHistoryViewController.swift in Sources */,
 				1F55CF292751F71A00CD35EC /* HomeViewController.swift in Sources */,
 				087A23DB27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift in Sources */,
@@ -919,6 +1010,7 @@
 				081F265227F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift in Sources */,
 				0868B05A27CB6E080018464B /* SettingPassionViewController.swift in Sources */,
 				0868B03B27CB6D830018464B /* AddMemberAlertViewController.swift in Sources */,
+				087A23F527FB654900E76893 /* CreateTeamRegionViewController.swift in Sources */,
 				0868B03827CB6D830018464B /* CallClosedViewController.swift in Sources */,
 				081F265827F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift in Sources */,
 				08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */,
