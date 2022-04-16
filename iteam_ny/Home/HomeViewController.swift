@@ -17,11 +17,19 @@ class HomeViewController: UIViewController{
     @IBOutlet weak var addFriendButton: UIButton!
     
     @IBAction func addEntry(_ sender: UIButton) {
+        
+        let stroyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let alertPopupVC = stroyboard.instantiateViewController(withIdentifier: "PopupViewController") as!PopupViewController
+        
+        alertPopupVC.modalPresentationStyle = .overCurrentContext
+        alertPopupVC.modalTransitionStyle = .crossDissolve
+        
+        self.present(alertPopupVC, animated: true, completion: nil)
+        
         // stack view에 있는 add button을 가져온다.
                 guard let addButtonContainerView = memberStackVIew.arrangedSubviews.last else {
                     fatalError("Expected at least one arranged view in the stack view")
                 }
-
                 // add button 한 칸 앞 index를 가져 온다
                 let nextEntryIndex = memberStackVIew.arrangedSubviews.count - 1
 
@@ -32,29 +40,33 @@ class HomeViewController: UIViewController{
 
         let offset = CGPoint(x:scrollView.contentOffset.x + addButtonContainerView.bounds.size.width , y:
                                 scrollView.contentOffset.y)
-        
+
                 // stackview를 만들어서 안 보이게 처리
                 let newEntryView = createEntryView()
                 newEntryView.isHidden = true
-                
+
                 // 만들어진 stack view를 add button앞에다가 추가
         memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
-                
+
                 // 0.25초 동안 추가된 뷰가 보이게 하면서 scrollview의 스크롤 이동
                 UIView.animate(withDuration: 0.25) {
                     newEntryView.isHidden = false
                     self.scrollView.contentOffset = offset
-
                 }
     }
-    
     // 수직 스택뷰 안에 들어갈 수평 스택뷰들 만든다.
         private func createEntryView() -> UIView {
+            
+            let pickimage = UIButton()
+            pickimage.widthAnchor.constraint(equalToConstant: 70).isActive = true
+            // 버튼 넓이 300
+            pickimage.heightAnchor.constraint(equalToConstant: 70).isActive = true
+            pickimage.backgroundColor = UIColor.purple
+            pickimage.layer.cornerRadius = 35
             // 현재날 짜는 짧게(M/D/Y) 가져온다
             let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
             // uuid를 가져온다
             let number = NSUUID().uuidString
-
             // 스택뷰를 만들고
             // 각 속성을 아래와 같이 한다.
             // IB에서 하는 것과 같다
@@ -68,24 +80,18 @@ class HomeViewController: UIViewController{
             let dateLabel = UILabel()
             dateLabel.text = date
             dateLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        
-            
             // uuid를 만들 Label을 만든다
             let numberLabel = UILabel()
             numberLabel.text = number
             numberLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-
-
             // 이 label의 horizontal contenthugging을 249, compressionResistance 749로 해서 stackview의 남은 공간을 꽉 채우게 한다.
 //            numberLabel.setContentHuggingPriority(UILayoutPriority.defaultLow - 1.0, for: .horizontal)
 //            numberLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh - 1.0, for: .horizontal)
-
-            
-
             //stack 뷰에 차례대로 쌓는다.
+            stack.addArrangedSubview(pickimage)
             stack.addArrangedSubview(dateLabel)
             stack.addArrangedSubview(numberLabel)
-        
+
             return stack
         }
     

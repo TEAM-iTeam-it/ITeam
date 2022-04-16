@@ -43,10 +43,10 @@ class SettingViewController: UIViewController {
     // 지역탭 다음으로 넘어가기 위한 변수
 
     
-    // [Button action] 이전으로
     @IBAction func goBackBtn(_ sender: UIBarButtonItem) {
         goBack()
     }
+    // [Button action] 이전으로
     @objc func goBack() {
            self.navigationController?.popViewController(animated: true)
     }

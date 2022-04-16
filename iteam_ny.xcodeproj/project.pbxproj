@@ -114,6 +114,10 @@
 		08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */; };
 		1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3B27FD868500A5DE47 /* Main.storyboard */; };
 		1F304C3F27FD86D000A5DE47 /* JoinPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */; };
+		1F5428232805336100F5179B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428222805336100F5179B /* PopupViewController.swift */; };
+		1F542826280598FA00F5179B /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F542825280598FA00F5179B /* searchViewController.swift */; };
+		1F5428282805A16E00F5179B /* resetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428272805A16E00F5179B /* resetViewController.swift */; };
+		1F54282A2805B9FE00F5179B /* AddFasTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428292805B9FE00F5179B /* AddFasTeam.swift */; };
 		1F55CF152751F19100CD35EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF142751F19100CD35EC /* AppDelegate.swift */; };
 		1F55CF172751F19100CD35EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF162751F19100CD35EC /* SceneDelegate.swift */; };
 		1F55CF1E2751F19200CD35EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F55CF1D2751F19200CD35EC /* Assets.xcassets */; };
@@ -256,7 +260,10 @@
 		1AA33962F2ADE98770A83FFD /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
 		1F304C3C27FD868500A5DE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JoinPages.storyboard; sourceTree = "<group>"; };
-		1F304C4027FD876900A5DE47 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		1F5428222805336100F5179B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		1F542825280598FA00F5179B /* searchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
+		1F5428272805A16E00F5179B /* resetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetViewController.swift; sourceTree = "<group>"; };
+		1F5428292805B9FE00F5179B /* AddFasTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFasTeam.swift; sourceTree = "<group>"; };
 		1F55CF112751F19100CD35EC /* iteam_ny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iteam_ny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F55CF142751F19100CD35EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F55CF162751F19100CD35EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -636,8 +643,11 @@
 		1F55CF5B2755E2B400CD35EC /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				1F304C4027FD876900A5DE47 /* SearchViewController.swift */,
 				1F55CF282751F71A00CD35EC /* HomeViewController.swift */,
+				1F5428222805336100F5179B /* PopupViewController.swift */,
+				1F542825280598FA00F5179B /* searchViewController.swift */,
+				1F5428272805A16E00F5179B /* resetViewController.swift */,
+				1F5428292805B9FE00F5179B /* AddFasTeam.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -874,6 +884,7 @@
 				0833417827F3437E005B4F31 /* Team.swift in Sources */,
 				0868B05627CB6E080018464B /* DetailProfileViewController.swift in Sources */,
 				081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */,
+				1F54282A2805B9FE00F5179B /* AddFasTeam.swift in Sources */,
 				081F267027F3960300F17332 /* MakingGameTeamViewController.swift in Sources */,
 				081F265427F3903D00F17332 /* MakingWebTeamViewController.swift in Sources */,
 				0868B04827CB6D930018464B /* RequestTableViewCell.swift in Sources */,
@@ -891,10 +902,12 @@
 				081F265027F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift in Sources */,
 				1F55CF2D2751FCA800CD35EC /* TabbarController.swift in Sources */,
 				087A23EA27FAF23800E76893 /* CreateTeamPartTableViewCell.swift in Sources */,
+				1F5428282805A16E00F5179B /* resetViewController.swift in Sources */,
 				0868B03D27CB6D830018464B /* AgoraViewController.swift in Sources */,
 				0868B04727CB6D930018464B /* CallManageViewController.swift in Sources */,
 				0868B03A27CB6D830018464B /* ChannelSectionHeader.swift in Sources */,
 				08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */,
+				1F542826280598FA00F5179B /* searchViewController.swift in Sources */,
 				0868B01E27CB6A6C0018464B /* JoinSuccessViewController.swift in Sources */,
 				08657BE027F4874B00FDEACD /* QuestionViewController.swift in Sources */,
 				0868B01F27CB6A6C0018464B /* JoinViewController.swift in Sources */,
@@ -914,6 +927,7 @@
 				1F55CF292751F71A00CD35EC /* HomeViewController.swift in Sources */,
 				087A23DB27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift in Sources */,
 				081F264E27F38ADB00F17332 /* MakingAppTeamViewController.swift in Sources */,
+				1F5428232805336100F5179B /* PopupViewController.swift in Sources */,
 				08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */,
 				081F265627F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift in Sources */,
 				081F265227F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift in Sources */,

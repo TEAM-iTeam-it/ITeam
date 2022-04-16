@@ -9,6 +9,109 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Popup View Controller-->
+        <scene sceneID="JwX-Mw-hdy">
+            <objects>
+                <viewController storyboardIdentifier="PopupViewController" id="1sA-6z-HOd" customClass="PopupViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ax6-MZ-J2q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDy-0P-LYA" userLabel="contentView">
+                                <rect key="frame" x="46" y="318.5" width="322" height="259"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziB-QG-X2d">
+                                        <rect key="frame" x="123" y="81" width="76" height="32"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="기획자">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                            <color key="baseForegroundColor" name="gray_121"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="onPlannerClicked:" destination="1sA-6z-HOd" eventType="touchUpInside" id="qNO-od-Gra"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONv-c9-VTD">
+                                        <rect key="frame" x="123" y="138" width="76" height="32"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="디자이너">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                            <color key="baseForegroundColor" name="gray_121"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="onDesignerClicked:" destination="1sA-6z-HOd" eventType="touchUpInside" id="jgF-0M-cLn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqr-D2-JhR">
+                                        <rect key="frame" x="123" y="195" width="76" height="32"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="개발자">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                            <color key="baseForegroundColor" name="gray_121"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="onDeveloperClicked:" destination="1sA-6z-HOd" eventType="touchUpInside" id="CTX-Iy-DpO"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="파트 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjm-pP-c2C">
+                                        <rect key="frame" x="129.5" y="35" width="63" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="cJE-S6-Zqg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="ONv-c9-VTD" firstAttribute="leading" secondItem="hqr-D2-JhR" secondAttribute="leading" id="Br7-Ra-oqj"/>
+                                    <constraint firstItem="ONv-c9-VTD" firstAttribute="centerX" secondItem="eDy-0P-LYA" secondAttribute="centerX" id="Cfh-I1-EWR"/>
+                                    <constraint firstAttribute="bottom" secondItem="hqr-D2-JhR" secondAttribute="bottom" constant="32" id="ENt-Sw-9Da"/>
+                                    <constraint firstItem="ONv-c9-VTD" firstAttribute="leading" secondItem="ziB-QG-X2d" secondAttribute="leading" id="Eht-8j-yBb"/>
+                                    <constraint firstAttribute="width" constant="322" id="Mzu-l6-vDy"/>
+                                    <constraint firstItem="ziB-QG-X2d" firstAttribute="centerX" secondItem="eDy-0P-LYA" secondAttribute="centerX" id="VVC-sZ-rtB"/>
+                                    <constraint firstAttribute="height" constant="259" id="Y9O-qg-c89"/>
+                                    <constraint firstItem="hqr-D2-JhR" firstAttribute="top" secondItem="ONv-c9-VTD" secondAttribute="bottom" constant="25" id="ZFj-V8-sOL"/>
+                                    <constraint firstItem="rjm-pP-c2C" firstAttribute="top" secondItem="eDy-0P-LYA" secondAttribute="top" constant="35" id="agy-UK-QP7"/>
+                                    <constraint firstItem="hqr-D2-JhR" firstAttribute="centerX" secondItem="eDy-0P-LYA" secondAttribute="centerX" id="fYX-YE-EIs"/>
+                                    <constraint firstItem="ONv-c9-VTD" firstAttribute="top" secondItem="ziB-QG-X2d" secondAttribute="bottom" constant="25" id="t0y-Vr-tkI"/>
+                                    <constraint firstItem="ziB-QG-X2d" firstAttribute="top" secondItem="rjm-pP-c2C" secondAttribute="bottom" constant="25" id="yFe-eV-prF"/>
+                                    <constraint firstItem="rjm-pP-c2C" firstAttribute="centerX" secondItem="eDy-0P-LYA" secondAttribute="centerX" id="yVw-Vr-aQC"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7g-tz-70d">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="onBackBtnClicked:" destination="1sA-6z-HOd" eventType="touchUpInside" id="3aF-OH-6fV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="A1v-sx-Tcg"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5980701572847682" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="A1v-sx-Tcg" firstAttribute="bottom" secondItem="N7g-tz-70d" secondAttribute="bottom" id="5Fj-JB-BuZ"/>
+                            <constraint firstItem="N7g-tz-70d" firstAttribute="leading" secondItem="A1v-sx-Tcg" secondAttribute="leading" id="6nA-D3-2RE"/>
+                            <constraint firstItem="eDy-0P-LYA" firstAttribute="centerX" secondItem="ax6-MZ-J2q" secondAttribute="centerX" id="Zfo-74-V0Q"/>
+                            <constraint firstItem="eDy-0P-LYA" firstAttribute="centerY" secondItem="ax6-MZ-J2q" secondAttribute="centerY" id="ctC-3c-WBI"/>
+                            <constraint firstItem="N7g-tz-70d" firstAttribute="trailing" secondItem="A1v-sx-Tcg" secondAttribute="trailing" id="lUG-FE-doU"/>
+                            <constraint firstItem="N7g-tz-70d" firstAttribute="top" secondItem="A1v-sx-Tcg" secondAttribute="top" id="qn4-La-GjC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="N7g-tz-70d" id="VNN-im-YCl"/>
+                        <outlet property="designerBtn" destination="ONv-c9-VTD" id="Glh-G6-rjE"/>
+                        <outlet property="developerBtn" destination="hqr-D2-JhR" id="4Rh-oP-SuG"/>
+                        <outlet property="plannerBtn" destination="ziB-QG-X2d" id="i9p-8I-FP5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gi5-9S-cUe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2036" y="1322"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="5Dc-JZ-Ec8">
             <objects>
@@ -85,6 +188,9 @@
                                                     <fontDescription key="subtitleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="4Wx-MQ-lFc" kind="show" id="oJE-Kx-wkE"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbW-56-F4B">
                                                 <rect key="frame" x="10" y="768" width="394" height="20.5"/>
@@ -224,9 +330,15 @@
                         <rightBarButtonItems>
                             <barButtonItem image="magnifyingglass" catalog="system" id="WFo-Ui-0fD">
                                 <color key="tintColor" systemColor="labelColor"/>
+                                <connections>
+                                    <segue destination="sqe-sk-m4B" kind="show" id="zjb-R7-hho"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="btn_option.png" id="cGU-6Z-cy2">
                                 <color key="tintColor" systemColor="labelColor"/>
+                                <connections>
+                                    <segue destination="Fxv-i6-u9W" kind="show" id="2ul-4G-8SL"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -240,7 +352,73 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFr-iP-3hR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2034.7826086956522" y="637.5"/>
+            <point key="canvasLocation" x="-2036" y="602"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="Dpp-4K-tzn">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="sqe-sk-m4B" customClass="searchViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vUs-Tw-jZl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="X1J-GK-n8t"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="FsS-Wr-Jee"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Oq-9q-KIB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2035" y="-150"/>
+        </scene>
+        <!--팀원 추가-->
+        <scene sceneID="dkd-uX-yEJ">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="4Wx-MQ-lFc" customClass="AddFasTeam" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N1c-fl-tSY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀원으로 추가시 상대에게 수락 여부 알림이 갑니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckm-NT-Cek">
+                                <rect key="frame" x="30" y="169" width="261" height="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <searchBar contentMode="redraw" misplaced="YES" placeholder="검색" translatesAutoresizingMaskIntoConstraints="NO" id="IDr-s0-EGS">
+                                <rect key="frame" x="10" y="103" width="392" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bU6-Xo-pTK">
+                                <rect key="frame" x="0.0" y="212" width="414" height="346"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Q60-zt-lCp">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q60-zt-lCp" id="v0b-zb-9uf">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XuF-n4-2H0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IDr-s0-EGS" firstAttribute="top" secondItem="XuF-n4-2H0" secondAttribute="top" constant="15" id="AAd-wx-TQW"/>
+                            <constraint firstItem="IDr-s0-EGS" firstAttribute="leading" secondItem="XuF-n4-2H0" secondAttribute="leading" constant="10" id="FVr-ZE-zqH"/>
+                            <constraint firstItem="IDr-s0-EGS" firstAttribute="trailing" secondItem="XuF-n4-2H0" secondAttribute="trailing" constant="10" id="aUa-a1-tcI"/>
+                            <constraint firstItem="ckm-NT-Cek" firstAttribute="top" secondItem="IDr-s0-EGS" secondAttribute="bottom" constant="15" id="oGW-HN-7kQ"/>
+                            <constraint firstItem="ckm-NT-Cek" firstAttribute="leading" secondItem="XuF-n4-2H0" secondAttribute="leading" constant="30" id="vnX-0I-i9N"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="팀원 추가" id="9j5-k1-9t5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tie-V3-gb1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1042.0289855072465" y="601.33928571428567"/>
         </scene>
         <!--팀 탐색-->
         <scene sceneID="kqg-cp-cqp">
@@ -258,23 +436,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8L-sb-AaH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2775" y="-201"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="z9P-iK-4gY">
-            <objects>
-                <viewController id="8Xr-fg-0ii" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mqM-I4-i5j">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="eWG-7e-0jD"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Qc4-CS-UKd"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8B5-iD-5z0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1961" y="1359"/>
         </scene>
         <!--CallManageVC-->
         <scene sceneID="eRb-gB-jSZ">
@@ -675,7 +836,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WmW-JT-kCj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1013.0434782608696" y="1024.5535714285713"/>
+            <point key="canvasLocation" x="-1146" y="1326"/>
         </scene>
         <!--Choose Time View Controller-->
         <scene sceneID="Yra-gH-BF3">
@@ -774,7 +935,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzU-3p-pgk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145" y="1025"/>
+            <point key="canvasLocation" x="-146" y="1322"/>
         </scene>
         <!--Question View Controller-->
         <scene sceneID="8uk-8a-Yv5">
@@ -863,7 +1024,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CIO-Hh-XO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="692.75362318840587" y="1024.5535714285713"/>
+            <point key="canvasLocation" x="817" y="1326"/>
         </scene>
         <!--홈-->
         <scene sceneID="XFi-Tj-Rjb">
@@ -918,7 +1079,605 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9b-Xe-cIk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2775" y="2001"/>
+            <point key="canvasLocation" x="-2775" y="1451"/>
+        </scene>
+        <!--Reset View Controller-->
+        <scene sceneID="4SC-w1-Lj5">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RR6-fE-Kkt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="wordVC" hidesBottomBarWhenPushed="YES" id="M3C-eg-0xB" customClass="resetViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JYg-LD-dKl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="나를 표현하는" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1B-P4-fA0">
+                                <rect key="frame" x="20" y="109" width="312" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="수식어 3개를 선택해 주세요." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFu-H7-BEG">
+                                <rect key="frame" x="20" y="144" width="312" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgX-Cm-sTq">
+                                <rect key="frame" x="26" y="271" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="창의적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="창의적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="hJh-4x-Ies"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8oH-xv-9Je">
+                                <rect key="frame" x="108" y="271" width="63" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="신중한">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="신중한" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="MLx-cl-2Ed"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ig-VU-jBw">
+                                <rect key="frame" x="177" y="271" width="63" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="꼼꼼한">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="꼼꼼한" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="Abd-Y3-Woz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6Q-Sr-U8j">
+                                <rect key="frame" x="26" y="357" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="전략적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="전략적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="frg-M6-Ldy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUT-7m-Ohg">
+                                <rect key="frame" x="107" y="357" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="열정적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="열정적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="tYN-2C-6ve"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLA-Yk-1nw">
+                                <rect key="frame" x="187" y="357" width="106" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="목표 지향적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="목표 지향적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="Tcf-eV-0c3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-uQ-pZV">
+                                <rect key="frame" x="21" y="400" width="119" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="문제를 극복하는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="문제를 극복하는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="Y8C-on-ht0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pva-iS-NXS">
+                                <rect key="frame" x="148" y="400" width="63" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="엄격한">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="엄격한" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="MVD-pt-bxW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyA-jK-oXr">
+                                <rect key="frame" x="215" y="400" width="93" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="사교성 있는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="사교성 있는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="DHl-58-9xN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Qq-ye-fyB">
+                                <rect key="frame" x="26" y="443" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="외향적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="외향적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="7Sd-Io-KbP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yk0-bs-dVd">
+                                <rect key="frame" x="107" y="443" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="완벽추구">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="완벽추구" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="m9K-Ky-gtb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHJ-3x-Qxg">
+                                <rect key="frame" x="189" y="443" width="63" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="온화한">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="온화한" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="PYJ-nz-YAe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AU3-yU-BQ9">
+                                <rect key="frame" x="26" y="486" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="경청하는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="경청하는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="m5h-P8-eWi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYy-Eo-QNN">
+                                <rect key="frame" x="107" y="486" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="전문적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="전문적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="wEe-RP-FMu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPB-um-XhY">
+                                <rect key="frame" x="196" y="486" width="149" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="전통에 얽매이지 않는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="전통에 얽매이지 않는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="mXk-EU-3fE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbC-kB-VFJ">
+                                <rect key="frame" x="26" y="529" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="능률적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="능률적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="Gen-rB-FxH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NgC-B1-wQO">
+                                <rect key="frame" x="25" y="572" width="93" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="근면 성실한">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="근면 성실한" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="5wH-yy-3e6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCp-mF-Z6z">
+                                <rect key="frame" x="123" y="572" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="협력적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="협력적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="hOE-nJ-XB1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXK-fB-Z5D">
+                                <rect key="frame" x="203" y="572" width="93" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="실행력 있는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="실행력 있는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="TBj-hq-LbN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQX-Ip-u38">
+                                <rect key="frame" x="26" y="615" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="헌신적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="헌신적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="bwy-iT-LcN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGO-Ns-5eG">
+                                <rect key="frame" x="109" y="615" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="도전적인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="도전적인" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="FsA-z8-NsZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3PM-It-jpo">
+                                <rect key="frame" x="25" y="314" width="93" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="자신감 있는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="자신감 있는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="Kik-wi-pmR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYY-xF-MAz">
+                                <rect key="frame" x="120" y="314" width="119" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="상상력이 풍부한">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="상상력이 풍부한" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="5ge-ZR-8Cf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzZ-oX-98c">
+                                <rect key="frame" x="245" y="314" width="93" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="추진력 있는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="추진력 있는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="C3W-kN-LWU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQp-wJ-vrz">
+                                <rect key="frame" x="193" y="615" width="119" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="정확히 판단하는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="정확히 판단하는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="Jda-Uk-woM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEJ-fX-cQl">
+                                <rect key="frame" x="112" y="529" width="136" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="의사 결정을 잘하는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="의사 결정을 잘하는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="lHv-ll-DOf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ax-M9-uFw">
+                                <rect key="frame" x="258" y="529" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="몰두하는">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="몰두하는" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="propertyBtn:" destination="M3C-eg-0xB" eventType="touchUpInside" id="7Yj-76-i0u"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fhx-nX-iqf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ULv-xX-2qF">
+                        <barButtonItem key="rightBarButtonItem" title="저장" id="2Q9-XZ-oIr">
+                            <color key="tintColor" systemColor="labelColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="propertyBtn" destination="2Q9-XZ-oIr" id="iUb-v1-c1J"/>
+                        <outletCollection property="propertyBtns" destination="YgX-Cm-sTq" collectionClass="NSMutableArray" id="JvW-FG-lCU"/>
+                        <outletCollection property="propertyBtns" destination="8oH-xv-9Je" collectionClass="NSMutableArray" id="Rxn-h2-kb1"/>
+                        <outletCollection property="propertyBtns" destination="0ig-VU-jBw" collectionClass="NSMutableArray" id="1kN-aO-N09"/>
+                        <outletCollection property="propertyBtns" destination="3PM-It-jpo" collectionClass="NSMutableArray" id="b6M-UZ-cr3"/>
+                        <outletCollection property="propertyBtns" destination="LYY-xF-MAz" collectionClass="NSMutableArray" id="Q4j-wI-2nL"/>
+                        <outletCollection property="propertyBtns" destination="HzZ-oX-98c" collectionClass="NSMutableArray" id="5gM-Bx-3SM"/>
+                        <outletCollection property="propertyBtns" destination="g6Q-Sr-U8j" collectionClass="NSMutableArray" id="CfC-kQ-n5B"/>
+                        <outletCollection property="propertyBtns" destination="gUT-7m-Ohg" collectionClass="NSMutableArray" id="fGL-Yd-XwO"/>
+                        <outletCollection property="propertyBtns" destination="mLA-Yk-1nw" collectionClass="NSMutableArray" id="stw-LX-onN"/>
+                        <outletCollection property="propertyBtns" destination="Fqo-uQ-pZV" collectionClass="NSMutableArray" id="ZwF-Mw-5HK"/>
+                        <outletCollection property="propertyBtns" destination="Pva-iS-NXS" collectionClass="NSMutableArray" id="YQu-YD-CxL"/>
+                        <outletCollection property="propertyBtns" destination="hyA-jK-oXr" collectionClass="NSMutableArray" id="6CW-Zt-GpA"/>
+                        <outletCollection property="propertyBtns" destination="7Qq-ye-fyB" collectionClass="NSMutableArray" id="waz-re-EZb"/>
+                        <outletCollection property="propertyBtns" destination="Yk0-bs-dVd" collectionClass="NSMutableArray" id="qxR-ed-P0d"/>
+                        <outletCollection property="propertyBtns" destination="GHJ-3x-Qxg" collectionClass="NSMutableArray" id="CT4-gn-P9J"/>
+                        <outletCollection property="propertyBtns" destination="AU3-yU-BQ9" collectionClass="NSMutableArray" id="i2Q-64-OxE"/>
+                        <outletCollection property="propertyBtns" destination="gYy-Eo-QNN" collectionClass="NSMutableArray" id="ICN-Ev-fkX"/>
+                        <outletCollection property="propertyBtns" destination="sPB-um-XhY" collectionClass="NSMutableArray" id="ym5-oH-VTs"/>
+                        <outletCollection property="propertyBtns" destination="sbC-kB-VFJ" collectionClass="NSMutableArray" id="duC-cq-bpZ"/>
+                        <outletCollection property="propertyBtns" destination="JEJ-fX-cQl" collectionClass="NSMutableArray" id="Qwn-hK-OK9"/>
+                        <outletCollection property="propertyBtns" destination="2Ax-M9-uFw" collectionClass="NSMutableArray" id="9ug-ju-Vpd"/>
+                        <outletCollection property="propertyBtns" destination="NgC-B1-wQO" collectionClass="NSMutableArray" id="HlF-0F-wwc"/>
+                        <outletCollection property="propertyBtns" destination="rCp-mF-Z6z" collectionClass="NSMutableArray" id="lpT-8l-q6B"/>
+                        <outletCollection property="propertyBtns" destination="PXK-fB-Z5D" collectionClass="NSMutableArray" id="76k-OX-116"/>
+                        <outletCollection property="propertyBtns" destination="aQX-Ip-u38" collectionClass="NSMutableArray" id="RFI-tn-yVl"/>
+                        <outletCollection property="propertyBtns" destination="tGO-Ns-5eG" collectionClass="NSMutableArray" id="Y5U-NO-jQK"/>
+                        <outletCollection property="propertyBtns" destination="BQp-wJ-vrz" collectionClass="NSMutableArray" id="rg9-J2-eTS"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-201" y="-137"/>
+        </scene>
+        <!--조건 재설정-->
+        <scene sceneID="28G-8k-GG3">
+            <objects>
+                <viewController id="Fxv-i6-u9W" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6mp-xS-SEv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHr-HJ-XWZ">
+                                <rect key="frame" x="-4" y="205" width="422" height="102"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system" imagePlacement="trailing" title="팀빌딩 목적" subtitle="창업, 해커톤" titlePadding="10" cornerStyle="fixed" titleAlignment="leading">
+                                    <backgroundConfiguration key="background">
+                                        <color key="strokeColor" name="gray_196"/>
+                                    </backgroundConfiguration>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                    <fontDescription key="subtitleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbF-eB-z9e">
+                                <rect key="frame" x="-4" y="306" width="422" height="103"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system" imagePlacement="trailing" title="열정도" subtitle="A 받고 싶어요" titlePadding="10" titleAlignment="leading">
+                                    <backgroundConfiguration key="background">
+                                        <color key="strokeColor" name="gray_196"/>
+                                    </backgroundConfiguration>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                    <fontDescription key="subtitleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCi-xK-sfK">
+                                <rect key="frame" x="-4" y="408" width="422" height="103"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system" imagePlacement="trailing" title="나를 표현하는 수식어" subtitle="신중한, 문제를 극복하는,실행력 있는" titlePadding="10" titleAlignment="leading">
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                    <fontDescription key="subtitleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="M3C-eg-0xB" kind="show" id="UAU-Dd-2BG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGB-bB-hOS">
+                                <rect key="frame" x="-2" y="102" width="420" height="103"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system" imagePlacement="trailing" title="활동지역" subtitle="서울특별시" titlePadding="10" titleAlignment="leading">
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                    <fontDescription key="subtitleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="c5C-ky-0DV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="조건 재설정" id="plb-ff-OFa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pRc-25-6CE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1042.0289855072465" y="-136.60714285714286"/>
         </scene>
     </scenes>
     <designables>
@@ -943,6 +1702,12 @@
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="phone" catalog="system" width="128" height="115"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="gray_121">
+            <color red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray_196">
+            <color red="0.7686274509803922" green="0.7686274509803922" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="gray_light">
             <color red="0.7686274509803922" green="0.7686274509803922" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
