@@ -68,6 +68,18 @@ class DetailProfileProjectExViewController: UIViewController {
         projectTF.layer.cornerRadius = 8
         projectTF.layer.borderColor = UIColor(named: "gray_196")?.cgColor
         projectTF.layer.borderWidth = 0.5
+        
+        projectTF.addTarget(self, action: #selector(checkTextfieldEmpty(_sender:)), for: .editingChanged)
+    }
+    @objc func checkTextfieldEmpty(_sender: UITextField) {
+        if _sender.hasText {
+            if didTextFieldWrote == false {
+                didTextFieldWrote = true
+            }
+        }
+        else {
+            didTextFieldWrote = false
+        }
     }
     
     
@@ -134,12 +146,7 @@ extension DetailProfileProjectExViewController: SendDateDataDelegate {
 
 extension DetailProfileProjectExViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.hasText {
-            didTextFieldWrote = true
-        }
-        else {
-            didTextFieldWrote = false
-        }
+        
         textField.resignFirstResponder()
         return true
     }

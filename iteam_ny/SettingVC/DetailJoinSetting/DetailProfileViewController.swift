@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailProfileViewController: UIViewController, UITextFieldDelegate {
+class DetailProfileViewController: UIViewController  {
 
 
     @IBOutlet weak var callTimeBtn: UIButton!
@@ -23,7 +23,16 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var toolNLangConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var projectExAddBtn: UIButton!
     @IBOutlet weak var projectExAddBtn2: UIButton!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     var projects: [ProjectEx] = []
+    
+    var fillCount: Int = 0 {
+        willSet(newValue) {
+           // if newValue ==
+        }
+    }
+    
     
     @IBAction func goBackToPopupBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -40,22 +49,7 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
         firstSettingUI()
     }
     func settingViewDesign() {
-        successBtn.layer.cornerRadius = 8
         
-        // 통화 선호 시간, 포트폴리오, 연락 링크 텍스트필드 디자인 세팅
-        callTimeBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
-        callTimeBtn.layer.borderWidth = 0.5
-        callTimeBtn.layer.cornerRadius = 8
-        
-        portfoliolinkTF.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
-        portfoliolinkTF.layer.borderColor = UIColor(named: "gray_196")?.cgColor
-        portfoliolinkTF.layer.borderWidth = 0.5
-        portfoliolinkTF.layer.cornerRadius = 8
-        
-        callLinkTF.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
-        callLinkTF.layer.borderColor = UIColor(named: "gray_196")?.cgColor
-        callLinkTF.layer.borderWidth = 0.5
-        callLinkTF.layer.cornerRadius = 8
         
         exTableView.reloadData()
         
@@ -73,11 +67,25 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
             projectExAddBtn2.isHidden = true
         }
         
-        
-        
     }
     
     func firstSettingUI() {
+        
+        // 통화 선호 시간, 포트폴리오, 연락 링크 텍스트필드 디자인 세팅
+        callTimeBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+        callTimeBtn.layer.borderWidth = 0.5
+        callTimeBtn.layer.cornerRadius = 8
+        
+        portfoliolinkTF.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
+        portfoliolinkTF.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+        portfoliolinkTF.layer.borderWidth = 0.5
+        portfoliolinkTF.layer.cornerRadius = 8
+        
+        callLinkTF.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
+        callLinkTF.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+        callLinkTF.layer.borderWidth = 0.5
+        callLinkTF.layer.cornerRadius = 8
+        
         tableviewHeight.constant = 0
         
         interestLabel.text = ""
@@ -86,14 +94,17 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
         
         projectExAddBtn.isHidden = false
         projectExAddBtn2.isHidden = true
+        
+        // 완료버튼 속성
+        successBtn.layer.cornerRadius = 8
+        successBtn.setTitleColor(.white, for: .normal)
+        successBtn.setTitleColor(.white, for: .disabled)
+        
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
           self.view.endEditing(true)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
     
     
@@ -110,6 +121,20 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
     
     
 }
+
+// 텍스트 필드가 키보드에 가려지지 않도록 하기 위해 스크롤 내릶
+extension DetailProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        scrollView.scroll(to: .bottom)
+        return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.scroll(to: .bottom250)
+    }
+}
+
+
 
 // 프로젝트 경험 테이블뷰
 extension DetailProfileViewController: UITableViewDelegate, UITableViewDataSource {
