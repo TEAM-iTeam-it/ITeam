@@ -21,6 +21,8 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var intersetContraintTop: NSLayoutConstraint!
     @IBOutlet weak var interestLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var toolNLangConstraintTop: NSLayoutConstraint!
+    @IBOutlet weak var projectExAddBtn: UIButton!
+    @IBOutlet weak var projectExAddBtn2: UIButton!
     var projects: [ProjectEx] = []
     
     @IBAction func goBackToPopupBtn(_ sender: UIButton) {
@@ -28,33 +30,14 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         settingViewDesign()
     
-        exTableView.reloadData()
-        tableviewHeight.constant = exTableView.intrinsicContentSize.height
-        if projects.count >= 1 {
-            tableviewConstraintTop.constant = 15
-        }
-        else {
-            tableviewConstraintTop.constant = 0
-        }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableviewHeight.constant = 0
-        
-        interestLabel.text = ""
-        intersetContraintTop.constant = 0
-        interestLabelHeight.constant = 0
 
-    }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-          self.view.endEditing(true)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        firstSettingUI()
     }
     func settingViewDesign() {
         successBtn.layer.cornerRadius = 8
@@ -74,7 +57,48 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
         callLinkTF.layer.borderWidth = 0.5
         callLinkTF.layer.cornerRadius = 8
         
+        exTableView.reloadData()
+        
+        // 테이블뷰 높이 조정
+        tableviewHeight.constant = exTableView.intrinsicContentSize.height
+        if projects.count >= 1 {
+            tableviewConstraintTop.constant = 15
+            projectExAddBtn.isHidden = true
+            projectExAddBtn2.isHidden = false
+            
+        }
+        else {
+            tableviewConstraintTop.constant = 0
+            projectExAddBtn.isHidden = false
+            projectExAddBtn2.isHidden = true
+        }
+        
+        
+        
     }
+    
+    func firstSettingUI() {
+        tableviewHeight.constant = 0
+        
+        interestLabel.text = ""
+        intersetContraintTop.constant = 0
+        interestLabelHeight.constant = 0
+        
+        projectExAddBtn.isHidden = false
+        projectExAddBtn2.isHidden = true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    
+    // 프로젝트 추가 버튼
     @IBAction func addProjectExAction(_ sender: Any) {
         let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
         let projectExVC = thisStoryboard.instantiateViewController(withIdentifier: "projectExVC") as? DetailProfileProjectExViewController
@@ -84,8 +108,13 @@ class DetailProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
 }
+
+// 프로젝트 경험 테이블뷰
 extension DetailProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    // 한 항목을 섹션으로 지정, footer로 간경을 줌
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -116,6 +145,8 @@ extension DetailProfileViewController: UITableViewDelegate, UITableViewDataSourc
         return 10.0
     }
 }
+
+// 프로젝트 경험 테이블뷰에 사용될 데이터 구조 선언
 class ProjectEx {
     var date: String
     var details: String
@@ -125,9 +156,12 @@ class ProjectEx {
         self.details = details
     }
 }
+
+// 프로젝트 경험 받아오기
 extension DetailProfileViewController: SendProjectExDelegate {
     func sendProjectExData(data: [String]) {
      
+        // 받아온 날짜 계산
         let startDate: Date = StringToDateType(string: data[0])!
         let startDateString: String = dateToStringType(date: startDate)
         let endDate: Date = StringToDateType(string: data[1])!
@@ -156,6 +190,7 @@ extension DetailProfileViewController: SendProjectExDelegate {
         exTableView.reloadData()
         
     }
+    
     // "yyyy년 MM월" -> Date()
     func StringToDateType(string : String) -> Date?{
         let formatter = DateFormatter()
@@ -170,7 +205,10 @@ extension DetailProfileViewController: SendProjectExDelegate {
     }
   
 }
+
+// 관심사 데이터 받아오기
 extension DetailProfileViewController: SendDataDelegate {
+    
     func sendData(data: [String]) {
         var interest: String = ""
         for i in 0..<data.count {

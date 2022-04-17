@@ -2737,6 +2737,21 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qV1-Fs-qfe">
+                                                <rect key="frame" x="310" y="395.5" width="61" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="Fk0-n5-B4N"/>
+                                                    <constraint firstAttribute="width" constant="61" id="rXQ-ko-uza"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="추가하기" image="icMoreRight.png">
+                                                    <color key="titleColor" name="gray_121"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addProjectExAction:" destination="g2c-2x-sIq" eventType="touchUpInside" id="LOc-XY-gdg"/>
+                                                </connections>
+                                            </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="31n-VF-wBH" customClass="DetailProfileExTableView" customModule="iteam_ny" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="429" width="374" height="100"/>
                                                 <constraints>
@@ -2905,6 +2920,7 @@
                                             <constraint firstItem="ann-pE-KXj" firstAttribute="leading" secondItem="ays-c5-98s" secondAttribute="leading" constant="20" symbolic="YES" id="JOc-mb-TYA"/>
                                             <constraint firstItem="RYH-Sb-6sj" firstAttribute="leading" secondItem="ays-c5-98s" secondAttribute="leading" constant="20" id="JT8-QK-PmM"/>
                                             <constraint firstItem="EeC-qQ-mUH" firstAttribute="leading" secondItem="ays-c5-98s" secondAttribute="leading" id="Jye-Qs-8db"/>
+                                            <constraint firstItem="qV1-Fs-qfe" firstAttribute="centerY" secondItem="d1E-QH-WXL" secondAttribute="centerY" id="Kff-8Y-Elf"/>
                                             <constraint firstAttribute="trailing" secondItem="UlV-0F-Fcs" secondAttribute="trailing" id="L9p-Vf-hkR"/>
                                             <constraint firstItem="A4O-xI-w1U" firstAttribute="leading" secondItem="ays-c5-98s" secondAttribute="leading" id="LYN-iK-pbk"/>
                                             <constraint firstItem="OWh-Cy-ZRT" firstAttribute="top" secondItem="ann-pE-KXj" secondAttribute="bottom" constant="15" id="MaJ-bq-k3L"/>
@@ -2937,6 +2953,7 @@
                                             <constraint firstItem="WLC-pK-CZR" firstAttribute="bottom" secondItem="EeC-qQ-mUH" secondAttribute="bottom" id="qUs-6g-0dA"/>
                                             <constraint firstItem="gPB-uV-I1R" firstAttribute="top" secondItem="31n-VF-wBH" secondAttribute="bottom" constant="22" id="reA-Ue-E5Z"/>
                                             <constraint firstItem="WLC-pK-CZR" firstAttribute="top" secondItem="6SQ-qW-PyQ" secondAttribute="top" id="s0a-JT-9s0"/>
+                                            <constraint firstAttribute="trailing" secondItem="qV1-Fs-qfe" secondAttribute="trailing" constant="43" id="sVt-TP-QXU"/>
                                             <constraint firstItem="c4c-cH-jdy" firstAttribute="leading" secondItem="ays-c5-98s" secondAttribute="leading" constant="20" id="tSB-8N-4eA"/>
                                             <constraint firstItem="yeo-8f-5E2" firstAttribute="top" secondItem="1Xs-Gi-tQN" secondAttribute="bottom" constant="25" id="tpP-9t-6tL"/>
                                             <constraint firstItem="gPB-uV-I1R" firstAttribute="leading" secondItem="ays-c5-98s" secondAttribute="leading" id="upG-9b-NEU"/>
@@ -3012,6 +3029,8 @@
                         <outlet property="interestLabelHeight" destination="mag-0V-GBz" id="sHW-Zq-8b9"/>
                         <outlet property="intersetContraintTop" destination="kmh-zo-fjH" id="DQu-Jn-fZI"/>
                         <outlet property="portfoliolinkTF" destination="roc-mO-C4X" id="Bgr-La-vzq"/>
+                        <outlet property="projectExAddBtn" destination="A4O-xI-w1U" id="1ae-fa-K06"/>
+                        <outlet property="projectExAddBtn2" destination="qV1-Fs-qfe" id="zrp-tQ-rca"/>
                         <outlet property="successBtn" destination="UVF-bh-iJC" id="A2e-0H-DE8"/>
                         <outlet property="tableviewConstraintTop" destination="o1c-8d-qaP" id="QOr-Xf-W3v"/>
                         <outlet property="tableviewHeight" destination="b0B-M7-4hP" id="Vdn-wL-ygD"/>
@@ -4516,6 +4535,7 @@
         <image name="icArrowDropDown.png" width="24" height="24"/>
         <image name="icCheck.png" width="24" height="24"/>
         <image name="icCheckPurple.png" width="20" height="20"/>
+        <image name="icMoreRight.png" width="16" height="16"/>
         <image name="iconsCallOffFillInCircle.png" width="76" height="76"/>
         <image name="imgUser10.png" width="50" height="50"/>
         <image name="imgUser4.png" width="50" height="50"/>
