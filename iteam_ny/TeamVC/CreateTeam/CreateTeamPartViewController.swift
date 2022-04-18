@@ -66,10 +66,10 @@ class CreateTeamPartViewController: UIViewController {
     }
     
     // 칩을 위한 변수
-    var parts: [String] = ["웹", "웹 개발", "백엔드 개발"]
+    var parts: [String] = []
     
     override func viewWillAppear(_ animated: Bool) {
-        parts.append("eieiie")
+        
     }
     
     override func viewDidLoad() {

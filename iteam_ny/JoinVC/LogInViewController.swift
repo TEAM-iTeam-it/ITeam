@@ -36,18 +36,23 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     @IBAction func logInBtn(_ sender: UIButton) {
+        print("로그인 클릭됨")
         Auth.auth().signIn(withEmail: idTF.text!, password: passwdTF.text!) { (user, error) in
-                    if user != nil{
-                        print("login success")
-                        let passwordVC = self.storyboard?.instantiateViewController(withIdentifier: "passwordVC")
-                        passwordVC?.modalPresentationStyle = .overFullScreen
-                        self.present(passwordVC!, animated: false, completion: nil)
-                    }
-                    else{
-                        print("login fail")
-                        print(error?.localizedDescription)
-                    }
-              }
+            if user != nil{
+                print("login success")
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                if let tabBarVC = storyboard.instantiateInitialViewController() as? TabarController  {
+                   
+                    tabBarVC.modalPresentationStyle = .fullScreen
+                    self.present(tabBarVC, animated: true, completion: nil)
+                }
+            }
+            else{
+                print("login fail")
+                print(error?.localizedDescription)
+            }
+        }
+        
     }
     
     @IBAction func backBtn(_ sender: UIButton) {
