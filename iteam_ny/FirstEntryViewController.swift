@@ -17,8 +17,8 @@ class FirstEntryViewController: UIViewController {
     }
     // 가입한 유저인지 체크
     func checkDidJoined() {
-        // 임시 수정 != -> ==
-        if Auth.auth().currentUser == nil {
+        // 임시 수정 - 맞는 코드 != -> 틀린 코드 ==
+        if Auth.auth().currentUser != nil {
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             if let tabBarVC = storyboard.instantiateInitialViewController() as? TabarController  {
                
@@ -29,21 +29,22 @@ class FirstEntryViewController: UIViewController {
             print(Auth.auth().currentUser?.uid)
         }
         else {
-            // 임시 수정 != -> ==
+            // 맞는 코드
+            let storyboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
+            if let viewController = storyboard.instantiateInitialViewController() as? JoinViewController  {
+
+                viewController.modalPresentationStyle = .fullScreen
+                present(viewController, animated: false, completion: nil)
+                print("가입되지 않은 사용자~~")
+            }
+            // 임시 수정 - 유닛테스트
 //            let storyboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
-//            if let viewController = storyboard.instantiateInitialViewController() as? JoinViewController  {
+//            if let viewController = storyboard.instantiateInitialViewController() as? UINavigationController  {
 //
 //                viewController.modalPresentationStyle = .fullScreen
 //                present(viewController, animated: false, completion: nil)
 //                print("가입되지 않은 사용자~~")
 //            }
-            let storyboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
-            if let viewController = storyboard.instantiateInitialViewController() as? UINavigationController  {
-               
-                viewController.modalPresentationStyle = .fullScreen
-                present(viewController, animated: false, completion: nil)
-                print("가입되지 않은 사용자~~")
-            }
         }
         
     }

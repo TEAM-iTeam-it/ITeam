@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialBottomSheet
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class DetailProfileViewController: UIViewController  {
 
@@ -16,23 +20,25 @@ class DetailProfileViewController: UIViewController  {
     @IBOutlet weak var successBtn: UIButton!
     @IBOutlet weak var exTableView: DetailProfileExTableView!
     @IBOutlet weak var interestLabel: UILabel!
+    @IBOutlet weak var toolNLangLabel: UILabel!
     @IBOutlet weak var tableviewHeight: NSLayoutConstraint!
     @IBOutlet weak var tableviewConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var intersetContraintTop: NSLayoutConstraint!
     @IBOutlet weak var interestLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var toolNLangConstraintTop: NSLayoutConstraint!
+    @IBOutlet weak var toolNLangLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var projectExAddBtn: UIButton!
     @IBOutlet weak var projectExAddBtn2: UIButton!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     var projects: [ProjectEx] = []
-    
     var fillCount: Int = 0 {
         willSet(newValue) {
            // if newValue ==
         }
     }
-    
+    // Firebase Realtime Database 루트
+    var ref: DatabaseReference!
     
     @IBAction func goBackToPopupBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -92,6 +98,9 @@ class DetailProfileViewController: UIViewController  {
         intersetContraintTop.constant = 0
         interestLabelHeight.constant = 0
         
+        toolNLangConstraintTop.constant = 0
+        toolNLangLabelHeight.constant = 0
+        
         projectExAddBtn.isHidden = false
         projectExAddBtn2.isHidden = true
         
@@ -101,14 +110,60 @@ class DetailProfileViewController: UIViewController  {
         successBtn.setTitleColor(.white, for: .disabled)
         
         
+        // texfield 사용 중 스크롤시 키보드 내리기 위함
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapMethod))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+        
+
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-          self.view.endEditing(true)
+    
+    
+    @IBAction func saveBtnAction(_ sender: UIButton) {
+        saveDataAction()
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if let tabBarVC = storyboard.instantiateInitialViewController() as? TabarController  {
+           
+            tabBarVC.modalPresentationStyle = .fullScreen
+            present(tabBarVC, animated: true, completion: nil)
+        }
     }
     
-    
-    
+    func saveDataAction() {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        let toolNLanguage: [String: Any] = [ "toolNLanguage": toolNLangLabel.text]
+        let interest: [String: Any] = [ "interest": interestLabel.text]
+        let calltime: [String: Any] = [ "calltime": callTimeBtn.titleLabel!.text]
+        let portfolioLink: [String: Any] = [ "portfolioLink": portfoliolinkTF.text]
+        let contactLink: [String: Any] = [ "contactLink": callLinkTF.text]
+        
+        
+        
+        ref = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).child("userProfile")
+        // 데이터 추가
+        ref.child("portfolio").updateChildValues(toolNLanguage)
+        ref.child("portfolio").updateChildValues(interest)
+        ref.child("portfolio").updateChildValues(calltime)
+        ref.child("portfolio").updateChildValues(portfolioLink)
+        ref.child("portfolio").updateChildValues(contactLink)
+        ref.child("portfolio").updateChildValues(toolNLanguage)
+        for i in 0..<projects.count {
+            let exDetail: [String: Any] = [ "exDetail": projects[i].details]
+            let date: [String: Any] = [ "date": projects[i].date]
+            
+            ref.child("portfolio").child("ex\(i)").updateChildValues(exDetail)
+            ref.child("portfolio").child("ex\(i)").updateChildValues(date)
+        }
+            
+        
+    }
     // 프로젝트 추가 버튼
     @IBAction func addProjectExAction(_ sender: Any) {
         let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
@@ -117,13 +172,38 @@ class DetailProfileViewController: UIViewController  {
         projectExVC?.delegate = self
         present(projectExVC!, animated: true, completion: nil)
     }
+    @IBAction func addToolNLangAction(_ sender: UIButton) {
+        let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
+        let toolNLangVC = thisStoryboard.instantiateViewController(withIdentifier: "toolNLangVC") as? DetailProfileToolNLanguageViewController
+        toolNLangVC?.modalPresentationStyle = .fullScreen
+        toolNLangVC?.delegate = self
+        present(toolNLangVC!, animated: true, completion: nil)
+    }
+    @IBAction func callTimeSettingAction(_ sender: UIButton) {
+        let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
+            
+        // 바텀 시트로 쓰일 뷰컨트롤러 생성
+        let callTimeVC = thisStoryboard.instantiateViewController(withIdentifier: "callTimeVC") as? CallTimePickerViewController
+        
+        callTimeVC?.delegate = self
+        
+        // MDC 바텀 시트로 설정
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: callTimeVC!)
+        bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 320
+        
+        
+        // 보여주기
+        present(bottomSheet, animated: true, completion: nil)
+    }
     
     
     
 }
 
 // 텍스트 필드가 키보드에 가려지지 않도록 하기 위해 스크롤 내릶
-extension DetailProfileViewController: UITextFieldDelegate {
+extension DetailProfileViewController: UITextFieldDelegate, UIScrollViewDelegate {
+    
+    // [Keyboard setting] return시 제거
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         scrollView.scroll(to: .bottom)
@@ -131,6 +211,18 @@ extension DetailProfileViewController: UITextFieldDelegate {
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         scrollView.scroll(to: .bottom250)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.scroll(to: .bottom)
+    }
+    
+    @objc func TapMethod(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+        self.view.endEditing(true)
     }
 }
 
@@ -229,6 +321,38 @@ extension DetailProfileViewController: SendProjectExDelegate {
         return formatter.string(from: date)
     }
   
+}
+
+// 통화 시간 받아오기
+extension DetailProfileViewController: SendCallTimeDataDelegate {
+    func sendCallTimeData(data: String) {
+        self.callTimeBtn.setTitle(data, for: .normal)
+        self.callTimeBtn.setTitleColor(UIColor.black, for: .normal)
+    }
+    
+    
+}
+
+// 툴과 언어 받아오기
+extension DetailProfileViewController: SendToolNLangDataDelegate {
+    func sendToolNLangData(data: String) {
+        self.toolNLangLabel.text = data
+        
+        if data != "" {
+            toolNLangConstraintTop.constant = 15
+            toolNLangLabelHeight.constant = 18
+        }
+        else {
+            toolNLangConstraintTop.constant = 0
+            toolNLangLabelHeight.constant = 0
+        }
+    }
+    
+    
+    
+ 
+    
+    
 }
 
 // 관심사 데이터 받아오기

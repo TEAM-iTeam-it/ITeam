@@ -1108,7 +1108,6 @@
                         <outletCollection property="serviceTypeBtns" destination="Pwf-G6-eVi" collectionClass="NSMutableArray" id="bap-9F-L44"/>
                         <outletCollection property="serviceTypeBtns" destination="08A-Wo-xnz" collectionClass="NSMutableArray" id="tWI-oP-a7S"/>
                         <outletCollection property="serviceTypeBtns" destination="sC9-Yu-jmU" collectionClass="NSMutableArray" id="FG8-pF-Zai"/>
-                        <segue destination="Zh3-OW-5se" kind="show" identifier="callTimeVC" id="iIE-iN-L3c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYt-nG-Hmt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1740,38 +1739,50 @@
             <objects>
                 <viewController storyboardIdentifier="callTimeVC" id="Zh3-OW-5se" customClass="CallTimePickerViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hBh-YS-N4I">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBj-je-4Pd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="20" y="74" width="374" height="215"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="215" id="Sr4-5r-gWK"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="Zh3-OW-5se" id="EwA-wk-PAR"/>
                                     <outlet property="delegate" destination="Zh3-OW-5se" id="kuI-im-EQq"/>
                                 </connections>
                             </pickerView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OE6-KM-33t">
-                                <rect key="frame" x="10" y="10" width="417" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="선호 시간을 선택해주세요" id="H1W-6d-EIo">
-                                        <barButtonItem key="rightBarButtonItem" title="저장" id="i1r-gI-gBu">
-                                            <color key="tintColor" name="purple_184"/>
-                                            <connections>
-                                                <action selector="saveBtn:" destination="Zh3-OW-5se" id="St9-A7-l2b"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="통화 가능 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpq-58-xh7">
+                                <rect key="frame" x="20" y="30" width="115" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="6G9-zM-oXn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9K1-lj-ySK">
+                                <rect key="frame" x="364" y="25.5" width="30" height="33"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="완료">
+                                    <color key="titleColor" name="purple_184"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveBtn:" destination="Zh3-OW-5se" eventType="touchUpInside" id="fUu-D9-mJz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fSC-Fj-Xcc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oBj-je-4Pd" firstAttribute="top" secondItem="fSC-Fj-Xcc" secondAttribute="top" id="0JB-1l-7CS"/>
-                            <constraint firstItem="fSC-Fj-Xcc" firstAttribute="trailing" secondItem="oBj-je-4Pd" secondAttribute="trailing" id="NQh-vZ-EX7"/>
-                            <constraint firstItem="fSC-Fj-Xcc" firstAttribute="bottom" secondItem="oBj-je-4Pd" secondAttribute="bottom" id="dUO-Ge-Hk8"/>
-                            <constraint firstItem="oBj-je-4Pd" firstAttribute="leading" secondItem="fSC-Fj-Xcc" secondAttribute="leading" id="fqY-8b-rga"/>
+                            <constraint firstItem="vpq-58-xh7" firstAttribute="top" secondItem="fSC-Fj-Xcc" secondAttribute="top" constant="-14" id="9yD-Hb-48w"/>
+                            <constraint firstItem="9K1-lj-ySK" firstAttribute="centerY" secondItem="vpq-58-xh7" secondAttribute="centerY" id="GSk-Mt-2Nb"/>
+                            <constraint firstItem="oBj-je-4Pd" firstAttribute="top" secondItem="vpq-58-xh7" secondAttribute="bottom" constant="20" id="HAF-Vp-uSK"/>
+                            <constraint firstItem="fSC-Fj-Xcc" firstAttribute="trailing" secondItem="oBj-je-4Pd" secondAttribute="trailing" constant="20" id="NQh-vZ-EX7"/>
+                            <constraint firstItem="vpq-58-xh7" firstAttribute="leading" secondItem="fSC-Fj-Xcc" secondAttribute="leading" constant="20" id="bAD-ei-NDM"/>
+                            <constraint firstItem="oBj-je-4Pd" firstAttribute="leading" secondItem="fSC-Fj-Xcc" secondAttribute="leading" constant="20" id="fqY-8b-rga"/>
+                            <constraint firstItem="fSC-Fj-Xcc" firstAttribute="trailing" secondItem="9K1-lj-ySK" secondAttribute="trailing" constant="20" id="khr-LJ-3OZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IHg-ie-qC9"/>

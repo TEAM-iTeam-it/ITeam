@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialBottomSheet
 
 class DetailProfileProjectExViewController: UIViewController {
     
@@ -105,7 +106,12 @@ class DetailProfileProjectExViewController: UIViewController {
         dateVC?.delegate = self
         dateVC?.startOREnd = "start"
         
-        present(dateVC!, animated: true, completion: nil)
+        // MDC 바텀 시트로 설정
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: dateVC!)
+        bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 320
+        
+        // 보여주기
+        present(bottomSheet, animated: true, completion: nil)
     }
     @IBAction func setEndDateAction(_ sender: UIButton) {
         let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
@@ -117,7 +123,13 @@ class DetailProfileProjectExViewController: UIViewController {
                 dateVC?.startDate = startDate
             }
         }
-        present(dateVC!, animated: true, completion: nil)
+        // MDC 바텀 시트로 설정
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: dateVC!)
+        bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 320
+        
+        // 보여주기
+        present(bottomSheet, animated: true, completion: nil)
+        
     }
     
 

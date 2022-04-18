@@ -40,15 +40,20 @@ class DetailProfileProjectStartDateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        variableSetting()
+        setPicker()
+        setUI()
+    }
+    func setUI() {
+        self.view.layer.cornerRadius = 30
+        self.view.layer.masksToBounds = true
+    }
+    func variableSetting() {
         formatter_year.dateFormat = "yyyy"
         formatter_month.dateFormat = "MM"
         current_year_Int = Int(formatter_year.string(from: Date()))!
         current_month_Int = Int(formatter_month.string(from: Date()))!
-        
-        setPicker()
     }
-    
     // 피커 세팅
     func setPicker() {
         
@@ -62,10 +67,10 @@ class DetailProfileProjectStartDateViewController: UIViewController {
         
         if startOREnd == "start" {
             for i in current_year_Int-10...current_year_Int {
-                day.append(String(i))
+                day.append("\(String(i))년")
             }
             for i in 1...current_month_Int {
-                morningOrAfternoon.append(String(i))
+                morningOrAfternoon.append("\(String(i))월")
             }
             pickerYearSelectedRow = day.count-1
         }
@@ -73,10 +78,10 @@ class DetailProfileProjectStartDateViewController: UIViewController {
             // 시작 날짜를 선택하지 않았으면 그대로
             if startDate == "" {
                 for i in current_year_Int-10...current_year_Int {
-                    day.append(String(i))
+                    day.append("\(String(i))년")
                 }
                 for i in 1...current_month_Int {
-                    morningOrAfternoon.append(String(i))
+                    morningOrAfternoon.append("\(String(i))월")
                 }
                 pickerYearSelectedRow = day.count-1
             }
@@ -88,10 +93,10 @@ class DetailProfileProjectStartDateViewController: UIViewController {
                 print("startDateArr year= \(startDateArr[0])")
                 print("startDateArr month= \(startDateArr[1])")
                 for i in Int(startDateArr[0])!...current_year_Int {
-                    day.append(String(i))
+                    day.append("\(String(i))년")
                 }
                 for i in Int(startDateArr[1])!...12 {
-                    morningOrAfternoon.append(String(i))
+                    morningOrAfternoon.append("\(String(i))월")
                 }
                 pickerYearSelectedRow = 0
                 
@@ -115,20 +120,20 @@ class DetailProfileProjectStartDateViewController: UIViewController {
     func setPickerMonthIfCurrentYear() {
         morningOrAfternoon.removeAll()
         for i in 1...current_month_Int {
-            morningOrAfternoon.append(String(i))
+            morningOrAfternoon.append("\(String(i))월")
         }
         picker.reloadAllComponents()
     }
     func setPickerMonthNotCurrentYear() {
         morningOrAfternoon.removeAll()
         for i in 1...12 {
-            morningOrAfternoon.append(String(i))
+            morningOrAfternoon.append("\(String(i))월")
         }
         picker.reloadAllComponents()
     }
     
     
-    @IBAction func saveBtn(_ sender: UIBarButtonItem) {
+    @IBAction func saveBtn(_ sender: UIButton) {
         if startOREnd == "start" {
             
         }
@@ -136,26 +141,26 @@ class DetailProfileProjectStartDateViewController: UIViewController {
         if fullTime[0].isEmpty {
             if startOREnd == "start" {
                 // 최근 년도로
-                callTime += "\(day[day.count-1])년 "
+                callTime += "\(day[day.count-1]) "
             }
             else {
                 // 시작 날짜로
-                callTime += "\(day[0])년 "
+                callTime += "\(day[0]) "
             }
         }
         // 년도를 선택했을 때
         else {
-            callTime += "\(fullTime[0])년 "
+            callTime += "\(fullTime[0]) "
         }
         
         // 월을 선택하지 않았을 때
         if fullTime[1].isEmpty {
-            callTime += "\(morningOrAfternoon[0])월 "
+            callTime += "\(morningOrAfternoon[0]) "
         }
         
         // 월을 선택했을 때
         else {
-            callTime += "\(fullTime[1])월 "
+            callTime += "\(fullTime[1]) "
         }
        
         if startOREnd == "start" {
@@ -175,24 +180,13 @@ extension DetailProfileProjectStartDateViewController: UIPickerViewDelegate, UIP
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 60
     }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 60))
-        let itemLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 60))
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            itemLabel.text = day[row]
+            return day[row]
         }
-        else if component == 1 {
-            itemLabel.text = morningOrAfternoon[row]
+        else {
+            return morningOrAfternoon[row]
         }
-        
-        itemLabel.textAlignment = .center
-        itemLabel.font = UIFont.systemFont(ofSize: 28, weight: .light)
-
-        view.addSubview(itemLabel)
-        return view
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -211,7 +205,8 @@ extension DetailProfileProjectStartDateViewController: UIPickerViewDelegate, UIP
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
             fullTime[0] = day[row]
-            selectedYear = Int(day[row])!
+            let year = day[row].replacingOccurrences(of: "년", with: "")
+            selectedYear = Int(year)!
             
         }
         else if component == 1 {

@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import MaterialComponents.MaterialBottomSheet
 
-class CreateTeamProfileViewController: UIViewController, SendCallTimeDataDelegate {
+class CreateTeamProfileViewController: UIViewController {
     
 
     @IBOutlet weak var saveBtn: UIButton!
@@ -101,17 +101,7 @@ class CreateTeamProfileViewController: UIViewController, SendCallTimeDataDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 스크롤뷰에서 texfield사용시 키보드를 내리기 위함
-        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapMethod))
-        singleTapGestureRecognizer.numberOfTapsRequired = 1
-        singleTapGestureRecognizer.isEnabled = true
-        singleTapGestureRecognizer.cancelsTouchesInView = false
-        scrollView.addGestureRecognizer(singleTapGestureRecognizer)
-        
         setUI()
-        
-        partLabel.isHidden = true
-        regionLabel.isHidden = true
     }
     
     func setUI() {
@@ -213,6 +203,12 @@ class CreateTeamProfileViewController: UIViewController, SendCallTimeDataDelegat
         regionLabelHeight.constant = 0
         
         
+        // texfield 사용 중 스크롤시 키보드 내리기 위함
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapMethod))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        scrollView.addGestureRecognizer(singleTapGestureRecognizer)
     }
     
     // [Button Action] 뒤로 가기
@@ -359,18 +355,22 @@ class CreateTeamProfileViewController: UIViewController, SendCallTimeDataDelegat
         print("serviceType : \(serviceType)")
     }
     
+    // 통화 가능 시간 bottom sheet 띄우기
     @IBAction func callTimeSettingAction(_ sender: Any) {
         let thisStoryboard: UIStoryboard = UIStoryboard(name: "TeamPages", bundle: nil)
+            
+        // 바텀 시트로 쓰일 뷰컨트롤러 생성
         let callTimeVC = thisStoryboard.instantiateViewController(withIdentifier: "callTimeVC") as? CallTimePickerViewController
+        
         callTimeVC?.delegate = self
         
+        // MDC 바텀 시트로 설정
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: callTimeVC!)
+        bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 320
         
-        present(callTimeVC!, animated: true, completion: nil)
-    }
-    
-    func sendCallTimeData(data: String) {
-        self.callTimeBtn.setTitle(data, for: .normal)
-        self.callTimeBtn.setTitleColor(UIColor.black, for: .normal)
+        
+        // 보여주기
+        present(bottomSheet, animated: true, completion: nil)
     }
 
     
@@ -388,21 +388,36 @@ class CreateTeamProfileViewController: UIViewController, SendCallTimeDataDelegat
 }
 
 // textfield, 스크롤 제어
+// 텍스트 필드가 키보드에 가려지지 않도록 하기 위해 스크롤 내릶
 extension CreateTeamProfileViewController: UITextFieldDelegate, UIScrollViewDelegate {
     
-    // [Keyboard setting] return시 제거
+    // [Keyboard setting] return시 제거,
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+        if textField == contactLinkTF {
+            scrollView.scroll(to: .bottom)
+        }
         addFillCount()
         textField.resignFirstResponder()
         return true
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == contactLinkTF {
+            scrollView.scroll(to: .bottom250)
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == contactLinkTF {
+            scrollView.scroll(to: .bottom )
+        }
+    }
     
     @objc func TapMethod(sender: UITapGestureRecognizer) {
+        addFillCount()
         self.view.endEditing(true)
     }
+    
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
-        
         addFillCount()
         self.view.endEditing(true)
     }
@@ -485,7 +500,7 @@ extension UIFont {
 
 
 // 다른 화면에서 데이터 넘겨받고 뷰 세팅
-extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataDelegate {
+extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataDelegate, SendCallTimeDataDelegate {
     
     func sendData(data: [String]) {
         var part: String = ""
@@ -544,6 +559,10 @@ extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataD
                 didPartWrote = false
             }
         }
+    }
+    func sendCallTimeData(data: String) {
+        self.callTimeBtn.setTitle(data, for: .normal)
+        self.callTimeBtn.setTitleColor(UIColor.black, for: .normal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
