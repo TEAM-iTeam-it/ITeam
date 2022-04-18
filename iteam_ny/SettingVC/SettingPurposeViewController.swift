@@ -54,6 +54,7 @@ class SettingPurposeViewController: UIViewController {
                 etcImg.image = nil
             }
             sender.backgroundColor = UIColor(named: "gray_245")
+            sender.setTitleColor(UIColor(named: "gray_121"), for: .normal)
             sender.layer.borderWidth = 0
             
             
@@ -112,9 +113,11 @@ class SettingPurposeViewController: UIViewController {
                 default:
                     etcImg.image = UIImage(systemName: "1.circle.fill")
                 }
-                sender.backgroundColor = UIColor(named: "purple_light")
+                sender.backgroundColor = UIColor(named: "purple_247")
                 sender.layer.borderWidth = 0.5
                 sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+                sender.setTitleColor(UIColor(named: "purple_184"), for: .normal)
+                
                 
                 purposes.append((sender.titleLabel?.text)!)
             }
@@ -131,9 +134,10 @@ class SettingPurposeViewController: UIViewController {
                 default:
                     etcImg.image = UIImage(systemName: "2.circle.fill")
                 }
-                sender.backgroundColor = UIColor(named: "purple_light")
+                sender.backgroundColor = UIColor(named: "purple_247")
                 sender.layer.borderWidth = 0.5
                 sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+                sender.setTitleColor(UIColor(named: "purple_184"), for: .normal)
                 
                 purposes.append((sender.titleLabel?.text)!)
             }
@@ -150,9 +154,10 @@ class SettingPurposeViewController: UIViewController {
                 default:
                     etcImg.image = UIImage(systemName: "3.circle.fill")
                 }
-                sender.backgroundColor = UIColor(named: "purple_light")
+                sender.backgroundColor = UIColor(named: "purple_247")
                 sender.layer.borderWidth = 0.5
                 sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+                sender.setTitleColor(UIColor(named: "purple_184"), for: .normal)
                 
                 purposes.append((sender.titleLabel?.text)!)
             }
@@ -174,8 +179,16 @@ class SettingPurposeViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
-        let values: [String: Any] = [ "purpose": purposes]
+        var purposeString: String = ""
+        for i in 0..<purposes.count {
+            if i == purposes.count-1 {
+                purposeString += purposes[i]
+            }
+            else {
+                purposeString += "\(purposes[i]), "
+            }
+        }
+        let values: [String: String] = [ "purpose": purposeString]
         
         ref = Database.database().reference()
         // [ 목적 데이터 추가 ]

@@ -15,12 +15,25 @@ class SettingSuccessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fillProfileBtn.layer.cornerRadius = 8
-        popupView.layer.cornerRadius = 25
+        popupView.layer.cornerRadius = 16
         popupView.clipsToBounds = true
         // Do any additional setup after loading the view.
     }
+    
+
     @IBAction func goBackBtn(_ sender: UIButton) {
-        self.dismiss(animated: false, completion: nil)
+  
+
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if let tabBarVC = storyboard.instantiateInitialViewController() as? TabarController  {
+           
+            tabBarVC.modalPresentationStyle = .fullScreen
+            present(tabBarVC, animated: true, completion: nil)
+           //  present(tabBarVC, animated: true, completion: nil)
+        }
+        
+        // self.dismiss(animated: false, completion: nil)
     }
     
     

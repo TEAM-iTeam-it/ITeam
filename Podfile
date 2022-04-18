@@ -12,7 +12,9 @@ target 'iteam_ny' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-end
+  pod 'MaterialComponents/BottomSheet'
+
+
 
 post_install do |installer|
      installer.pods_project.targets.each do |target|
@@ -25,3 +27,5 @@ post_install do |installer|
          end
      end
  end
+end
+

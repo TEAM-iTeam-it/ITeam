@@ -56,11 +56,14 @@ class SettingViewController: UIViewController {
         if !checkedBtn_region.contains((sender.titleLabel?.text)!) {
             checkedBtn_region.append((sender.titleLabel?.text)!)
             
-            sender.configuration?.background.backgroundColor = UIColor(named: "purple_184")
+            sender.configuration?.background.backgroundColor = UIColor(named: "purple_247")
             sender.layer.borderWidth = 0.5
             sender.layer.cornerRadius = sender.frame.height/2
-            sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
-            sender.configuration?.baseForegroundColor = .white
+            sender.layer.borderColor = UIColor(named: "purple_247")?.cgColor
+            sender.configuration?.baseForegroundColor = UIColor(named: "purple_184")
+            sender.titleLabel?.font = UIFont.fontWithName(type: .medium, size: 14)
+            
+            
         }
         else {
             if let firstIndex = checkedBtn_region.firstIndex(of: (sender.titleLabel?.text)!) {
@@ -71,6 +74,9 @@ class SettingViewController: UIViewController {
             sender.layer.borderColor = UIColor(named: "gray_196")?.cgColor
             sender.configuration?.background.backgroundColor = .white
             sender.configuration?.baseForegroundColor  = .black
+            sender.titleLabel?.font = UIFont.fontWithName(type: .regular, size: 14)
+            
+            
         }
         if checkedBtn_region.count >= 1 {
             self.regionBtn.backgroundColor = UIColor(named: "purple_184")
@@ -90,10 +96,12 @@ class SettingViewController: UIViewController {
         if !checkedBtn_property.contains((sender.titleLabel?.text)!) {
             checkedBtn_property.append((sender.titleLabel?.text)!)
             
-            sender.configuration?.background.backgroundColor = UIColor(named: "purple_184")
+            sender.configuration?.background.backgroundColor = UIColor(named: "purple_247")
            
-            sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
-            sender.configuration?.baseForegroundColor = .white
+            sender.layer.borderColor = UIColor(named: "purple_247")?.cgColor
+            sender.configuration?.baseForegroundColor = UIColor(named: "purple_184")
+            sender.titleLabel?.font = UIFont.fontWithName(type: .medium, size: 14)
+            
         }
         else {
             if let firstIndex = checkedBtn_property.firstIndex(of: (sender.titleLabel?.text)!) {
@@ -103,6 +111,8 @@ class SettingViewController: UIViewController {
             sender.configuration?.background.backgroundColor = .white
             sender.configuration?
                 .baseForegroundColor  = .black
+            sender.titleLabel?.font = UIFont.fontWithName(type: .regular, size: 14)
+            
         }
         // 선택 개수 제어 - 3개 이상이면 선택퇸 항목 제외 비활성화
         if checkedBtn_property.count >= 3 {
@@ -163,8 +173,16 @@ class SettingViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
-        let values: [String: Any] = [ "activeZone": checkedBtn_region]
+        var regionString: String = ""
+        for i in 0..<checkedBtn_region.count {
+            if i == checkedBtn_region.count-1 {
+                regionString += checkedBtn_region[i]
+            }
+            else {
+                regionString += "\(checkedBtn_region[i]), "
+            }
+        }
+        let values: [String: String] = [ "activeZone": regionString]
         
         ref = Database.database().reference()
         // [ 지역 데이터 추가 ]
@@ -233,17 +251,25 @@ class SettingViewController: UIViewController {
     }
     
     
-    // [Button action] 조건 설정 완료 팝업
+    // [Button action] 수식어 설정 완료, 조건 설정 완료 팝업
     @IBAction func showPopupViewBtn(_ sender: UIButton) {
         // [수식어 데이터 추가]
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
-        let values: [String: Any] = [ "character": checkedBtn_property]
+        var propertyString: String = ""
+        for i in 0..<checkedBtn_property.count {
+            if i == checkedBtn_property.count-1 {
+                propertyString += checkedBtn_property[i]
+            }
+            else {
+                propertyString += "\(checkedBtn_property[i]), "
+            }
+        }
+        let values: [String: String] = [ "character": propertyString]
         
         ref = Database.database().reference()
-        // [ 지역 데이터 추가 ]
+        // [ 수식어 데이터 추가 ]
         ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
         
         let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "SettingSuccessVC")

@@ -46,20 +46,25 @@ class SettingPassionViewController: UIViewController {
             for i in 0...passionBtns.count-1 {
                 if passionBtns[i].titleLabel?.text == passion {
                     passionBtns[i].backgroundColor = UIColor(named: "gray_245")
+                    passionBtns[i].setTitleColor(UIColor(named: "gray_121"), for: .normal)
                     passionBtns[i].layer.borderWidth = 0
                 }
             }
-            sender.backgroundColor = UIColor(named: "purple_light")
+            sender.backgroundColor = UIColor(named: "purple_247")
             sender.layer.borderWidth = 0.5
             sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+            sender.setTitleColor(UIColor(named: "purple_184"), for: .normal)
+            
             passion = sender.titleLabel?.text!
             nextBtn.backgroundColor = UIColor(named: "purple_184")
             nextBtn.isEnabled = true
         }
         else {
-            sender.backgroundColor = UIColor(named: "purple_light")
+            sender.backgroundColor = UIColor(named: "purple_247")
             sender.layer.borderWidth = 0.5
             sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+            sender.setTitleColor(UIColor(named: "purple_184"), for: .normal)
+            
             passion = sender.titleLabel?.text!
             nextBtn.backgroundColor = UIColor(named: "purple_184")
             nextBtn.isEnabled = true

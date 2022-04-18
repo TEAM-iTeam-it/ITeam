@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CallAnswerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -39,6 +40,20 @@ class CallAnswerViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view.
     }
 
+    // 삭제할 코드 - 유닛 테스트
+    @IBAction func testSignout(_ sender: UIButton) {
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            print("로그아웃됨. 앱이 종료됩니다")
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+        
+        sleep(2)
+        exit(0)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return personList.count
