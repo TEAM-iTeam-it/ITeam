@@ -124,7 +124,6 @@
 		1F55CF212751F19200CD35EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F55CF1F2751F19200CD35EC /* LaunchScreen.storyboard */; };
 		1F55CF292751F71A00CD35EC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF282751F71A00CD35EC /* HomeViewController.swift */; };
 		1F55CF2D2751FCA800CD35EC /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF2C2751FCA800CD35EC /* TabbarController.swift */; };
-		1F55CF502754A98C00CD35EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF4F2754A98C00CD35EC /* User.swift */; };
 		1F55CF562754B46B00CD35EC /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF552754B46B00CD35EC /* UserProfileController.swift */; };
 		1F5AC97127D6BCE800146C0E /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5AC97027D6BCE800146C0E /* UserProfile.swift */; };
 		1F5AC97427D6BEB600146C0E /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5AC97227D6BEB600146C0E /* UserListCell.swift */; };
@@ -272,7 +271,6 @@
 		1F55CF222751F19200CD35EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F55CF282751F71A00CD35EC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1F55CF2C2751FCA800CD35EC /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
-		1F55CF4F2754A98C00CD35EC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1F55CF552754B46B00CD35EC /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		1F5AC97027D6BCE800146C0E /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		1F5AC97227D6BEB600146C0E /* UserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
@@ -656,7 +654,6 @@
 			isa = PBXGroup;
 			children = (
 				1F5AC97027D6BCE800146C0E /* UserProfile.swift */,
-				1F55CF4F2754A98C00CD35EC /* User.swift */,
 				0833417727F3437D005B4F31 /* Team.swift */,
 			);
 			path = Data;
@@ -918,7 +915,6 @@
 				1F55CF172751F19100CD35EC /* SceneDelegate.swift in Sources */,
 				08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */,
 				0868B03727CB6D830018464B /* UserCollectionViewCell.swift in Sources */,
-				1F55CF502754A98C00CD35EC /* User.swift in Sources */,
 				0868B03C27CB6D830018464B /* ChannelWaitingViewController.swift in Sources */,
 				0833418627F35A80005B4F31 /* FavorTeamViewController.swift in Sources */,
 				081F264C27F3878000F17332 /* TeamViewController.swift in Sources */,

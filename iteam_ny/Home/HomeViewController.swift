@@ -97,13 +97,14 @@ class HomeViewController: UIViewController{
     
     var ref: DatabaseReference! //Firebase Realtime Database
     
-    var userList: [UserProfile] = []
-    var image = [UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser5")]
+    var userList: [Uid] = []
+//    var image = [UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser5")]
        
         override func viewDidLoad() {
             super.viewDidLoad()
            
-            ref = Database.database().reference()
+//            ref = Database.database().reference()
+            ref = Database.database().reference().child("user")
             
             //UITableView Cell Register
             let nibName = UINib(nibName: "UserListCell", bundle: nil)
@@ -122,9 +123,11 @@ class HomeViewController: UIViewController{
             ref.observe(.value) { snapshot in
                 guard let value = snapshot.value as? [String: [String: Any]] else { return }
                 
+                
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: value)
-                    let userData = try JSONDecoder().decode([String: UserProfile].self, from: jsonData)
+//                    let userData = try JSONDecoder().decode([String: UserProfile].self, from: jsonData)
+                    let userData = try JSONDecoder().decode([String: Uid].self, from: jsonData)
                     let showUserList = Array(userData.values)
                     self.userList = showUserList.sorted { $0.rank < $1.rank } //정렬 순서
                     
@@ -161,7 +164,6 @@ class HomeViewController: UIViewController{
             homeTableView.layer.shadowColor = UIColor.black.cgColor // 색깔
             homeTableView.layer.masksToBounds = false  // 내부에 속한 요소들이 UIView 밖을 벗어날 때, 잘라낼 것인지. 그림자는 밖에 그려지는 것이므로 false 로 설정
             homeTableView.layer.shadowOffset = CGSize(width: 0, height: 4) // 위치조정
-//            homeTableView.layer.borderWidth = 1
             homeTableView.layer.shadowRadius = 5 // 반경
             homeTableView.layer.shadowOpacity = 0.3 // alpha값
             self.homeTableView.layer.cornerRadius = 20.0
@@ -176,8 +178,6 @@ class HomeViewController: UIViewController{
             
        }
 
-            
-    //
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
        }
@@ -185,7 +185,7 @@ class HomeViewController: UIViewController{
         
 }
 
-        
+
     extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         
         //배열의 인덱수 수가 테이블 뷰의 row 수
@@ -196,15 +196,10 @@ class HomeViewController: UIViewController{
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserListCell",for: indexPath) as? UserListCell else {return UITableViewCell()}
                 
-//           let cell = homeTableView.dequeueReusableCell(withIdentifier: "UserListCell", for: indexPath) as! UserListCell
-//               cell.userImage.image = UIImage(systemName: "person.fill")
-                cell.userName.text = "\(userList[indexPath.row].userprofileDetail.name)"
-                cell.school.text = "\(userList[indexPath.row].rank)위"
-                cell.partLabel.text = "\(userList[indexPath.row].userprofileDetail.part)"
-                cell.userPurpose.text = "\(userList[indexPath.row].userprofileDetail.purpose)"
-       
-//            let imageURL = URL(string: userList[indexPath.row].userprofileDetail.userImageURL)
-//            cell.userImage.kf.setImage(with: imageURL)
+            cell.userName.text = "\(userList[indexPath.row].userProfile.nickname)"
+            cell.school.text = "\(userList[indexPath.row].userProfile.schoolName)위"
+            cell.partLabel.text = "\(userList[indexPath.row].userProfile.partDetail)\(userList[indexPath.row].userProfile.part)"
+            cell.userPurpose.text = "\(userList[indexPath.row].userProfileDetail.purpose)"
             
                return cell
            }
@@ -221,12 +216,9 @@ class HomeViewController: UIViewController{
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             guard let detailViewController = storyboard.instantiateViewController(identifier: "UserProfileController") as? UserProfileController else { return }
             
-                detailViewController.userprofileDetail = userList[indexPath.row].userprofileDetail
-                self.show(detailViewController, sender: nil)
-            
-            
-            //                let userID = userList[indexPath.row].id
-            //                ref.child("Item\(userID)/isSelected").setValue(true)
+            detailViewController.userprofileDetail = userList[indexPath.row].userProfileDetail
+            detailViewController.userprofile = userList[indexPath.row].userProfile
+            self.show(detailViewController, sender: nil)
             
         }
     }
