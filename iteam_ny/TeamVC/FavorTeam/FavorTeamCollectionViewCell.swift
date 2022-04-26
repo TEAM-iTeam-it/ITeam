@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseStorage
+import Firebase
 
 class FavorTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var teamName: UILabel!
@@ -15,7 +17,7 @@ class FavorTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
     // @나연 : 서버에서 받아 올 사용자 이미지 네임
-    var images: [String] = []
+    var images: [UIImage] = []
     
         
 }
@@ -26,6 +28,8 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
         super.awakeFromNib()
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
+        
+        print("imagecount \(images.count)")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -34,7 +38,8 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favorTeamImageCell", for: indexPath) as! FavorTeamImagesCollectionViewCell
-        cell.userImages.image = UIImage(named: images[indexPath.row])
+        cell.userImages.image = images[indexPath.row]
+       
         cell.layer.cornerRadius = cell.frame.height/2
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor

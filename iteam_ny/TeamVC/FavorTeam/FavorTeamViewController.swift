@@ -6,27 +6,113 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
 
 class FavorTeamViewController: UIViewController {
     var teamList: [Team] = []
     var images: [String] = []
+    var teamListTest: [TeamProfile] = []
+    var teamNameList: [String] = []
+    var memberListArr: [[String]] = [[]]
     @IBOutlet weak var collView: UICollectionView!
+    var uiImages: [UIImage] = []
     
+    let db = Database.database().reference()
+    var doesFavorTeamExisted: Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
         
-        // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
+        // 삭제할 더미데이터 -> 추후 서버에서 받아와야함
+        
         let firstTeamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
         let firstTeam = Team(teamName: "이성책임", purpose: "공모전", part: "디자이너, 개발자 구인 중", images: firstTeamImages)
         let secondTeam = Team(teamName: "Ctrl+P", purpose: "포트폴리오", part: "모든 파트 구인 중", images: firstTeamImages)
         let thirdTeam = Team(teamName: "가온누리", purpose: "함께 논의해 봐요", part: "개발자 구인 중", images: firstTeamImages)
         
         
+        
         teamList.append(firstTeam)
         teamList.append(secondTeam)
         teamList.append(thirdTeam)
         
+        
+        fetchData()
+        
+        
         super.viewWillAppear(false)
+    }
+    func fetchData() {
+        self.memberListArr.removeAll()
+
+        let favorTeamList = db.child("Team")
+        let query = favorTeamList.queryOrdered(byChild: "serviceType").queryEqual(toValue: "앱 서비스")
+      
+        query.observeSingleEvent(of: .value) { snapshot in
+            
+            guard let value = snapshot.value as? [String: Any] else { return }
+            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: Array(value.values), options: [])
+                // print(jsonData)
+                let teamData = try JSONDecoder().decode([TeamProfile].self, from: jsonData)
+                self.teamListTest = teamData
+                self.teamNameList = Array(value.keys)
+                print(self.teamNameList.count)
+                
+                // 한 팀의 멤버들 UID배열
+                for i in 0..<self.teamListTest.count {
+                    self.memberListArr.append([])
+                    self.memberListArr[i].append(contentsOf: self.teamListTest[i].memberList.components(separatedBy: ", "))
+                }
+                // print(self.memberListArr)
+                // fetch image하고 collectonview 리로드
+            
+                //self.collView.reloadData()
+                self.fetchImages()
+                
+                
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    func fetchImages() {
+        let userUID = memberListArr[0][0]
+        let storage = Storage.storage().reference().child("user_profile_image").child(userUID + ".jpg")
+        print(userUID + ".jpg")
+        
+        DispatchQueue.global().async {
+            storage.downloadURL { url, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    do {
+                        let data = try Data(contentsOf: url!)
+                        let image = UIImage(data: data)
+                        for i in 0..<self.memberListArr[0].count {
+                            self.uiImages.append(image!)
+                            
+                        }
+                        print("성공성공성공\(self.uiImages.count)")
+                        self.collView.reloadData()
+                        
+                        // 리로드 완료되면 실행
+                        self.collView.performBatchUpdates {
+                            print("fetchImages")
+                            
+                            print("collView")
+                            // 정상출력
+                            print("uiImages \(self.uiImages)")
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+            
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +134,7 @@ class FavorTeamViewController: UIViewController {
 
 extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return teamList.count
+        return teamListTest.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,10 +153,10 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.contentView.layer.masksToBounds = true
         cell.layer.masksToBounds = false
         
-        cell.teamName.text = teamList[indexPath.row].teamName
-        cell.purpose.text = teamList[indexPath.row].purpose
-        cell.part.text = teamList[indexPath.row].part
-        cell.images = teamList[indexPath.row].images
+        cell.teamName.text = teamNameList[indexPath.row]
+        cell.purpose.text = teamListTest[indexPath.row].purpose
+        cell.part.text = teamListTest[indexPath.row].part
+        cell.images = uiImages
         
         return cell
     }
@@ -80,7 +166,7 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {
             // allTeamVC.teamKind = .favor
             allTeamVC.modalPresentationStyle = .fullScreen
-            allTeamVC.teamName = teamList[indexPath.row].teamName
+            allTeamVC.teamName = teamNameList[indexPath.row]
             present(allTeamVC, animated: true, completion: nil)
         }
     }
@@ -98,9 +184,6 @@ extension FavorTeamViewController: UICollectionViewDelegateFlowLayout {
 
         let width = 261
         let height = 198
-        print("collectionView width=\(collectionView.frame.width)")
-        print("cell하나당 width=\(width)")
-        print("root view width = \(self.view.frame.width)")
 
         let size = CGSize(width: width, height: height)
         return size
