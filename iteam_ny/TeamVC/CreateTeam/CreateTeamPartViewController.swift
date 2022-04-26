@@ -191,7 +191,7 @@ extension CreateTeamPartViewController: UITableViewDelegate, UITableViewDataSour
             }
             else {
                 detailPartDidClicked[indexPath.row] = false
-                detai2Cell.checkImageView.isHidden = false
+                detai2Cell.checkImageView.isHidden = true
                 detai2Cell.partLabel.textColor = UIColor.black
                 for i in 0...clckedDetailPart.count-1 {
                     if clckedDetailPart[i] == detai2Cell.partLabel.text {
@@ -200,15 +200,15 @@ extension CreateTeamPartViewController: UITableViewDelegate, UITableViewDataSour
                     }
                 }
             }
+            chipCollectionView.reloadData()
             
             
         }
         parts = clckedDetailPart
-        chipCollectionView.reloadData()
         print(clckedDetailPart)
     }
 }
-extension CreateTeamPartViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CreateTeamPartViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -220,11 +220,32 @@ extension CreateTeamPartViewController: UICollectionViewDelegate, UICollectionVi
         cell.partName.setTitle(parts[indexPath.row], for: .normal)
         
         cell.partName.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+        cell.partName.tintColor = UIColor(named: "purple_184")
         
         cell.partName.layer.borderWidth = 0.5
-        cell.partName.layer.cornerRadius = cell.partName.frame.height/2
+        cell.partName.layer.cornerRadius = cell.frame.height/2
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let label = UILabel()
+        label.text = parts[indexPath.item]
+        
+        label.font = UIFont(name: "Apple SD 산돌고딕 Neo 일반체", size: 14.0)
+        label.sizeToFit()
+        let size = label.frame.size
+        
+        
+        return CGSize(width: size.width+30, height: size.height + 6)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("지우자")
+        clckedDetailPart.remove(at: indexPath.row)
+        parts = clckedDetailPart
+        
+        collectionView.reloadData()
+        detailPartTableView.reloadData()
+    }
+    
 }
 protocol SendPartDataDelegate {
     func sendData(data: [String])

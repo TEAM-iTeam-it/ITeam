@@ -18,6 +18,14 @@
 		080F9C3027EA17470055FAF8 /* btnAdd1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2D27EA17460055FAF8 /* btnAdd1@2x.png */; };
 		080F9C3127EA17470055FAF8 /* btnAdd1.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2E27EA17460055FAF8 /* btnAdd1.png */; };
 		080F9C3227EA17470055FAF8 /* btnAdd1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2F27EA17470055FAF8 /* btnAdd1@3x.png */; };
+		08113081280E78A7003B6D43 /* imgLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0811307E280E78A5003B6D43 /* imgLogo.png */; };
+		08113082280E78A7003B6D43 /* imgLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0811307F280E78A6003B6D43 /* imgLogo@2x.png */; };
+		08113083280E78A7003B6D43 /* imgLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08113080280E78A6003B6D43 /* imgLogo@3x.png */; };
+		08113087280E899C003B6D43 /* searchIconBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08113084280E8999003B6D43 /* searchIconBlack@2x.png */; };
+		08113088280E899C003B6D43 /* searchIconBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 08113085280E8999003B6D43 /* searchIconBlack.png */; };
+		08113089280E899C003B6D43 /* searchIconBlack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08113086280E899B003B6D43 /* searchIconBlack@3x.png */; };
+		0811308B280E8C15003B6D43 /* TeamProfileTeamListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */; };
+		0811308D280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */; };
 		081F264C27F3878000F17332 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264B27F3878000F17332 /* TeamViewController.swift */; };
 		081F264E27F38ADB00F17332 /* MakingAppTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */; };
 		081F265027F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */; };
@@ -182,6 +190,14 @@
 		080F9C2D27EA17460055FAF8 /* btnAdd1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnAdd1@2x.png"; sourceTree = "<group>"; };
 		080F9C2E27EA17460055FAF8 /* btnAdd1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnAdd1.png; sourceTree = "<group>"; };
 		080F9C2F27EA17470055FAF8 /* btnAdd1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnAdd1@3x.png"; sourceTree = "<group>"; };
+		0811307E280E78A5003B6D43 /* imgLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgLogo.png; sourceTree = "<group>"; };
+		0811307F280E78A6003B6D43 /* imgLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgLogo@2x.png"; sourceTree = "<group>"; };
+		08113080280E78A6003B6D43 /* imgLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgLogo@3x.png"; sourceTree = "<group>"; };
+		08113084280E8999003B6D43 /* searchIconBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchIconBlack@2x.png"; sourceTree = "<group>"; };
+		08113085280E8999003B6D43 /* searchIconBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchIconBlack.png; sourceTree = "<group>"; };
+		08113086280E899B003B6D43 /* searchIconBlack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchIconBlack@3x.png"; sourceTree = "<group>"; };
+		0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileTeamListViewController.swift; sourceTree = "<group>"; };
+		0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileTeamMemberTableViewCell.swift; sourceTree = "<group>"; };
 		081F264B27F3878000F17332 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingAppTeamViewController.swift; sourceTree = "<group>"; };
 		081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingAppTeamCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -372,6 +388,9 @@
 		080F9C1A27E9DC4B0055FAF8 /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				08113085280E8999003B6D43 /* searchIconBlack.png */,
+				08113084280E8999003B6D43 /* searchIconBlack@2x.png */,
+				08113086280E899B003B6D43 /* searchIconBlack@3x.png */,
 				0863BCFC280C059B00AFB2B9 /* btnAddSmall.png */,
 				0863BCF7280C059A00AFB2B9 /* btnAddSmall@2x.png */,
 				0863BCF8280C059A00AFB2B9 /* btnAddSmall@3x.png */,
@@ -475,6 +494,7 @@
 				081F264B27F3878000F17332 /* TeamViewController.swift */,
 				081F268127F435C700F17332 /* AllTeamViewController.swift */,
 				081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */,
+				0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */,
 			);
 			path = TeamVC;
 			sourceTree = "<group>";
@@ -631,6 +651,9 @@
 		0868B08027CB6F180018464B /* logo */ = {
 			isa = PBXGroup;
 			children = (
+				0811307E280E78A5003B6D43 /* imgLogo.png */,
+				0811307F280E78A6003B6D43 /* imgLogo@2x.png */,
+				08113080280E78A6003B6D43 /* imgLogo@3x.png */,
 				08B2F2EC27F75A05008F7085 /* teamPageLogo.png */,
 				08B2F2EA27F75A04008F7085 /* teamPageLogo@2x.png */,
 				08B2F2EB27F75A05008F7085 /* teamPageLogo@3x.png */,
@@ -672,6 +695,7 @@
 				08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */,
 				08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */,
 				0841522927FD525000ADA61F /* TeamProfileBottomSheetViewController.swift */,
+				0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */,
 			);
 			path = DetailTeamProfile;
 			sourceTree = "<group>";
@@ -869,11 +893,13 @@
 				1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */,
 				081F266627F393C100F17332 /* imgUser2@3x.png in Resources */,
 				081F267827F3988000F17332 /* imgUser6@2x.png in Resources */,
+				08113083280E78A7003B6D43 /* imgLogo@3x.png in Resources */,
 				0868B08527CB6F2B0018464B /* asset121@2x.png in Resources */,
 				0841522E27FD71C400ADA61F /* btnClose.png in Resources */,
 				081F266427F393C100F17332 /* imgUser8.png in Resources */,
 				081F267A27F3988000F17332 /* imgUser6.png in Resources */,
 				082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */,
+				08113088280E899C003B6D43 /* searchIconBlack.png in Resources */,
 				081F267927F3988000F17332 /* imgUser6@3x.png in Resources */,
 				080F9C1F27E9DCE80055FAF8 /* icCheck@2x.png in Resources */,
 				08B2F2EE27F75A05008F7085 /* teamPageLogo@3x.png in Resources */,
@@ -902,12 +928,16 @@
 				0833417127F33252005B4F31 /* searchIcon.png in Resources */,
 				0868B07927CB6F040018464B /* imgUser10.png in Resources */,
 				0863BD00280C059B00AFB2B9 /* btnDeleteSmall.png in Resources */,
+				08113087280E899C003B6D43 /* searchIconBlack@2x.png in Resources */,
 				0863BCFF280C059B00AFB2B9 /* btnDeleteSmall@2x.png in Resources */,
+				08113082280E78A7003B6D43 /* imgLogo@2x.png in Resources */,
+				08113081280E78A7003B6D43 /* imgLogo.png in Resources */,
 				081F266927F393C100F17332 /* imgUser2.png in Resources */,
 				081F266727F393C100F17332 /* imgUser8@3x.png in Resources */,
 				0832B262280186CF00DED89B /* btnEdit@3x.png in Resources */,
 				0833416D27F3317F005B4F31 /* sliderIcon.png in Resources */,
 				0868B07627CB6F040018464B /* imgUser4@2x.png in Resources */,
+				08113089280E899C003B6D43 /* searchIconBlack@3x.png in Resources */,
 				1F55CF1E2751F19200CD35EC /* Assets.xcassets in Resources */,
 				1FFD2E3227FBEA9C0068520D /* btn_pin1@3x.png in Resources */,
 				1F95AE7427FD061400AB1377 /* btn_pin2@2x.png in Resources */,
@@ -1020,6 +1050,7 @@
 				0868B05727CB6E080018464B /* SettingViewController.swift in Sources */,
 				0868B04A27CB6D930018464B /* CallAnswerViewController.swift in Sources */,
 				087A23FD27FC6F4000E76893 /* CallTimePickerViewController.swift in Sources */,
+				0811308B280E8C15003B6D43 /* TeamProfileTeamListViewController.swift in Sources */,
 				081F268227F435C700F17332 /* AllTeamViewController.swift in Sources */,
 				0868B05927CB6E080018464B /* SettingPurposeViewController.swift in Sources */,
 				0833418F27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift in Sources */,
@@ -1048,6 +1079,7 @@
 				1F55CF502754A98C00CD35EC /* User.swift in Sources */,
 				0820449A2809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift in Sources */,
 				0868B03C27CB6D830018464B /* ChannelWaitingViewController.swift in Sources */,
+				0811308D280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift in Sources */,
 				0833418627F35A80005B4F31 /* FavorTeamViewController.swift in Sources */,
 				081F264C27F3878000F17332 /* TeamViewController.swift in Sources */,
 				087A23E827FAEF7400E76893 /* CreateTeamPartViewController.swift in Sources */,

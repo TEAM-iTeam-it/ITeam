@@ -60,6 +60,7 @@ class AllTeamViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     @IBAction func backBtn(_ sender: UIBarButtonItem) {
 //        let transition = CATransition()
@@ -88,15 +89,15 @@ extension AllTeamViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! TeamProfileViewController
-        let cell = sender as! AllTeamListTableViewCell
-        
-        // @나연 : 셀 클릭 시 팀 프로필 화면을 띄우기 위해 팀 이름을 넘겨줌
-        destination.teamName = cell.teamName.text!
-        
+       
+        let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
+        if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {
+            // allTeamVC.teamKind = .favor
+            allTeamVC.modalPresentationStyle = .fullScreen
+            allTeamVC.teamName = teamList[indexPath.row].teamName
+            present(allTeamVC, animated: true, completion: nil)
+        }
     }
     
 }
+
