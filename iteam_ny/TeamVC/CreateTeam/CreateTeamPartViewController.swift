@@ -25,6 +25,10 @@ class CreateTeamPartViewController: UIViewController {
     var detailPartDidClicked: [Bool] = []
     var clickedPart: [String] = []
     var clckedDetailPart: [String] = []
+    var clickedAllPartArr: [[String]] = []
+    var clickedPartArr: [String] = []
+
+    
     var num: Int = 0 {
         willSet(newValue) {
             print(newValue)
@@ -87,7 +91,40 @@ class CreateTeamPartViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func saveBtn(_ sender: Any) {
-        delegate?.sendData(data: clckedDetailPart)
+        // delegate?.sendData(data: clckedDetailPart)
+        var plannerBool: Bool = false
+        var designerBool: Bool = false
+        var devBool: Bool = false
+        for i in 0..<plannerDetailPart.count {
+            if clckedDetailPart.contains(plannerDetailPart[i]) {
+                plannerBool = true
+            }
+        }
+        for i in 0..<designerDetailPart.count {
+            if clckedDetailPart.contains(designerDetailPart[i]) {
+                designerBool = true
+            }
+        }
+        for i in 0..<devDetailPart.count {
+            if clckedDetailPart.contains(devDetailPart[i]) {
+                devBool = true
+            }
+        }
+        clickedPartArr.removeAll()
+        if plannerBool {
+            clickedPartArr.append("기획자")
+        }
+        if designerBool {
+            clickedPartArr.append("디자이너")
+        }
+        if devBool {
+            clickedPartArr.append("개발자")
+        }
+        clickedAllPartArr.append(clickedPartArr)
+        print("clickedAllPartArr \(clickedAllPartArr)")
+        clickedAllPartArr.append(clckedDetailPart)
+        print("clickedAllPartArr \(clickedAllPartArr)")
+        delegate?.sendData(data: clickedAllPartArr)
         dismiss(animated: true, completion: nil)
     }
     
@@ -248,5 +285,6 @@ extension CreateTeamPartViewController: UICollectionViewDelegate, UICollectionVi
     
 }
 protocol SendPartDataDelegate {
-    func sendData(data: [String])
+    func sendData(data: [[String]])
 }
+

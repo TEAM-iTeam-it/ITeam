@@ -480,6 +480,7 @@
                         <outlet property="callRequestBtn" destination="HZW-cm-VDf" id="X5e-sq-mdR"/>
                         <outlet property="navigationBar" destination="etV-C8-2bS" id="ytc-6o-yYP"/>
                         <outlet property="profileImagesColl" destination="pLL-4N-pWx" id="ih2-vd-XZd"/>
+                        <outlet property="serviceType" destination="uDK-AU-a4g" id="S2Q-1p-7Y3"/>
                         <outlet property="teamImageColl" destination="pLL-4N-pWx" id="yfn-Xi-5OE"/>
                         <outlet property="teamIntroduceLabel" destination="8Te-9V-RH4" id="1JV-fZ-HBX"/>
                         <outlet property="teamNameLabel" destination="ojW-yh-lNc" id="yGy-E6-D7C"/>

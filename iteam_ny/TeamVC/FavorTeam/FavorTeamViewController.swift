@@ -16,7 +16,7 @@ class FavorTeamViewController: UIViewController {
     var teamNameList: [String] = []
     var memberListArr: [[String]] = [[]]
     @IBOutlet weak var collView: UICollectionView!
-    var uiImages: [UIImage] = []
+    var uiImages: [[UIImage]] = [[]]
     
     let db = Database.database().reference()
     var doesFavorTeamExisted: Bool = false
@@ -59,17 +59,15 @@ class FavorTeamViewController: UIViewController {
                 self.teamListTest = teamData
                 self.teamNameList = Array(value.keys)
                 print(self.teamNameList.count)
+                self.collView.reloadData()
+//                // 한 팀의 멤버들 UID배열
+//                for i in 0..<self.teamListTest.count {
+//                    self.memberListArr.append([])
+//                    self.memberListArr[i].append(contentsOf: self.teamListTest[i].memberList.components(separatedBy: ", "))
+//                    print("memberListArr : \(i)이지롱 \(self.memberListArr[i])")
+//                    self.fetchImages(teamIndex: i)
+//                }
                 
-                // 한 팀의 멤버들 UID배열
-                for i in 0..<self.teamListTest.count {
-                    self.memberListArr.append([])
-                    self.memberListArr[i].append(contentsOf: self.teamListTest[i].memberList.components(separatedBy: ", "))
-                }
-                // print(self.memberListArr)
-                // fetch image하고 collectonview 리로드
-            
-                //self.collView.reloadData()
-                self.fetchImages()
                 
                 
             } catch let error {
@@ -77,12 +75,14 @@ class FavorTeamViewController: UIViewController {
             }
         }
     }
-    func fetchImages() {
-        let userUID = memberListArr[0][0]
-        let storage = Storage.storage().reference().child("user_profile_image").child(userUID + ".jpg")
-        print(userUID + ".jpg")
+    func fetchImages(teamIndex: Int) {
         
-        DispatchQueue.global().async {
+        for memberIndex in 0..<memberListArr[teamIndex].count {
+            print("memberListArr : \(teamIndex)의 \(memberIndex)번째 ")
+            let userUID = memberListArr[teamIndex][memberIndex]
+            let storage = Storage.storage().reference().child("user_profile_image").child(userUID + ".jpg")
+            print(userUID + ".jpg")
+            self.uiImages.append([])
             storage.downloadURL { url, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -90,11 +90,7 @@ class FavorTeamViewController: UIViewController {
                     do {
                         let data = try Data(contentsOf: url!)
                         let image = UIImage(data: data)
-                        for i in 0..<self.memberListArr[0].count {
-                            self.uiImages.append(image!)
-                            
-                        }
-                        print("성공성공성공\(self.uiImages.count)")
+                        self.uiImages[teamIndex].append(image!)
                         self.collView.reloadData()
                         
                         // 리로드 완료되면 실행
@@ -103,14 +99,13 @@ class FavorTeamViewController: UIViewController {
                             
                             print("collView")
                             // 정상출력
-                            print("uiImages \(self.uiImages)")
+                            //print("uiImages \(self.uiImages)")
                         }
                     } catch {
                         print(error.localizedDescription)
                     }
                 }
             }
-            
         }
         
     }
@@ -156,7 +151,7 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.teamName.text = teamNameList[indexPath.row]
         cell.purpose.text = teamListTest[indexPath.row].purpose
         cell.part.text = teamListTest[indexPath.row].part
-        cell.images = uiImages
+        // cell.images = uiImages[indexPath.row]
         
         return cell
     }

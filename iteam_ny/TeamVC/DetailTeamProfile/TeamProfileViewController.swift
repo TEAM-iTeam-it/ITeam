@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import MaterialComponents.MaterialBottomSheet
 
 class TeamProfileViewController: UIViewController {
@@ -18,11 +19,12 @@ class TeamProfileViewController: UIViewController {
     @IBOutlet weak var teamView: UIView!
     @IBOutlet weak var teamImageColl: UICollectionView!
     @IBOutlet weak var profileImagesColl: UICollectionView!
-  
+    @IBOutlet weak var serviceType: UILabel!
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
     
     
-    // @나연 : 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아오면 될 것 같습니다
+    // 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아옴
     var teamName: String = ""
     var team: Team = Team(teamName: "", purpose: "", part: "", images: [])
     
@@ -33,8 +35,27 @@ class TeamProfileViewController: UIViewController {
         super.viewWillAppear(false)
         
         setUI()
+        fetchData()
     }
-    
+    func fetchData() {
+        var ref = Database.database().reference().child("Team")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let values = snapshot.value
+            let dic = values as! [String: [String:Any]]
+            for index in dic{
+                if index.key == self.teamName {
+                    print(self.teamName)
+                    self.teamPurposeLabel.text = index.value["purpose"] as! String
+                    self.teamPartLabel.text = index.value["part"] as! String
+                    self.teamIntroduceLabel.text = index.value["introduce"] as! String
+                    self.teamIntroduceLabel.text = index.value["introduce"] as! String
+                    self.team
+                }
+                
+            }
+        })
+
+    }
     func setUI() {
         navigationBar.shadowImage = UIImage()
         
