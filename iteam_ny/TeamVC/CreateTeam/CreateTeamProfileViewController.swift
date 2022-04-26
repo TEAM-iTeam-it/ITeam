@@ -37,6 +37,7 @@ class CreateTeamProfileViewController: UIViewController {
     var didPurpleWrote: Int = 0
     var didPartWrote: Bool = false
     var didRegionWrote: Bool = false
+    var partString: String = ""
     
     var didWroteAllAnswer: Int = 0 {
         willSet(newValue) {
@@ -272,13 +273,13 @@ class CreateTeamProfileViewController: UIViewController {
         
         let purpose: [String: Any] = [ "purpose": purposeBtn.titleLabel?.text]
         let serviceType: [String: Any] = [ "serviceType": serviceType[0]]
-        let part: [String: Any] = [ "part": partLabel.text]
+        let part: [String: Any] = [ "part": partString]
         let activeZone: [String: Any] = [ "activeZone": regionLabel.text]
         let introduce: [String: Any] = [ "introduce": introduceTF.text]
         let callTime: [String: Any] = [ "callTime": callTimeBtn.titleLabel?.text]
         let contactLink: [String: Any] = [ "contactLink": contactLinkTF.text]
         let memberList: [String: Any] = [ "memberList": user.uid]
-        
+        let detailPart: [String: Any] = ["detailPart": partLabel.text]
         
         ref = Database.database().reference()
         // 데이터 추가
@@ -289,6 +290,8 @@ class CreateTeamProfileViewController: UIViewController {
             
             ref.child("Team").child(teamNameTF)
                 .updateChildValues(part)
+            
+            ref.child("Team").child(teamNameTF).updateChildValues(detailPart)
             
             ref.child("Team").child(teamNameTF).updateChildValues(activeZone)
             
@@ -502,19 +505,30 @@ extension UIFont {
 // 다른 화면에서 데이터 넘겨받고 뷰 세팅
 extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataDelegate, SendCallTimeDataDelegate {
     
-    func sendData(data: [String]) {
-        var part: String = ""
-        for i in 0..<data.count {
-            if data[i] == data.last {
-                part += "\(data[i])"
+    
+    func sendData(data: [[String]]) {
+        partString = ""
+        var detailPart: String = ""
+        for i in 0..<data[0].count {
+            if data[0][i] == data[0].last {
+                partString += "\(data[0][i])"
             }
             else {
-                part += "\(data[i]), "
+                partString += "\(data[0][i]), "
             }
-            
         }
+        for i in 0..<data[1].count {
+            if data[1][i] == data[1].last {
+                detailPart += "\(data[1][i])"
+            }
+            else {
+                detailPart += "\(data[1][i]), "
+            }
+        }
+        
+        
         self.partLabel.isHidden = false
-        self.partLabel.text = part
+        self.partLabel.text = detailPart
       
         // 포지션이 채워지면 카운트를 올려줌
         if !self.partLabel.text!.isEmpty {
@@ -570,6 +584,7 @@ extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataD
         if segue.identifier == "CreateTeamPartVC" {
             let createTeamPartViewController: CreateTeamPartViewController = segue.destination as! CreateTeamPartViewController
             createTeamPartViewController.delegate = self
+            
         }
         else if segue.identifier == "regionVC" {
             let createTeamRegionViewController: CreateTeamRegionViewController = segue.destination as! CreateTeamRegionViewController

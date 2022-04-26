@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import MaterialComponents.MaterialBottomSheet
 
 class TeamProfileViewController: UIViewController {
 
@@ -16,9 +18,13 @@ class TeamProfileViewController: UIViewController {
     @IBOutlet weak var callRequestBtn: UIButton!
     @IBOutlet weak var teamView: UIView!
     @IBOutlet weak var teamImageColl: UICollectionView!
+    @IBOutlet weak var profileImagesColl: UICollectionView!
+    @IBOutlet weak var serviceType: UILabel!
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     
-    // @나연 : 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아오면 될 것 같습니다
+    // 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아옴
     var teamName: String = ""
     var team: Team = Team(teamName: "", purpose: "", part: "", images: [])
     
@@ -26,9 +32,33 @@ class TeamProfileViewController: UIViewController {
     let teamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
     
     override func viewWillAppear(_ animated: Bool) {
-        if let navigationController = self.navigationController{
-            navigationController.navigationBar.shadowImage = UIImage()
-        }
+        super.viewWillAppear(false)
+        
+        setUI()
+        fetchData()
+    }
+    func fetchData() {
+        var ref = Database.database().reference().child("Team")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let values = snapshot.value
+            let dic = values as! [String: [String:Any]]
+            for index in dic{
+                if index.key == self.teamName {
+                    print(self.teamName)
+                    self.teamPurposeLabel.text = index.value["purpose"] as! String
+                    self.teamPartLabel.text = index.value["part"] as! String
+                    self.teamIntroduceLabel.text = index.value["introduce"] as! String
+                    self.teamIntroduceLabel.text = index.value["introduce"] as! String
+                    self.team
+                }
+                
+            }
+        })
+
+    }
+    func setUI() {
+        navigationBar.shadowImage = UIImage()
+        
         teamImageColl.semanticContentAttribute = UISemanticContentAttribute.forceRightToLeft
 
         callRequestBtn.layer.cornerRadius = 8
@@ -53,18 +83,61 @@ class TeamProfileViewController: UIViewController {
         teamNameLabel.text = teamName
 //        teamPurposeLabel.text = team.purpose
 //        teamPartLabel.text = team.part
-        
-        super.viewWillAppear(false)
+    }
+    func setStatusBarColor() {
+        if #available(iOS 13.0, *) {
+            let app = UIApplication.shared
+            let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+            
+            let statusbarView = UIView()
+            statusbarView.backgroundColor = UIColor.white
+            view.addSubview(statusbarView)
+          
+            statusbarView.translatesAutoresizingMaskIntoConstraints = false
+            statusbarView.heightAnchor
+                .constraint(equalToConstant: statusBarHeight).isActive = true
+            statusbarView.widthAnchor
+                .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+            statusbarView.topAnchor
+                .constraint(equalTo: view.topAnchor).isActive = true
+            statusbarView.centerXAnchor
+                .constraint(equalTo: view.centerXAnchor).isActive = true
+          
+        } else {
+            let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+            statusBar?.backgroundColor = UIColor.white
+        }
+
     }
     
-    @IBOutlet weak var profileImagesColl: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+       
+        setStatusBarColor()
     }
+    
+    @IBAction func teamListBtnAction(_ sender: UIButton) {
+        let thisStoryboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
+            
+        // 바텀 시트로 쓰일 뷰컨트롤러 생성
+        let teamListVC = thisStoryboard.instantiateViewController(withIdentifier: "teamListVC") as? TeamProfileTeamListViewController
+        
+        // teamListVC?.delegate = self
+        
+        // MDC 바텀 시트로 설정
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: teamListVC!)
+        
+        // bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 320
+        
+        
+        // 보여주기
+        present(bottomSheet, animated: true, completion: nil)
+    }
+    
     @IBAction func backBtn(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil
+        )
     }
     
     
@@ -144,4 +217,5 @@ class ActualGradientButton: UIButton {
         return l
     }()
 }
+
 

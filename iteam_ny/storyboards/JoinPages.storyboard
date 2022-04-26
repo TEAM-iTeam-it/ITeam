@@ -20,9 +20,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rh-Gg-OGP">
-                                <rect key="frame" x="252" y="810" width="23" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rh-Gg-OGP">
+                                <rect key="frame" x="252" y="799.5" width="69" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="THd-Wp-3PB"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="로그인">
@@ -32,14 +34,15 @@
                                     <segue destination="wJe-8V-Yz1" kind="modal" modalPresentationStyle="fullScreen" id="9H4-Cw-te8"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="teamPageLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ivu-3z-Od6">
-                                <rect key="frame" x="88" y="364" width="239" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ivu-3z-Od6">
+                                <rect key="frame" x="74" y="364" width="266" height="65"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STo-9R-gUS">
-                                <rect key="frame" x="20" y="750" width="374" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STo-9R-gUS">
+                                <rect key="frame" x="20" y="744" width="374" height="46"/>
                                 <color key="backgroundColor" name="purple_184"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="K8L-Hi-ibk"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="시작하기">
@@ -58,9 +61,8 @@
                                     <action selector="userDelete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rSu-fV-r5k"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이미 계정이 있나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpR-hP-20Y">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이미 계정이 있나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpR-hP-20Y">
                                 <rect key="frame" x="118" y="810" width="119" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -68,6 +70,18 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tpR-hP-20Y" secondAttribute="bottom" constant="34" id="195-cD-13T"/>
+                            <constraint firstItem="Ivu-3z-Od6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2Ny-fM-7W5"/>
+                            <constraint firstItem="tpR-hP-20Y" firstAttribute="top" secondItem="STo-9R-gUS" secondAttribute="bottom" constant="20" id="9Lf-Fd-Ncm"/>
+                            <constraint firstItem="tpR-hP-20Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="118" id="BkN-n0-GsH"/>
+                            <constraint firstItem="STo-9R-gUS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="keB-pp-uTc"/>
+                            <constraint firstItem="2Rh-Gg-OGP" firstAttribute="leading" secondItem="tpR-hP-20Y" secondAttribute="trailing" constant="15" id="n7x-xF-DDi"/>
+                            <constraint firstItem="2Rh-Gg-OGP" firstAttribute="centerY" secondItem="tpR-hP-20Y" secondAttribute="centerY" id="oJ2-hF-h9x"/>
+                            <constraint firstItem="Ivu-3z-Od6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="320" id="ohq-o2-03v"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2Rh-Gg-OGP" secondAttribute="trailing" constant="93" id="ytS-nU-9vV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="STo-9R-gUS" secondAttribute="trailing" constant="20" id="znD-a7-Rbc"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9Iw-JT-Du6"/>
                     <connections>
@@ -209,10 +223,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgn-yp-Uf2">
-                                <rect key="frame" x="161" y="623" width="67" height="31"/>
+                                <rect key="frame" x="183" y="632" width="24" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
                                 <connections>
                                     <segue destination="cEa-5M-XYn" kind="show" id="N69-87-SH6"/>
                                 </connections>
@@ -4496,7 +4510,7 @@
                                 </connections>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="354" placeholderIntrinsicHeight="257" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iae-bV-7j8" customClass="DetailProfileToolNLangCollectionView" customModule="iteam_ny" customModuleProvider="target">
-                                <rect key="frame" x="30" y="317" width="354" height="257"/>
+                                <rect key="frame" x="30" y="317.5" width="354" height="257"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="257" id="xje-H0-cdA"/>
@@ -4550,18 +4564,28 @@
                                     <constraint firstAttribute="height" constant="28" id="dRO-Lr-LYa"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ceM-Hz-7YO">
+                                <rect key="frame" x="0.0" y="297" width="414" height="0.5"/>
+                                <color key="backgroundColor" name="gray_229"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="Rhy-BC-4wY"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ybm-9O-0ai"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ceM-Hz-7YO" firstAttribute="top" secondItem="zi4-Xh-WoZ" secondAttribute="bottom" constant="20" id="039-sa-fZg"/>
                             <constraint firstItem="n2M-8p-NKI" firstAttribute="top" secondItem="aUl-cZ-XAO" secondAttribute="bottom" constant="24" id="0HW-r9-kPk"/>
                             <constraint firstItem="zi4-Xh-WoZ" firstAttribute="leading" secondItem="Ybm-9O-0ai" secondAttribute="leading" constant="30" id="0o2-Te-D3d"/>
+                            <constraint firstItem="ceM-Hz-7YO" firstAttribute="leading" secondItem="Ybm-9O-0ai" secondAttribute="leading" id="1Il-R5-sIW"/>
                             <constraint firstItem="aUl-cZ-XAO" firstAttribute="leading" secondItem="Ybm-9O-0ai" secondAttribute="leading" id="1zp-Ai-0yZ"/>
-                            <constraint firstItem="iae-bV-7j8" firstAttribute="top" secondItem="zi4-Xh-WoZ" secondAttribute="bottom" constant="40" id="98x-zP-pCo"/>
+                            <constraint firstItem="Ybm-9O-0ai" firstAttribute="trailing" secondItem="ceM-Hz-7YO" secondAttribute="trailing" id="49v-bR-4zi"/>
                             <constraint firstItem="iae-bV-7j8" firstAttribute="leading" secondItem="Ybm-9O-0ai" secondAttribute="leading" constant="30" id="E9R-1r-pcJ"/>
                             <constraint firstItem="aUl-cZ-XAO" firstAttribute="top" secondItem="Ybm-9O-0ai" secondAttribute="top" id="FQt-FM-Bfv"/>
                             <constraint firstItem="Ybm-9O-0ai" firstAttribute="trailing" secondItem="zi4-Xh-WoZ" secondAttribute="trailing" constant="37" id="Gew-WY-e5E"/>
                             <constraint firstItem="3d6-Pg-kjV" firstAttribute="leading" secondItem="Ybm-9O-0ai" secondAttribute="leading" constant="20" id="PZp-Co-azy"/>
+                            <constraint firstItem="iae-bV-7j8" firstAttribute="top" secondItem="ceM-Hz-7YO" secondAttribute="bottom" constant="20" id="X8D-p9-dcc"/>
                             <constraint firstItem="Ybm-9O-0ai" firstAttribute="trailing" secondItem="aUl-cZ-XAO" secondAttribute="trailing" id="bzn-Va-b1A"/>
                             <constraint firstItem="zi4-Xh-WoZ" firstAttribute="top" secondItem="3d6-Pg-kjV" secondAttribute="bottom" constant="30" id="ctx-0a-mz6"/>
                             <constraint firstItem="Ybm-9O-0ai" firstAttribute="trailing" secondItem="n2M-8p-NKI" secondAttribute="trailing" constant="30" id="dVZ-mZ-nX1"/>
@@ -4730,6 +4754,7 @@
         <image name="icCheckPurple.png" width="20" height="20"/>
         <image name="icMoreRight.png" width="16" height="16"/>
         <image name="iconsCallOffFillInCircle.png" width="76" height="76"/>
+        <image name="imgLogo.png" width="266" height="65"/>
         <image name="imgUser10.png" width="50" height="50"/>
         <image name="imgUser4.png" width="50" height="50"/>
         <image name="mic.slash.circle.fill" catalog="system" width="128" height="121"/>
@@ -4738,7 +4763,6 @@
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="searchIcon.png" width="28" height="28"/>
         <image name="speaker.wave.2.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="teamPageLogo.png" width="95" height="25"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="gray_121">
             <color red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

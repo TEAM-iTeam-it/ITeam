@@ -68,6 +68,16 @@ extension MakingAppTeamViewController: UICollectionViewDelegate, UICollectionVie
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
+        if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {
+            // allTeamVC.teamKind = .favor
+            allTeamVC.modalPresentationStyle = .fullScreen
+            allTeamVC.teamName = teamList[indexPath.row].teamName
+            present(allTeamVC, animated: true, completion: nil)
+        }
+    }
 }
 extension MakingAppTeamViewController: UICollectionViewDelegateFlowLayout {
     
@@ -86,4 +96,6 @@ extension MakingAppTeamViewController: UICollectionViewDelegateFlowLayout {
         let size = CGSize(width: width, height: height)
         return size
     }
+    
+    
 }
