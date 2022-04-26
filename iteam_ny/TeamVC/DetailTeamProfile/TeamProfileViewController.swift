@@ -19,7 +19,11 @@ class TeamProfileViewController: UIViewController {
     @IBOutlet weak var teamView: UIView!
     @IBOutlet weak var teamImageColl: UICollectionView!
     @IBOutlet weak var profileImagesColl: UICollectionView!
-    @IBOutlet weak var serviceType: UILabel!
+    @IBOutlet weak var serviceTypeLabel: UILabel!
+    @IBOutlet weak var detailPartLabel: UILabel!
+    @IBOutlet weak var regionLabel: UILabel!
+    @IBOutlet weak var callTimeLabel: UILabel!
+    @IBOutlet weak var contactLinkLabel: UILabel!
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     
@@ -46,10 +50,14 @@ class TeamProfileViewController: UIViewController {
                 if index.key == self.teamName {
                     print(self.teamName)
                     self.teamPurposeLabel.text = index.value["purpose"] as! String
-                    self.teamPartLabel.text = index.value["part"] as! String
-                    self.teamIntroduceLabel.text = index.value["introduce"] as! String
-                    self.teamIntroduceLabel.text = index.value["introduce"] as! String
-                    self.team
+                    var teamPartString = index.value["part"] as! String
+                    self.teamPartLabel.text = "\(teamPartString) 구인 중"
+                    var introduceString = index.value["introduce"] as! String
+                    self.teamIntroduceLabel.text = " \"\(introduceString)\""
+                    self.serviceTypeLabel.text = index.value["serviceType"] as! String
+                    self.regionLabel.text = index.value["activeZone"] as! String
+                    self.callTimeLabel.text = index.value["callTime"] as! String
+                    self.contactLinkLabel.text = index.value["contactLink"] as! String
                 }
                 
             }

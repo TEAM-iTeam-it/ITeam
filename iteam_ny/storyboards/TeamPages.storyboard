@@ -451,7 +451,7 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qb7-Ii-adU">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qb7-Ii-adU">
                                                     <rect key="frame" x="145" y="107" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="Ikd-kT-Zmh"/>
@@ -462,6 +462,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
                                                         <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="13"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="likeButtonAction:" destination="gq5-oy-r5Q" eventType="touchUpInside" id="0dY-ce-Hv0"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -484,6 +487,7 @@
                                         <size key="customSize" width="184" height="198"/>
                                         <connections>
                                             <outlet property="imageCollView" destination="I6l-O1-l2s" id="IlH-H0-SJU"/>
+                                            <outlet property="likeButton" destination="Qb7-Ii-adU" id="6Hv-gD-GDm"/>
                                             <outlet property="part" destination="Mnl-8j-Cml" id="y6b-vg-ZIt"/>
                                             <outlet property="purpose" destination="iIm-mp-Boy" id="20L-6f-h5W"/>
                                             <outlet property="teamName" destination="LiK-Yi-g9C" id="pyg-M2-sbR"/>
@@ -521,6 +525,9 @@
                             <constraint firstItem="CjJ-Yu-cRg" firstAttribute="top" secondItem="udn-sL-3bk" secondAttribute="top" constant="20" id="pWU-13-NS4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="dVl-N2-KFm" id="VcU-fp-vue"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsv-VC-m0Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

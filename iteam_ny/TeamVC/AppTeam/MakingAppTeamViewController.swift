@@ -6,13 +6,28 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
 
 class MakingAppTeamViewController: UIViewController {
     var teamList: [Team] = []
     var images: [String] = []
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var likeButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        setUI()
+        super.viewWillAppear(false)
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+    
+    func setUI() {
         // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
         let firstTeamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
         let secondTeamImages: [String] = ["imgUser6.png", "imgUser7.png"]
@@ -25,11 +40,24 @@ class MakingAppTeamViewController: UIViewController {
         teamList.append(secondTeam)
         teamList.append(thirdTeam)
         
-        super.viewWillAppear(false)
+        collectionView.reloadData()
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    
+    func doesContainFavorTeam(teanName: String) -> Bool{
+        let user = Auth.auth().currentUser!
+        let ref = Database.database().reference()
+        var doesContainBool: Bool = false
+        
+        ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
+            var lastDatas: [String] = []
+            let lastData: String! = snapshot.value as? String
+            lastDatas = lastData.components(separatedBy: ", ")
+            if lastDatas.contains(teanName) {
+                doesContainBool = true
+            }
+        }
+        return doesContainBool
+        
     }
     @IBAction func moreTeamBtn(_ sender: UIButton) {
         let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
@@ -65,6 +93,15 @@ extension MakingAppTeamViewController: UICollectionViewDelegate, UICollectionVie
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
         cell.images = teamList[indexPath.row].images
+        
+        if self.doesContainFavorTeam(teanName: self.teamList[indexPath.row].teamName) {
+            if let updateCell = collectionView.cellForItem(at: indexPath) as? MakingAppTeamCollectionViewCell {
+                updateCell.likeBool = true
+                updateCell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                updateCell.likeButton.tintColor = UIColor(named: "purple_184")
+            }
+        }
+
         
         return cell
     }
