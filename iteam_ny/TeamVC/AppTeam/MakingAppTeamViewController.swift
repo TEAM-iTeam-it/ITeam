@@ -11,38 +11,121 @@ import FirebaseDatabase
 import Firebase
 
 class MakingAppTeamViewController: UIViewController {
-    var teamList: [Team] = []
+    var teamList: [TeamProfile] = []
+    var teamNameList: [String] = []
     var images: [String] = []
+    // 프로필 이미지 URL을 위한 변수
+    var imageURL: URL  = NSURL() as URL
+    var imageData: [[Data]] = [[]]
+    
+    
+    var memberListArr: [[String]] = [[]]
+    let db = Database.database().reference()
+    var didFetched: Bool = false {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var likeButton: UIButton!
     
-    override func viewWillAppear(_ animated: Bool) {
-        setUI()
-        super.viewWillAppear(false)
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // 데이터 받아오기
+        fetchData()
+        
+        // 바뀐 데이터 불러오기
+        fetchChangedData()
+        
     }
     
-    func setUI() {
-        // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
-        let firstTeamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
-        let secondTeamImages: [String] = ["imgUser6.png", "imgUser7.png"]
-        let firstTeam = Team(teamName: "이성책임", purpose: "공모전", part: "디자이너, 개발자 구인 중", images: firstTeamImages)
-        let secondTeam = Team(teamName: "Ctrl+P", purpose: "포트폴리오", part: "모든 파트 구인 중", images: secondTeamImages)
-        let thirdTeam = Team(teamName: "가온누리", purpose: "함께 논의해 봐요", part: "개발자 구인 중", images: firstTeamImages)
-        
-        
-        teamList.append(firstTeam)
-        teamList.append(secondTeam)
-        teamList.append(thirdTeam)
-        
-        collectionView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
     }
     
+    // 서버에서 팀 받아오기
+    func fetchData() {
+        self.memberListArr.removeAll()
+        
+        let favorTeamList = db.child("Team")
+        let query = favorTeamList.queryOrdered(byChild: "serviceType").queryEqual(toValue: "앱 서비스")
+        
+        query.observeSingleEvent(of: .value) { snapshot in
+            
+            guard let value = snapshot.value as? [String: Any] else { return }
+            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: Array(value.values), options: [])
+                let teamData = try JSONDecoder().decode([TeamProfile].self, from: jsonData)
+                self.teamList = teamData
+                self.teamNameList = Array(value.keys)
+                self.collectionView.reloadData()
+                
+                
+                // 한 팀의 멤버들 UID배열
+                for i in 0..<self.teamList.count {
+                    self.memberListArr.append([])
+                    self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
+                    self.fetchImages(teamIndex: i)
+                }
+                
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    // cloud storage에서 사진 불러오기
+    func fetchImages(teamIndex: Int) {
+        
+        // 초기화를 위해 생성한 imageData index 비워주기
+        if teamIndex == 0 && imageData[0] != nil {
+            imageData.removeAll()
+        }
+        
+        // 미리 방 반들어줌
+        self.imageData.append(Array(repeating: Data(),count: memberListArr[teamIndex].count))
+     
+        // 한 팀의 이미지 받아오기
+        for memberIndex in 0..<memberListArr[teamIndex].count {
+            let userUID = memberListArr[teamIndex][memberIndex]
+            let storage = Storage.storage().reference().child("user_profile_image").child(userUID + ".jpg")
+            storage.downloadURL { url, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    // 다운로드 성공
+                    print("사진 다운로드 성공")
+                    self.imageURL = url!
+                    let data = try? Data(contentsOf: self.imageURL)
+                   
+                    // 비동기적으로 데이터 세팅 및 collectionview 리로드
+                    DispatchQueue.main.async {
+                        self.imageData[teamIndex][memberIndex] = data!
+                        self.didFetched = true
+                    }
+                }
+            }
+        }
+        
+    }
+ 
+    // 바뀐 데이터 불러오기
+    func fetchChangedData() {
+        db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.fetchData()
+            }
+            
+        })
+    }
+
+    // 관심 팀에 속해있는지 확인
     func doesContainFavorTeam(teanName: String) -> Bool{
         let user = Auth.auth().currentUser!
         let ref = Database.database().reference()
@@ -89,12 +172,12 @@ extension MakingAppTeamViewController: UICollectionViewDelegate, UICollectionVie
         cell.contentView.layer.masksToBounds = true
         cell.layer.masksToBounds = false
         
-        cell.teamName.text = teamList[indexPath.row].teamName + " 팀"
+        cell.teamName.text = teamNameList[indexPath.row] + " 팀"
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
-        cell.images = teamList[indexPath.row].images
+        cell.imageData = self.imageData[indexPath.row]
         
-        if self.doesContainFavorTeam(teanName: self.teamList[indexPath.row].teamName) {
+        if self.doesContainFavorTeam(teanName: self.teamNameList[indexPath.row]) {
             if let updateCell = collectionView.cellForItem(at: indexPath) as? MakingAppTeamCollectionViewCell {
                 updateCell.likeBool = true
                 updateCell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -111,7 +194,7 @@ extension MakingAppTeamViewController: UICollectionViewDelegate, UICollectionVie
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {
             // allTeamVC.teamKind = .favor
             allTeamVC.modalPresentationStyle = .fullScreen
-            allTeamVC.teamName = teamList[indexPath.row].teamName
+            allTeamVC.teamName = teamNameList[indexPath.row]
             present(allTeamVC, animated: true, completion: nil)
         }
     }

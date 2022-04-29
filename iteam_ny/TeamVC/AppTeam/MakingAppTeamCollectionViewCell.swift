@@ -19,9 +19,14 @@ class MakingAppTeamCollectionViewCell: UICollectionViewCell {
     
     let user = Auth.auth().currentUser!
     let ref = Database.database().reference()
+    var resizedImage: UIImage = UIImage()
     
-    // 서버에서 받아 올 사용자 이미지 네임
-    var images: [String] = []
+    // 서버에서 받아 올 사용자 이미지 데이터
+    var imageData: [Data] = [] {
+        didSet {
+            imageCollView.reloadData()
+        }
+    }
     var likeBool: Bool = false {
         didSet(newValue) {
             if !newValue {
@@ -39,15 +44,8 @@ class MakingAppTeamCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        setUI()
-       
-    }
-  
-    func setUI() {
         imageCollView.delegate = self
         imageCollView.dataSource = self
-        
-        
     }
     
     @IBAction func likeButtonAction(_ sender: UIButton) {
@@ -131,18 +129,36 @@ extension MakingAppTeamCollectionViewCell: UICollectionViewDelegate, UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return imageData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "makingTeamImageCell", for: indexPath) as! MakingAppTeamImageCollectionViewCell
-        cell.userImage.image = UIImage(named: images[indexPath.row])
+        // 데이터 받아오기 전까지 기본 이미지
+        if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
+            resizedImage = self.resizeImage(image: fetchedImage, width: 50, height: 50)
+            cell.userImage.image = resizedImage
+            
+        }
+        else {
+            // 받아온 사진 리사이징, 셀에 설정
+            resizedImage = self.resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+        }
         cell.layer.cornerRadius = cell.frame.height/2
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor
         cell.layer.masksToBounds = true
         
         return cell
+    }
+    
+    // 이미지 리사이징
+    func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
 }
 extension MakingAppTeamCollectionViewCell: UICollectionViewDelegateFlowLayout {
