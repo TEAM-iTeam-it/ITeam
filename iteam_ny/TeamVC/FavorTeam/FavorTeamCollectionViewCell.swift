@@ -17,7 +17,11 @@ class FavorTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
     // @나연 : 서버에서 받아 올 사용자 이미지 네임
-    var images: [UIImage] = []
+    var images: [UIImage] = [] {
+        didSet {
+            imageCollectionView.reloadData()
+        }
+    }
     
         
 }

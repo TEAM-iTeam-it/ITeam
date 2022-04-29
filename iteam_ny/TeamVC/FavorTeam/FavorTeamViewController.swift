@@ -17,9 +17,17 @@ class FavorTeamViewController: UIViewController {
     var memberListArr: [[String]] = [[]]
     @IBOutlet weak var collView: UICollectionView!
     var uiImages: [[UIImage]] = [[]]
+    // 프로필 이미지 URL을 위한 변수
+    var imageURL: URL  = NSURL() as URL
     
     let db = Database.database().reference()
     var doesFavorTeamExisted: Bool = false
+    var didFetched: Bool = false {
+        didSet {
+            self.collView.reloadData()
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -39,6 +47,7 @@ class FavorTeamViewController: UIViewController {
         
         fetchData()
         
+        loadImageFromFirebase()
         
         super.viewWillAppear(false)
     }
@@ -60,6 +69,9 @@ class FavorTeamViewController: UIViewController {
                 self.teamNameList = Array(value.keys)
                 print(self.teamNameList.count)
                 self.collView.reloadData()
+                
+                
+                 
 //                // 한 팀의 멤버들 UID배열
 //                for i in 0..<self.teamListTest.count {
 //                    self.memberListArr.append([])
@@ -151,9 +163,22 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.teamName.text = teamNameList[indexPath.row]
         cell.purpose.text = teamListTest[indexPath.row].purpose
         cell.part.text = teamListTest[indexPath.row].part
-        // cell.images = uiImages[indexPath.row]
+        cell.images.append(UIImage())
+        // cell.images[0] = UIImage(named: "asset121.png")!
+        cell.images = uiImages[0]
+        print(uiImages[0].count)
+        
         
         return cell
+    }
+    
+    // 테스트
+    func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -165,6 +190,27 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
             present(allTeamVC, animated: true, completion: nil)
         }
     }
+    
+    // 임시 테스트
+    func loadImageFromFirebase() {
+        let storage = Storage.storage().reference().child("user_profile_image").child(Auth.auth().currentUser!.uid + ".jpg")
+        storage.downloadURL { (url, error) in
+            if error != nil {
+                print("이것이 에러 \(error?.localizedDescription)")
+            }
+            print("다운로드 성공")
+            self.imageURL = url!
+            let data = try? Data(contentsOf: self.imageURL)
+            let resizedImage = self.resizeImage(image: UIImage(data: data!)!, width: 50, height: 50)
+            DispatchQueue.main.async {
+                self.uiImages[0].append(UIImage())
+                self.uiImages[0][0] = resizedImage
+                
+                self.didFetched = true
+            }
+        }
+    }
+    
 }
 extension FavorTeamViewController: UICollectionViewDelegateFlowLayout {
 
