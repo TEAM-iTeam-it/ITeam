@@ -28,6 +28,7 @@ class TeamProfileViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     
     
+    
     // 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아옴
     var teamName: String = ""
     var teamProfile: TeamProfile = TeamProfile(purpose: "", serviceType: "", part: "", detailPart: "", introduce: "", contactLink: "", callTime: "", activeZone: "", memberList: "")
@@ -36,35 +37,14 @@ class TeamProfileViewController: UIViewController {
     
     // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
     let teamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
+    // 서버에서 받아 올 사용자 이미지 데이터
+    var teamImageData: [Data] = []
+    var resizedImage: UIImage = UIImage()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
         setUI()
-       // fetchData()
-    }
-    func fetchData() {
-        var ref = Database.database().reference().child("Team")
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let values = snapshot.value
-            let dic = values as! [String: [String:Any]]
-            for index in dic{
-                if index.key == self.teamName {
-                    print(self.teamName)
-                    self.teamPurposeLabel.text = index.value["purpose"] as! String
-                    var teamPartString = index.value["part"] as! String
-                    self.teamPartLabel.text = "\(teamPartString) 구인 중"
-                    var introduceString = index.value["introduce"] as! String
-                    self.teamIntroduceLabel.text = " \"\(introduceString)\""
-                    self.serviceTypeLabel.text = index.value["serviceType"] as! String
-                    self.regionLabel.text = index.value["activeZone"] as! String
-                    self.callTimeLabel.text = index.value["callTime"] as! String
-                    self.contactLinkLabel.text = index.value["contactLink"] as! String
-                }
-                
-            }
-        })
-
     }
     
     func setUI() {
@@ -73,9 +53,6 @@ class TeamProfileViewController: UIViewController {
         teamImageColl.semanticContentAttribute = UISemanticContentAttribute.forceRightToLeft
 
         callRequestBtn.layer.cornerRadius = 8
-      
-        
-        
         callRequestBtn.layer.masksToBounds = true
         
         teamView.backgroundColor = .white
@@ -92,10 +69,10 @@ class TeamProfileViewController: UIViewController {
         
         teamNameLabel.text = teamName
         teamPurposeLabel.text = teamProfile.purpose
-        var teamPartString = teamProfile.part
+        let teamPartString = teamProfile.part
         teamPartLabel.text = "\(teamPartString) 구인 중"
         detailPartLabel.text = teamProfile.detailPart
-        var introduceString = teamProfile.introduce
+        let introduceString = teamProfile.introduce
         teamIntroduceLabel.text = " \"\(introduceString)\""
         serviceTypeLabel.text = teamProfile.serviceType
         regionLabel.text = teamProfile.activeZone
@@ -144,6 +121,8 @@ class TeamProfileViewController: UIViewController {
             
         // 바텀 시트로 쓰일 뷰컨트롤러 생성
         let teamListVC = thisStoryboard.instantiateViewController(withIdentifier: "teamListVC") as? TeamProfileTeamListViewController
+        teamListVC?.teamImageData = teamImageData
+        teamListVC?.teamMemberUID = teamProfile.memberList
         
         // teamListVC?.delegate = self
         
@@ -167,7 +146,7 @@ class TeamProfileViewController: UIViewController {
 
 extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return teamImages.count
+        return teamImageData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -175,8 +154,20 @@ extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewD
         // 커스텀 셀 따로 만들지 않고 어차피 이미지만 들어간 셀이라 그냥 사용
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailTeamProfileCell", for: indexPath) as! TeamProfileImageCollectionViewCell
         
+        // 받아온 사진 리사이징, 셀에 설정
+        if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
+            resizedImage = self.resizeImage(image: fetchedImage, width: 50, height: 50)
+            cell.userImage.image = resizedImage
+            
+        }
+        else {
+            // 데이터 받아오기 전까지 기본 이미지
+            resizedImage = self.resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+        }
+        
+        
         // 셀 디자인 및 데이터 세팅
-        cell.userImage.image = UIImage(named: teamImages[indexPath.row])
+        cell.userImage.image = resizedImage
         cell.layer.cornerRadius = cell.frame.height/2
         cell.layer.borderWidth = 3
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor
@@ -186,7 +177,14 @@ extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewD
         
         return cell
     }
-    
+    // 이미지 리사이징
+    func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
     
 }
 extension TeamProfileViewController: UICollectionViewDelegateFlowLayout {

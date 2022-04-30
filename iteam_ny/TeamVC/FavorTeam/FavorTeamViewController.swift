@@ -230,6 +230,9 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
             allTeamVC.teamName = teamNames[indexPath.row]
             allTeamVC.teamProfile = teamList[indexPath.row]
             
+            allTeamVC.teamImageData = imageData[indexPath.row]
+            print(allTeamVC.teamImageData)
+            
             present(allTeamVC, animated: true, completion: nil)
         }
     }

@@ -159,6 +159,7 @@ extension MakingWebTeamViewController: UICollectionViewDelegate, UICollectionVie
             allTeamVC.modalPresentationStyle = .fullScreen
             allTeamVC.teamName = teamNameList[indexPath.row]
             allTeamVC.teamProfile = teamList[indexPath.row]
+            allTeamVC.teamImageData = imageData[indexPath.row]
             present(allTeamVC, animated: true, completion: nil)
         }
     }

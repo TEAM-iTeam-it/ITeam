@@ -192,6 +192,8 @@ extension MakingGameTeamViewController: UICollectionViewDelegate, UICollectionVi
             allTeamVC.modalPresentationStyle = .fullScreen
             allTeamVC.teamName = teamNameList[indexPath.row]
             allTeamVC.teamProfile = teamList[indexPath.row]
+            print(imageData[indexPath.row].count)
+            allTeamVC.teamImageData = imageData[indexPath.row]
             present(allTeamVC, animated: true, completion: nil)
         }
     }
