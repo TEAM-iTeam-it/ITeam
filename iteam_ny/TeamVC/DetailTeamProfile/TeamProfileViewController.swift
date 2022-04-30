@@ -30,6 +30,8 @@ class TeamProfileViewController: UIViewController {
     
     // 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아옴
     var teamName: String = ""
+    var teamProfile: TeamProfile = TeamProfile(purpose: "", serviceType: "", part: "", detailPart: "", introduce: "", contactLink: "", callTime: "", activeZone: "", memberList: "")
+    
     var team: Team = Team(teamName: "", purpose: "", part: "", images: [])
     
     // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
@@ -39,7 +41,7 @@ class TeamProfileViewController: UIViewController {
         super.viewWillAppear(false)
         
         setUI()
-        fetchData()
+       // fetchData()
     }
     func fetchData() {
         var ref = Database.database().reference().child("Team")
@@ -64,6 +66,7 @@ class TeamProfileViewController: UIViewController {
         })
 
     }
+    
     func setUI() {
         navigationBar.shadowImage = UIImage()
         
@@ -87,11 +90,29 @@ class TeamProfileViewController: UIViewController {
         teamView.layer.masksToBounds = false
         
         
-        // @나연 : 여기서 서버에서 받아온 데이터를 화면에 뿌려줌
         teamNameLabel.text = teamName
-//        teamPurposeLabel.text = team.purpose
-//        teamPartLabel.text = team.part
+        teamPurposeLabel.text = teamProfile.purpose
+        var teamPartString = teamProfile.part
+        teamPartLabel.text = "\(teamPartString) 구인 중"
+        detailPartLabel.text = teamProfile.detailPart
+        var introduceString = teamProfile.introduce
+        teamIntroduceLabel.text = " \"\(introduceString)\""
+        serviceTypeLabel.text = teamProfile.serviceType
+        regionLabel.text = teamProfile.activeZone
+        callTimeLabel.text = teamProfile.callTime
+        contactLinkLabel.text = teamProfile.contactLink
+        
     }
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       
+        setStatusBarColor()
+    }
+    
+    // 상태바 흰색으로 채우기
     func setStatusBarColor() {
         if #available(iOS 13.0, *) {
             let app = UIApplication.shared
@@ -100,7 +121,7 @@ class TeamProfileViewController: UIViewController {
             let statusbarView = UIView()
             statusbarView.backgroundColor = UIColor.white
             view.addSubview(statusbarView)
-          
+            
             statusbarView.translatesAutoresizingMaskIntoConstraints = false
             statusbarView.heightAnchor
                 .constraint(equalToConstant: statusBarHeight).isActive = true
@@ -110,19 +131,12 @@ class TeamProfileViewController: UIViewController {
                 .constraint(equalTo: view.topAnchor).isActive = true
             statusbarView.centerXAnchor
                 .constraint(equalTo: view.centerXAnchor).isActive = true
-          
+            
         } else {
             let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
             statusBar?.backgroundColor = UIColor.white
         }
-
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       
-        setStatusBarColor()
+        
     }
     
     @IBAction func teamListBtnAction(_ sender: UIButton) {

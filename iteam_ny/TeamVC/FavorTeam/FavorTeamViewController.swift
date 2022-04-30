@@ -30,7 +30,9 @@ class FavorTeamViewController: UIViewController {
         }
     }
     var teamNames: [String] = []
-  
+    
+    var teamListNew: [TeamProfile] = []
+    var teamNamesNew: [String] = []
     
     
     override func viewDidLoad() {
@@ -74,47 +76,50 @@ class FavorTeamViewController: UIViewController {
     func fetchFavorTeam() {
         let favorTeamList = db.child("Team")
         
-        favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
+        
+        favorTeamList.observeSingleEvent(of: .value, with: { [self] (snapshot) in
+            let values = snapshot.value
+            let dic = values as! [String: [String:Any]]
+            self.teamListNew.removeAll()
+            self.teamNamesNew.removeAll()
             
-            guard let teamValue = snapshot.value as? [String: Any] else { return }
-            print("teamValue : \(teamValue)")
-            
-            self.teamNameList = Array(teamValue.keys)
-            print("teamNameList\(teamNameList)")
-            
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: Array(teamValue.values), options: [])
-                let teamData = try JSONDecoder().decode([TeamProfile].self, from: jsonData)
-                var teamListNew: [TeamProfile] = []
-                var teamNamesNew: [String] = []
-                
-                for i in 0..<teamNameList.count {
-                    for j in 0..<self.teamNames.count {
-                        if teamNameList[i] == self.teamNames[j] {
-                            print("self.teamNames[j]\(self.teamNames[j])")
-                            teamListNew.append(teamData[j])
-                            teamNamesNew.append("\(teamNames[j]) 팀")
-                            
-                        }
+            for index in dic{
+                for i in 0..<self.teamNames.count {
+                    if index.key == self.teamNames[i] {
+                        print(index.key)
+                        
+                        let teamProfile = TeamProfile(
+                            purpose: index.value["purpose"] as! String,
+                            serviceType: index.value["serviceType"] as! String,
+                            part: index.value["part"] as! String,
+                            detailPart: index.value["detailPart"] as! String,
+                            introduce: index.value["introduce"] as! String,
+                            contactLink: index.value["contactLink"] as! String,
+                            callTime: index.value["callTime"]  as! String,
+                            activeZone: index.value["activeZone"] as! String,
+                            memberList: index.value["memberList"] as! String)
+                        
+                        teamListNew.append(teamProfile)
+                        teamNamesNew.append("\(self.teamNames[i]) 팀")
                     }
                 }
-                self.teamList = teamListNew
-                self.teamNames = teamNamesNew
-                self.collView.reloadData()
-                
-                
-                // 한 팀의 멤버들 UID배열
-                for i in 0..<self.teamList.count {
-                    
-                    self.memberListArr.append([])
-                    self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
-                    self.fetchImages(teamIndex: i)
-                }
-                
-            } catch let error {
-                print(error.localizedDescription)
             }
-        }
+            self.teamList = teamListNew
+            self.teamNames = teamNamesNew
+            self.collView.reloadData()
+            
+            
+            // 한 팀의 멤버들 UID배열
+            for i in 0..<self.teamList.count {
+                
+                self.memberListArr.append([])
+                self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
+                self.fetchImages(teamIndex: i)
+            }
+            
+        })
+        
+
         
     }
     
@@ -222,7 +227,9 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {
             // allTeamVC.teamKind = .favor
             allTeamVC.modalPresentationStyle = .fullScreen
-            allTeamVC.teamName = teamNameList[indexPath.row]
+            allTeamVC.teamName = teamNames[indexPath.row]
+            allTeamVC.teamProfile = teamList[indexPath.row]
+            
             present(allTeamVC, animated: true, completion: nil)
         }
     }

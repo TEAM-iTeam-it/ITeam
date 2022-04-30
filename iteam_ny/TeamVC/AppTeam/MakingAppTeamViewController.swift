@@ -195,6 +195,7 @@ extension MakingAppTeamViewController: UICollectionViewDelegate, UICollectionVie
             // allTeamVC.teamKind = .favor
             allTeamVC.modalPresentationStyle = .fullScreen
             allTeamVC.teamName = teamNameList[indexPath.row]
+            allTeamVC.teamProfile = teamList[indexPath.row]
             present(allTeamVC, animated: true, completion: nil)
         }
     }
