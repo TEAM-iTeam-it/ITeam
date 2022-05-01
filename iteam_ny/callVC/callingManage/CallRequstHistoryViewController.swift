@@ -6,14 +6,46 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
 class CallRequstHistoryViewController: UIViewController {
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sameSchoolLabel: UILabel!
     @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet var callTimeLabels: [UILabel]!
+    @IBOutlet weak var questionTableview: UITableView!
+    
+    var personUID: String = ""
+    let db = Database.database().reference()
+    var person = Person(nickname: "", position: "", callStm: "", profileImg: "")
+    var callTime: [String] = []
+    var questionArr: [String] = []
+    var teamIndex: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //fetchUser(userUID: personUID, stmt: "요청됨")
+        setUI()
+        questionTableview.delegate = self
+        questionTableview.dataSource = self
+        
+    }
+    
+    @IBAction func backBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func callRequestCancelAction(_ sender: UIButton) {
+        let values: [String: String] = [ "stmt": "요청취소됨" ]
+        db.child("Call").child(teamIndex).updateChildValues(values)
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    func setUI() {
         sameSchoolLabel.layer.borderWidth = 0.5
         sameSchoolLabel.layer.borderColor = UIColor(named: "purple_184")?.cgColor
         sameSchoolLabel.textColor = UIColor(named: "purple_184")
@@ -30,26 +62,33 @@ class CallRequstHistoryViewController: UIViewController {
         profileView.layer.shadowRadius = 8.0
         
         
+        titleLabel.text = "\(person.nickname) 님이 요청을 확인 중입니다."
+        nickNameLabel.text = person.nickname
+        infoLabel.text = person.position
         
+        for i in 0..<callTime.count {
+            if callTime[i].contains("0분") {
+                callTimeLabels[i].text = callTime[i].replacingOccurrences(of: "0분", with: "")
+            }
+            else {
+                callTimeLabels[i].text = callTime[i]
+                
+            }
+        }
         
-        // navigation.barTintColor = UIColor.white
-        // Do any additional setup after loading the view.
-    }
-    @IBAction func backBtn(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
-
+extension CallRequstHistoryViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return questionArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell", for: indexPath) as! CallRequestHistoryQuestionTableViewCell
+        cell.questionLabel.text = questionArr[indexPath.row]
+        return cell
+    }
+}
 

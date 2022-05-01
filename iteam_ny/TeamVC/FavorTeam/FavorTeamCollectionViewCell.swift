@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 import Firebase
+import Kingfisher
 
 class FavorTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var teamName: UILabel!
@@ -21,6 +22,13 @@ class FavorTeamCollectionViewCell: UICollectionViewCell {
     var resizedImage: UIImage = UIImage()
     let user = Auth.auth().currentUser!
     let ref = Database.database().reference()
+    
+    var usersUID: [String] = [] {
+        didSet {
+            
+            imageCollectionView.reloadData()
+        }
+    }
     
     // 서버에서 받아 올 사용자 이미지 데이터
     var imageData: [Data] = [] {
@@ -137,13 +145,13 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
         
         // 데이터 받아오기 전까지 기본 이미지
         if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
-            resizedImage = self.resizeImage(image: fetchedImage, width: 50, height: 50)
+            resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
             cell.userImages.image = resizedImage
             
         }
         else {
             // 받아온 사진 리사이징, 셀에 설정
-            resizedImage = self.resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+            resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
         }
         cell.userImages.image = resizedImage
         cell.layer.cornerRadius = cell.frame.height/2
@@ -154,14 +162,7 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
         return cell
     }
   
-    // 이미지 리사이징
-    func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!
-    }
+    
 }
 extension FavorTeamCollectionViewCell: UICollectionViewDelegateFlowLayout {
 
@@ -205,4 +206,12 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegateFlowLayout {
         insets.right = padding
         return insets
     }
+}
+// 이미지 리사이징
+func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
+    UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+    image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return newImage!
 }

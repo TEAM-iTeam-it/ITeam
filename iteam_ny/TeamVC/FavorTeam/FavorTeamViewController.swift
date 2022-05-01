@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import Tabman
+import Kingfisher
 
 class FavorTeamViewController: UIViewController {
     
@@ -33,6 +34,7 @@ class FavorTeamViewController: UIViewController {
     
     var teamListNew: [TeamProfile] = []
     var teamNamesNew: [String] = []
+    var userUID: [[String]] = []
     
     
     override func viewDidLoad() {
@@ -43,6 +45,8 @@ class FavorTeamViewController: UIViewController {
         
         // 바뀐 데이터 불러오기
         fetchChangedData()
+        
+        
     }
     
     
@@ -133,11 +137,15 @@ class FavorTeamViewController: UIViewController {
         
         // 미리 방 반들어줌
         self.imageData.append(Array(repeating: Data(),count: memberListArr[teamIndex].count))
+        self.userUID.append(Array(repeating: "",count: memberListArr[teamIndex].count))
      
         // 한 팀의 이미지 받아오기
         for memberIndex in 0..<memberListArr[teamIndex].count {
-            let userUID = memberListArr[teamIndex][memberIndex]
-            let storage = Storage.storage().reference().child("user_profile_image").child(userUID + ".jpg")
+            userUID[teamIndex][memberIndex] = memberListArr[teamIndex][memberIndex]
+            
+            let storage = Storage.storage().reference().child("user_profile_image").child(userUID[teamIndex][memberIndex] + ".jpg")
+            
+      
             storage.downloadURL { url, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -154,6 +162,7 @@ class FavorTeamViewController: UIViewController {
                     }
                 }
             }
+            
         }
         
     }
@@ -215,6 +224,7 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
         cell.imageData = self.imageData[indexPath.row]
+        cell.usersUID = self.userUID[indexPath.row]
         cell.likeBool = true
         cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         cell.likeButton.tintColor = UIColor(named: "purple_184")
@@ -222,6 +232,7 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
+    // 셀 클릭시 세부 프로필
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {

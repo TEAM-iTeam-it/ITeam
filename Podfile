@@ -13,7 +13,7 @@ target 'iteam_ny' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'MaterialComponents/BottomSheet'
-
+  pod 'Kingfisher', '~> 7.0' 
 
 
 post_install do |installer|
