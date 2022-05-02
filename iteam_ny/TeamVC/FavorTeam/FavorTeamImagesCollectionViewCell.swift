@@ -10,6 +10,8 @@ import UIKit
 class FavorTeamImagesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var userImages: UIImageView!
+    @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var memberCountLabel: UILabel!
     
     
 }

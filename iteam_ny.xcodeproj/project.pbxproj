@@ -154,6 +154,11 @@
 		08B2F2F127F77A0F008F7085 /* TeamPages_AllTeams.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */; };
 		08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */; };
 		08B8319A280955FA00135893 /* FirstEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B83199280955FA00135893 /* FirstEntryViewController.swift */; };
+		08BC2939281FBF5E00C6214F /* TeamAddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */; };
+		08BC293B281FD27900C6214F /* ArrayExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC293A281FD27900C6214F /* ArrayExtention.swift */; };
+		08BC293D281FEA7600C6214F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC293C281FEA7600C6214F /* GradientView.swift */; };
+		08BC293F281FEE9800C6214F /* UIVIewToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC293E281FEE9800C6214F /* UIVIewToUIImage.swift */; };
+		08BC2941281FEFD600C6214F /* ActualGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC2940281FEFD600C6214F /* ActualGradientButton.swift */; };
 		08BFBE9727F590D800A6F6B0 /* Mypages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */; };
 		08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */; };
 		08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */; };
@@ -341,6 +346,11 @@
 		08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeamPages_AllTeams.storyboard; sourceTree = "<group>"; };
 		08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileViewController.swift; sourceTree = "<group>"; };
 		08B83199280955FA00135893 /* FirstEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEntryViewController.swift; sourceTree = "<group>"; };
+		08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddAlertViewController.swift; sourceTree = "<group>"; };
+		08BC293A281FD27900C6214F /* ArrayExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArrayExtention.swift; path = ../../../../ArrayExtention.swift; sourceTree = "<group>"; };
+		08BC293C281FEA7600C6214F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		08BC293E281FEE9800C6214F /* UIVIewToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewToUIImage.swift; sourceTree = "<group>"; };
+		08BC2940281FEFD600C6214F /* ActualGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActualGradientButton.swift; path = ../../../../ActualGradientButton.swift; sourceTree = "<group>"; };
 		08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypages.storyboard; sourceTree = "<group>"; };
 		08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileViewController.swift; sourceTree = "<group>"; };
 		08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -507,6 +517,7 @@
 				081F268127F435C700F17332 /* AllTeamViewController.swift */,
 				081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */,
 				0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */,
+				08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */,
 			);
 			path = TeamVC;
 			sourceTree = "<group>";
@@ -516,6 +527,10 @@
 			children = (
 				0863BCF3280BC70700AFB2B9 /* ScrollViewExtension.swift */,
 				082FEFE0281DC383007B4AFB /* ImageViewExtension.swift */,
+				08BC293A281FD27900C6214F /* ArrayExtention.swift */,
+				08BC293C281FEA7600C6214F /* GradientView.swift */,
+				08BC293E281FEE9800C6214F /* UIVIewToUIImage.swift */,
+				08BC2940281FEFD600C6214F /* ActualGradientButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1047,6 +1062,7 @@
 			files = (
 				0832B26928042FA700DED89B /* DetailProfileInterestViewController.swift in Sources */,
 				08AFB351281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift in Sources */,
+				08BC2941281FEFD600C6214F /* ActualGradientButton.swift in Sources */,
 				1F5AC97427D6BEB600146C0E /* UserListCell.swift in Sources */,
 				0868B05827CB6E080018464B /* SettingSuccessViewController.swift in Sources */,
 				0833417827F3437E005B4F31 /* Team.swift in Sources */,
@@ -1057,8 +1073,10 @@
 				081F267027F3960300F17332 /* MakingGameTeamViewController.swift in Sources */,
 				081F265427F3903D00F17332 /* MakingWebTeamViewController.swift in Sources */,
 				0868B04827CB6D930018464B /* RequestTableViewCell.swift in Sources */,
+				08BC293B281FD27900C6214F /* ArrayExtention.swift in Sources */,
 				08B8319A280955FA00135893 /* FirstEntryViewController.swift in Sources */,
 				08AFB353281F1415006D90B5 /* CallRefusePopupViewController.swift in Sources */,
+				08BC293F281FEE9800C6214F /* UIVIewToUIImage.swift in Sources */,
 				0831AF3627E112180098D753 /* LogInViewController.swift in Sources */,
 				08AE4191280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift in Sources */,
 				0863BCF4280BC70700AFB2B9 /* ScrollViewExtension.swift in Sources */,
@@ -1114,6 +1132,7 @@
 				081F264E27F38ADB00F17332 /* MakingAppTeamViewController.swift in Sources */,
 				08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */,
 				081F265627F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift in Sources */,
+				08BC293D281FEA7600C6214F /* GradientView.swift in Sources */,
 				081F265227F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift in Sources */,
 				0868B05A27CB6E080018464B /* SettingPassionViewController.swift in Sources */,
 				0868B03B27CB6D830018464B /* AddMemberAlertViewController.swift in Sources */,
@@ -1127,6 +1146,7 @@
 				0868B03927CB6D830018464B /* ChannelViewController.swift in Sources */,
 				08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */,
 				0868B04B27CB6D930018464B /* CallRequestViewController.swift in Sources */,
+				08BC2939281FBF5E00C6214F /* TeamAddAlertViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

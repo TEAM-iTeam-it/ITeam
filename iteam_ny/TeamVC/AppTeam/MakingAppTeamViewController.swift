@@ -40,7 +40,7 @@ class MakingAppTeamViewController: UIViewController {
         fetchData()
         
         // 바뀐 데이터 불러오기
-        fetchChangedData()
+        // fetchChangedData()
         
     }
     

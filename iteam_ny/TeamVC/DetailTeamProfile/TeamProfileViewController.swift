@@ -219,23 +219,6 @@ extension TeamProfileViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 5, left: inset, bottom: 5, right: inset)
     }
 }
-class ActualGradientButton: UIButton {
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        gradientLayer.frame = bounds
-    }
-
-    private lazy var gradientLayer: CAGradientLayer = {
-        let l = CAGradientLayer()
-        l.frame = self.bounds
-        l.colors = [UIColor(named: "purple_184")?.cgColor, UIColor(named: "green_144")?.cgColor]
-        l.startPoint = CGPoint(x: 0, y: 0.5)
-        l.endPoint = CGPoint(x: 1, y: 0.5)
-        l.cornerRadius = 8
-        layer.insertSublayer(l, at: 0)
-        return l
-    }()
-}
 
 

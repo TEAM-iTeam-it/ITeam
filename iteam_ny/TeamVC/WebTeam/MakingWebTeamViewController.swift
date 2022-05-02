@@ -32,7 +32,7 @@ class MakingWebTeamViewController: UIViewController {
         // 데이터 받아오기
         fetchData()
         // 바뀐 데이터 불러오기
-        fetchChangedData()
+        // fetchChangedData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)

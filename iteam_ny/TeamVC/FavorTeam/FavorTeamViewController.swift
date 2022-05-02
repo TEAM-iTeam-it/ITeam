@@ -44,7 +44,7 @@ class FavorTeamViewController: UIViewController {
         fetchData()
         
         // 바뀐 데이터 불러오기
-        fetchChangedData()
+        // fetchChangedData()
         
         
     }
@@ -180,7 +180,6 @@ class FavorTeamViewController: UIViewController {
             DispatchQueue.main.async {
                 self.fetchData()
             }
-            
         })
     }
     // 팀 더보기
@@ -223,6 +222,7 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.teamName.text = teamNames[indexPath.row]
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
+        
         cell.imageData = self.imageData[indexPath.row]
         cell.usersUID = self.userUID[indexPath.row]
         cell.likeBool = true
@@ -240,7 +240,6 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
             allTeamVC.modalPresentationStyle = .fullScreen
             allTeamVC.teamName = teamNames[indexPath.row]
             allTeamVC.teamProfile = teamList[indexPath.row]
-            
             allTeamVC.teamImageData = imageData[indexPath.row]
             print(allTeamVC.teamImageData)
             

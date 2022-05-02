@@ -56,7 +56,6 @@
                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                         <connections>
                                                             <action selector="createMyTeam:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="UGH-hu-s9a"/>
-                                                            <segue destination="8xF-ao-qlB" kind="modal" modalPresentationStyle="fullScreen" id="7xz-Gx-eKs"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나의 팀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sH-bu-L1d">
@@ -198,6 +197,7 @@
                     </view>
                     <size key="freeformSize" width="414" height="1394"/>
                     <connections>
+                        <outlet property="explainLabel" destination="dA4-B9-16j" id="kEz-cZ-NR5"/>
                         <outlet property="myteamBtn" destination="bQD-LC-b5W" id="9qX-hL-gmQ"/>
                         <outlet property="myteamView" destination="zov-KA-hiZ" id="RS3-tj-6pO"/>
                     </connections>
@@ -293,14 +293,38 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfS-QY-TaM" customClass="GradientView" customModule="iteam_ny" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZX-Eb-7Ya">
+                                                                                <rect key="frame" x="15" y="16" width="20" height="18"/>
+                                                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="zZX-Eb-7Ya" firstAttribute="centerX" secondItem="VfS-QY-TaM" secondAttribute="centerX" id="7D3-ll-I1z"/>
+                                                                            <constraint firstItem="zZX-Eb-7Ya" firstAttribute="centerY" secondItem="VfS-QY-TaM" secondAttribute="centerY" id="r48-uz-Rg2"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgUser4.png" translatesAutoresizingMaskIntoConstraints="NO" id="75J-Ro-BCW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="VfS-QY-TaM" firstAttribute="top" secondItem="BwX-8C-rKk" secondAttribute="top" id="1Nv-GQ-Lzf"/>
+                                                                    <constraint firstItem="VfS-QY-TaM" firstAttribute="leading" secondItem="BwX-8C-rKk" secondAttribute="leading" id="Yq4-VT-TtO"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="VfS-QY-TaM" secondAttribute="trailing" id="eCg-01-fjE"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="VfS-QY-TaM" secondAttribute="bottom" id="fIB-h9-Wes"/>
+                                                                </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="50" height="50"/>
                                                             <connections>
+                                                                <outlet property="gradientView" destination="VfS-QY-TaM" id="SGk-x2-mI5"/>
+                                                                <outlet property="memberCountLabel" destination="zZX-Eb-7Ya" id="wkM-LY-Gm0"/>
                                                                 <outlet property="userImages" destination="75J-Ro-BCW" id="2ZX-w3-pzs"/>
                                                             </connections>
                                                         </collectionViewCell>
@@ -2153,6 +2177,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thl-9u-teC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4341" y="-401"/>
+        </scene>
+        <!--Team Add Alert View Controller-->
+        <scene sceneID="YY9-EN-oXS">
+            <objects>
+                <viewController storyboardIdentifier="addTeamAlertVC" id="8Tk-0r-wwe" customClass="TeamAddAlertViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KcH-ox-yn6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x68-uB-zlL">
+                                <rect key="frame" x="46" y="377.5" width="322" height="151"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈에서 먼저 팀원을 추가해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssc-5V-jAI">
+                                        <rect key="frame" x="49" y="35" width="224" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Che-il-Iel">
+                                        <rect key="frame" x="15" y="90" width="292" height="46"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sj-bO-3lE">
+                                                <rect key="frame" x="0.0" y="0.0" width="292" height="46"/>
+                                                <color key="backgroundColor" name="purple_184"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="확인">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="alertBtnAction:" destination="8Tk-0r-wwe" eventType="touchUpInside" id="J9Y-dy-ul5"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="V05-Lr-Nty"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ssc-5V-jAI" firstAttribute="top" secondItem="x68-uB-zlL" secondAttribute="top" constant="35" id="3aT-Hl-HMX"/>
+                                    <constraint firstItem="ssc-5V-jAI" firstAttribute="centerX" secondItem="x68-uB-zlL" secondAttribute="centerX" id="5H7-Uy-9sp"/>
+                                    <constraint firstAttribute="bottom" secondItem="Che-il-Iel" secondAttribute="bottom" constant="15" id="EQg-2i-nZD"/>
+                                    <constraint firstItem="Che-il-Iel" firstAttribute="leading" secondItem="x68-uB-zlL" secondAttribute="leading" constant="15" id="IiT-3w-qbf"/>
+                                    <constraint firstAttribute="trailing" secondItem="Che-il-Iel" secondAttribute="trailing" constant="15" id="YgU-ib-Sg4"/>
+                                    <constraint firstAttribute="height" constant="151" id="wPk-5S-xgo"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jfJ-V0-LgM"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.49624654000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="x68-uB-zlL" firstAttribute="centerX" secondItem="jfJ-V0-LgM" secondAttribute="centerX" id="2cb-VG-Otb"/>
+                            <constraint firstItem="x68-uB-zlL" firstAttribute="centerY" secondItem="jfJ-V0-LgM" secondAttribute="centerY" id="Wbn-jI-vbK"/>
+                            <constraint firstItem="jfJ-V0-LgM" firstAttribute="trailing" secondItem="x68-uB-zlL" secondAttribute="trailing" constant="46" id="WhP-Ku-v04"/>
+                            <constraint firstItem="x68-uB-zlL" firstAttribute="leading" secondItem="jfJ-V0-LgM" secondAttribute="leading" constant="46" id="p0K-YW-wXW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="alertButton" destination="1sj-bO-3lE" id="GxD-Es-5YP"/>
+                        <outlet property="alertView" destination="x68-uB-zlL" id="EGb-GT-mbV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ryf-Qb-yot" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3635" y="1302"/>
         </scene>
     </scenes>
     <resources>

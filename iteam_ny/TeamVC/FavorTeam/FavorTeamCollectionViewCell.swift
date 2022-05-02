@@ -137,25 +137,56 @@ class FavorTeamCollectionViewCell: UICollectionViewCell {
 extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageData.count
+        var count = 0
+        if imageData.count > 2 {
+           count = 3
+        }
+        else {
+            count = imageData.count
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favorTeamImageCell", for: indexPath) as! FavorTeamImagesCollectionViewCell
         
-        // 데이터 받아오기 전까지 기본 이미지
-        if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
-            resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+        if imageData.count <= 3 {
+            // 받아온 사진 리사이징, 셀에 설정
+            if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
+                resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                cell.userImages.image = resizedImage
+            }
+            else {
+                // 데이터 받아오기 전까지 기본 이미지
+                resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+            }
             cell.userImages.image = resizedImage
-            
         }
         else {
-            // 받아온 사진 리사이징, 셀에 설정
-            resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+            if indexPath.row == 0 || indexPath.row == 1 {
+                // 받아온 사진 리사이징, 셀에 설정
+                if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
+                    resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                    cell.userImages.image = resizedImage
+                }
+                else {
+                    // 데이터 받아오기 전까지 기본 이미지
+                    resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                }
+                cell.userImages.image = resizedImage
+                
+            }
+            else if indexPath.row == 2 {
+                // 3명 이상인 팀원에 대한 팀원 수 뷰
+                cell.gradientView.layer.cornerRadius = cell.frame.height/2
+                cell.userImages.isHidden = true
+                cell.memberCountLabel.text = "+\(imageData.count-2)"
+      
+            }
+            
         }
-        cell.userImages.image = resizedImage
         cell.layer.cornerRadius = cell.frame.height/2
-        cell.layer.borderWidth = 1
+        cell.layer.borderWidth = 3
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor
         cell.layer.masksToBounds = true
         
