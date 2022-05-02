@@ -30,6 +30,20 @@ class MakingGameTeamViewController: UIViewController {
     }
     var lastDatas: [String] = []
     
+    // 더보기 버튼
+    @IBAction func moreTeamBtn(_ sender: UIButton) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
+        if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
+            allTeamVC.teamKind = .game
+            allTeamVC.teamNameList = self.teamNameList
+            allTeamVC.favorTeamList = lastDatas
+            allTeamNavigation.modalPresentationStyle = .fullScreen
+           
+            present(allTeamNavigation, animated: true, completion: nil)
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -142,16 +156,6 @@ class MakingGameTeamViewController: UIViewController {
             self.collView.reloadData()
         }
     }
-    
-    @IBAction func moreTeamBtn(_ sender: UIButton) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
-        if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
-            allTeamVC.teamKind = .game
-            allTeamNavigation.modalPresentationStyle = .fullScreen
-           
-            present(allTeamNavigation, animated: true, completion: nil)
-        }
-    }
 }
 extension MakingGameTeamViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -198,10 +202,10 @@ extension MakingGameTeamViewController: UICollectionViewDelegate, UICollectionVi
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {
             // allTeamVC.teamKind = .favor
             allTeamVC.modalPresentationStyle = .fullScreen
-            allTeamVC.teamName = teamNameList[indexPath.row]
+            allTeamVC.teamName = teamNameList[indexPath.row] + " 팀"
             allTeamVC.teamProfile = teamList[indexPath.row]
-            print(imageData[indexPath.row].count)
-            allTeamVC.teamImageData = imageData[indexPath.row]
+       //     allTeamVC.teamImageData = imageData[indexPath.row]
+            allTeamVC.favorTeamList = lastDatas
             present(allTeamVC, animated: true, completion: nil)
         }
     }

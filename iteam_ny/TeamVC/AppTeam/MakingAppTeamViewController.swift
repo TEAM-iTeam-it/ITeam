@@ -35,6 +35,7 @@ class MakingAppTeamViewController: UIViewController {
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
             allTeamVC.teamKind = .app
             allTeamVC.teamNameList = self.teamNameList
+            allTeamVC.favorTeamList = lastDatas
             allTeamNavigation.modalPresentationStyle = .fullScreen
             
             present(allTeamNavigation, animated: true, completion: nil)
@@ -151,7 +152,6 @@ class MakingAppTeamViewController: UIViewController {
         ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
             let lastData: String! = snapshot.value as? String
             self.lastDatas = lastData.components(separatedBy: ", ")
-            print("lastDataes here \(self.lastDatas)")
             self.collectionView.reloadData()
         }
     }
@@ -201,9 +201,10 @@ extension MakingAppTeamViewController: UICollectionViewDelegate, UICollectionVie
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {
             // allTeamVC.teamKind = .favor
             allTeamVC.modalPresentationStyle = .fullScreen
-            allTeamVC.teamName = teamNameList[indexPath.row]
+            allTeamVC.teamName = teamNameList[indexPath.row] + " 팀"
             allTeamVC.teamProfile = teamList[indexPath.row]
-            allTeamVC.teamImageData = imageData[indexPath.row]
+       //     allTeamVC.teamImageData = imageData[indexPath.row]
+            allTeamVC.favorTeamList = lastDatas
             present(allTeamVC, animated: true, completion: nil)
         }
     }

@@ -65,7 +65,12 @@
                                                     </constraints>
                                                     <color key="tintColor" name="purple_175"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="suit.heart.fill" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="suit.heart.fill" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="favorBtnAction:" destination="CZS-42-pf7" eventType="touchUpInside" id="GzV-2W-80O"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiT-an-rYk">
                                                     <rect key="frame" x="20" y="10" width="50" height="50"/>
@@ -94,6 +99,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="circleTitleView" destination="cAa-fB-HpJ" id="jF1-GY-FuQ"/>
+                                            <outlet property="favorButton" destination="r3V-Cb-x4J" id="6u8-lb-mYI"/>
                                             <outlet property="part" destination="HFL-1S-MVu" id="4gz-73-BIL"/>
                                             <outlet property="teamName" destination="UFq-h4-bPi" id="kem-WT-flJ"/>
                                             <outlet property="teamProfileLabel" destination="OiT-an-rYk" id="FY9-Of-qTK"/>
@@ -355,10 +361,26 @@
                                                             <action selector="teamListBtnAction:" destination="l5p-RZ-a5r" eventType="touchUpInside" id="lR1-ck-MPm"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JL-yg-ZjS">
+                                                        <rect key="frame" x="331" y="15" width="28" height="28"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="28" id="67p-q2-lgu"/>
+                                                            <constraint firstAttribute="width" constant="28" id="PaQ-XU-754"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="purple_175"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="suit.heart.fill" catalog="system">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="16"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="favorBtnAction:" destination="l5p-RZ-a5r" eventType="touchUpInside" id="2Tm-VO-mYw"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="dX1-5I-bR5" firstAttribute="top" secondItem="pLL-4N-pWx" secondAttribute="top" id="14E-ru-7YK"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6JL-yg-ZjS" secondAttribute="trailing" constant="15" id="BEs-S2-N20"/>
                                                     <constraint firstItem="yux-yd-ruW" firstAttribute="centerX" secondItem="W1e-QL-uhY" secondAttribute="centerX" id="BU5-J2-Iw4"/>
                                                     <constraint firstItem="ojW-yh-lNc" firstAttribute="centerX" secondItem="Vbs-BY-U9J" secondAttribute="centerX" id="JoI-Lc-yd6"/>
                                                     <constraint firstItem="W1e-QL-uhY" firstAttribute="centerX" secondItem="ojW-yh-lNc" secondAttribute="centerX" id="KaH-Nv-d7m"/>
@@ -366,6 +388,7 @@
                                                     <constraint firstItem="pLL-4N-pWx" firstAttribute="top" secondItem="Vbs-BY-U9J" secondAttribute="top" constant="30" id="M1t-Ke-ge7"/>
                                                     <constraint firstItem="ojW-yh-lNc" firstAttribute="top" secondItem="pLL-4N-pWx" secondAttribute="bottom" constant="30" id="TEJ-Ne-C0G"/>
                                                     <constraint firstItem="8Te-9V-RH4" firstAttribute="centerX" secondItem="yux-yd-ruW" secondAttribute="centerX" id="UW7-dy-PKM"/>
+                                                    <constraint firstItem="6JL-yg-ZjS" firstAttribute="top" secondItem="Vbs-BY-U9J" secondAttribute="top" constant="15" id="Yx7-Wc-g4Z"/>
                                                     <constraint firstAttribute="height" constant="259" id="kDB-Kl-VF5"/>
                                                     <constraint firstItem="9Cj-Xd-bXv" firstAttribute="top" secondItem="Vbs-BY-U9J" secondAttribute="top" constant="30" id="kXd-BJ-9Tj"/>
                                                     <constraint firstItem="dX1-5I-bR5" firstAttribute="bottom" secondItem="pLL-4N-pWx" secondAttribute="bottom" id="kfg-K1-XY5"/>
@@ -516,6 +539,7 @@
                         <outlet property="callTimeLabel" destination="F8i-xK-qs2" id="ezq-MB-84l"/>
                         <outlet property="contactLinkLabel" destination="pt8-8N-Emw" id="gix-rb-DQI"/>
                         <outlet property="detailPartLabel" destination="sul-Ab-gbV" id="TWf-Ad-WET"/>
+                        <outlet property="favorButton" destination="6JL-yg-ZjS" id="vwL-os-qMO"/>
                         <outlet property="navigationBar" destination="etV-C8-2bS" id="ytc-6o-yYP"/>
                         <outlet property="profileImagesColl" destination="pLL-4N-pWx" id="ih2-vd-XZd"/>
                         <outlet property="regionLabel" destination="nvJ-E3-9OU" id="gXo-0O-JHe"/>

@@ -27,6 +27,7 @@ class TeamProfileViewController: UIViewController {
     @IBOutlet weak var contactLinkLabel: UILabel!
     
     @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var favorButton: UIButton!
     
     
     
@@ -42,12 +43,30 @@ class TeamProfileViewController: UIViewController {
     var teamImageData: [Data] = []
     var resizedImage: UIImage = UIImage()
     let db = Database.database().reference()
+    var favorTeamList: [String] = []
+    var likeBool: Bool = false {
+        willSet(newValue) {
+            if newValue {
+                favorButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                favorButton.tintColor = UIColor(named: "purple_184")
+            }
+            else {
+                favorButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                favorButton.tintColor = UIColor(named: "gray_196")
+            }
+        }
+    }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
         setUI()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       
+        setStatusBarColor()
     }
     
     func setUI() {
@@ -70,7 +89,7 @@ class TeamProfileViewController: UIViewController {
         teamView.layer.masksToBounds = false
         
         
-        teamNameLabel.text = teamName
+        teamNameLabel.text = teamName 
         teamPurposeLabel.text = teamProfile.purpose
         let teamPartString = teamProfile.part
         teamPartLabel.text = "\(teamPartString) 구인 중"
@@ -83,15 +102,93 @@ class TeamProfileViewController: UIViewController {
         contactLinkLabel.text = teamProfile.contactLink
         
         teamImageData = teamImageData.reversed()
+        
+        if favorTeamList.contains( teamNameLabel.text!) {
+            favorButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            favorButton.tintColor = UIColor(named: "purple_184")
+            likeBool = true
+        }
+        else {
+            favorButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            favorButton.tintColor = UIColor(named: "gray_196")
+            likeBool = false
+        }
+    }
+    @IBAction func favorBtnAction(_ sender: UIButton) {
+        if likeBool {
+            likeBool = false
+            removeDataAcion()
+        }
+        else {
+            likeBool = true
+            pullDataAcion()
+        }
     }
     
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       
-        setStatusBarColor()
+    // 관심있는 팀에 추가
+    func pullDataAcion() {
+        var updateString: String = ""
+        
+        // 데이터 받아와서 이미 있으면 합쳐주기
+        db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) { [self] snapshot in
+            var lastDatas: [String] = []
+            let lastData: String! = snapshot.value as? String
+            lastDatas = lastData.components(separatedBy: ", ")
+            if !lastDatas.contains(teamNameLabel.text!) {
+                if snapshot.value as? String == nil || snapshot.value as? String == "" {
+                    var lastData: String! = snapshot.value as? String
+                    updateString = teamNameLabel.text!
+                }
+                else {
+                    var lastData: String! = snapshot.value as? String
+                    lastData += ", \(teamNameLabel.text!)"
+                    updateString = lastData
+                }
+                let values: [String: Any] = [ "teamName": updateString ]
+                // 데이터 추가
+                db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").updateChildValues(values)
+            }
+        }
     }
+    
+    // 관심있는 팀에서 삭제
+    func removeDataAcion() {
+        var updateString: String = ""
+        var lastDatas: [String] = []
+        
+        // 데이터 받아와서 이미 있으면 지워주기
+        db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) { [self] snapshot in
+            if snapshot.value as? String != nil {
+                var lastData: String! = snapshot.value as? String
+                lastDatas = lastData.components(separatedBy: ", ")
+                
+                for i in 0..<lastDatas.count {
+                    if lastDatas[i] == teamNameLabel.text! {
+                        lastDatas.remove(at: i)
+                        break
+                    }
+                }
+                for i in 0..<lastDatas.count {
+                    if lastDatas[i] == "" {
+                        lastDatas.remove(at: i)
+                        break
+                    }
+                    if i == 0 {
+                        updateString += lastDatas[i]
+                    }
+                    else {
+                        updateString += ", \(lastDatas[i])"
+                    }
+                }
+            }
+            let values: [String: Any] = [ "teamName": updateString ]
+            // 데이터 추가
+            db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").updateChildValues(values)
+        }
+    }
+    
+
     
     // 상태바 흰색으로 채우기
     func setStatusBarColor() {

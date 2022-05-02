@@ -26,6 +26,7 @@ class AllTeamViewController: UIViewController {
     var teamProfileList: [TeamProfile] = []
     let db = Database.database().reference()
     var imageData: [[Data]] = [[]]
+    var favorTeamList: [String] = []
     
     
     // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
@@ -35,16 +36,20 @@ class AllTeamViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         setUI()
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         for i in 0..<teamNameList.count {
+            print(i)
             fetchTeamInfo(index: i)
         }
+        fetchChangedData()
         tableView.reloadData()
     }
+    
     
     
     func setUI () {
@@ -76,6 +81,21 @@ class AllTeamViewController: UIViewController {
 //        self.view.window!.layer.add(transition, forKey: kCATransition)
         dismiss(animated: true, completion: nil)
     }
+    
+    // 관심 팀에 속해있는지 확인
+    func doesContainFavorTeam() {
+        let user = Auth.auth().currentUser!
+        let ref = Database.database().reference()
+        var doesContainBool: Bool = false
+        
+        ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
+            let lastData: String! = snapshot.value as? String
+            self.favorTeamList = lastData.components(separatedBy: ", ")
+            
+            self.tableView.reloadData()
+        }
+    }
+    
     
     func fetchTeamInfo(index: Int) {
         db.child("Team").child(teamNameList[index]).observeSingleEvent(of: .value) { [self] snapshot in
@@ -135,6 +155,16 @@ class AllTeamViewController: UIViewController {
             }
         }
     }
+    
+    // 바뀐 데이터 불러오기
+    func fetchChangedData() {
+        db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.doesContainFavorTeam()
+            }
+        })
+    }
 }
 extension AllTeamViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -149,9 +179,24 @@ extension AllTeamViewController: UITableViewDelegate, UITableViewDataSource {
         cell.circleTitleView.layer.cornerRadius = cell.circleTitleView.frame.height/2
         cell.circleTitleView.layer.masksToBounds = true
         cell.teamProfileLabel.text = String(teamFirstName)
-        cell.teamName.text = teamList[indexPath.row].teamName
+        cell.teamName.text = "\(teamList[indexPath.row].teamName) 팀"
         cell.part.text = "\(teamList[indexPath.row].purpose)•\(teamList[indexPath.row].part) 구인 중"
      
+        if favorTeamList.contains(cell.teamName.text!) {
+            cell.favorButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            cell.favorButton.tintColor = UIColor(named: "purple_184")
+            cell.likeBool = true
+            print(cell.likeBool)
+            print(indexPath.row)
+        }
+        else {
+            cell.favorButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            cell.favorButton.tintColor = UIColor(named: "gray_196")
+            cell.likeBool = false
+            print(cell.likeBool)
+            print(indexPath.row)
+        }
+        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -160,9 +205,10 @@ extension AllTeamViewController: UITableViewDelegate, UITableViewDataSource {
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {
             // allTeamVC.teamKind = .favor
             allTeamVC.modalPresentationStyle = .fullScreen
-            allTeamVC.teamName = teamList[indexPath.row].teamName
+            allTeamVC.teamName = teamList[indexPath.row].teamName + " 팀"
             allTeamVC.teamProfile = teamProfileList[indexPath.row]
             allTeamVC.teamImageData = imageData[indexPath.row]
+            allTeamVC.favorTeamList = favorTeamList
             present(allTeamVC, animated: true, completion: nil)
         }
     }

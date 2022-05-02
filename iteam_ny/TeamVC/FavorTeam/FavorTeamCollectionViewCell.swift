@@ -53,7 +53,7 @@ class FavorTeamCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
-        // imageCollectionView.semanticContentAttribute = .forceRightToLeft
+         imageCollectionView.semanticContentAttribute = .forceRightToLeft
         
         imageData = imageData.reversed()
     }

@@ -37,6 +37,18 @@ class FavorTeamViewController: UIViewController {
     var teamListNew: [TeamProfile] = []
     var teamNamesNew: [String] = []
     var userUID: [[String]] = []
+    // 팀 더보기
+    @IBAction func moreTeamBtn(_ sender: UIButton) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
+        if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
+            allTeamVC.teamKind = .favor
+            allTeamVC.teamNameList = self.teamNameList
+            allTeamVC.favorTeamList = self.teamNames
+            allTeamNavigation.modalPresentationStyle = .fullScreen
+           
+            present(allTeamNavigation, animated: true, completion: nil)
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -87,7 +99,7 @@ class FavorTeamViewController: UIViewController {
     }
     func fetchFavorTeam() {
         let favorTeamList = db.child("Team")
-        
+        teamNameList.removeAll()
         
         favorTeamList.observeSingleEvent(of: .value, with: { [self] (snapshot) in
             let values = snapshot.value
@@ -98,7 +110,6 @@ class FavorTeamViewController: UIViewController {
             for index in dic{
                 for i in 0..<self.teamNames.count {
                     if index.key == self.teamNames[i] {
-                        print(index.key)
                         
                         let teamProfile = TeamProfile(
                             purpose: index.value["purpose"] as! String,
@@ -112,6 +123,7 @@ class FavorTeamViewController: UIViewController {
                             memberList: index.value["memberList"] as! String)
                         
                         teamListNew.append(teamProfile)
+                        teamNameList.append(self.teamNames[i])
                         teamNamesNew.append("\(self.teamNames[i]) 팀")
                     }
                 }
@@ -138,7 +150,6 @@ class FavorTeamViewController: UIViewController {
     // cloud storage에서 사진 불러오기
     func fetchImages(teamIndex: Int) {
         
-        //print("imagedata index\(teamIndex) : \(imageData[teamIndex])")
         // 초기화를 위해 생성한 imageData index 비워주기
         if teamIndex == 0 && imageData[0] != nil {
             imageData.removeAll()
@@ -192,16 +203,7 @@ class FavorTeamViewController: UIViewController {
             }
         })
     }
-    // 팀 더보기
-    @IBAction func moreTeamBtn(_ sender: UIButton) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
-        if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
-            allTeamVC.teamKind = .favor
-            allTeamNavigation.modalPresentationStyle = .fullScreen
-           
-            present(allTeamNavigation, animated: true, completion: nil)
-        }
-    }
+
     
     
     
@@ -250,8 +252,8 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
             allTeamVC.modalPresentationStyle = .fullScreen
             allTeamVC.teamName = teamNames[indexPath.row]
             allTeamVC.teamProfile = teamList[indexPath.row]
-            allTeamVC.teamImageData = imageData[indexPath.row]
-            print(allTeamVC.teamImageData)
+         //   allTeamVC.teamImageData = imageData[indexPath.row]
+            allTeamVC.favorTeamList = teamNames
             
             present(allTeamVC, animated: true, completion: nil)
         }
