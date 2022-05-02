@@ -28,8 +28,8 @@ class MakingAppTeamCollectionViewCell: UICollectionViewCell {
         }
     }
     var likeBool: Bool = false {
-        didSet(newValue) {
-            if !newValue {
+        willSet(newValue) {
+            if newValue {
                 likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 likeButton.tintColor = UIColor(named: "purple_184")
             }
@@ -129,20 +129,53 @@ extension MakingAppTeamCollectionViewCell: UICollectionViewDelegate, UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageData.count
+        var count = 0
+        if imageData.count > 2 {
+            count = 3
+        }
+        else {
+            count = imageData.count
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "makingTeamImageCell", for: indexPath) as! MakingAppTeamImageCollectionViewCell
-        // 데이터 받아오기 전까지 기본 이미지
-        if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
-            resizedImage = self.resizeImage(image: fetchedImage, width: 50, height: 50)
-            cell.userImage.image = resizedImage
-            
+        cell.userImage.isHidden = false
+        if imageData.count <= 3 {
+            // 받아온 사진 리사이징, 셀에 설정
+            if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
+                resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                cell.userImage.image = resizedImage
+            }
+            else {
+                // 데이터 받아오기 전까지 기본 이미지
+                resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                cell.userImage.image = resizedImage
+            }
         }
         else {
-            // 받아온 사진 리사이징, 셀에 설정
-            resizedImage = self.resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+            if indexPath.row == 0 || indexPath.row == 1 {
+                // 받아온 사진 리사이징, 셀에 설정
+                if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
+                    resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                    cell.userImage.image = resizedImage
+                }
+                else {
+                    // 데이터 받아오기 전까지 기본 이미지
+                    resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                    cell.userImage.image = resizedImage
+                }
+                
+            }
+            else if indexPath.row == 2 {
+                // 3명 이상인 팀원에 대한 팀원 수 뷰
+                cell.gradientView.layer.cornerRadius = cell.frame.height/2
+                cell.userImage.isHidden = true
+                cell.memberCountLabel.text = "+\(imageData.count-2)"
+      
+            }
+            
         }
         cell.layer.cornerRadius = cell.frame.height/2
         cell.layer.borderWidth = 1

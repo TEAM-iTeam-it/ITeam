@@ -10,4 +10,6 @@ import UIKit
 class TeamProfileImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var memberCountLabel: UILabel!
 }

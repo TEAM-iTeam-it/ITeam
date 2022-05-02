@@ -11,9 +11,23 @@ import FirebaseAuth
 
 class TeamViewController: UIViewController {
 
+    @IBOutlet weak var favorTeamViewHeight: NSLayoutConstraint!
     @IBOutlet weak var explainLabel: UILabel!
     @IBOutlet weak var myteamView: UIView!
     @IBOutlet weak var myteamBtn: UIButton!
+    
+    var hasFavorTeam = false {
+        willSet(newValue) {
+            print("newValue \(newValue)")
+            if newValue {
+                favorTeamViewHeight.constant = 280
+            }
+            else {
+                favorTeamViewHeight.constant = 166
+            }
+            
+        }
+    }
     // 팀 프로필이 존재하는지
     var haveTeamProfile: Bool = false {
         willSet(newValue) {
@@ -71,6 +85,7 @@ class TeamViewController: UIViewController {
         //exmplainLabel.text = fdsa
         checkMyTeamProfile()
         checkMyTeamMember()
+        fetchFavorTeam()
         
     }
     // 팀 프로필을 생성했는지 검사
@@ -107,7 +122,6 @@ class TeamViewController: UIViewController {
                 
 
                 if snap.key == "userTeam" {
-                    print("value \(value)")
                     // 꾸린 팀원이 없을 때
                     if value == nil || value == "" {
                         haveMember = false
@@ -121,9 +135,9 @@ class TeamViewController: UIViewController {
                         // 수정해야함 - 안돌음
                         // 팀프로필에 있는 팀원과 현재 꾸리고 있는 내 팀이 같은지 비교
                         // 같으면 이미 프로필 만든 것, 다르면 프로필 안만든 것
-                        memberList!.diffIndicesNotConsideringOrder(from: userTeamUIDList).forEach {
+                        memberList!.diffIndicesNotConsideringOrder(from: userTeamUIDList).forEach {_ in
                             count += 1
-                            print("diff value: \(memberList![$0])")
+                             // print("diff value: \(memberList![$0])")
                         }
                         if count == 0 {
                             haveTeamProfile = false
@@ -149,6 +163,12 @@ class TeamViewController: UIViewController {
             DispatchQueue.main.async {
                 checkMyTeamProfile()
                 checkMyTeamMember()
+            }
+        })
+        db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ [self] (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                fetchFavorTeam()
             }
         })
     }
@@ -186,7 +206,25 @@ class TeamViewController: UIViewController {
         
     }
     
-  
+    // 관심 팀있는지 검사, 뷰 크기 조절
+    func fetchFavorTeam() {
+        
+        let favorTeamList = db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").child("teamName")
+        
+        favorTeamList.observeSingleEvent(of: .value) { [self] favorSnapshot in
+            
+            let value = favorSnapshot.value as? String ?? "none"
+            print("value \(value)")
+            if value == "none" || value == "" {
+                hasFavorTeam = false
+            }
+            else {
+                hasFavorTeam = true
+            }
+            
+        }
+    }
+    
 }
 
 

@@ -24,7 +24,7 @@ class MakingWebTeamViewController: UIViewController {
             self.collView.reloadData()
         }
     }
-    
+    var lastDatas: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,10 @@ class MakingWebTeamViewController: UIViewController {
         // 데이터 받아오기
         fetchData()
         // 바뀐 데이터 불러오기
-        // fetchChangedData()
+        fetchChangedData()
+        
+        // 관심팀 받아오기
+        doesContainFavorTeam()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -60,7 +63,7 @@ class MakingWebTeamViewController: UIViewController {
                 for i in 0..<self.teamList.count {
                     self.memberListArr.append([])
                     self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
-                    self.fetchImages(teamIndex: i)
+                   // self.fetchImages(teamIndex: i)
                 }
                 
             } catch let error {
@@ -112,8 +115,26 @@ class MakingWebTeamViewController: UIViewController {
             }
             
         })
+        db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.doesContainFavorTeam()
+            }
+        })
     }
     
+    // 관심 팀에 속해있는지 확인
+    func doesContainFavorTeam() {
+        let user = Auth.auth().currentUser!
+        let ref = Database.database().reference()
+        var doesContainBool: Bool = false
+        
+        ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
+            let lastData: String! = snapshot.value as? String
+            self.lastDatas = lastData.components(separatedBy: ", ")
+            self.collView.reloadData()
+        }
+    }
     
     @IBAction func moreTeamBtn(_ sender: UIButton) {
         let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
@@ -148,7 +169,18 @@ extension MakingWebTeamViewController: UICollectionViewDelegate, UICollectionVie
         cell.teamName.text = teamNameList[indexPath.row] + " 팀"
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
-        cell.imageData = self.imageData[indexPath.row]
+     //   cell.imageData = self.imageData[indexPath.row]
+        
+        if lastDatas.contains(cell.teamName.text!) {
+            cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            cell.likeButton.tintColor = UIColor(named: "purple_184")
+            cell.likeBool = true
+        }
+        else {
+            cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            cell.likeButton.tintColor = UIColor(named: "gray_196")
+            cell.likeBool = false
+        }
         
         return cell
     }

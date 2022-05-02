@@ -53,8 +53,9 @@ class FavorTeamCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
+        // imageCollectionView.semanticContentAttribute = .forceRightToLeft
         
-        print("imageData 개수 \(imageData.count)")
+        imageData = imageData.reversed()
     }
     @IBAction func likeButtonAction(_ sender: UIButton) {
         if likeBool {
@@ -149,7 +150,7 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favorTeamImageCell", for: indexPath) as! FavorTeamImagesCollectionViewCell
-        
+        cell.userImages.isHidden = false
         if imageData.count <= 3 {
             // 받아온 사진 리사이징, 셀에 설정
             if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
@@ -159,8 +160,8 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
             else {
                 // 데이터 받아오기 전까지 기본 이미지
                 resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                cell.userImages.image = resizedImage
             }
-            cell.userImages.image = resizedImage
         }
         else {
             if indexPath.row == 0 || indexPath.row == 1 {
@@ -172,8 +173,8 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
                 else {
                     // 데이터 받아오기 전까지 기본 이미지
                     resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                    cell.userImages.image = resizedImage
                 }
-                cell.userImages.image = resizedImage
                 
             }
             else if indexPath.row == 2 {
@@ -186,7 +187,7 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
             
         }
         cell.layer.cornerRadius = cell.frame.height/2
-        cell.layer.borderWidth = 3
+        cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor
         cell.layer.masksToBounds = true
         
@@ -206,8 +207,8 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegateFlowLayout {
     // cell 사이즈
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let width = 50
-        let height = 50
+        let width = 54
+        let height = 54
 
         let size = CGSize(width: width, height: height)
         return size

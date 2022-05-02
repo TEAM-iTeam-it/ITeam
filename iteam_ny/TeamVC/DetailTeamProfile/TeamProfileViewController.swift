@@ -79,6 +79,7 @@ class TeamProfileViewController: UIViewController {
         callTimeLabel.text = teamProfile.callTime
         contactLinkLabel.text = teamProfile.contactLink
         
+        teamImageData = teamImageData.reversed()
     }
     
     
@@ -121,6 +122,7 @@ class TeamProfileViewController: UIViewController {
             
         // 바텀 시트로 쓰일 뷰컨트롤러 생성
         let teamListVC = thisStoryboard.instantiateViewController(withIdentifier: "teamListVC") as? TeamProfileTeamListViewController
+        teamImageData = teamImageData.reversed()
         teamListVC?.teamImageData = teamImageData
         teamListVC?.teamMemberUID = teamProfile.memberList
         
@@ -146,7 +148,14 @@ class TeamProfileViewController: UIViewController {
 
 extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return teamImageData.count
+        var count = 0
+        if teamImageData.count > 2 {
+           count = 3
+        }
+        else {
+            count = teamImageData.count
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -154,20 +163,47 @@ extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewD
         // 커스텀 셀 따로 만들지 않고 어차피 이미지만 들어간 셀이라 그냥 사용
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailTeamProfileCell", for: indexPath) as! TeamProfileImageCollectionViewCell
         
-        // 받아온 사진 리사이징, 셀에 설정
-        if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
-            resizedImage = self.resizeImage(image: fetchedImage, width: 50, height: 50)
-            cell.userImage.image = resizedImage
-            
+        cell.userImage.isHidden = false
+        
+        if teamImageData.count <= 3 {
+            // 받아온 사진 리사이징, 셀에 설정
+            if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
+                resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                cell.userImage.image = resizedImage
+            }
+            else {
+                // 데이터 받아오기 전까지 기본 이미지
+                resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                cell.userImage.image = resizedImage
+            }
         }
         else {
-            // 데이터 받아오기 전까지 기본 이미지
-            resizedImage = self.resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+            // collectionview index가 거꾸로임
+            if indexPath.row == 1 || indexPath.row == 2 {
+                // 받아온 사진 리사이징, 셀에 설정
+                if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
+                    resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                    cell.userImage.image = resizedImage
+                }
+                else {
+                    // 데이터 받아오기 전까지 기본 이미지
+                    resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                    cell.userImage.image = resizedImage
+                }
+                
+            }
+            else if indexPath.row == 0 {
+                // 3명 이상인 팀원에 대한 팀원 수 뷰
+                cell.gradientView.layer.cornerRadius = cell.frame.height/2
+                cell.userImage.isHidden = true
+                cell.memberCountLabel.text = "+\(teamImageData.count-2)"
+
+      
+            }
+            
         }
         
-        
         // 셀 디자인 및 데이터 세팅
-        cell.userImage.image = resizedImage
         cell.layer.cornerRadius = cell.frame.height/2
         cell.layer.borderWidth = 3
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor

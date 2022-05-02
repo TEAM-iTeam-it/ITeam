@@ -17,7 +17,7 @@ class MakingAppTeamViewController: UIViewController {
     // 프로필 이미지 URL을 위한 변수
     var imageURL: URL  = NSURL() as URL
     var imageData: [[Data]] = [[]]
-    
+    var lastDatas: [String] = []
     
     var memberListArr: [[String]] = [[]]
     let db = Database.database().reference()
@@ -40,7 +40,10 @@ class MakingAppTeamViewController: UIViewController {
         fetchData()
         
         // 바뀐 데이터 불러오기
-        // fetchChangedData()
+        fetchChangedData()
+        
+        // 관심팀 받아오기
+        doesContainFavorTeam()
         
     }
     
@@ -71,7 +74,7 @@ class MakingAppTeamViewController: UIViewController {
                 for i in 0..<self.teamList.count {
                     self.memberListArr.append([])
                     self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
-                    self.fetchImages(teamIndex: i)
+                    //self.fetchImages(teamIndex: i)
                 }
                 
             } catch let error {
@@ -121,27 +124,29 @@ class MakingAppTeamViewController: UIViewController {
             DispatchQueue.main.async {
                 self.fetchData()
             }
-            
+        })
+        db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.doesContainFavorTeam()
+            }
         })
     }
 
     // 관심 팀에 속해있는지 확인
-    func doesContainFavorTeam(teanName: String) -> Bool{
+    func doesContainFavorTeam() {
         let user = Auth.auth().currentUser!
         let ref = Database.database().reference()
         var doesContainBool: Bool = false
         
         ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
-            var lastDatas: [String] = []
             let lastData: String! = snapshot.value as? String
-            lastDatas = lastData.components(separatedBy: ", ")
-            if lastDatas.contains(teanName) {
-                doesContainBool = true
-            }
+            self.lastDatas = lastData.components(separatedBy: ", ")
+            print("lastDataes here \(self.lastDatas)")
+            self.collectionView.reloadData()
         }
-        return doesContainBool
-        
     }
+    
     @IBAction func moreTeamBtn(_ sender: UIButton) {
         let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
@@ -175,14 +180,16 @@ extension MakingAppTeamViewController: UICollectionViewDelegate, UICollectionVie
         cell.teamName.text = teamNameList[indexPath.row] + " 팀"
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
-        cell.imageData = self.imageData[indexPath.row]
-        
-        if self.doesContainFavorTeam(teanName: self.teamNameList[indexPath.row]) {
-            if let updateCell = collectionView.cellForItem(at: indexPath) as? MakingAppTeamCollectionViewCell {
-                updateCell.likeBool = true
-                updateCell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-                updateCell.likeButton.tintColor = UIColor(named: "purple_184")
-            }
+//        cell.imageData = self.imageData[indexPath.row]
+        if lastDatas.contains(cell.teamName.text!) {
+            cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            cell.likeButton.tintColor = UIColor(named: "purple_184")
+            cell.likeBool = true
+        }
+        else {
+            cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            cell.likeButton.tintColor = UIColor(named: "gray_196")
+            cell.likeBool = false
         }
 
         

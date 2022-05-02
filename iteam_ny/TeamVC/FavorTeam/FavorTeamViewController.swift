@@ -15,6 +15,7 @@ class FavorTeamViewController: UIViewController {
     
     @IBOutlet weak var collView: UICollectionView!
     
+    @IBOutlet weak var addalertLabel: UILabel!
     var images: [String] = []
     var teamList: [TeamProfile] = []
     var teamNameList: [String] = []
@@ -31,6 +32,7 @@ class FavorTeamViewController: UIViewController {
         }
     }
     var teamNames: [String] = []
+    @IBOutlet weak var addButton: UIButton!
     
     var teamListNew: [TeamProfile] = []
     var teamNamesNew: [String] = []
@@ -42,9 +44,10 @@ class FavorTeamViewController: UIViewController {
         
         // 데이터 받아오기
         fetchData()
+        addalertLabel.isHidden = true
         
         // 바뀐 데이터 불러오기
-        // fetchChangedData()
+        fetchChangedData()
         
         
     }
@@ -60,19 +63,24 @@ class FavorTeamViewController: UIViewController {
         
         let favorTeamList = db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").child("teamName")
         
-        favorTeamList.observeSingleEvent(of: .value) { favorSnapshot in
+        favorTeamList.observeSingleEvent(of: .value) { [self] favorSnapshot in
             
             let value = favorSnapshot.value as? String ?? "none"
 
-            self.teamNames.removeAll()
-            self.teamNames = value.components(separatedBy: ", ").map({$0.replacingOccurrences(of: " 팀", with: "")})
+            teamNames.removeAll()
+            teamNames = value.components(separatedBy: ", ").map({$0.replacingOccurrences(of: " 팀", with: "")})
         
-            if value != "none" {
-                self.fetchFavorTeam()
+            if value == "none" || value == "" {
+                collView.isHidden = true
+                addalertLabel.isHidden = false
+                addButton.isHidden = true
                 
             }
             else {
-                
+                collView.isHidden = false
+                addalertLabel.isHidden = true
+                addButton.isHidden = false
+                self.fetchFavorTeam()
             }
            
         }
@@ -118,7 +126,7 @@ class FavorTeamViewController: UIViewController {
                 
                 self.memberListArr.append([])
                 self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
-                self.fetchImages(teamIndex: i)
+                // self.fetchImages(teamIndex: i)
             }
             
         })
@@ -130,6 +138,7 @@ class FavorTeamViewController: UIViewController {
     // cloud storage에서 사진 불러오기
     func fetchImages(teamIndex: Int) {
         
+        //print("imagedata index\(teamIndex) : \(imageData[teamIndex])")
         // 초기화를 위해 생성한 imageData index 비워주기
         if teamIndex == 0 && imageData[0] != nil {
             imageData.removeAll()
@@ -141,6 +150,7 @@ class FavorTeamViewController: UIViewController {
      
         // 한 팀의 이미지 받아오기
         for memberIndex in 0..<memberListArr[teamIndex].count {
+            
             userUID[teamIndex][memberIndex] = memberListArr[teamIndex][memberIndex]
             
             let storage = Storage.storage().reference().child("user_profile_image").child(userUID[teamIndex][memberIndex] + ".jpg")
@@ -223,8 +233,8 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
         
-        cell.imageData = self.imageData[indexPath.row]
-        cell.usersUID = self.userUID[indexPath.row]
+        //cell.imageData = self.imageData[indexPath.row]
+      //  cell.usersUID = self.userUID[indexPath.row]
         cell.likeBool = true
         cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         cell.likeButton.tintColor = UIColor(named: "purple_184")
