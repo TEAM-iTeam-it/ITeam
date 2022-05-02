@@ -13,6 +13,7 @@ class AllTeamListTableViewCell: UITableViewCell {
     @IBOutlet weak var teamProfileLabel: UILabel!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var part: UILabel!
+    @IBOutlet weak var circleTitleView: GradientView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

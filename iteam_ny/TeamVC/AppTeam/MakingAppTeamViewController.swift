@@ -11,6 +11,8 @@ import FirebaseDatabase
 import Firebase
 
 class MakingAppTeamViewController: UIViewController {
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var teamList: [TeamProfile] = []
     var teamNameList: [String] = []
     var images: [String] = []
@@ -27,10 +29,17 @@ class MakingAppTeamViewController: UIViewController {
         }
     }
     
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var likeButton: UIButton!
-    
+    // 더보기 버튼
+    @IBAction func moreTeamBtn(_ sender: UIButton) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
+        if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
+            allTeamVC.teamKind = .app
+            allTeamVC.teamNameList = self.teamNameList
+            allTeamNavigation.modalPresentationStyle = .fullScreen
+            
+            present(allTeamNavigation, animated: true, completion: nil)
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -147,15 +156,6 @@ class MakingAppTeamViewController: UIViewController {
         }
     }
     
-    @IBAction func moreTeamBtn(_ sender: UIButton) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
-        if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
-            allTeamVC.teamKind = .app
-            allTeamNavigation.modalPresentationStyle = .fullScreen
-           
-            present(allTeamNavigation, animated: true, completion: nil)
-        }
-    }
 }
 extension MakingAppTeamViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -49,6 +49,14 @@
                                                     <color key="textColor" name="gray_121"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAa-fB-HpJ" customClass="GradientView" customModule="iteam_ny" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="10" width="50" height="50"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="dFW-Y1-X15"/>
+                                                        <constraint firstAttribute="width" constant="50" id="tQq-aN-zg0"/>
+                                                    </constraints>
+                                                </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3V-Cb-x4J">
                                                     <rect key="frame" x="341.5" y="23" width="24" height="24"/>
                                                     <constraints>
@@ -61,17 +69,17 @@
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiT-an-rYk">
                                                     <rect key="frame" x="20" y="10" width="50" height="50"/>
-                                                    <color key="backgroundColor" name="purple_light"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="GxQ-vL-DW9"/>
                                                         <constraint firstAttribute="width" constant="50" id="Zud-fI-zMF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="19"/>
-                                                    <color key="textColor" name="purple_184"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="cAa-fB-HpJ" firstAttribute="leading" secondItem="OiT-an-rYk" secondAttribute="leading" id="4dT-9B-var"/>
                                                 <constraint firstItem="OiT-an-rYk" firstAttribute="leading" secondItem="HLY-3B-LDl" secondAttribute="leading" constant="20" id="Ou6-zS-6t8"/>
                                                 <constraint firstItem="UFq-h4-bPi" firstAttribute="leading" secondItem="OiT-an-rYk" secondAttribute="trailing" constant="10" id="RMR-p8-IsL"/>
                                                 <constraint firstItem="UFq-h4-bPi" firstAttribute="top" secondItem="HLY-3B-LDl" secondAttribute="top" constant="18" id="U00-hV-oPh"/>
@@ -81,9 +89,11 @@
                                                 <constraint firstItem="OiT-an-rYk" firstAttribute="centerY" secondItem="HLY-3B-LDl" secondAttribute="centerY" id="fu0-9b-vaV"/>
                                                 <constraint firstItem="r3V-Cb-x4J" firstAttribute="centerY" secondItem="HLY-3B-LDl" secondAttribute="centerY" id="qpe-iN-A19"/>
                                                 <constraint firstItem="HFL-1S-MVu" firstAttribute="top" secondItem="UFq-h4-bPi" secondAttribute="bottom" constant="3" id="rhg-b6-hJT"/>
+                                                <constraint firstItem="cAa-fB-HpJ" firstAttribute="top" secondItem="OiT-an-rYk" secondAttribute="top" id="sEk-QB-Uhp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="circleTitleView" destination="cAa-fB-HpJ" id="jF1-GY-FuQ"/>
                                             <outlet property="part" destination="HFL-1S-MVu" id="4gz-73-BIL"/>
                                             <outlet property="teamName" destination="UFq-h4-bPi" id="kem-WT-flJ"/>
                                             <outlet property="teamProfileLabel" destination="OiT-an-rYk" id="FY9-Of-qTK"/>
@@ -144,6 +154,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="4L0-YR-05Z" id="Jba-uk-eX6"/>
                         <outlet property="titleLabel" destination="MRt-nJ-hNo" id="EXI-Dv-9bP"/>
                     </connections>
                 </viewController>
@@ -665,12 +676,6 @@
         </namedColor>
         <namedColor name="purple_175">
             <color red="0.68627450980392157" green="0.4823529411764706" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="purple_184">
-            <color red="0.72156862745098038" green="0.3843137254901961" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="purple_light">
-            <color red="0.95686274509803926" green="0.90588235294117647" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

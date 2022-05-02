@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import Firebase
 import MaterialComponents.MaterialBottomSheet
+import FirebaseAuth
+import FirebaseDatabase
 
 class TeamProfileViewController: UIViewController {
 
@@ -40,6 +41,8 @@ class TeamProfileViewController: UIViewController {
     // 서버에서 받아 올 사용자 이미지 데이터
     var teamImageData: [Data] = []
     var resizedImage: UIImage = UIImage()
+    let db = Database.database().reference()
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
