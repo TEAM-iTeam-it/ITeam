@@ -116,7 +116,7 @@ class AllTeamViewController: UIViewController {
             
             let teamprofile = TeamProfile(purpose: purpose, serviceType: serviceType, part: part, detailPart: detailPart, introduce: introduce, contactLink: contactLink, callTime: callTime, activeZone: activeZone, memberList: memberList)
             teamProfileList.append(teamprofile)
-            fetchImages(teamIndex: index)
+           // fetchImages(teamIndex: index)
             
             tableView.reloadData()
         }
@@ -207,7 +207,7 @@ extension AllTeamViewController: UITableViewDelegate, UITableViewDataSource {
             allTeamVC.modalPresentationStyle = .fullScreen
             allTeamVC.teamName = teamList[indexPath.row].teamName + " 팀"
             allTeamVC.teamProfile = teamProfileList[indexPath.row]
-            allTeamVC.teamImageData = imageData[indexPath.row]
+            //allTeamVC.teamImageData = imageData[indexPath.row]
             allTeamVC.favorTeamList = favorTeamList
             present(allTeamVC, animated: true, completion: nil)
         }

@@ -133,7 +133,13 @@ extension TeamProfileTeamListViewController: UITableViewDelegate, UITableViewDat
         cell.nicknameLabel.text = personProfileList[indexPath.row].nickname
         cell.partLabel.text = "\(personProfileList[indexPath.row].partDetail)•\(personProfileList[indexPath.row].purpose)"
         
-        let fetchedImage = UIImage(data: teamImageData[indexPath.row])!
+        var fetchedImage = UIImage()
+        if !teamImageData.isEmpty {
+            if teamImageData[indexPath.row] != nil && UIImage(data: teamImageData[indexPath.row]) != nil {
+                fetchedImage = UIImage(data: teamImageData[indexPath.row])!
+            }
+            
+        }
         let resizedImage = self.resizeImage(image: fetchedImage, width: 50, height: 50)
         cell.profileImage.layer.cornerRadius = 25
         cell.profileImage.image = resizedImage

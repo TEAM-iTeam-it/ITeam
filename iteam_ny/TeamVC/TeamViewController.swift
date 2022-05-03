@@ -115,6 +115,7 @@ class TeamViewController: UIViewController {
         let teamdb = db.child("user").child(Auth.auth().currentUser!.uid)
         teamdb.observeSingleEvent(of: .value, with: { [self] (snapshot) in
             
+            var userTeamExist: Bool = false
             
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
@@ -122,6 +123,7 @@ class TeamViewController: UIViewController {
                 
 
                 if snap.key == "userTeam" {
+                    userTeamExist = true
                     // 꾸린 팀원이 없을 때
                     if value == nil || value == "" {
                         haveMember = false
@@ -143,8 +145,10 @@ class TeamViewController: UIViewController {
                             haveTeamProfile = false
                         }
                     }
-                    
                 }
+            }
+            if userTeamExist == false {
+                haveMember = false
             }
         
         })

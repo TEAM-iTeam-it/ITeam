@@ -121,9 +121,7 @@ class CreateTeamPartViewController: UIViewController {
             clickedPartArr.append("개발자")
         }
         clickedAllPartArr.append(clickedPartArr)
-        print("clickedAllPartArr \(clickedAllPartArr)")
         clickedAllPartArr.append(clckedDetailPart)
-        print("clickedAllPartArr \(clickedAllPartArr)")
         delegate?.sendData(data: clickedAllPartArr)
         dismiss(animated: true, completion: nil)
     }
@@ -210,31 +208,41 @@ extension CreateTeamPartViewController: UITableViewDelegate, UITableViewDataSour
             
             let detai2Cell = tableView.cellForRow(at: indexPath)! as! CreateTeamProfileDetailPartTableViewCell
             
-            
-            if detailPartDidClicked[indexPath.row] == false {
-                detailPartDidClicked[indexPath.row] = true
+            if !detailPartDidClicked.isEmpty {
+                if detailPartDidClicked[indexPath.row] == false {
+                    detailPartDidClicked[indexPath.row] = true
+                    detai2Cell.checkImageView.isHidden = false
+                    detai2Cell.partLabel.textColor = UIColor(named: "purple_184")
+                    if clckedDetailPart.contains(detai2Cell.partLabel.text!) {
+                    }
+                    else {
+                        clckedDetailPart.append(detai2Cell.partLabel.text!)
+                        print("detailCell : \(detai2Cell.partLabel.text!)")
+                    }
+                }
+                else {
+                    detailPartDidClicked[indexPath.row] = false
+                    detai2Cell.checkImageView.isHidden = true
+                    detai2Cell.partLabel.textColor = UIColor.black
+                    for i in 0...clckedDetailPart.count-1 {
+                        if clckedDetailPart[i] == detai2Cell.partLabel.text {
+                            clckedDetailPart.remove(at: i)
+                            break
+                        }
+                    }
+                }
                 
+            }
+            else {
+                num = 1
+                detailPartDidClicked[indexPath.row] = true
                 detai2Cell.checkImageView.isHidden = false
                 detai2Cell.partLabel.textColor = UIColor(named: "purple_184")
-                
-                
                 if clckedDetailPart.contains(detai2Cell.partLabel.text!) {
-                    
                 }
                 else {
                     clckedDetailPart.append(detai2Cell.partLabel.text!)
                     print("detailCell : \(detai2Cell.partLabel.text!)")
-                }
-            }
-            else {
-                detailPartDidClicked[indexPath.row] = false
-                detai2Cell.checkImageView.isHidden = true
-                detai2Cell.partLabel.textColor = UIColor.black
-                for i in 0...clckedDetailPart.count-1 {
-                    if clckedDetailPart[i] == detai2Cell.partLabel.text {
-                        clckedDetailPart.remove(at: i)
-                        break
-                    }
                 }
             }
             chipCollectionView.reloadData()

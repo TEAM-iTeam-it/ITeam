@@ -91,7 +91,9 @@ class MakingGameTeamCollectionViewCell: UICollectionViewCell {
         ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
             if snapshot.value as? String != nil {
                 var lastData: String! = snapshot.value as? String
-                lastDatas = lastData.components(separatedBy: ", ")
+                if lastData  != nil {
+                    lastDatas = lastData.components(separatedBy: ", ")
+                }
                 
                 print(lastDatas)
                 for i in 0..<lastDatas.count {

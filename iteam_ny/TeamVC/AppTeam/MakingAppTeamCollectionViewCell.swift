@@ -66,7 +66,9 @@ class MakingAppTeamCollectionViewCell: UICollectionViewCell {
         ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
             var lastDatas: [String] = []
             var lastData: String! = snapshot.value as? String
-            lastDatas = lastData.components(separatedBy: ", ")
+            if lastData  != nil {
+                lastDatas = lastData.components(separatedBy: ", ")
+            }
             if !lastDatas.contains(self.teamName.text!) {
                 if snapshot.value as? String == nil || snapshot.value as? String == "" {
                     var lastData: String! = snapshot.value as? String

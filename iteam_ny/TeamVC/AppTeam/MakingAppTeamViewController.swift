@@ -151,7 +151,9 @@ class MakingAppTeamViewController: UIViewController {
         
         ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
             let lastData: String! = snapshot.value as? String
-            self.lastDatas = lastData.components(separatedBy: ", ")
+            if lastData  != nil {
+                self.lastDatas = lastData.components(separatedBy: ", ")
+            }
             self.collectionView.reloadData()
         }
     }
