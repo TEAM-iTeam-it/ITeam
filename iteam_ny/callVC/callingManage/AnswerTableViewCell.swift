@@ -27,5 +27,9 @@ class AnswerTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    override func prepareForReuse() {
+        callStateBtn.backgroundColor = .clear
+        //callStateBtn = UIButton()
+    }
 
 }

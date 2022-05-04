@@ -482,6 +482,9 @@
                                                     </attributedString>
                                                     <attributedString key="attributedSubtitle"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="callRequestBtnAction:" destination="l5p-RZ-a5r" eventType="touchUpInside" id="HJv-Gk-b0Q"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

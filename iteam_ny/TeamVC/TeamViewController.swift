@@ -59,15 +59,21 @@ class TeamViewController: UIViewController {
     }
     var userTeamUIDList: [String] = []
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "TeamPages", bundle: nil)
+    let teamCallStoryboard: UIStoryboard = UIStoryboard(name: "TeamCallRequest", bundle: nil)
+    
     let db = Database.database().reference()
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         setUI()
         // 바뀐 데이터 불러오기
         fetchChangedData()
+        
+        let popupVC = teamCallStoryboard.instantiateViewController(withIdentifier: "endPopUpVC") as! TeamCallRequestPopupViewController
+        popupVC.delegate = self
     }
     
     func setUI() {
@@ -230,5 +236,11 @@ class TeamViewController: UIViewController {
     }
     
 }
-
+extension TeamViewController: SendCallPageDelegate {
+    func sendGotoCallPageSignal() {
+        self.tabBarController?.selectedIndex = 2
+    }
+    
+    
+}
 

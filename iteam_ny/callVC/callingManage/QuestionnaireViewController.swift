@@ -50,11 +50,11 @@ class QuestionnaireViewController: UIViewController {
         
        
         let values: [String: String] = [ "callTime": selectedTime ]
-
+        let stmt: [String: String] = [ "stmt": "대기 중" ]
        
         // 데이터 추가
         db.child("Call").child(teamName).updateChildValues(values)
-        
+        db.child("Call").child(teamName).updateChildValues(stmt)
         
         self.dismiss(animated: true, completion: nil)
     }

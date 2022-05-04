@@ -242,6 +242,22 @@ class TeamProfileViewController: UIViewController {
         self.dismiss(animated: true, completion: nil
         )
     }
+    @IBAction func callRequestBtnAction(_ sender: Any) {
+        print("통화요청됨")
+        let teamCallRequestStoryboard: UIStoryboard = UIStoryboard(name: "TeamCallRequest", bundle: nil)
+        
+        
+        if let nextView = teamCallRequestStoryboard.instantiateViewController(withIdentifier: "teamCallRequestNC") as? UINavigationController,
+           let nextViewChild = nextView.viewControllers.first as? TeamCallRequestViewController
+        {
+            // 수정 필요! -> nickname에 팀 이름 넣어도 되는지?
+            nextViewChild.receiverNickname = teamName
+            nextView.modalPresentationStyle = .fullScreen
+            present(nextView, animated: true, completion: nil)
+        }
+        
+        
+    }
     
     
 }
@@ -313,6 +329,7 @@ extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewD
         
         return cell
     }
+    
     // 이미지 리사이징
     func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
         UIGraphicsBeginImageContext(CGSize(width: width, height: height))

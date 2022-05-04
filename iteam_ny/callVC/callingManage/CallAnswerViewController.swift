@@ -29,8 +29,9 @@ class CallAnswerViewController: UIViewController {
     var questionArr: [[String]] = []
     var callTimeArrSend: [[String]] = []
     var questionArrSend: [[String]] = []
+    var didISent: [Bool] = []
     var hasReceived: Bool = false
-    var callerNickname: String = ""
+    var fetchedInputUIDToNickName: String = ""
     var teamIndex: [String] = []
     var teamIndexForSend: [String] = []
     
@@ -107,12 +108,14 @@ class CallAnswerViewController: UIViewController {
                             newValue["teamName"] = snap.key
                             myCallTime.append(newValue)
                             hasReceived = true
+                            didISent.append(false)
                             break
                         }
                         if key as! String == "callerUid" && content as! String == Auth.auth().currentUser?.uid {
                             var newValue = value as! [String : String]
                             newValue["teamName"] = snap.key
                             myCallTime.append(newValue)
+                            didISent.append(true)
                             break
                         }
                     }
@@ -126,7 +129,7 @@ class CallAnswerViewController: UIViewController {
                             
                             callTimeArr.append((myCallTime[i]["callTime"]?.components(separatedBy: ", "))!)
                             questionArr.append((myCallTime[i]["Question"]?.components(separatedBy: ", "))!)
-                            
+                            print("내가 받은 경우 질문 \(questionArr)")
                             if myCallTime[i]["teamName"] != nil {
                                 print("룰루")
                                 teamIndex.append(myCallTime[i]["teamName"]!)
@@ -137,7 +140,8 @@ class CallAnswerViewController: UIViewController {
                         if myCallTime[i]["callerUid"] == Auth.auth().currentUser?.uid {
                             fetchUID(nickname: myCallTime[i]["receiverNickname"]!, stmt: myCallTime[i]["stmt"]!)
                             callTimeArrSend.append((myCallTime[i]["callTime"]?.components(separatedBy: ", "))!)
-                            questionArrSend.append((myCallTime[i]["Question"]?.components(separatedBy: ", "))!)
+                            questionArr.append((myCallTime[i]["Question"]?.components(separatedBy: ", "))!)
+                            print("내가 건 경우 \(questionArr)")
                             if myCallTime[i]["teamName"] != nil {
                                 print("룰루")
                                 teamIndexForSend.append(myCallTime[i]["teamName"]!)
@@ -256,7 +260,7 @@ class CallAnswerViewController: UIViewController {
                 if snap.key == "userProfile" {
                     for (key, content) in value! {
                         if key as! String == "nickname" {
-                            callerNickname = content as! String
+                            fetchedInputUIDToNickName = content as! String
                            
                         }
                     }
@@ -265,6 +269,7 @@ class CallAnswerViewController: UIViewController {
             }
         }
     }
+
     
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
@@ -363,6 +368,8 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnswerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AnswerPersonCell", for: indexPath) as! AnswerTableViewCell
         cell.nicknameLabel.text = personList[indexPath.row].nickname
+        
+        
         // 같은 학교 처리
         if cell.nicknameLabel.text == "시연" {
             cell.sameSchoolLabel.layer.borderWidth = 0.5
@@ -377,6 +384,8 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             cell.sameSchoolLabel.isHidden = true
         }
+        
+
         
         cell.positionLabel.text = personList[indexPath.row].position
      //   cell.callStateBtn.titleLabel?.font = .systemFont(ofSize: 13)
@@ -425,14 +434,9 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.callStateBtn.setTitleColor(UIColor(named: "gray_51"), for: .normal)
             cell.callStateBtn.backgroundColor = nil
         }
-        else if personList[indexPath.row].callStm == "통화대기" {
-            cell.callStateBtn.setTitle("통화", for: .normal)
-            cell.callStateBtn.setTitleColor(.white, for: .normal)
-            cell.callStateBtn.backgroundColor = UIColor(named: "purple_184")
-        }
+    
         
-        else if personList[indexPath.row].callStm == "통화시작" {
-            cell.callStateBtn.setTitle("통화", for: .normal)
+        else if personList[indexPath.row].callStm == "통화" {
             cell.callStateBtn.setTitleColor(.white, for: .normal)
             cell.callStateBtn.layer.cornerRadius = cell.callStateBtn.frame.height/2
             cell.callStateBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -455,29 +459,88 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
+        
+        
         if personList[indexPath.row].callStm == "대기 중" {
+            // 수정 필요-> 내가 받은 경우, 보낸 경우 구분해야함
+            let waitingRoomVC = thisStoryboard.instantiateViewController(withIdentifier: "waitingRoomVC") as! ChannelWaitingViewController
+            waitingRoomVC.modalPresentationStyle = .fullScreen
+            
+            // 1. 내가 보낸 경우
+            if didISent[indexPath.row] {
+                
+                print(personList[indexPath.row].nickname)
+                var indexCount = -1
+                
+                for i in 0...indexPath.row {
+                    if personList[i].callStm == "대기 중" {
+                        indexCount += 1
+                    }
+                }
+                
+                // 받는 사람
+                waitingRoomVC.nickname = personList[indexPath.row].nickname
+                var position = personList[indexPath.row].position
+                waitingRoomVC.position = position
+                
+                //personList[indexPath.row].
+                
+                waitingRoomVC.fromPerson = myNickname
+                waitingRoomVC.toPerson = personList[indexPath.row].nickname
+                waitingRoomVC.questionArr = questionArr[indexPath.row]
+                waitingRoomVC.callTime = callTimeArrSend[indexCount][0]
+                
+                // waitingRoomVC.profile = personList[(sender as? Int)!].profileImg
+            }
+            // 2. 내가 승인한 경우
+            else {
+                print(personList[indexPath.row].nickname)
+                var indexCount = -1
+                
+                for i in 0...indexPath.row {
+                    if personList[i].callStm == "대기 중" {
+                        indexCount += 1
+                    }
+                }
+                
+                // 받는 사람
+                waitingRoomVC.nickname = personList[indexPath.row].nickname
+                var position = personList[indexPath.row].position
+                waitingRoomVC.position = position
+                
+                //personList[indexPath.row].
+                
+                waitingRoomVC.fromPerson = personList[indexPath.row].nickname
+                waitingRoomVC.toPerson = myNickname
+                waitingRoomVC.questionArr = questionArr[indexPath.row]
+                waitingRoomVC.callTime = callTimeArr[indexCount][0]
+            }
+            
+            present(waitingRoomVC, animated: true, completion: nil)
+            
+            
+        }
+        else if personList[indexPath.row].callStm == "요청됨" {
             let historyVC = thisStoryboard.instantiateViewController(withIdentifier: "historyVC") as! CallRequstHistoryViewController
             historyVC.modalPresentationStyle = .fullScreen
             
             var indexCount = -1
             
             for i in 0...indexPath.row {
-                if personList[i].callStm == "대기 중" {
+                if personList[i].callStm == "요청됨" {
                     indexCount += 1
                 }
             }
             print("indexCount \(indexCount)")
             historyVC.callTime = callTimeArrSend[indexCount]
             historyVC.person = personList[indexPath.row]
-            historyVC.questionArr = questionArrSend[indexCount]
+            historyVC.questionArr = questionArr[indexPath.row]
             historyVC.teamIndex = teamIndexForSend[indexCount]
             
             present(historyVC, animated: true, completion: nil)
         }
-        else if personList[indexPath.row].callStm == "통화대기" {
-            performSegue(withIdentifier: "waitingVC", sender: indexPath.row)
-        }
-        else if personList[indexPath.row].callStm == "통화시작" {
+        else if personList[indexPath.row].callStm == "통화" {
             performSegue(withIdentifier: "startVC", sender: indexPath.row)
         }
         else if personList[indexPath.row].callStm == "요청옴" {
@@ -493,9 +556,9 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 nextViewChild.times = callTimeArr[indexCount]
-                nextViewChild.questionArr = questionArr[indexCount]
+                nextViewChild.questionArr = questionArr[indexPath.row]
                 nextViewChild.teamName = teamIndex[indexCount]
-                nextViewChild.callerNickname = callerNickname
+                nextViewChild.callerNickname = fetchedInputUIDToNickName
                 
                 nextView.modalPresentationStyle = .fullScreen
                 self.present(nextView, animated: true, completion: nil)
