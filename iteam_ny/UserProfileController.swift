@@ -74,12 +74,29 @@ class UserProfileController: UIViewController{
 //            contactLink.text = detail.contactLink
         
         userName.text = basicinfo.nickname
-        partLabel.text = basicinfo.partDetail + basicinfo.part
+        partLabel.text = basicinfo.partDetail
         purposeLabel.text = detail.purpose
         characterLabel.text = charindex[0]
         characterLabel2.text = charindex[1]
         characterLabel3.text = charindex[2]
+        toolNlanguage.text = basicinfo.portfolio.toolNLanguage
+        Interest.text = basicinfo.portfolio.interest
+        date.text = basicinfo.portfolio.ex0.date
+        projectDetail.text = basicinfo.portfolio.ex0.exDetail
+        callTime.text = basicinfo.portfolio.calltime
+        portfolioLabel.text = basicinfo.portfolio.portfolioLink
+        contactLink.text = basicinfo.portfolio.contactLink
+        
             
+        }
+    
+    @IBAction func sendData(_ sender: UIButton) {
+            guard let vc = self.storyboard?.instantiateViewController(identifier: "SetATimeViewController") as? SetATimeViewController else {
+                return
+            }
+       let userName = userName.text
+        vc.senderid = userName!
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     
 }

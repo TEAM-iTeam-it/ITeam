@@ -1,8 +1,8 @@
 //
-//  resetViewController.swift
+//  resetCharacterView.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/04/12.
+//  Created by 성의연 on 2022/04/19.
 //
 
 import UIKit
@@ -10,31 +10,17 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class resetViewController: UIViewController {
+class resetCharacterView: UIViewController {
 
-    // Firebase Realtime Database 루트
-//    var ref: DatabaseReference!
-    
+    var ref: DatabaseReference!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
-    // 수식어 클릭 제어를 위한 변수
     var checkedBtn_property: [String] = []
     
-    // 지역 선택 활성화를 위한 변수
-    var isRegionON: Bool = true
-    
-    
-    // 수식어 다음 버튼
     @IBOutlet weak var propertyBtn: UIBarButtonItem!
     
-
-    // 수식어 버튼 일괄 관리
     @IBOutlet var propertyBtns: [UIButton]!
-    // 지역 상관없이 버튼
-    // 지역탭 다음으로 넘어가기 위한 변수
 
-    
-    // [Button action] 수식어 선택 제어
     @IBAction func propertyBtn(_ sender: UIButton) {
         // 클릭 제어
         if !checkedBtn_property.contains((sender.titleLabel?.text)!) {
@@ -77,10 +63,6 @@ class resetViewController: UIViewController {
      print(checkedBtn_property)
     }
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let propertyBtns = propertyBtns {
@@ -107,4 +89,26 @@ class resetViewController: UIViewController {
         return result
     }
     
+    @IBAction func saveClicked(_ sender: Any) {
+
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        var propertyString: String = ""
+        for i in 0..<checkedBtn_property.count {
+            if i == checkedBtn_property.count-1 {
+                propertyString += checkedBtn_property[i]
+            }
+            else {
+                propertyString += "\(checkedBtn_property[i]), "
+            }
+        }
+        let values: [String: String] = [ "character": propertyString]
+        
+        ref = Database.database().reference()
+
+        ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
+    }
 }
+    
+

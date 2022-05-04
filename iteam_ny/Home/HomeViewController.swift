@@ -7,15 +7,15 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
-class HomeViewController: UIViewController{
-    
+class HomeViewController: UIViewController, PickpartDataDelegate{
+    @IBOutlet weak var myPart: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memberStackVIew: UIStackView!
 
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var addFriendButton: UIButton!
-    
     @IBAction func addEntry(_ sender: UIButton) {
         
         let stroyboard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -23,9 +23,12 @@ class HomeViewController: UIViewController{
         
         alertPopupVC.modalPresentationStyle = .overCurrentContext
         alertPopupVC.modalTransitionStyle = .crossDissolve
+        alertPopupVC.delegate = self
         
         self.present(alertPopupVC, animated: true, completion: nil)
         
+        }
+    func SendTimeData(data: String) {
         // stack view에 있는 add button을 가져온다.
                 guard let addButtonContainerView = memberStackVIew.arrangedSubviews.last else {
                     fatalError("Expected at least one arranged view in the stack view")
@@ -56,7 +59,7 @@ class HomeViewController: UIViewController{
     }
     // 수직 스택뷰 안에 들어갈 수평 스택뷰들 만든다.
         private func createEntryView() -> UIView {
-            
+
             let pickimage = UIButton()
             pickimage.widthAnchor.constraint(equalToConstant: 70).isActive = true
             // 버튼 넓이 300
@@ -93,8 +96,8 @@ class HomeViewController: UIViewController{
             stack.addArrangedSubview(numberLabel)
 
             return stack
-        }
-    
+    }
+
     var ref: DatabaseReference! //Firebase Realtime Database
     
     var userList: [Uid] = []
@@ -105,6 +108,19 @@ class HomeViewController: UIViewController{
            
 //            ref = Database.database().reference()
             ref = Database.database().reference().child("user")
+            
+           // 내정보 가져오기
+            let currentUser = Auth.auth().currentUser
+            ref.child((currentUser?.uid)!).child("userProfile").observeSingleEvent(of: .value, with: { snapshot in
+              // Get user value
+              let value = snapshot.value as? NSDictionary
+              let partDetail = value?["partDetail"] as? String ?? ""
+                
+                self.myPart.text = "\(partDetail)"
+                
+            }) { error in
+              print(error.localizedDescription)
+            }
             
             //UITableView Cell Register
             let nibName = UINib(nibName: "UserListCell", bundle: nil)
@@ -176,6 +192,7 @@ class HomeViewController: UIViewController{
             addFriendButton.layer.shadowOpacity = 0.3 // alpha값
             
             
+
        }
 
         override func didReceiveMemoryWarning() {
@@ -197,8 +214,8 @@ class HomeViewController: UIViewController{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserListCell",for: indexPath) as? UserListCell else {return UITableViewCell()}
                 
             cell.userName.text = "\(userList[indexPath.row].userProfile.nickname)"
-            cell.school.text = "\(userList[indexPath.row].userProfile.schoolName)위"
-            cell.partLabel.text = "\(userList[indexPath.row].userProfile.partDetail)\(userList[indexPath.row].userProfile.part)"
+            cell.school.text = "\(userList[indexPath.row].userProfile.schoolName)"
+            cell.partLabel.text = "\(userList[indexPath.row].userProfile.partDetail) • "
             cell.userPurpose.text = "\(userList[indexPath.row].userProfileDetail.purpose)"
             
                return cell

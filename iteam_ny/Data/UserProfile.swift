@@ -24,6 +24,7 @@ struct UserProfile: Codable{
     let part: String
     let partDetail: String
     let schoolName: String
+    let portfolio : Portfolio
 }
 
 struct UserProfileDetail : Codable{
@@ -31,6 +32,20 @@ struct UserProfileDetail : Codable{
     let character : String
     let purpose : String
     let wantGrade : String
+}
+
+struct Portfolio: Codable {
+    let calltime: String
+    let contactLink : String
+    let ex0 : EX0
+    let interest : String
+    let portfolioLink : String
+    let toolNLanguage : String
+}
+struct EX0: Codable {
+    let date : String
+    let exDetail : String
+    
 }
 
 //struct UserProfile: Codable{
