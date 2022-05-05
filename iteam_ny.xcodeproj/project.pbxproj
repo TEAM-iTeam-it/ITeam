@@ -152,9 +152,12 @@
 		087A23FA27FC3D7F00E76893 /* icMoreRight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23F727FC3D7E00E76893 /* icMoreRight@3x.png */; };
 		087A23FB27FC3D7F00E76893 /* icMoreRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23F827FC3D7E00E76893 /* icMoreRight.png */; };
 		087A23FD27FC6F4000E76893 /* CallTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23FC27FC6F4000E76893 /* CallTimePickerViewController.swift */; };
+		087A4C7C2824380200FC3F79 /* TeamProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A4C7B2824380200FC3F79 /* TeamProfile.swift */; };
 		087FA8C027E9B942000E741B /* rectangleEditImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BD27E9B941000E741B /* rectangleEditImage.png */; };
 		087FA8C127E9B942000E741B /* rectangleEditImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */; };
 		087FA8C227E9B942000E741B /* rectangleEditImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */; };
+		08922A75282455BD002F24D1 /* ActualGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08922A73282455BD002F24D1 /* ActualGradientButton.swift */; };
+		08922A76282455BD002F24D1 /* ArrayExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08922A74282455BD002F24D1 /* ArrayExtention.swift */; };
 		08AE418D28057C0E007CBE5F /* DetailProfileProjectExViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */; };
 		08AE4191280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4190280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift */; };
 		08AE41952805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE41942805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift */; };
@@ -171,14 +174,11 @@
 		08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */; };
 		08B8319A280955FA00135893 /* FirstEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B83199280955FA00135893 /* FirstEntryViewController.swift */; };
 		08BC2939281FBF5E00C6214F /* TeamAddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */; };
-		08BC293B281FD27900C6214F /* ArrayExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC293A281FD27900C6214F /* ArrayExtention.swift */; };
 		08BC293D281FEA7600C6214F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC293C281FEA7600C6214F /* GradientView.swift */; };
 		08BC293F281FEE9800C6214F /* UIVIewToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC293E281FEE9800C6214F /* UIVIewToUIImage.swift */; };
-		08BC2941281FEFD600C6214F /* ActualGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC2940281FEFD600C6214F /* ActualGradientButton.swift */; };
 		08BFBE9727F590D800A6F6B0 /* Mypages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */; };
 		08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */; };
 		08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */; };
-		08F65F6E2817A0C8008E9B02 /* TeamProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F65F6D2817A0C8008E9B02 /* TeamProfile.swift */; };
 		1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3B27FD868500A5DE47 /* Main.storyboard */; };
 		1F304C3F27FD86D000A5DE47 /* JoinPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */; };
 		1F55CF152751F19100CD35EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55CF142751F19100CD35EC /* AppDelegate.swift */; };
@@ -360,9 +360,12 @@
 		087A23F727FC3D7E00E76893 /* icMoreRight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icMoreRight@3x.png"; sourceTree = "<group>"; };
 		087A23F827FC3D7E00E76893 /* icMoreRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icMoreRight.png; sourceTree = "<group>"; };
 		087A23FC27FC6F4000E76893 /* CallTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallTimePickerViewController.swift; sourceTree = "<group>"; };
+		087A4C7B2824380200FC3F79 /* TeamProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamProfile.swift; sourceTree = "<group>"; };
 		087FA8BD27E9B941000E741B /* rectangleEditImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rectangleEditImage.png; sourceTree = "<group>"; };
 		087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@2x.png"; sourceTree = "<group>"; };
 		087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@3x.png"; sourceTree = "<group>"; };
+		08922A73282455BD002F24D1 /* ActualGradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActualGradientButton.swift; sourceTree = "<group>"; };
+		08922A74282455BD002F24D1 /* ArrayExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtention.swift; sourceTree = "<group>"; };
 		08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileProjectExViewController.swift; sourceTree = "<group>"; };
 		08AE4190280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileToolNLanguageViewController.swift; sourceTree = "<group>"; };
 		08AE41942805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileAllToolNLangCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -379,14 +382,11 @@
 		08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileViewController.swift; sourceTree = "<group>"; };
 		08B83199280955FA00135893 /* FirstEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEntryViewController.swift; sourceTree = "<group>"; };
 		08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddAlertViewController.swift; sourceTree = "<group>"; };
-		08BC293A281FD27900C6214F /* ArrayExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArrayExtention.swift; path = ../../../../ArrayExtention.swift; sourceTree = "<group>"; };
 		08BC293C281FEA7600C6214F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		08BC293E281FEE9800C6214F /* UIVIewToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewToUIImage.swift; sourceTree = "<group>"; };
-		08BC2940281FEFD600C6214F /* ActualGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActualGradientButton.swift; path = ../../../../ActualGradientButton.swift; sourceTree = "<group>"; };
 		08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypages.storyboard; sourceTree = "<group>"; };
 		08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileViewController.swift; sourceTree = "<group>"; };
 		08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		08F65F6D2817A0C8008E9B02 /* TeamProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeamProfile.swift; path = ../../../../TeamProfile.swift; sourceTree = "<group>"; };
 		113CF45F4377AA921D36EAFC /* Pods_iteam_ny.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iteam_ny.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA33962F2ADE98770A83FFD /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
 		1F304C3C27FD868500A5DE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -562,12 +562,12 @@
 		0863BCF2280BC6F200AFB2B9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				08922A73282455BD002F24D1 /* ActualGradientButton.swift */,
+				08922A74282455BD002F24D1 /* ArrayExtention.swift */,
 				0863BCF3280BC70700AFB2B9 /* ScrollViewExtension.swift */,
 				082FEFE0281DC383007B4AFB /* ImageViewExtension.swift */,
-				08BC293A281FD27900C6214F /* ArrayExtention.swift */,
 				08BC293C281FEA7600C6214F /* GradientView.swift */,
 				08BC293E281FEE9800C6214F /* UIVIewToUIImage.swift */,
-				08BC2940281FEFD600C6214F /* ActualGradientButton.swift */,
 				083AFB202821708900B2AF00 /* DateExtention.swift */,
 				083AFB242821969800B2AF00 /* TextViewExtension.swift */,
 			);
@@ -861,10 +861,10 @@
 		1F55CF5C2755E2EB00CD35EC /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				087A4C7B2824380200FC3F79 /* TeamProfile.swift */,
 				1F5AC97027D6BCE800146C0E /* UserProfile.swift */,
 				1F55CF4F2754A98C00CD35EC /* User.swift */,
 				0833417727F3437D005B4F31 /* Team.swift */,
-				08F65F6D2817A0C8008E9B02 /* TeamProfile.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1117,19 +1117,19 @@
 			files = (
 				0832B26928042FA700DED89B /* DetailProfileInterestViewController.swift in Sources */,
 				08AFB351281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift in Sources */,
-				08BC2941281FEFD600C6214F /* ActualGradientButton.swift in Sources */,
 				083AFB252821969800B2AF00 /* TextViewExtension.swift in Sources */,
 				1F5AC97427D6BEB600146C0E /* UserListCell.swift in Sources */,
 				0868B05827CB6E080018464B /* SettingSuccessViewController.swift in Sources */,
 				0833417827F3437E005B4F31 /* Team.swift in Sources */,
 				0868B05627CB6E080018464B /* DetailProfileViewController.swift in Sources */,
+				08922A75282455BD002F24D1 /* ActualGradientButton.swift in Sources */,
 				08AE41952805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift in Sources */,
 				081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */,
 				08AFB34D281E78C0006D90B5 /* CallAgreeViewController.swift in Sources */,
 				081F267027F3960300F17332 /* MakingGameTeamViewController.swift in Sources */,
+				08922A76282455BD002F24D1 /* ArrayExtention.swift in Sources */,
 				081F265427F3903D00F17332 /* MakingWebTeamViewController.swift in Sources */,
 				0868B04827CB6D930018464B /* RequestTableViewCell.swift in Sources */,
-				08BC293B281FD27900C6214F /* ArrayExtention.swift in Sources */,
 				08B8319A280955FA00135893 /* FirstEntryViewController.swift in Sources */,
 				08AFB353281F1415006D90B5 /* CallRefusePopupViewController.swift in Sources */,
 				08BC293F281FEE9800C6214F /* UIVIewToUIImage.swift in Sources */,
@@ -1162,7 +1162,6 @@
 				08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */,
 				0868B01E27CB6A6C0018464B /* JoinSuccessViewController.swift in Sources */,
 				08657BE027F4874B00FDEACD /* QuestionViewController.swift in Sources */,
-				08F65F6E2817A0C8008E9B02 /* TeamProfile.swift in Sources */,
 				0868B01F27CB6A6C0018464B /* JoinViewController.swift in Sources */,
 				1F5AC97127D6BCE800146C0E /* UserProfile.swift in Sources */,
 				0868B04627CB6D930018464B /* Person.swift in Sources */,
@@ -1184,6 +1183,7 @@
 				0811308D280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift in Sources */,
 				0833418627F35A80005B4F31 /* FavorTeamViewController.swift in Sources */,
 				081F264C27F3878000F17332 /* TeamViewController.swift in Sources */,
+				087A4C7C2824380200FC3F79 /* TeamProfile.swift in Sources */,
 				087A23E827FAEF7400E76893 /* CreateTeamPartViewController.swift in Sources */,
 				0832B26528040FD000DED89B /* DetailProfileProjectTableViewCell.swift in Sources */,
 				080F9C2627E9EBE00055FAF8 /* CallRequstHistoryViewController.swift in Sources */,
