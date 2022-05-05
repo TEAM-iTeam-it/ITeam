@@ -6,38 +6,149 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
 
 class MakingWebTeamViewController: UIViewController {
 
-    var teamList: [Team] = []
-    var images: [String] = []
+    @IBOutlet weak var collView: UICollectionView!
+    var teamList: [TeamProfile] = []
+    var teamNameList: [String] = []
+    var memberListArr: [[String]] = [[]]
+    // 프로필 이미지 URL을 위한 변수
+    var imageURL: URL  = NSURL() as URL
+    var imageData: [[Data]] = [[]]
+    let db = Database.database().reference()
+    var didFetched: Bool = false {
+        didSet {
+            self.collView.reloadData()
+        }
+    }
+    var lastDatas: [String] = []
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
-        let firstTeamImages: [String] = ["imgUser10.png", "imgUser2.png", "imgUser3.png"]
-        let secondTeamImages: [String] = ["imgUser2.png", "imgUser10.png"]
-        let firstTeam = Team(teamName: "mercy", purpose: "창업", part: "기획자, 개발자 구인 중", images: firstTeamImages)
-        let secondTeam = Team(teamName: "가온누리", purpose: "함께 논의해 봐요", part: "기획자 구인 중", images: secondTeamImages)
-        let thirdTeam = Team(teamName: "이성책임", purpose: "함께 논의해 봐요", part: "개발자 구인 중", images: firstTeamImages)
-        
-        
-        teamList.append(firstTeam)
-        teamList.append(secondTeam)
-        teamList.append(thirdTeam)
-        
-        super.viewWillAppear(false)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    // 더보기 버튼
     @IBAction func moreTeamBtn(_ sender: UIButton) {
         let storyboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.viewControllers.first as? AllTeamViewController {
             allTeamVC.teamKind = .web
+            allTeamVC.teamNameList = self.teamNameList
+            allTeamVC.favorTeamList = lastDatas
             allTeamNavigation.modalPresentationStyle = .fullScreen
            
             present(allTeamNavigation, animated: true, completion: nil)
+        }
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 데이터 받아오기
+        fetchData()
+        // 바뀐 데이터 불러오기
+        fetchChangedData()
+        
+        // 관심팀 받아오기
+        doesContainFavorTeam()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+    }
+    // 서버에서 팀 받아오기
+    func fetchData() {
+        self.memberListArr.removeAll()
+        
+        let favorTeamList = db.child("Team")
+        let query = favorTeamList.queryOrdered(byChild: "serviceType").queryEqual(toValue: "웹 서비스")
+        
+        query.observeSingleEvent(of: .value) { snapshot in
+            
+            guard let value = snapshot.value as? [String: Any] else { return }
+            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: Array(value.values), options: [])
+                let teamData = try JSONDecoder().decode([TeamProfile].self, from: jsonData)
+                self.teamList = teamData
+                self.teamNameList = Array(value.keys)
+                self.collView.reloadData()
+                
+                
+                // 한 팀의 멤버들 UID배열
+                for i in 0..<self.teamList.count {
+                    self.memberListArr.append([])
+                    self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
+                   // self.fetchImages(teamIndex: i)
+                }
+                
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    // cloud storage에서 사진 불러오기
+    func fetchImages(teamIndex: Int) {
+        
+        // 초기화를 위해 생성한 imageData index 비워주기
+        if teamIndex == 0 && imageData[0] != nil {
+            imageData.removeAll()
+        }
+        
+        // 미리 방 반들어줌
+        self.imageData.append(Array(repeating: Data(),count: memberListArr[teamIndex].count))
+     
+        // 한 팀의 이미지 받아오기
+        for memberIndex in 0..<memberListArr[teamIndex].count {
+            let userUID = memberListArr[teamIndex][memberIndex]
+            let storage = Storage.storage().reference().child("user_profile_image").child(userUID + ".jpg")
+            storage.downloadURL { url, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    // 다운로드 성공
+                    self.imageURL = url!
+                    let data = try? Data(contentsOf: self.imageURL)
+                   
+                    // 동적으로 데이터 세팅 및 collectionview 리로드
+                    DispatchQueue.main.async {
+                        self.imageData[teamIndex][memberIndex] = data!
+                        self.didFetched = true
+                    }
+                }
+            }
+        }
+        
+    }
+ 
+    // 바뀐 데이터 불러오기
+    func fetchChangedData() {
+        db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.fetchData()
+            }
+            
+        })
+        db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.doesContainFavorTeam()
+            }
+        })
+    }
+    
+    // 관심 팀에 속해있는지 확인
+    func doesContainFavorTeam() {
+        let user = Auth.auth().currentUser!
+        let ref = Database.database().reference()
+        var doesContainBool: Bool = false
+        
+        ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
+            let lastData: String! = snapshot.value as? String
+            if lastData  != nil {
+                self.lastDatas = lastData.components(separatedBy: ", ")
+            }
+            self.collView.reloadData()
         }
     }
 }
@@ -61,10 +172,21 @@ extension MakingWebTeamViewController: UICollectionViewDelegate, UICollectionVie
         cell.contentView.layer.masksToBounds = true
         cell.layer.masksToBounds = false
         
-        cell.teamName.text = teamList[indexPath.row].teamName + " 팀"
+        cell.teamName.text = teamNameList[indexPath.row] + " 팀"
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
-        cell.images = teamList[indexPath.row].images
+     //   cell.imageData = self.imageData[indexPath.row]
+        
+        if lastDatas.contains(cell.teamName.text!) {
+            cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            cell.likeButton.tintColor = UIColor(named: "purple_184")
+            cell.likeBool = true
+        }
+        else {
+            cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            cell.likeButton.tintColor = UIColor(named: "gray_196")
+            cell.likeBool = false
+        }
         
         return cell
     }
@@ -73,7 +195,10 @@ extension MakingWebTeamViewController: UICollectionViewDelegate, UICollectionVie
         if let allTeamNavigation = storyboard.instantiateInitialViewController() as? UINavigationController, let allTeamVC = allTeamNavigation.storyboard?.instantiateViewController(withIdentifier: "cellSelectedTeamProfileVC") as? TeamProfileViewController {
             // allTeamVC.teamKind = .favor
             allTeamVC.modalPresentationStyle = .fullScreen
-            allTeamVC.teamName = teamList[indexPath.row].teamName
+            allTeamVC.teamName = teamNameList[indexPath.row] + " 팀"
+            allTeamVC.teamProfile = teamList[indexPath.row]
+           // allTeamVC.teamImageData = imageData[indexPath.row]
+            allTeamVC.favorTeamList = lastDatas
             present(allTeamVC, animated: true, completion: nil)
         }
     }

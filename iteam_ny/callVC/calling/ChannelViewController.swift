@@ -10,6 +10,7 @@ import AgoraRtcKit
 
 class ChannelViewController: UIViewController {
 
+    @IBOutlet var callButtons: [UIButton]!
     @IBOutlet weak var leaveButton: UIButton!
     @IBOutlet weak var collection: UICollectionView!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
@@ -23,14 +24,19 @@ class ChannelViewController: UIViewController {
     
     // agoraRTtcKit
     var agkit: AgoraRtcEngineKit?
+    
     // uid
     var userID: UInt = 0
+    
     // 말하고 있는 사람들
     var activeSpeakers: Set<UInt> = []
+    
     // 말하고 있는 사람
     var activeSpeaker: UInt?
+    
     // 듣고 있는 사람
     var activeAudience: Set<UInt> = []
+    
     // 말하는 사람인지 듣는 사람인지 역할
     lazy var role:AgoraClientRole = name == "speaker" || name == "speaker2" ? .broadcaster : .audience
     
@@ -38,10 +44,20 @@ class ChannelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("hi")
+        
+        
         requestMicrophonePermission()
         connectAgora()
         joinChannel()
-        // Do any additional setup after loading the view.
+        
+        setUI()
+        
+    }
+    
+    func setUI() {
+        for i in 0..<callButtons.count {
+            callButtons[i].layer.cornerRadius = callButtons[0].frame.height/2
+        }
     }
     // 채널 연결
     func connectAgora() {
@@ -68,7 +84,7 @@ class ChannelViewController: UIViewController {
      }
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABAPF8+CLYql/tsBHY/w7V5QqFLqB3x0ZVxqoGK6Cq6J6HfaZ0AAAAAEABqGbu46CA8YgEAAQDnIDxi", channelId: "testToken10", info: nil, uid: userID,
+        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IAAvlMB6K7xJuF/M7YZPYmRHSvYzr6/cnigwFVLzWZgouzfvbuoAAAAAEABD/MfDr+lyYgEAAQCv6XJi", channelId: "testToken11", info: nil, uid: userID,
             joinSuccess: {(_, uid, elapsed) in
             self.userID = uid
             if self.role == .audience {
@@ -81,7 +97,7 @@ class ChannelViewController: UIViewController {
         })
     }
     @IBAction func leaveChannel(_ sender: UIButton) {
-        self.agkit?.createRtcChannel("testToken10")?.leave()
+        self.agkit?.createRtcChannel("testToken11")?.leave()
         self.agkit?.leaveChannel()
         AgoraRtcEngineKit.destroy()
         
@@ -91,15 +107,6 @@ class ChannelViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension ChannelViewController: AgoraRtcEngineDelegate {

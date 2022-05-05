@@ -9,5 +9,6 @@ import UIKit
 
 class MakingAppTeamImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userImage: UIImageView!
-    
+    @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var memberCountLabel: UILabel!
 }

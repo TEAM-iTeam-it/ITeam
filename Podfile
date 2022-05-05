@@ -3,7 +3,7 @@
 
 target 'iteam_ny' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+ use_frameworks!
 
   # Pods for iteam_ny
   pod 'AgoraRtcEngine_iOS', '~> 3.1.0'
@@ -13,7 +13,7 @@ target 'iteam_ny' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'MaterialComponents/BottomSheet'
-
+  pod 'Kingfisher', '~> 7.0' 
 
 
 post_install do |installer|
