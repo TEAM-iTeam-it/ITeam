@@ -29,14 +29,17 @@ class AddMemberAlertViewController: UIViewController {
         
         userUID = Auth.auth().currentUser!.uid
     }
-    @IBAction func addFriendList(_ sender: UIButton) {
-        addFriend()
+    @IBAction func sendFriendRequestAction(_ sender: UIButton) {
+        sendFriendRequest()
         let evaluVC = storyboard?.instantiateViewController(withIdentifier: "evaluVC") as! EvaluateViewController
         evaluVC.modalPresentationStyle = .fullScreen
+        evaluVC.otherPersonUID = otherPersonUID
         present(evaluVC, animated: true)
         
     }
-    func addFriend() {
+    
+    // 친구요청
+    func sendFriendRequest() {
         ref = Database.database().reference()
         
         var updateGiverUid: [String] = []

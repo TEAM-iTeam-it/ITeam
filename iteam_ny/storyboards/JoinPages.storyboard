@@ -4444,8 +4444,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="addFriendList:" destination="Gek-Ii-GB4" eventType="touchUpInside" id="4fc-Up-8tT"/>
-                                            <segue destination="7gV-Yt-bga" kind="modal" modalPresentationStyle="fullScreen" id="DcK-x2-ueu"/>
+                                            <action selector="sendFriendRequestAction:" destination="Gek-Ii-GB4" eventType="touchUpInside" id="20t-lJ-f6Q"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -4695,6 +4694,7 @@
                     <navigationItem key="navigationItem" id="e84-h2-v9i"/>
                     <connections>
                         <outlet property="nextBtn" destination="0Mc-xg-L0P" id="OH2-e1-26Z"/>
+                        <outlet property="titleLabel" destination="KOn-eS-L9M" id="QxC-HZ-8hH"/>
                         <outletCollection property="evaluateBtns" destination="Fnm-fb-Zbj" collectionClass="NSMutableArray" id="5IX-eY-qWM"/>
                         <outletCollection property="evaluateBtns" destination="M3t-Bj-6ej" collectionClass="NSMutableArray" id="ggI-RI-Azl"/>
                         <outletCollection property="evaluateBtns" destination="ZrT-xB-RUz" collectionClass="NSMutableArray" id="sex-Ve-7jg"/>

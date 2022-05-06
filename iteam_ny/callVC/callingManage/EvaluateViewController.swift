@@ -6,12 +6,25 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class EvaluateViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var evaluateBtns: [UIButton]!
     @IBOutlet weak var nextBtn: UIButton!
     var selectedBtn: [String] = []
+    var otherPersonUID: String = ""
+    let db = Database.database().reference()
+    var otherPersonName: String = "" {
+        willSet(newValue) {
+            DispatchQueue.main.async {
+                self.titleLabel.text = "\(newValue) 님과의 통화가 어땠나요?"
+            }
+        }
+    }
     
     @IBOutlet var evaluLabel: [UILabel]!
     
@@ -19,7 +32,8 @@ class EvaluateViewController: UIViewController {
         super.viewDidLoad()
 
         nextBtn.layer.cornerRadius = 8
-        // Do any additional setup after loading the view.
+        
+        fetchNickname(userUID: otherPersonUID)
     }
     @IBAction func nextBtnClicked(_ sender: UIButton) {
         self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
@@ -64,15 +78,25 @@ class EvaluateViewController: UIViewController {
         print(selectedBtn)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func fetchNickname(userUID: String)  {
+        let userdb = db.child("user").child(userUID)
+     
+        userdb.observeSingleEvent(of: .value) { [self] snapshot in
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let value = snap.value as? NSDictionary
+                
+                if snap.key == "userProfile" {
+                    for (key, content) in value! {
+                        if key as! String == "nickname" {
+                            otherPersonName = content as! String
+                           
+                        }
+                    }
+                }
+            }
+        }
     }
-    */
 
 }

@@ -386,7 +386,6 @@ class CallAnswerViewController: UIViewController {
                         }
                     }
                 }
-                
             }
         }
     }
