@@ -17,34 +17,44 @@ class PopupViewController: UIViewController {
     var subscribeBtnCompletionClosure2: (()-> Void)?
     var subscribeBtnCompletionClosure3: (()-> Void)?
     var delegate : PickpartDataDelegate?
+    var partCategory : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("PopupViewController - viewDidLoad() called")
     }
+    
     @IBAction func onBackBtnClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func onPlannerClicked(_ sender: Any) {
-        if let subscribeBtnCompletionClosure = subscribeBtnCompletionClosure {
-            subscribeBtnCompletionClosure()
-        }
+//        if let subscribeBtnCompletionClosure = subscribeBtnCompletionClosure {
+//            subscribeBtnCompletionClosure()
+//        }
+        partCategory = "기획자"
+        self.delegate?.SendCategoryData(data: partCategory)
         self.dismiss(animated: true, completion: nil)
         
         
     }
     
     @IBAction func onDesignerClicked(_ sender: Any) {
-        print("개발자 클릭")
+        print("디자이너 클릭")
+        partCategory = "디자이너"
+        self.delegate?.SendCategoryData(data: partCategory)
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onDeveloperClicked(_ sender: Any) {
+        partCategory = "개발자"
+        self.delegate?.SendCategoryData(data: partCategory)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 protocol PickpartDataDelegate {
-    func SendTimeData(data: String)
+    func SendCategoryData(data: String)
 
 }

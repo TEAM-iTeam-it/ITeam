@@ -190,7 +190,7 @@
 		1FFD2E3727FBEE420068520D /* btn_option.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E3427FBEE410068520D /* btn_option.png */; };
 		1FFD2E3C27FBF0BF0068520D /* img_user1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E3927FBF0BF0068520D /* img_user1@2x.png */; };
 		1FFD2E4427FC02650068520D /* ic_rate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E4127FC02650068520D /* ic_rate@3x.png */; };
-		4384A1749F5A7331A02452BB /* Pods_iteam_ny.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5ED9A5E9B3D809C5357F9B /* Pods_iteam_ny.framework */; };
+		2893BAE049A576D013CDC6A5 /* Pods_iteam_ny.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -397,9 +397,9 @@
 		1FFD2E3F27FC02650068520D /* ic_rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_rate.png; sourceTree = "<group>"; };
 		1FFD2E4027FC02650068520D /* ic_rate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_rate@2x.png"; sourceTree = "<group>"; };
 		1FFD2E4127FC02650068520D /* ic_rate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_rate@3x.png"; sourceTree = "<group>"; };
-		B38D0297ECEB69B9C6B18DF8 /* Pods-iteam_ny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.debug.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig"; sourceTree = "<group>"; };
-		DE5ED9A5E9B3D809C5357F9B /* Pods_iteam_ny.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iteam_ny.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFEF76A3615A39E86B3C2DB1 /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
+		495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iteam_ny.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EFF204D26DA93C72DBC9AC6 /* Pods-iteam_ny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.debug.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig"; sourceTree = "<group>"; };
+		6642C36A357F44465BFFEE7B /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,13 +407,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4384A1749F5A7331A02452BB /* Pods_iteam_ny.framework in Frameworks */,
+				2893BAE049A576D013CDC6A5 /* Pods_iteam_ny.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0692FB208D2964B6A486C1BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		080F9C1A27E9DC4B0055FAF8 /* icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,7 +763,7 @@
 				1F55CF122751F19100CD35EC /* Products */,
 				31B0739A0D86B84446828D2C /* Pods */,
 				1F304C3727FD855A00A5DE47 /* Recovered References */,
-				511D8D636C49DBE960BFD6ED /* Frameworks */,
+				0692FB208D2964B6A486C1BC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -884,18 +892,10 @@
 		31B0739A0D86B84446828D2C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B38D0297ECEB69B9C6B18DF8 /* Pods-iteam_ny.debug.xcconfig */,
-				EFEF76A3615A39E86B3C2DB1 /* Pods-iteam_ny.release.xcconfig */,
+				4EFF204D26DA93C72DBC9AC6 /* Pods-iteam_ny.debug.xcconfig */,
+				6642C36A357F44465BFFEE7B /* Pods-iteam_ny.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		511D8D636C49DBE960BFD6ED /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DE5ED9A5E9B3D809C5357F9B /* Pods_iteam_ny.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -905,11 +905,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F55CF252751F19200CD35EC /* Build configuration list for PBXNativeTarget "iteam_ny" */;
 			buildPhases = (
-				41B5B3FAD91955A3F976F969 /* [CP] Check Pods Manifest.lock */,
+				F42069CF3B315E292F155032 /* [CP] Check Pods Manifest.lock */,
 				1F55CF0D2751F19100CD35EC /* Sources */,
 				1F55CF0E2751F19100CD35EC /* Frameworks */,
 				1F55CF0F2751F19100CD35EC /* Resources */,
-				11A4C691842EE4C0E9F6EACC /* [CP] Embed Pods Frameworks */,
+				80E2D7A0BA130358CD5B99EB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1054,7 +1054,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11A4C691842EE4C0E9F6EACC /* [CP] Embed Pods Frameworks */ = {
+		80E2D7A0BA130358CD5B99EB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1071,7 +1071,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iteam_ny/Pods-iteam_ny-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		41B5B3FAD91955A3F976F969 /* [CP] Check Pods Manifest.lock */ = {
+		F42069CF3B315E292F155032 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1253,6 +1253,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RX53PD2JKA;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -1315,6 +1316,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RX53PD2JKA;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1340,13 +1342,13 @@
 		};
 		1F55CF262751F19200CD35EC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B38D0297ECEB69B9C6B18DF8 /* Pods-iteam_ny.debug.xcconfig */;
+			baseConfigurationReference = 4EFF204D26DA93C72DBC9AC6 /* Pods-iteam_ny.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3WXYTFH2K7;
+				DEVELOPMENT_TEAM = RX53PD2JKA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
@@ -1369,13 +1371,13 @@
 		};
 		1F55CF272751F19200CD35EC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFEF76A3615A39E86B3C2DB1 /* Pods-iteam_ny.release.xcconfig */;
+			baseConfigurationReference = 6642C36A357F44465BFFEE7B /* Pods-iteam_ny.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3WXYTFH2K7;
+				DEVELOPMENT_TEAM = RX53PD2JKA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
