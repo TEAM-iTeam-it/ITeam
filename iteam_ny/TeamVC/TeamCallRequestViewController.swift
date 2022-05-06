@@ -37,6 +37,7 @@ class TeamCallRequestViewController: UIViewController{
         }
     }
     var receiverNickname: String = ""
+    var receiverType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
