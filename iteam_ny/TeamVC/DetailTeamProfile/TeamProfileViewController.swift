@@ -242,6 +242,7 @@ class TeamProfileViewController: UIViewController {
         self.dismiss(animated: true, completion: nil
         )
     }
+    
     // 연락 요청 버튼
     @IBAction func callRequestBtnAction(_ sender: Any) {
         print("통화요청됨")

@@ -99,6 +99,7 @@ class TeamCallRequestViewController: UIViewController{
         }
         vc.dateTimes = dateTimes
         vc.receiverNickname = receiverNickname
+        vc.receiverType = receiverType
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

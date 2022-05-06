@@ -139,6 +139,7 @@
 		0868B08527CB6F2B0018464B /* asset121@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0868B08227CB6F2B0018464B /* asset121@2x.png */; };
 		0868B08627CB6F2B0018464B /* asset121@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0868B08327CB6F2B0018464B /* asset121@3x.png */; };
 		086A23DA280C5C7600B37C01 /* DetailProfileToolNLangCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A23D9280C5C7600B37C01 /* DetailProfileToolNLangCollectionView.swift */; };
+		086FAF662824F54E0075737B /* CallAnswerTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */; };
 		087A23DB27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */; };
 		087A23E327FACAB700E76893 /* icArrowDropDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */; };
 		087A23E427FACAB700E76893 /* icArrowDropDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23E127FACAB600E76893 /* icArrowDropDown.png */; };
@@ -370,6 +371,7 @@
 		0868B08227CB6F2B0018464B /* asset121@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asset121@2x.png"; sourceTree = "<group>"; };
 		0868B08327CB6F2B0018464B /* asset121@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asset121@3x.png"; sourceTree = "<group>"; };
 		086A23D9280C5C7600B37C01 /* DetailProfileToolNLangCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileToolNLangCollectionView.swift; sourceTree = "<group>"; };
+		086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAnswerTeamViewController.swift; sourceTree = "<group>"; };
 		087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icArrowDropDown@2x.png"; sourceTree = "<group>"; };
 		087A23E127FACAB600E76893 /* icArrowDropDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icArrowDropDown.png; sourceTree = "<group>"; };
@@ -647,7 +649,6 @@
 				0868B04027CB6D930018464B /* CallManageViewController.swift */,
 				0868B04427CB6D930018464B /* CallRequestViewController.swift */,
 				0868B04227CB6D930018464B /* EvaluateViewController.swift */,
-				0868B03F27CB6D930018464B /* Person.swift */,
 				0868B04127CB6D930018464B /* RequestTableViewCell.swift */,
 				080F9C2527E9EBE00055FAF8 /* CallRequstHistoryViewController.swift */,
 				08AFB34C281E78C0006D90B5 /* CallAgreeViewController.swift */,
@@ -658,6 +659,7 @@
 				0868B03527CB6D820018464B /* ChannelWaitingViewController.swift */,
 				083AFB342821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift */,
 				083AFB372821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift */,
+				086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */,
 			);
 			path = callingManage;
 			sourceTree = "<group>";
@@ -927,6 +929,7 @@
 			isa = PBXGroup;
 			children = (
 				087A4C7B2824380200FC3F79 /* TeamProfile.swift */,
+				0868B03F27CB6D930018464B /* Person.swift */,
 				1F5AC97027D6BCE800146C0E /* UserProfile.swift */,
 				0833417727F3437D005B4F31 /* Team.swift */,
 			);
@@ -1293,7 +1296,6 @@
 				0832B2672804156900DED89B /* DetailProfileExTableView.swift in Sources */,
 				08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */,
 				0868B03727CB6D830018464B /* UserCollectionViewCell.swift in Sources */,
-				1F55CF502754A98C00CD35EC /* User.swift in Sources */,
 				082FEFE1281DC383007B4AFB /* ImageViewExtension.swift in Sources */,
 				0820449A2809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift in Sources */,
 				0868B03C27CB6D830018464B /* ChannelWaitingViewController.swift in Sources */,
@@ -1322,6 +1324,7 @@
 				083AFB352821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift in Sources */,
 				083AFB272821BD0500B2AF00 /* TeamCallRequestPopupViewController.swift in Sources */,
 				081F265827F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift in Sources */,
+				086FAF662824F54E0075737B /* CallAnswerTeamViewController.swift in Sources */,
 				1F875FF9281837940051E89A /* resetPurposeViewController.swift in Sources */,
 				08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */,
 				1F64AF4E280ED3E400D7B2BD /* MyPageViewController.swift in Sources */,

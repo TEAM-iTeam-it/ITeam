@@ -18,10 +18,10 @@ class CallManageViewController: TabmanViewController, PageboyViewControllerDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let CallAnswerVC = UIStoryboard.init(name: "JoinPages", bundle: nil).instantiateViewController(withIdentifier: "CallAnswerVC") as! CallAnswerViewController
-        let CallRequestVC = UIStoryboard.init(name: "JoinPages", bundle: nil).instantiateViewController(withIdentifier: "CallRequestVC") as! CallRequestViewController
-        viewControllers.append(CallAnswerVC)
-        viewControllers.append(CallRequestVC)
+        let callAnswerVC = UIStoryboard.init(name: "JoinPages", bundle: nil).instantiateViewController(withIdentifier: "CallAnswerVC") as! CallAnswerViewController
+        let callAnswerTeamVC = UIStoryboard.init(name: "JoinPages", bundle: nil).instantiateViewController(withIdentifier: "CallAnswerTeamVC") as! CallAnswerTeamViewController
+        viewControllers.append(callAnswerVC)
+        viewControllers.append(callAnswerTeamVC)
 
         
         dataSource = self

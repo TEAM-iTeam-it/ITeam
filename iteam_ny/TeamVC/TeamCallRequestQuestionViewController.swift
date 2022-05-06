@@ -28,6 +28,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
     var callIndex: String = ""
     var dateTimes: [String] = []
     var receiverNickname: String = ""
+    var receiverType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -231,12 +232,14 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 let callTime: [String: String] = [ "callTime": callTimeString]
                 let callerUid: [String: Any] = ["callerUid": Auth.auth().currentUser?.uid]
                 let receiverNickname: [String: String] = ["receiverNickname": receiverNickname]
+                let receiverType: [String: String] = ["receiverType": receiverType]
                 let question: [String: String] = ["Question": questionString]
                 let stmt: [String: String] = ["stmt": "요청됨"]
                 
                 db.child("Call").child(callIndex).updateChildValues(callTime)
                 db.child("Call").child(callIndex).updateChildValues(callerUid)
                 db.child("Call").child(callIndex).updateChildValues(receiverNickname)
+                db.child("Call").child(callIndex).updateChildValues(receiverType)
                 db.child("Call").child(callIndex).updateChildValues(question)
                 db.child("Call").child(callIndex).updateChildValues(stmt)
             }
