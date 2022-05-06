@@ -7,6 +7,8 @@
 
 import UIKit
 import AgoraRtcKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class ChannelViewController: UIViewController {
 
@@ -37,9 +39,13 @@ class ChannelViewController: UIViewController {
     // 듣고 있는 사람
     var activeAudience: Set<UInt> = []
     
+    // 상대 UID
+    var otherPersonUID: String = ""
+    
     // 말하는 사람인지 듣는 사람인지 역할
     lazy var role:AgoraClientRole = name == "speaker" || name == "speaker2" ? .broadcaster : .audience
     
+    let db = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +57,8 @@ class ChannelViewController: UIViewController {
         joinChannel()
         
         setUI()
+        
+        fetchNickNameToUID(nickname: nickname)
         
     }
     
@@ -96,12 +104,29 @@ class ChannelViewController: UIViewController {
             print("joinChannel")
         })
     }
+    func fetchNickNameToUID(nickname: String)  {
+        let userdb = db.child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
+        userdb.observeSingleEvent(of: .value) { [self] snapshot in
+            var userUID: String = ""
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let value = snap.value as? NSDictionary
+                
+                userUID = snap.key
+            }
+            otherPersonUID = userUID
+        }
+    }
+    
     @IBAction func leaveChannel(_ sender: UIButton) {
         self.agkit?.createRtcChannel("testToken11")?.leave()
         self.agkit?.leaveChannel()
         AgoraRtcEngineKit.destroy()
         
-        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallClosedVC")
+        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallClosedVC") as! CallClosedViewController
+        print("channelViewController : \(otherPersonUID) ")
+        popupVC.otherPersonUID = otherPersonUID
         popupVC.modalPresentationStyle = .overFullScreen
         present(popupVC, animated: false, completion: nil)
     }

@@ -3582,7 +3582,7 @@
         <!--Channel View Controller-->
         <scene sceneID="RKF-JS-w2i">
             <objects>
-                <viewController id="Mog-jr-wdo" customClass="ChannelViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="callingVC" id="Mog-jr-wdo" customClass="ChannelViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3e9-1G-jGA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4046,7 +4046,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="7"/>
                                 </state>
                             </button>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pfV-3z-jft">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pfV-3z-jft">
                                 <rect key="frame" x="87" y="494" width="221" height="205"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -4067,7 +4067,6 @@
                         <outlet property="answerListTableView" destination="O31-Nz-GkJ" id="Hyt-U7-0q2"/>
                         <outlet property="conditionChangeBtn" destination="B19-4a-lhU" id="ViQ-c6-uOJ"/>
                         <outlet property="imageView" destination="pfV-3z-jft" id="swa-tN-rb5"/>
-                        <segue destination="Mog-jr-wdo" kind="modal" identifier="startVC" modalPresentationStyle="fullScreen" id="UCt-ci-GRz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3pX-Tj-77R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4445,6 +4444,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
+                                            <action selector="addFriendList:" destination="Gek-Ii-GB4" eventType="touchUpInside" id="4fc-Up-8tT"/>
                                             <segue destination="7gV-Yt-bga" kind="modal" modalPresentationStyle="fullScreen" id="DcK-x2-ueu"/>
                                         </connections>
                                     </button>
@@ -4496,7 +4496,7 @@
         <!--Evaluate View Controller-->
         <scene sceneID="UlF-id-lPe">
             <objects>
-                <viewController id="7gV-Yt-bga" customClass="EvaluateViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="evaluVC" id="7gV-Yt-bga" customClass="EvaluateViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PKQ-My-A0m">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5251,9 +5251,6 @@
             <point key="canvasLocation" x="-84.057971014492765" y="2631.6964285714284"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ftq-a0-YP5"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>

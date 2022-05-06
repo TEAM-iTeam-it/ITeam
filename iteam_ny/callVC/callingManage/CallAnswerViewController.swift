@@ -35,6 +35,15 @@ class CallAnswerViewController: UIViewController {
     var fetchedInputUIDToNickName: String = ""
     var teamIndex: [String] = []
     var teamIndexForSend: [String] = []
+    var nowRequestedUid: String = "" {
+        willSet(newValue) {
+            print(newValue)
+            callingOtherUid = newValue
+        }
+    }
+    var callingOtherUid: String = ""
+    
+   
     
     
     
@@ -68,7 +77,10 @@ class CallAnswerViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         
-        let url = "gs://iteam-test.appspot.com/user_profile_image/7DNtefn5EBPbSI8By0g1IeVS0Jg1.jpg"
+        // kingfisher 사용하기 위한 url
+        var url = "gs://iteam-test.appspot.com/user_profile_image/"
+        let uid: String = "7DNtefn5EBPbSI8By0g1IeVS0Jg1"
+        url = url + uid + ".jpg"
         imageView.setImage(with: url)
         
     }
@@ -440,32 +452,23 @@ class CallAnswerViewController: UIViewController {
                 destination.profile = personList[(sender as? Int)!].profileImg
             }
         }
-        else if segue.identifier == "startVC" {
-            if let destination = segue.destination as? ChannelViewController {
-               // let cell = sender as! AnswerTableViewCell
-                destination.nickname = personList[(sender as? Int)!].nickname
-                var position = personList[(sender as? Int)!].position
-                destination.position = String(position)
-                destination.name = name
-                destination.profile = personList[(sender as? Int)!].profileImg
-                
-            }
-        }
 
     }
     // nickname으로 uid찾기
-    func fetchUID(nickname: String) -> String {
-        var userUID: String = ""
+    
+    func fetchNickNameToUID(nickname: String)  {
         let userdb = db.child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
+            var userUID: String = ""
             
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
+                let value = snap.value as? NSDictionary
                 
                 userUID = snap.key
             }
+            nowRequestedUid = userUID
         }
-        return userUID
     }
 
 }
@@ -655,7 +658,18 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             present(historyVC, animated: true, completion: nil)
         }
         else if personList[indexPath.row].callStm == "통화" {
-            performSegue(withIdentifier: "startVC", sender: indexPath.row)
+            let callingVC = storyboard?.instantiateViewController(withIdentifier: "callingVC") as! ChannelViewController
+            
+            callingVC.nickname = personList[indexPath.row].nickname
+            var position = personList[indexPath.row].position
+            callingVC.position = String(position)
+           
+        
+            callingVC.name = name
+            callingVC.profile = personList[indexPath.row].profileImg
+            callingVC.modalPresentationStyle = .fullScreen
+            present(callingVC, animated: true, completion: nil)
+            
         }
         else if personList[indexPath.row].callStm == "요청옴" {
             
