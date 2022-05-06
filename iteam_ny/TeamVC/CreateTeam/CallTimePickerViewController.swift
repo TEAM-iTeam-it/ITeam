@@ -28,7 +28,7 @@ class CallTimePickerViewController: UIViewController {
         for i in 1...12 {
             time.append("\(String(i))시")
         }
-        for i in stride(from: 0, to: 51, by: 10) {
+        for i in 0...59 {
             minute.append("\(String(i))분")
         }
         view.layer.cornerRadius = 30

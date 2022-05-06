@@ -18,6 +18,14 @@
 		080F9C3027EA17470055FAF8 /* btnAdd1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2D27EA17460055FAF8 /* btnAdd1@2x.png */; };
 		080F9C3127EA17470055FAF8 /* btnAdd1.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2E27EA17460055FAF8 /* btnAdd1.png */; };
 		080F9C3227EA17470055FAF8 /* btnAdd1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 080F9C2F27EA17470055FAF8 /* btnAdd1@3x.png */; };
+		08113081280E78A7003B6D43 /* imgLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0811307E280E78A5003B6D43 /* imgLogo.png */; };
+		08113082280E78A7003B6D43 /* imgLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0811307F280E78A6003B6D43 /* imgLogo@2x.png */; };
+		08113083280E78A7003B6D43 /* imgLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08113080280E78A6003B6D43 /* imgLogo@3x.png */; };
+		08113087280E899C003B6D43 /* searchIconBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08113084280E8999003B6D43 /* searchIconBlack@2x.png */; };
+		08113088280E899C003B6D43 /* searchIconBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 08113085280E8999003B6D43 /* searchIconBlack.png */; };
+		08113089280E899C003B6D43 /* searchIconBlack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08113086280E899B003B6D43 /* searchIconBlack@3x.png */; };
+		0811308B280E8C15003B6D43 /* TeamProfileTeamListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */; };
+		0811308D280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */; };
 		081F264C27F3878000F17332 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264B27F3878000F17332 /* TeamViewController.swift */; };
 		081F264E27F38ADB00F17332 /* MakingAppTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */; };
 		081F265027F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */; };
@@ -48,6 +56,7 @@
 		0820449A2809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082044992809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift */; };
 		08248AE527D6475900733A12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08248AE427D6475900733A12 /* GoogleService-Info.plist */; };
 		082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082EF64727F58D8200C36736 /* NotifyPages.storyboard */; };
+		082FEFE1281DC383007B4AFB /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082FEFE0281DC383007B4AFB /* ImageViewExtension.swift */; };
 		0831AF3627E112180098D753 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0831AF3527E112180098D753 /* LogInViewController.swift */; };
 		0832B261280186CF00DED89B /* btnEdit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0832B25E280186CD00DED89B /* btnEdit@2x.png */; };
 		0832B262280186CF00DED89B /* btnEdit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0832B25F280186CE00DED89B /* btnEdit@3x.png */; };
@@ -66,6 +75,22 @@
 		0833418827F35B07005B4F31 /* FavorTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */; };
 		0833418F27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */; };
 		0835C36F27EDBF5900968626 /* TeamPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0835C36E27EDBF5900968626 /* TeamPages.storyboard */; };
+		083AFB192821559300B2AF00 /* TeamCallRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 083AFB182821559300B2AF00 /* TeamCallRequest.storyboard */; };
+		083AFB1B2821560200B2AF00 /* TeamCallRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB1A2821560200B2AF00 /* TeamCallRequestViewController.swift */; };
+		083AFB1D2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB1C2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift */; };
+		083AFB1F28215C2900B2AF00 /* CallDateNTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB1E28215C2900B2AF00 /* CallDateNTimeViewController.swift */; };
+		083AFB212821708900B2AF00 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB202821708900B2AF00 /* DateExtention.swift */; };
+		083AFB232821907600B2AF00 /* TeamQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB222821907600B2AF00 /* TeamQuestionTableViewCell.swift */; };
+		083AFB252821969800B2AF00 /* TextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB242821969800B2AF00 /* TextViewExtension.swift */; };
+		083AFB272821BD0500B2AF00 /* TeamCallRequestPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB262821BD0500B2AF00 /* TeamCallRequestPopupViewController.swift */; };
+		083AFB2B2821EEE700B2AF00 /* group216@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 083AFB282821EEE400B2AF00 /* group216@3x.png */; };
+		083AFB2C2821EEE700B2AF00 /* group216.png in Resources */ = {isa = PBXBuildFile; fileRef = 083AFB292821EEE500B2AF00 /* group216.png */; };
+		083AFB2D2821EEE700B2AF00 /* group216@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 083AFB2A2821EEE700B2AF00 /* group216@2x.png */; };
+		083AFB312821F05100B2AF00 /* ic_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 083AFB2E2821F04D00B2AF00 /* ic_check.png */; };
+		083AFB322821F05100B2AF00 /* ic_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 083AFB2F2821F04E00B2AF00 /* ic_check@2x.png */; };
+		083AFB332821F05100B2AF00 /* ic_check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 083AFB302821F04F00B2AF00 /* ic_check@3x.png */; };
+		083AFB352821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB342821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift */; };
+		083AFB382821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB372821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift */; };
 		0841522A27FD525000ADA61F /* TeamProfileBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0841522927FD525000ADA61F /* TeamProfileBottomSheetViewController.swift */; };
 		0841522E27FD71C400ADA61F /* btnClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 0841522B27FD71C100ADA61F /* btnClose.png */; };
 		0841522F27FD71C400ADA61F /* btnClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0841522C27FD71C200ADA61F /* btnClose@2x.png */; };
@@ -127,20 +152,30 @@
 		087A23FA27FC3D7F00E76893 /* icMoreRight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23F727FC3D7E00E76893 /* icMoreRight@3x.png */; };
 		087A23FB27FC3D7F00E76893 /* icMoreRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23F827FC3D7E00E76893 /* icMoreRight.png */; };
 		087A23FD27FC6F4000E76893 /* CallTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23FC27FC6F4000E76893 /* CallTimePickerViewController.swift */; };
+		087A4C7C2824380200FC3F79 /* TeamProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A4C7B2824380200FC3F79 /* TeamProfile.swift */; };
 		087FA8C027E9B942000E741B /* rectangleEditImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BD27E9B941000E741B /* rectangleEditImage.png */; };
 		087FA8C127E9B942000E741B /* rectangleEditImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */; };
 		087FA8C227E9B942000E741B /* rectangleEditImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */; };
+		08922A75282455BD002F24D1 /* ActualGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08922A73282455BD002F24D1 /* ActualGradientButton.swift */; };
+		08922A76282455BD002F24D1 /* ArrayExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08922A74282455BD002F24D1 /* ArrayExtention.swift */; };
 		08AE418D28057C0E007CBE5F /* DetailProfileProjectExViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */; };
 		08AE4191280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4190280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift */; };
 		08AE41952805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE41942805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift */; };
 		08AE41972805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE41962805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		08AE41992805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE41982805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift */; };
+		08AFB34D281E78C0006D90B5 /* CallAgreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AFB34C281E78C0006D90B5 /* CallAgreeViewController.swift */; };
+		08AFB34F281E880D006D90B5 /* CallAgree.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08AFB34E281E880D006D90B5 /* CallAgree.storyboard */; };
+		08AFB351281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AFB350281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift */; };
+		08AFB353281F1415006D90B5 /* CallRefusePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AFB352281F1415006D90B5 /* CallRefusePopupViewController.swift */; };
 		08B2F2ED27F75A05008F7085 /* teamPageLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2EA27F75A04008F7085 /* teamPageLogo@2x.png */; };
 		08B2F2EE27F75A05008F7085 /* teamPageLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2EB27F75A05008F7085 /* teamPageLogo@3x.png */; };
 		08B2F2EF27F75A05008F7085 /* teamPageLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2EC27F75A05008F7085 /* teamPageLogo.png */; };
 		08B2F2F127F77A0F008F7085 /* TeamPages_AllTeams.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */; };
 		08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */; };
 		08B8319A280955FA00135893 /* FirstEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B83199280955FA00135893 /* FirstEntryViewController.swift */; };
+		08BC2939281FBF5E00C6214F /* TeamAddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */; };
+		08BC293D281FEA7600C6214F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC293C281FEA7600C6214F /* GradientView.swift */; };
+		08BC293F281FEE9800C6214F /* UIVIewToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC293E281FEE9800C6214F /* UIVIewToUIImage.swift */; };
 		08BFBE9727F590D800A6F6B0 /* Mypages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */; };
 		08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */; };
 		08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */; };
@@ -190,7 +225,11 @@
 		1FFD2E3727FBEE420068520D /* btn_option.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E3427FBEE410068520D /* btn_option.png */; };
 		1FFD2E3C27FBF0BF0068520D /* img_user1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E3927FBF0BF0068520D /* img_user1@2x.png */; };
 		1FFD2E4427FC02650068520D /* ic_rate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E4127FC02650068520D /* ic_rate@3x.png */; };
+<<<<<<< HEAD
 		2893BAE049A576D013CDC6A5 /* Pods_iteam_ny.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */; };
+=======
+		EEDBD36EEE25D2F47C2CDB16 /* Pods_iteam_ny.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113CF45F4377AA921D36EAFC /* Pods_iteam_ny.framework */; };
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -205,6 +244,14 @@
 		080F9C2D27EA17460055FAF8 /* btnAdd1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnAdd1@2x.png"; sourceTree = "<group>"; };
 		080F9C2E27EA17460055FAF8 /* btnAdd1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnAdd1.png; sourceTree = "<group>"; };
 		080F9C2F27EA17470055FAF8 /* btnAdd1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnAdd1@3x.png"; sourceTree = "<group>"; };
+		0811307E280E78A5003B6D43 /* imgLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgLogo.png; sourceTree = "<group>"; };
+		0811307F280E78A6003B6D43 /* imgLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgLogo@2x.png"; sourceTree = "<group>"; };
+		08113080280E78A6003B6D43 /* imgLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgLogo@3x.png"; sourceTree = "<group>"; };
+		08113084280E8999003B6D43 /* searchIconBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchIconBlack@2x.png"; sourceTree = "<group>"; };
+		08113085280E8999003B6D43 /* searchIconBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchIconBlack.png; sourceTree = "<group>"; };
+		08113086280E899B003B6D43 /* searchIconBlack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchIconBlack@3x.png"; sourceTree = "<group>"; };
+		0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileTeamListViewController.swift; sourceTree = "<group>"; };
+		0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileTeamMemberTableViewCell.swift; sourceTree = "<group>"; };
 		081F264B27F3878000F17332 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingAppTeamViewController.swift; sourceTree = "<group>"; };
 		081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingAppTeamCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -235,6 +282,7 @@
 		082044992809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileProjectStartDateViewController.swift; sourceTree = "<group>"; };
 		08248AE427D6475900733A12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "firebase_source/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		082EF64727F58D8200C36736 /* NotifyPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotifyPages.storyboard; sourceTree = "<group>"; };
+		082FEFE0281DC383007B4AFB /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		0831AF3527E112180098D753 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		0832B25E280186CD00DED89B /* btnEdit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnEdit@2x.png"; sourceTree = "<group>"; };
 		0832B25F280186CE00DED89B /* btnEdit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnEdit@3x.png"; sourceTree = "<group>"; };
@@ -253,6 +301,22 @@
 		0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorTeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorTeamImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		0835C36E27EDBF5900968626 /* TeamPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamPages.storyboard; sourceTree = "<group>"; };
+		083AFB182821559300B2AF00 /* TeamCallRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamCallRequest.storyboard; sourceTree = "<group>"; };
+		083AFB1A2821560200B2AF00 /* TeamCallRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCallRequestViewController.swift; sourceTree = "<group>"; };
+		083AFB1C2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCallRequestQuestionViewController.swift; sourceTree = "<group>"; };
+		083AFB1E28215C2900B2AF00 /* CallDateNTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDateNTimeViewController.swift; sourceTree = "<group>"; };
+		083AFB202821708900B2AF00 /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
+		083AFB222821907600B2AF00 /* TeamQuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamQuestionTableViewCell.swift; sourceTree = "<group>"; };
+		083AFB242821969800B2AF00 /* TextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewExtension.swift; sourceTree = "<group>"; };
+		083AFB262821BD0500B2AF00 /* TeamCallRequestPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCallRequestPopupViewController.swift; sourceTree = "<group>"; };
+		083AFB282821EEE400B2AF00 /* group216@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group216@3x.png"; sourceTree = "<group>"; };
+		083AFB292821EEE500B2AF00 /* group216.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group216.png; sourceTree = "<group>"; };
+		083AFB2A2821EEE700B2AF00 /* group216@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group216@2x.png"; sourceTree = "<group>"; };
+		083AFB2E2821F04D00B2AF00 /* ic_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_check.png; sourceTree = "<group>"; };
+		083AFB2F2821F04E00B2AF00 /* ic_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_check@2x.png"; sourceTree = "<group>"; };
+		083AFB302821F04F00B2AF00 /* ic_check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_check@3x.png"; sourceTree = "<group>"; };
+		083AFB342821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWaitingRoomQuestionViewController.swift; sourceTree = "<group>"; };
+		083AFB372821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWaitingRoomQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		0841522927FD525000ADA61F /* TeamProfileBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileBottomSheetViewController.swift; sourceTree = "<group>"; };
 		0841522B27FD71C100ADA61F /* btnClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnClose.png; sourceTree = "<group>"; };
 		0841522C27FD71C200ADA61F /* btnClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnClose@2x.png"; sourceTree = "<group>"; };
@@ -323,23 +387,38 @@
 		087A23F727FC3D7E00E76893 /* icMoreRight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icMoreRight@3x.png"; sourceTree = "<group>"; };
 		087A23F827FC3D7E00E76893 /* icMoreRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icMoreRight.png; sourceTree = "<group>"; };
 		087A23FC27FC6F4000E76893 /* CallTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallTimePickerViewController.swift; sourceTree = "<group>"; };
+		087A4C7B2824380200FC3F79 /* TeamProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamProfile.swift; sourceTree = "<group>"; };
 		087FA8BD27E9B941000E741B /* rectangleEditImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rectangleEditImage.png; sourceTree = "<group>"; };
 		087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@2x.png"; sourceTree = "<group>"; };
 		087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@3x.png"; sourceTree = "<group>"; };
+		08922A73282455BD002F24D1 /* ActualGradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActualGradientButton.swift; sourceTree = "<group>"; };
+		08922A74282455BD002F24D1 /* ArrayExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtention.swift; sourceTree = "<group>"; };
 		08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileProjectExViewController.swift; sourceTree = "<group>"; };
 		08AE4190280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileToolNLanguageViewController.swift; sourceTree = "<group>"; };
 		08AE41942805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileAllToolNLangCollectionViewCell.swift; sourceTree = "<group>"; };
 		08AE41962805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		08AE41982805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileDetailPartTableViewCell.swift; sourceTree = "<group>"; };
+		08AFB34C281E78C0006D90B5 /* CallAgreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAgreeViewController.swift; sourceTree = "<group>"; };
+		08AFB34E281E880D006D90B5 /* CallAgree.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CallAgree.storyboard; sourceTree = "<group>"; };
+		08AFB350281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRequestHistoryQuestionTableViewCell.swift; sourceTree = "<group>"; };
+		08AFB352281F1415006D90B5 /* CallRefusePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRefusePopupViewController.swift; sourceTree = "<group>"; };
 		08B2F2EA27F75A04008F7085 /* teamPageLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teamPageLogo@2x.png"; sourceTree = "<group>"; };
 		08B2F2EB27F75A05008F7085 /* teamPageLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "teamPageLogo@3x.png"; sourceTree = "<group>"; };
 		08B2F2EC27F75A05008F7085 /* teamPageLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teamPageLogo.png; sourceTree = "<group>"; };
 		08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeamPages_AllTeams.storyboard; sourceTree = "<group>"; };
 		08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileViewController.swift; sourceTree = "<group>"; };
 		08B83199280955FA00135893 /* FirstEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEntryViewController.swift; sourceTree = "<group>"; };
+		08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAddAlertViewController.swift; sourceTree = "<group>"; };
+		08BC293C281FEA7600C6214F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		08BC293E281FEE9800C6214F /* UIVIewToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewToUIImage.swift; sourceTree = "<group>"; };
 		08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypages.storyboard; sourceTree = "<group>"; };
 		08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileViewController.swift; sourceTree = "<group>"; };
 		08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		113CF45F4377AA921D36EAFC /* Pods_iteam_ny.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iteam_ny.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AA33962F2ADE98770A83FFD /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 		1F304C3C27FD868500A5DE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JoinPages.storyboard; sourceTree = "<group>"; };
 		1F5428222805336100F5179B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -397,9 +476,13 @@
 		1FFD2E3F27FC02650068520D /* ic_rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_rate.png; sourceTree = "<group>"; };
 		1FFD2E4027FC02650068520D /* ic_rate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_rate@2x.png"; sourceTree = "<group>"; };
 		1FFD2E4127FC02650068520D /* ic_rate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_rate@3x.png"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iteam_ny.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EFF204D26DA93C72DBC9AC6 /* Pods-iteam_ny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.debug.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig"; sourceTree = "<group>"; };
 		6642C36A357F44465BFFEE7B /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
+=======
+		41D6D78F5AF719996BB65CCC /* Pods-iteam_ny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.debug.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig"; sourceTree = "<group>"; };
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,7 +490,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				2893BAE049A576D013CDC6A5 /* Pods_iteam_ny.framework in Frameworks */,
+=======
+				EEDBD36EEE25D2F47C2CDB16 /* Pods_iteam_ny.framework in Frameworks */,
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +512,9 @@
 		080F9C1A27E9DC4B0055FAF8 /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				08113085280E8999003B6D43 /* searchIconBlack.png */,
+				08113084280E8999003B6D43 /* searchIconBlack@2x.png */,
+				08113086280E899B003B6D43 /* searchIconBlack@3x.png */,
 				0863BCFC280C059B00AFB2B9 /* btnAddSmall.png */,
 				0863BCF7280C059A00AFB2B9 /* btnAddSmall@2x.png */,
 				0863BCF8280C059A00AFB2B9 /* btnAddSmall@3x.png */,
@@ -528,6 +618,13 @@
 				081F264B27F3878000F17332 /* TeamViewController.swift */,
 				081F268127F435C700F17332 /* AllTeamViewController.swift */,
 				081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */,
+				0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */,
+				08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */,
+				083AFB1A2821560200B2AF00 /* TeamCallRequestViewController.swift */,
+				083AFB1C2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift */,
+				083AFB1E28215C2900B2AF00 /* CallDateNTimeViewController.swift */,
+				083AFB222821907600B2AF00 /* TeamQuestionTableViewCell.swift */,
+				083AFB262821BD0500B2AF00 /* TeamCallRequestPopupViewController.swift */,
 			);
 			path = TeamVC;
 			sourceTree = "<group>";
@@ -535,7 +632,14 @@
 		0863BCF2280BC6F200AFB2B9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				08922A73282455BD002F24D1 /* ActualGradientButton.swift */,
+				08922A74282455BD002F24D1 /* ArrayExtention.swift */,
 				0863BCF3280BC70700AFB2B9 /* ScrollViewExtension.swift */,
+				082FEFE0281DC383007B4AFB /* ImageViewExtension.swift */,
+				08BC293C281FEA7600C6214F /* GradientView.swift */,
+				08BC293E281FEE9800C6214F /* UIVIewToUIImage.swift */,
+				083AFB202821708900B2AF00 /* DateExtention.swift */,
+				083AFB242821969800B2AF00 /* TextViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -543,13 +647,11 @@
 		0868B02027CB6CD20018464B /* calling */ = {
 			isa = PBXGroup;
 			children = (
-				080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */,
 				0868B03427CB6D820018464B /* AddMemberAlertViewController.swift */,
 				0868B03627CB6D820018464B /* AgoraViewController.swift */,
 				0868B03127CB6D820018464B /* CallClosedViewController.swift */,
 				0868B03327CB6D820018464B /* ChannelSectionHeader.swift */,
 				0868B03227CB6D820018464B /* ChannelViewController.swift */,
-				0868B03527CB6D820018464B /* ChannelWaitingViewController.swift */,
 				0868B03027CB6D820018464B /* UserCollectionViewCell.swift */,
 			);
 			path = calling;
@@ -559,13 +661,20 @@
 			isa = PBXGroup;
 			children = (
 				0868B03E27CB6D930018464B /* AnswerTableViewCell.swift */,
-				0868B04327CB6D930018464B /* CallAnswerViewController.swift */,
 				0868B04027CB6D930018464B /* CallManageViewController.swift */,
 				0868B04427CB6D930018464B /* CallRequestViewController.swift */,
 				0868B04227CB6D930018464B /* EvaluateViewController.swift */,
 				0868B03F27CB6D930018464B /* Person.swift */,
 				0868B04127CB6D930018464B /* RequestTableViewCell.swift */,
 				080F9C2527E9EBE00055FAF8 /* CallRequstHistoryViewController.swift */,
+				08AFB34C281E78C0006D90B5 /* CallAgreeViewController.swift */,
+				080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */,
+				08AFB350281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift */,
+				08AFB352281F1415006D90B5 /* CallRefusePopupViewController.swift */,
+				0868B04327CB6D930018464B /* CallAnswerViewController.swift */,
+				0868B03527CB6D820018464B /* ChannelWaitingViewController.swift */,
+				083AFB342821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift */,
+				083AFB372821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift */,
 			);
 			path = callingManage;
 			sourceTree = "<group>";
@@ -604,8 +713,14 @@
 		0868B05B27CB6E9E0018464B /* button_source */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				1F64AF51280EE83000D7B2BD /* ic_team.png */,
 				1F64AF55280EE84200D7B2BD /* ic_resume.png */,
+=======
+				083AFB2E2821F04D00B2AF00 /* ic_check.png */,
+				083AFB2F2821F04E00B2AF00 /* ic_check@2x.png */,
+				083AFB302821F04F00B2AF00 /* ic_check@3x.png */,
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				1F95AE7027FD061400AB1377 /* btn_pin2.png */,
 				1F64AF53280EE83900D7B2BD /* ic_friends.png */,
 				1F64AF4F280EE3C500D7B2BD /* btn_added_friend@3x.png */,
@@ -633,6 +748,9 @@
 		0868B06227CB6EBE0018464B /* image_source */ = {
 			isa = PBXGroup;
 			children = (
+				083AFB292821EEE500B2AF00 /* group216.png */,
+				083AFB2A2821EEE700B2AF00 /* group216@2x.png */,
+				083AFB282821EEE400B2AF00 /* group216@3x.png */,
 				0832B260280186CE00DED89B /* btnEdit.png */,
 				0832B25E280186CD00DED89B /* btnEdit@2x.png */,
 				0832B25F280186CE00DED89B /* btnEdit@3x.png */,
@@ -688,6 +806,9 @@
 		0868B08027CB6F180018464B /* logo */ = {
 			isa = PBXGroup;
 			children = (
+				0811307E280E78A5003B6D43 /* imgLogo.png */,
+				0811307F280E78A6003B6D43 /* imgLogo@2x.png */,
+				08113080280E78A6003B6D43 /* imgLogo@3x.png */,
 				08B2F2EC27F75A05008F7085 /* teamPageLogo.png */,
 				08B2F2EA27F75A04008F7085 /* teamPageLogo@2x.png */,
 				08B2F2EB27F75A05008F7085 /* teamPageLogo@3x.png */,
@@ -730,6 +851,7 @@
 				08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */,
 				08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */,
 				0841522927FD525000ADA61F /* TeamProfileBottomSheetViewController.swift */,
+				0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */,
 			);
 			path = DetailTeamProfile;
 			sourceTree = "<group>";
@@ -738,11 +860,13 @@
 			isa = PBXGroup;
 			children = (
 				1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */,
+				08AFB34E281E880D006D90B5 /* CallAgree.storyboard */,
 				1F304C3B27FD868500A5DE47 /* Main.storyboard */,
 				0835C36E27EDBF5900968626 /* TeamPages.storyboard */,
 				08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */,
 				082EF64727F58D8200C36736 /* NotifyPages.storyboard */,
 				08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */,
+				083AFB182821559300B2AF00 /* TeamCallRequest.storyboard */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -822,6 +946,7 @@
 		1F55CF5C2755E2EB00CD35EC /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				087A4C7B2824380200FC3F79 /* TeamProfile.swift */,
 				1F5AC97027D6BCE800146C0E /* UserProfile.swift */,
 				0833417727F3437D005B4F31 /* Team.swift */,
 			);
@@ -898,6 +1023,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
+=======
+		F7FB5553839625BC4464BBD8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				113CF45F4377AA921D36EAFC /* Pods_iteam_ny.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -968,12 +1104,17 @@
 				1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */,
 				081F266627F393C100F17332 /* imgUser2@3x.png in Resources */,
 				081F267827F3988000F17332 /* imgUser6@2x.png in Resources */,
+				08113083280E78A7003B6D43 /* imgLogo@3x.png in Resources */,
 				0868B08527CB6F2B0018464B /* asset121@2x.png in Resources */,
 				0841522E27FD71C400ADA61F /* btnClose.png in Resources */,
 				081F266427F393C100F17332 /* imgUser8.png in Resources */,
 				081F267A27F3988000F17332 /* imgUser6.png in Resources */,
 				082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */,
+				08113088280E899C003B6D43 /* searchIconBlack.png in Resources */,
 				081F267927F3988000F17332 /* imgUser6@3x.png in Resources */,
+				083AFB332821F05100B2AF00 /* ic_check@3x.png in Resources */,
+				083AFB2D2821EEE700B2AF00 /* group216@2x.png in Resources */,
+				083AFB192821559300B2AF00 /* TeamCallRequest.storyboard in Resources */,
 				080F9C1F27E9DCE80055FAF8 /* icCheck@2x.png in Resources */,
 				08B2F2EE27F75A05008F7085 /* teamPageLogo@3x.png in Resources */,
 				087FA8C127E9B942000E741B /* rectangleEditImage@2x.png in Resources */,
@@ -989,6 +1130,7 @@
 				1F64AF50280EE3C500D7B2BD /* btn_added_friend@3x.png in Resources */,
 				0863BCFE280C059B00AFB2B9 /* btnAddSmall@3x.png in Resources */,
 				0868B08427CB6F2B0018464B /* asset121.png in Resources */,
+				083AFB2C2821EEE700B2AF00 /* group216.png in Resources */,
 				1F55CF212751F19200CD35EC /* LaunchScreen.storyboard in Resources */,
 				080F9C3227EA17470055FAF8 /* btnAdd1@3x.png in Resources */,
 				0841523027FD71C400ADA61F /* btnClose@3x.png in Resources */,
@@ -1003,13 +1145,18 @@
 				0833417127F33252005B4F31 /* searchIcon.png in Resources */,
 				0868B07927CB6F040018464B /* imgUser10.png in Resources */,
 				0863BD00280C059B00AFB2B9 /* btnDeleteSmall.png in Resources */,
+				08113087280E899C003B6D43 /* searchIconBlack@2x.png in Resources */,
 				0863BCFF280C059B00AFB2B9 /* btnDeleteSmall@2x.png in Resources */,
+				08113082280E78A7003B6D43 /* imgLogo@2x.png in Resources */,
+				08113081280E78A7003B6D43 /* imgLogo.png in Resources */,
 				081F266927F393C100F17332 /* imgUser2.png in Resources */,
 				081F266727F393C100F17332 /* imgUser8@3x.png in Resources */,
 				0832B262280186CF00DED89B /* btnEdit@3x.png in Resources */,
 				0833416D27F3317F005B4F31 /* sliderIcon.png in Resources */,
 				0868B07627CB6F040018464B /* imgUser4@2x.png in Resources */,
+				08113089280E899C003B6D43 /* searchIconBlack@3x.png in Resources */,
 				1F55CF1E2751F19200CD35EC /* Assets.xcassets in Resources */,
+				083AFB322821F05100B2AF00 /* ic_check@2x.png in Resources */,
 				1FFD2E3227FBEA9C0068520D /* btn_pin1@3x.png in Resources */,
 				1F95AE7427FD061400AB1377 /* btn_pin2@2x.png in Resources */,
 				1F5AC97527D6BEB600146C0E /* UserListCell.xib in Resources */,
@@ -1024,7 +1171,9 @@
 				1FFD2E3127FBEA9C0068520D /* btn_pin1.png in Resources */,
 				1FFD2E2C27FBEA070068520D /* img_logo2.png in Resources */,
 				080F9C3027EA17470055FAF8 /* btnAdd1@2x.png in Resources */,
+				083AFB2B2821EEE700B2AF00 /* group216@3x.png in Resources */,
 				081F266827F393C100F17332 /* imgUser3@2x.png in Resources */,
+				08AFB34F281E880D006D90B5 /* CallAgree.storyboard in Resources */,
 				08B2F2ED27F75A05008F7085 /* teamPageLogo@2x.png in Resources */,
 				0832B261280186CF00DED89B /* btnEdit@2x.png in Resources */,
 				080F9C2A27EA04240055FAF8 /* icCheckPurple@2x.png in Resources */,
@@ -1035,6 +1184,7 @@
 				0868B08627CB6F2B0018464B /* asset121@3x.png in Resources */,
 				087FA8C027E9B942000E741B /* rectangleEditImage.png in Resources */,
 				081F266227F393C100F17332 /* imgUser8@2x.png in Resources */,
+				083AFB312821F05100B2AF00 /* ic_check.png in Resources */,
 				0841522F27FD71C400ADA61F /* btnClose@2x.png in Resources */,
 				087FA8C227E9B942000E741B /* rectangleEditImage@3x.png in Resources */,
 				080F9C2C27EA04240055FAF8 /* icCheckPurple.png in Resources */,
@@ -1101,20 +1251,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				0832B26928042FA700DED89B /* DetailProfileInterestViewController.swift in Sources */,
+				08AFB351281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift in Sources */,
+				083AFB252821969800B2AF00 /* TextViewExtension.swift in Sources */,
 				1F5AC97427D6BEB600146C0E /* UserListCell.swift in Sources */,
 				0868B05827CB6E080018464B /* SettingSuccessViewController.swift in Sources */,
 				0833417827F3437E005B4F31 /* Team.swift in Sources */,
 				0868B05627CB6E080018464B /* DetailProfileViewController.swift in Sources */,
+<<<<<<< HEAD
 				1F64AF49280ECD5B00D7B2BD /* TeamResultViewController.swift in Sources */,
+=======
+				08922A75282455BD002F24D1 /* ActualGradientButton.swift in Sources */,
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				08AE41952805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift in Sources */,
 				1F64AF58280F85CC00D7B2BD /* MyRsumViewController.swift in Sources */,
 				081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */,
+<<<<<<< HEAD
 				1F875FFB2818E8870051E89A /* MyPageModifyViewController.swift in Sources */,
 				1F54282A2805B9FE00F5179B /* AddFasTeam.swift in Sources */,
+=======
+				08AFB34D281E78C0006D90B5 /* CallAgreeViewController.swift in Sources */,
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				081F267027F3960300F17332 /* MakingGameTeamViewController.swift in Sources */,
+				08922A76282455BD002F24D1 /* ArrayExtention.swift in Sources */,
 				081F265427F3903D00F17332 /* MakingWebTeamViewController.swift in Sources */,
 				0868B04827CB6D930018464B /* RequestTableViewCell.swift in Sources */,
 				08B8319A280955FA00135893 /* FirstEntryViewController.swift in Sources */,
+				08AFB353281F1415006D90B5 /* CallRefusePopupViewController.swift in Sources */,
+				08BC293F281FEE9800C6214F /* UIVIewToUIImage.swift in Sources */,
 				0831AF3627E112180098D753 /* LogInViewController.swift in Sources */,
 				1F54282E280E42F100F5179B /* resetCharacterView.swift in Sources */,
 				1F875FF5281834510051E89A /* resetRegionViewController.swift in Sources */,
@@ -1124,12 +1287,14 @@
 				0833418827F35B07005B4F31 /* FavorTeamCollectionViewCell.swift in Sources */,
 				0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */,
 				087A23F127FB495900E76893 /* CreateTeamProfilePartCollectionViewCell.swift in Sources */,
+				083AFB212821708900B2AF00 /* DateExtention.swift in Sources */,
 				081F267427F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift in Sources */,
 				1F55CF152751F19100CD35EC /* AppDelegate.swift in Sources */,
 				081F267227F396C500F17332 /* MakingGameTeamCollectionViewCell.swift in Sources */,
 				0868B05727CB6E080018464B /* SettingViewController.swift in Sources */,
 				0868B04A27CB6D930018464B /* CallAnswerViewController.swift in Sources */,
 				087A23FD27FC6F4000E76893 /* CallTimePickerViewController.swift in Sources */,
+				0811308B280E8C15003B6D43 /* TeamProfileTeamListViewController.swift in Sources */,
 				081F268227F435C700F17332 /* AllTeamViewController.swift in Sources */,
 				1F875FFE2821C8CF0051E89A /* NotifyViewController.swift in Sources */,
 				0868B05927CB6E080018464B /* SettingPurposeViewController.swift in Sources */,
@@ -1145,6 +1310,7 @@
 				0868B04727CB6D930018464B /* CallManageViewController.swift in Sources */,
 				1F64AF5A2813FA7F00D7B2BD /* SetATimeViewController.swift in Sources */,
 				0868B03A27CB6D830018464B /* ChannelSectionHeader.swift in Sources */,
+				083AFB1D2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift in Sources */,
 				08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */,
 				1F542826280598FA00F5179B /* searchViewController.swift in Sources */,
 				0868B01E27CB6A6C0018464B /* JoinSuccessViewController.swift in Sources */,
@@ -1153,34 +1319,54 @@
 				1F5AC97127D6BCE800146C0E /* UserProfile.swift in Sources */,
 				0868B04627CB6D930018464B /* Person.swift in Sources */,
 				0868B04527CB6D930018464B /* AnswerTableViewCell.swift in Sources */,
+<<<<<<< HEAD
 				1F875FF72818364E0051E89A /* resetPassionViewController.swift in Sources */,
+=======
+				083AFB1B2821560200B2AF00 /* TeamCallRequestViewController.swift in Sources */,
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				087A23F327FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift in Sources */,
 				1F55CF562754B46B00CD35EC /* UserProfileController.swift in Sources */,
 				08AE41992805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift in Sources */,
+				083AFB1F28215C2900B2AF00 /* CallDateNTimeViewController.swift in Sources */,
 				08AE41972805BA4E007CBE5F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				1F55CF172751F19100CD35EC /* SceneDelegate.swift in Sources */,
 				0832B2672804156900DED89B /* DetailProfileExTableView.swift in Sources */,
 				08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */,
 				0868B03727CB6D830018464B /* UserCollectionViewCell.swift in Sources */,
+<<<<<<< HEAD
+=======
+				1F55CF502754A98C00CD35EC /* User.swift in Sources */,
+				082FEFE1281DC383007B4AFB /* ImageViewExtension.swift in Sources */,
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				0820449A2809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift in Sources */,
 				0868B03C27CB6D830018464B /* ChannelWaitingViewController.swift in Sources */,
+				0811308D280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift in Sources */,
 				0833418627F35A80005B4F31 /* FavorTeamViewController.swift in Sources */,
 				081F264C27F3878000F17332 /* TeamViewController.swift in Sources */,
+				087A4C7C2824380200FC3F79 /* TeamProfile.swift in Sources */,
 				087A23E827FAEF7400E76893 /* CreateTeamPartViewController.swift in Sources */,
 				0832B26528040FD000DED89B /* DetailProfileProjectTableViewCell.swift in Sources */,
 				080F9C2627E9EBE00055FAF8 /* CallRequstHistoryViewController.swift in Sources */,
 				1F55CF292751F71A00CD35EC /* HomeViewController.swift in Sources */,
+				083AFB232821907600B2AF00 /* TeamQuestionTableViewCell.swift in Sources */,
 				087A23DB27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift in Sources */,
 				081F264E27F38ADB00F17332 /* MakingAppTeamViewController.swift in Sources */,
+<<<<<<< HEAD
 				1F5428232805336100F5179B /* PopupViewController.swift in Sources */,
 				1F64AF47280ECD4600D7B2BD /* PersonResultViewController.swift in Sources */,
+=======
+				083AFB382821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift in Sources */,
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */,
 				081F265627F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift in Sources */,
+				08BC293D281FEA7600C6214F /* GradientView.swift in Sources */,
 				081F265227F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift in Sources */,
 				0868B05A27CB6E080018464B /* SettingPassionViewController.swift in Sources */,
 				0868B03B27CB6D830018464B /* AddMemberAlertViewController.swift in Sources */,
 				087A23F527FB654900E76893 /* CreateTeamRegionViewController.swift in Sources */,
 				0868B03827CB6D830018464B /* CallClosedViewController.swift in Sources */,
+				083AFB352821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift in Sources */,
+				083AFB272821BD0500B2AF00 /* TeamCallRequestPopupViewController.swift in Sources */,
 				081F265827F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift in Sources */,
 				1F875FF9281837940051E89A /* resetPurposeViewController.swift in Sources */,
 				08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */,
@@ -1193,6 +1379,7 @@
 				0868B03927CB6D830018464B /* ChannelViewController.swift in Sources */,
 				08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */,
 				0868B04B27CB6D930018464B /* CallRequestViewController.swift in Sources */,
+				08BC2939281FBF5E00C6214F /* TeamAddAlertViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1348,7 +1535,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = RX53PD2JKA;
+=======
+				DEVELOPMENT_TEAM = 3WXYTFH2K7;
+				ENABLE_BITCODE = NO;
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
@@ -1377,7 +1569,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = RX53PD2JKA;
+=======
+				DEVELOPMENT_TEAM = 3WXYTFH2K7;
+				ENABLE_BITCODE = NO;
+>>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";

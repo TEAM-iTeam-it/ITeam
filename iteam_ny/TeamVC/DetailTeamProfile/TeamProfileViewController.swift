@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialBottomSheet
+import FirebaseAuth
+import FirebaseDatabase
 
 class TeamProfileViewController: UIViewController {
 
@@ -16,25 +19,62 @@ class TeamProfileViewController: UIViewController {
     @IBOutlet weak var callRequestBtn: UIButton!
     @IBOutlet weak var teamView: UIView!
     @IBOutlet weak var teamImageColl: UICollectionView!
+    @IBOutlet weak var profileImagesColl: UICollectionView!
+    @IBOutlet weak var serviceTypeLabel: UILabel!
+    @IBOutlet weak var detailPartLabel: UILabel!
+    @IBOutlet weak var regionLabel: UILabel!
+    @IBOutlet weak var callTimeLabel: UILabel!
+    @IBOutlet weak var contactLinkLabel: UILabel!
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var favorButton: UIButton!
     
     
-    // @나연 : 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아오면 될 것 같습니다
+    
+    // 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아옴
     var teamName: String = ""
+    var teamProfile: TeamProfile = TeamProfile(purpose: "", serviceType: "", part: "", detailPart: "", introduce: "", contactLink: "", callTime: "", activeZone: "", memberList: "")
+    
     var team: Team = Team(teamName: "", purpose: "", part: "", images: [])
     
     // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
     let teamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
+    // 서버에서 받아 올 사용자 이미지 데이터
+    var teamImageData: [Data] = []
+    var resizedImage: UIImage = UIImage()
+    let db = Database.database().reference()
+    var favorTeamList: [String] = []
+    var likeBool: Bool = false {
+        willSet(newValue) {
+            if newValue {
+                favorButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                favorButton.tintColor = UIColor(named: "purple_184")
+            }
+            else {
+                favorButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                favorButton.tintColor = UIColor(named: "gray_196")
+            }
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
-        if let navigationController = self.navigationController{
-            navigationController.navigationBar.shadowImage = UIImage()
-        }
+        super.viewWillAppear(false)
+        
+        setUI()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       
+        setStatusBarColor()
+    }
+    
+    func setUI() {
+        navigationBar.shadowImage = UIImage()
+        
         teamImageColl.semanticContentAttribute = UISemanticContentAttribute.forceRightToLeft
 
         callRequestBtn.layer.cornerRadius = 8
-      
-        
-        
         callRequestBtn.layer.masksToBounds = true
         
         teamView.backgroundColor = .white
@@ -49,22 +89,174 @@ class TeamProfileViewController: UIViewController {
         teamView.layer.masksToBounds = false
         
         
-        // @나연 : 여기서 서버에서 받아온 데이터를 화면에 뿌려줌
-        teamNameLabel.text = teamName
-//        teamPurposeLabel.text = team.purpose
-//        teamPartLabel.text = team.part
+        teamNameLabel.text = teamName 
+        teamPurposeLabel.text = teamProfile.purpose
+        let teamPartString = teamProfile.part
+        teamPartLabel.text = "\(teamPartString) 구인 중"
+        detailPartLabel.text = teamProfile.detailPart
+        let introduceString = teamProfile.introduce
+        teamIntroduceLabel.text = " \"\(introduceString)\""
+        serviceTypeLabel.text = teamProfile.serviceType
+        regionLabel.text = teamProfile.activeZone
+        callTimeLabel.text = teamProfile.callTime
+        contactLinkLabel.text = teamProfile.contactLink
         
-        super.viewWillAppear(false)
+        teamImageData = teamImageData.reversed()
+        
+        if favorTeamList.contains( teamNameLabel.text!) {
+            favorButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            favorButton.tintColor = UIColor(named: "purple_184")
+            likeBool = true
+        }
+        else {
+            favorButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            favorButton.tintColor = UIColor(named: "gray_196")
+            likeBool = false
+        }
+    }
+    @IBAction func favorBtnAction(_ sender: UIButton) {
+        if likeBool {
+            likeBool = false
+            removeDataAcion()
+        }
+        else {
+            likeBool = true
+            pullDataAcion()
+        }
     }
     
-    @IBOutlet weak var profileImagesColl: UICollectionView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    // 관심있는 팀에 추가
+    func pullDataAcion() {
+        var updateString: String = ""
         
-        // Do any additional setup after loading the view.
+        // 데이터 받아와서 이미 있으면 합쳐주기
+        db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) { [self] snapshot in
+            var lastDatas: [String] = []
+            let lastData: String! = snapshot.value as? String
+            lastDatas = lastData.components(separatedBy: ", ")
+            if !lastDatas.contains(teamNameLabel.text!) {
+                if snapshot.value as? String == nil || snapshot.value as? String == "" {
+                    var lastData: String! = snapshot.value as? String
+                    updateString = teamNameLabel.text!
+                }
+                else {
+                    var lastData: String! = snapshot.value as? String
+                    lastData += ", \(teamNameLabel.text!)"
+                    updateString = lastData
+                }
+                let values: [String: Any] = [ "teamName": updateString ]
+                // 데이터 추가
+                db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").updateChildValues(values)
+            }
+        }
     }
+    
+    // 관심있는 팀에서 삭제
+    func removeDataAcion() {
+        var updateString: String = ""
+        var lastDatas: [String] = []
+        
+        // 데이터 받아와서 이미 있으면 지워주기
+        db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) { [self] snapshot in
+            if snapshot.value as? String != nil {
+                var lastData: String! = snapshot.value as? String
+                lastDatas = lastData.components(separatedBy: ", ")
+                
+                for i in 0..<lastDatas.count {
+                    if lastDatas[i] == teamNameLabel.text! {
+                        lastDatas.remove(at: i)
+                        break
+                    }
+                }
+                for i in 0..<lastDatas.count {
+                    if lastDatas[i] == "" {
+                        lastDatas.remove(at: i)
+                        break
+                    }
+                    if i == 0 {
+                        updateString += lastDatas[i]
+                    }
+                    else {
+                        updateString += ", \(lastDatas[i])"
+                    }
+                }
+            }
+            let values: [String: Any] = [ "teamName": updateString ]
+            // 데이터 추가
+            db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").updateChildValues(values)
+        }
+    }
+    
+
+    
+    // 상태바 흰색으로 채우기
+    func setStatusBarColor() {
+        if #available(iOS 13.0, *) {
+            let app = UIApplication.shared
+            let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+            
+            let statusbarView = UIView()
+            statusbarView.backgroundColor = UIColor.white
+            view.addSubview(statusbarView)
+            
+            statusbarView.translatesAutoresizingMaskIntoConstraints = false
+            statusbarView.heightAnchor
+                .constraint(equalToConstant: statusBarHeight).isActive = true
+            statusbarView.widthAnchor
+                .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+            statusbarView.topAnchor
+                .constraint(equalTo: view.topAnchor).isActive = true
+            statusbarView.centerXAnchor
+                .constraint(equalTo: view.centerXAnchor).isActive = true
+            
+        } else {
+            let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+            statusBar?.backgroundColor = UIColor.white
+        }
+        
+    }
+    
+    @IBAction func teamListBtnAction(_ sender: UIButton) {
+        let thisStoryboard: UIStoryboard = UIStoryboard(name: "TeamPages_AllTeams", bundle: nil)
+            
+        // 바텀 시트로 쓰일 뷰컨트롤러 생성
+        let teamListVC = thisStoryboard.instantiateViewController(withIdentifier: "teamListVC") as? TeamProfileTeamListViewController
+        teamImageData = teamImageData.reversed()
+        teamListVC?.teamImageData = teamImageData
+        teamListVC?.teamMemberUID = teamProfile.memberList
+        
+        // teamListVC?.delegate = self
+        
+        // MDC 바텀 시트로 설정
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: teamListVC!)
+        
+        // bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 320
+        
+        
+        // 보여주기
+        present(bottomSheet, animated: true, completion: nil)
+    }
+    
     @IBAction func backBtn(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil
+        )
+    }
+    @IBAction func callRequestBtnAction(_ sender: Any) {
+        print("통화요청됨")
+        let teamCallRequestStoryboard: UIStoryboard = UIStoryboard(name: "TeamCallRequest", bundle: nil)
+        
+        
+        if let nextView = teamCallRequestStoryboard.instantiateViewController(withIdentifier: "teamCallRequestNC") as? UINavigationController,
+           let nextViewChild = nextView.viewControllers.first as? TeamCallRequestViewController
+        {
+            // 수정 필요! -> nickname에 팀 이름 넣어도 되는지?
+            nextViewChild.receiverNickname = teamName
+            nextView.modalPresentationStyle = .fullScreen
+            present(nextView, animated: true, completion: nil)
+        }
+        
+        
     }
     
     
@@ -72,7 +264,14 @@ class TeamProfileViewController: UIViewController {
 
 extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return teamImages.count
+        var count = 0
+        if teamImageData.count > 2 {
+           count = 3
+        }
+        else {
+            count = teamImageData.count
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -80,8 +279,47 @@ extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewD
         // 커스텀 셀 따로 만들지 않고 어차피 이미지만 들어간 셀이라 그냥 사용
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailTeamProfileCell", for: indexPath) as! TeamProfileImageCollectionViewCell
         
+        cell.userImage.isHidden = false
+        
+        if teamImageData.count <= 3 {
+            // 받아온 사진 리사이징, 셀에 설정
+            if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
+                resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                cell.userImage.image = resizedImage
+            }
+            else {
+                // 데이터 받아오기 전까지 기본 이미지
+                resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                cell.userImage.image = resizedImage
+            }
+        }
+        else {
+            // collectionview index가 거꾸로임
+            if indexPath.row == 1 || indexPath.row == 2 {
+                // 받아온 사진 리사이징, 셀에 설정
+                if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
+                    resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                    cell.userImage.image = resizedImage
+                }
+                else {
+                    // 데이터 받아오기 전까지 기본 이미지
+                    resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                    cell.userImage.image = resizedImage
+                }
+                
+            }
+            else if indexPath.row == 0 {
+                // 3명 이상인 팀원에 대한 팀원 수 뷰
+                cell.gradientView.layer.cornerRadius = cell.frame.height/2
+                cell.userImage.isHidden = true
+                cell.memberCountLabel.text = "+\(teamImageData.count-2)"
+
+      
+            }
+            
+        }
+        
         // 셀 디자인 및 데이터 세팅
-        cell.userImage.image = UIImage(named: teamImages[indexPath.row])
         cell.layer.cornerRadius = cell.frame.height/2
         cell.layer.borderWidth = 3
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor
@@ -92,6 +330,14 @@ extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
+    // 이미지 리사이징
+    func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
     
 }
 extension TeamProfileViewController: UICollectionViewDelegateFlowLayout {
@@ -126,22 +372,6 @@ extension TeamProfileViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 5, left: inset, bottom: 5, right: inset)
     }
 }
-class ActualGradientButton: UIButton {
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        gradientLayer.frame = bounds
-    }
 
-    private lazy var gradientLayer: CAGradientLayer = {
-        let l = CAGradientLayer()
-        l.frame = self.bounds
-        l.colors = [UIColor(named: "purple_184")?.cgColor, UIColor(named: "green_144")?.cgColor]
-        l.startPoint = CGPoint(x: 0, y: 0.5)
-        l.endPoint = CGPoint(x: 1, y: 0.5)
-        l.cornerRadius = 8
-        layer.insertSublayer(l, at: 0)
-        return l
-    }()
-}
 

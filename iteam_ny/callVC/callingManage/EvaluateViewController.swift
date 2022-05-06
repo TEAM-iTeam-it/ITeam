@@ -12,6 +12,9 @@ class EvaluateViewController: UIViewController {
     @IBOutlet var evaluateBtns: [UIButton]!
     @IBOutlet weak var nextBtn: UIButton!
     var selectedBtn: [String] = []
+    
+    @IBOutlet var evaluLabel: [UILabel]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +22,8 @@ class EvaluateViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func nextBtnClicked(_ sender: UIButton) {
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        
     }
     @IBAction func evaluateBtn(_ sender: UIButton) {
    
@@ -42,7 +46,19 @@ class EvaluateViewController: UIViewController {
             sender.isSelected = true
             sender.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
             sender.tintColor = UIColor(named: "purple_184")
-            selectedBtn.append((sender.titleLabel?.text)!.trimmingCharacters(in: .whitespaces))
+            switch sender {
+            case evaluateBtns[0]:
+                selectedBtn.append(evaluLabel[0].text!)
+            case evaluateBtns[1]:
+                selectedBtn.append(evaluLabel[1].text!)
+            case evaluateBtns[2]:
+                selectedBtn.append(evaluLabel[2].text!)
+            case evaluateBtns[3]:
+                selectedBtn.append(evaluLabel[3].text!)
+            default:
+                selectedBtn.append(evaluLabel[4].text!)
+                
+            }
           
         }
         print(selectedBtn)

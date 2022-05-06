@@ -6,35 +6,186 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import Firebase
+import Kingfisher
 
 class FavorTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var purpose: UILabel!
     @IBOutlet weak var part: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    // @나연 : 서버에서 받아 올 사용자 이미지 네임
-    var images: [String] = []
+    var resizedImage: UIImage = UIImage()
+    let user = Auth.auth().currentUser!
+    let ref = Database.database().reference()
     
-        
-}
-extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    var usersUID: [String] = [] {
+        didSet {
+            
+            imageCollectionView.reloadData()
+        }
+    }
     
+    // 서버에서 받아 올 사용자 이미지 데이터
+    var imageData: [Data] = [] {
+        didSet {
+            imageCollectionView.reloadData()
+        }
+    }
+    var likeBool: Bool = true {
+        didSet(newValue) {
+            if newValue == false {
+                likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                likeButton.tintColor = UIColor(named: "gray_196")
+            }
+            else {
+                likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                likeButton.tintColor = UIColor(named: "gray_196")
+            }
+        }
+    }
     // delegate와 datasource를 내부 collectionview로 옮겨줌
     override func awakeFromNib() {
         super.awakeFromNib()
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
+         imageCollectionView.semanticContentAttribute = .forceRightToLeft
+        
+        imageData = imageData.reversed()
+    }
+    @IBAction func likeButtonAction(_ sender: UIButton) {
+        if likeBool {
+            print("지우자")
+            likeBool = false
+            removeDataAcion()
+        }
+        else {
+            print("추가하자")
+            likeBool = true
+            pullDataAcion()
+        }
+    }
+    // 관심있는 팀에 추가
+    func pullDataAcion() {
+        var updateString: String = ""
+        
+        // 데이터 받아와서 이미 있으면 합쳐주기
+        ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
+            var lastDatas: [String] = []
+            var lastData: String! = snapshot.value as? String
+            lastDatas = lastData.components(separatedBy: ", ")
+            if !lastDatas.contains(self.teamName.text!) {
+                if snapshot.value as? String == nil || snapshot.value as? String == "" {
+                    var lastData: String! = snapshot.value as? String
+                    updateString = self.teamName.text!
+                }
+                else {
+                    var lastData: String! = snapshot.value as? String
+                    lastData += ", \(self.teamName.text!)"
+                    updateString = lastData
+                }
+                let values: [String: Any] = [ "teamName": updateString ]
+                // 데이터 추가
+                self.ref.child("user").child(self.user.uid).child("likeTeam").updateChildValues(values)
+            }
+        }
     }
     
+    // 관심있는 팀에서 삭제
+    func removeDataAcion() {
+        var updateString: String = ""
+        var lastDatas: [String] = []
+        
+        // 데이터 받아와서 이미 있으면 지워주기
+        ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
+            if snapshot.value as? String != nil {
+                var lastData: String! = snapshot.value as? String
+                lastDatas = lastData.components(separatedBy: ", ")
+                
+                print(lastDatas)
+                for i in 0..<lastDatas.count {
+                    print(i)
+                    if lastDatas[i] == self.teamName.text! {
+                        print(i)
+                        lastDatas.remove(at: i)
+                        break
+                    }
+                }
+                for i in 0..<lastDatas.count {
+                    if lastDatas[i] == "" {
+                        lastDatas.remove(at: i)
+                        break
+                    }
+                    if i == 0 {
+                        updateString += lastDatas[i]
+                    }
+                    else {
+                        updateString += ", \(lastDatas[i])"
+                    }
+                }
+            }
+            let values: [String: Any] = [ "teamName": updateString ]
+            // 데이터 추가
+            self.ref.child("user").child(self.user.uid).child("likeTeam").updateChildValues(values)
+        }
+    }
+        
+}
+extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        var count = 0
+        if imageData.count > 2 {
+           count = 3
+        }
+        else {
+            count = imageData.count
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favorTeamImageCell", for: indexPath) as! FavorTeamImagesCollectionViewCell
-        cell.userImages.image = UIImage(named: images[indexPath.row])
+        cell.userImages.isHidden = false
+        if imageData.count <= 3 {
+            // 받아온 사진 리사이징, 셀에 설정
+            if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
+                resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                cell.userImages.image = resizedImage
+            }
+            else {
+                // 데이터 받아오기 전까지 기본 이미지
+                resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                cell.userImages.image = resizedImage
+            }
+        }
+        else {
+            if indexPath.row == 0 || indexPath.row == 1 {
+                // 받아온 사진 리사이징, 셀에 설정
+                if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
+                    resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
+                    cell.userImages.image = resizedImage
+                }
+                else {
+                    // 데이터 받아오기 전까지 기본 이미지
+                    resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
+                    cell.userImages.image = resizedImage
+                }
+                
+            }
+            else if indexPath.row == 2 {
+                // 3명 이상인 팀원에 대한 팀원 수 뷰
+                cell.gradientView.layer.cornerRadius = cell.frame.height/2
+                cell.userImages.isHidden = true
+                cell.memberCountLabel.text = "+\(imageData.count-2)"
+      
+            }
+            
+        }
         cell.layer.cornerRadius = cell.frame.height/2
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor
@@ -42,6 +193,8 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
         
         return cell
     }
+  
+    
 }
 extension FavorTeamCollectionViewCell: UICollectionViewDelegateFlowLayout {
 
@@ -54,10 +207,43 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegateFlowLayout {
     // cell 사이즈
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let width = 50
-        let height = 50
+        let width = 54
+        let height = 54
 
         let size = CGSize(width: width, height: height)
         return size
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout,
+            let dataSourceCount = collectionView.dataSource?.collectionView(collectionView, numberOfItemsInSection: section),
+            dataSourceCount > 0 else {
+                return .zero
+        }
+
+        let cellCount = CGFloat(dataSourceCount)
+        let itemSpacing = -3.0
+        let cellWidth = flowLayout.itemSize.width + itemSpacing
+        var insets = flowLayout.sectionInset
+
+        let totalCellWidth = (cellWidth * cellCount) - itemSpacing
+        let contentWidth = collectionView.frame.size.width - collectionView.contentInset.left - collectionView.contentInset.right
+
+        guard totalCellWidth < contentWidth else {
+            return insets
+        }
+
+        let padding = (contentWidth - totalCellWidth) / 2.0
+        insets.left = padding
+        insets.right = padding
+        return insets
+    }
+}
+// 이미지 리사이징
+func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
+    UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+    image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return newImage!
 }
