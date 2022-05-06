@@ -225,11 +225,7 @@
 		1FFD2E3727FBEE420068520D /* btn_option.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E3427FBEE410068520D /* btn_option.png */; };
 		1FFD2E3C27FBF0BF0068520D /* img_user1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E3927FBF0BF0068520D /* img_user1@2x.png */; };
 		1FFD2E4427FC02650068520D /* ic_rate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E4127FC02650068520D /* ic_rate@3x.png */; };
-<<<<<<< HEAD
 		2893BAE049A576D013CDC6A5 /* Pods_iteam_ny.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */; };
-=======
-		EEDBD36EEE25D2F47C2CDB16 /* Pods_iteam_ny.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113CF45F4377AA921D36EAFC /* Pods_iteam_ny.framework */; };
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -414,11 +410,6 @@
 		08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypages.storyboard; sourceTree = "<group>"; };
 		08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileViewController.swift; sourceTree = "<group>"; };
 		08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-=======
-		113CF45F4377AA921D36EAFC /* Pods_iteam_ny.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iteam_ny.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AA33962F2ADE98770A83FFD /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 		1F304C3C27FD868500A5DE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JoinPages.storyboard; sourceTree = "<group>"; };
 		1F5428222805336100F5179B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -476,13 +467,9 @@
 		1FFD2E3F27FC02650068520D /* ic_rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_rate.png; sourceTree = "<group>"; };
 		1FFD2E4027FC02650068520D /* ic_rate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_rate@2x.png"; sourceTree = "<group>"; };
 		1FFD2E4127FC02650068520D /* ic_rate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_rate@3x.png"; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iteam_ny.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EFF204D26DA93C72DBC9AC6 /* Pods-iteam_ny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.debug.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig"; sourceTree = "<group>"; };
 		6642C36A357F44465BFFEE7B /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
-=======
-		41D6D78F5AF719996BB65CCC /* Pods-iteam_ny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.debug.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig"; sourceTree = "<group>"; };
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,11 +477,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				2893BAE049A576D013CDC6A5 /* Pods_iteam_ny.framework in Frameworks */,
-=======
-				EEDBD36EEE25D2F47C2CDB16 /* Pods_iteam_ny.framework in Frameworks */,
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,14 +696,11 @@
 		0868B05B27CB6E9E0018464B /* button_source */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				1F64AF51280EE83000D7B2BD /* ic_team.png */,
 				1F64AF55280EE84200D7B2BD /* ic_resume.png */,
-=======
 				083AFB2E2821F04D00B2AF00 /* ic_check.png */,
 				083AFB2F2821F04E00B2AF00 /* ic_check@2x.png */,
 				083AFB302821F04F00B2AF00 /* ic_check@3x.png */,
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				1F95AE7027FD061400AB1377 /* btn_pin2.png */,
 				1F64AF53280EE83900D7B2BD /* ic_friends.png */,
 				1F64AF4F280EE3C500D7B2BD /* btn_added_friend@3x.png */,
@@ -1023,17 +1003,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-=======
-		F7FB5553839625BC4464BBD8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				113CF45F4377AA921D36EAFC /* Pods_iteam_ny.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1257,20 +1226,14 @@
 				0868B05827CB6E080018464B /* SettingSuccessViewController.swift in Sources */,
 				0833417827F3437E005B4F31 /* Team.swift in Sources */,
 				0868B05627CB6E080018464B /* DetailProfileViewController.swift in Sources */,
-<<<<<<< HEAD
 				1F64AF49280ECD5B00D7B2BD /* TeamResultViewController.swift in Sources */,
-=======
 				08922A75282455BD002F24D1 /* ActualGradientButton.swift in Sources */,
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				08AE41952805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift in Sources */,
 				1F64AF58280F85CC00D7B2BD /* MyRsumViewController.swift in Sources */,
 				081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */,
-<<<<<<< HEAD
 				1F875FFB2818E8870051E89A /* MyPageModifyViewController.swift in Sources */,
 				1F54282A2805B9FE00F5179B /* AddFasTeam.swift in Sources */,
-=======
 				08AFB34D281E78C0006D90B5 /* CallAgreeViewController.swift in Sources */,
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				081F267027F3960300F17332 /* MakingGameTeamViewController.swift in Sources */,
 				08922A76282455BD002F24D1 /* ArrayExtention.swift in Sources */,
 				081F265427F3903D00F17332 /* MakingWebTeamViewController.swift in Sources */,
@@ -1319,11 +1282,8 @@
 				1F5AC97127D6BCE800146C0E /* UserProfile.swift in Sources */,
 				0868B04627CB6D930018464B /* Person.swift in Sources */,
 				0868B04527CB6D930018464B /* AnswerTableViewCell.swift in Sources */,
-<<<<<<< HEAD
 				1F875FF72818364E0051E89A /* resetPassionViewController.swift in Sources */,
-=======
 				083AFB1B2821560200B2AF00 /* TeamCallRequestViewController.swift in Sources */,
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				087A23F327FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift in Sources */,
 				1F55CF562754B46B00CD35EC /* UserProfileController.swift in Sources */,
 				08AE41992805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift in Sources */,
@@ -1333,11 +1293,8 @@
 				0832B2672804156900DED89B /* DetailProfileExTableView.swift in Sources */,
 				08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */,
 				0868B03727CB6D830018464B /* UserCollectionViewCell.swift in Sources */,
-<<<<<<< HEAD
-=======
 				1F55CF502754A98C00CD35EC /* User.swift in Sources */,
 				082FEFE1281DC383007B4AFB /* ImageViewExtension.swift in Sources */,
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				0820449A2809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift in Sources */,
 				0868B03C27CB6D830018464B /* ChannelWaitingViewController.swift in Sources */,
 				0811308D280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift in Sources */,
@@ -1351,12 +1308,9 @@
 				083AFB232821907600B2AF00 /* TeamQuestionTableViewCell.swift in Sources */,
 				087A23DB27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift in Sources */,
 				081F264E27F38ADB00F17332 /* MakingAppTeamViewController.swift in Sources */,
-<<<<<<< HEAD
 				1F5428232805336100F5179B /* PopupViewController.swift in Sources */,
 				1F64AF47280ECD4600D7B2BD /* PersonResultViewController.swift in Sources */,
-=======
 				083AFB382821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift in Sources */,
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				08B2F2F327F786A8008F7085 /* CreateTeamProfileViewController.swift in Sources */,
 				081F265627F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift in Sources */,
 				08BC293D281FEA7600C6214F /* GradientView.swift in Sources */,
@@ -1535,12 +1489,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = RX53PD2JKA;
-=======
-				DEVELOPMENT_TEAM = 3WXYTFH2K7;
-				ENABLE_BITCODE = NO;
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
@@ -1569,12 +1518,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = RX53PD2JKA;
-=======
-				DEVELOPMENT_TEAM = 3WXYTFH2K7;
-				ENABLE_BITCODE = NO;
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";

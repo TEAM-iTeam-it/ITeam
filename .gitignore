@@ -12,21 +12,12 @@ Pods/
 
 # End of https://www.toptal.com/developers/gitignore/api/cocoapods
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 Pods/Manifest.lock
 Pods/Pods.xcodeproj/project.pbxproj
 Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny-acknowledgements.markdown
 Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny-acknowledgements.plist
 Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig
 Pods/Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 28ffffc02adb5acdc59df035ea60473c6e4bdc53
 .DS_Store
 *.xcuserstate
 iteam_ny.xcodeproj/xcuserdata/kimhaneul.xcuserdatad/xcschemes/xcschememanagement.plist
