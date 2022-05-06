@@ -242,6 +242,7 @@ class TeamProfileViewController: UIViewController {
         self.dismiss(animated: true, completion: nil
         )
     }
+    // 연락 요청 버튼
     @IBAction func callRequestBtnAction(_ sender: Any) {
         print("통화요청됨")
         let teamCallRequestStoryboard: UIStoryboard = UIStoryboard(name: "TeamCallRequest", bundle: nil)
@@ -252,6 +253,8 @@ class TeamProfileViewController: UIViewController {
         {
             // 수정 필요! -> nickname에 팀 이름 넣어도 되는지?
             nextViewChild.receiverNickname = teamName
+            nextViewChild.receiverType = "team"
+            
             nextView.modalPresentationStyle = .fullScreen
             present(nextView, animated: true, completion: nil)
         }
