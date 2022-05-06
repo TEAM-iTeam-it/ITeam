@@ -9,13 +9,15 @@ import UIKit
 
 class UserProfileController: UIViewController{
     var userprofileDetail: UserProfileDetail?
+    var userprofile: UserProfile?
     
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var partLabel: UILabel!
     @IBOutlet weak var characterLabel: UITextField!
-    
+    @IBOutlet weak var characterLabel2: UITextField!
+    @IBOutlet weak var characterLabel3: UITextField!
     @IBOutlet weak var sameSchol: UITextField!
     
     @IBOutlet weak var Interest: UILabel!
@@ -57,20 +59,44 @@ class UserProfileController: UIViewController{
             super.viewWillAppear(animated)
             
             guard let detail = userprofileDetail else { return }
+            guard let basicinfo = userprofile else { return }
+        
+        let char = detail.character
+        let charindex = char.components(separatedBy: ", ")
         
         
-            userName.text = detail.name
-            partLabel.text = detail.part
+//            toolNlanguage.text = detail.language
+//            Interest.text = detail.interest
+//            date.text = detail.date
+//            projectDetail.text = detail.exDetail
+//            callTime.text = detail.calltime
+//            portfolioLabel.text = detail.portfolio
+//            contactLink.text = detail.contactLink
+        
+        userName.text = basicinfo.nickname
+        partLabel.text = basicinfo.partDetail
         purposeLabel.text = detail.purpose
-            characterLabel.text = detail.character
-            toolNlanguage.text = detail.language
-            Interest.text = detail.interest
-            date.text = detail.date
-            projectDetail.text = detail.exDetail
-            callTime.text = detail.calltime
-            portfolioLabel.text = detail.portfolio
-            contactLink.text = detail.contactLink
+        characterLabel.text = charindex[0]
+        characterLabel2.text = charindex[1]
+        characterLabel3.text = charindex[2]
+        toolNlanguage.text = basicinfo.portfolio.toolNLanguage
+        Interest.text = basicinfo.portfolio.interest
+        date.text = basicinfo.portfolio.ex0.date
+        projectDetail.text = basicinfo.portfolio.ex0.exDetail
+        callTime.text = basicinfo.portfolio.calltime
+        portfolioLabel.text = basicinfo.portfolio.portfolioLink
+        contactLink.text = basicinfo.portfolio.contactLink
+        
             
+        }
+    
+    @IBAction func sendData(_ sender: UIButton) {
+            guard let vc = self.storyboard?.instantiateViewController(identifier: "SetATimeViewController") as? SetATimeViewController else {
+                return
+            }
+       let userName = userName.text
+        vc.senderid = userName!
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     
 }

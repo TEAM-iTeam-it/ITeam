@@ -145,7 +145,6 @@ class DetailProfileViewController: UIViewController  {
         let contactLink: [String: Any] = [ "contactLink": callLinkTF.text]
         
         
-        
         ref = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).child("userProfile")
         // 데이터 추가
         ref.child("portfolio").updateChildValues(toolNLanguage)
