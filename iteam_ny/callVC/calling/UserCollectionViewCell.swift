@@ -15,7 +15,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     func setUI(image:String, nickname: String, position: String) {
         profileImage.layer.cornerRadius = profileImage.frame.height/2
-        profileImage.image = UIImage(named: image)
+        profileImage.image = UIImage(named: "imgUser10.png")
         otherMemberNameTF.text = nickname
         otherMemberPartTF.text = position
         }

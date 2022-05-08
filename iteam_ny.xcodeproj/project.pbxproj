@@ -139,6 +139,10 @@
 		0868B08527CB6F2B0018464B /* asset121@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0868B08227CB6F2B0018464B /* asset121@2x.png */; };
 		0868B08627CB6F2B0018464B /* asset121@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0868B08327CB6F2B0018464B /* asset121@3x.png */; };
 		086A23DA280C5C7600B37C01 /* DetailProfileToolNLangCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A23D9280C5C7600B37C01 /* DetailProfileToolNLangCollectionView.swift */; };
+		086E4B4E2826BCAE005933CB /* CallRequstTeamHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E4B4D2826BCAE005933CB /* CallRequstTeamHistoryViewController.swift */; };
+		086E4B502826D2CD005933CB /* ChannelTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E4B4F2826D2CD005933CB /* ChannelTeamViewController.swift */; };
+		086E4B522826EBE1005933CB /* CallReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E4B512826EBE1005933CB /* CallReportViewController.swift */; };
+		086E4B542826ECBB005933CB /* ReportPersonAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E4B532826ECBB005933CB /* ReportPersonAlertViewController.swift */; };
 		086FAF662824F54E0075737B /* CallAnswerTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */; };
 		087A23DB27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */; };
 		087A23E327FACAB700E76893 /* icArrowDropDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */; };
@@ -371,6 +375,10 @@
 		0868B08227CB6F2B0018464B /* asset121@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asset121@2x.png"; sourceTree = "<group>"; };
 		0868B08327CB6F2B0018464B /* asset121@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asset121@3x.png"; sourceTree = "<group>"; };
 		086A23D9280C5C7600B37C01 /* DetailProfileToolNLangCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileToolNLangCollectionView.swift; sourceTree = "<group>"; };
+		086E4B4D2826BCAE005933CB /* CallRequstTeamHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRequstTeamHistoryViewController.swift; sourceTree = "<group>"; };
+		086E4B4F2826D2CD005933CB /* ChannelTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTeamViewController.swift; sourceTree = "<group>"; };
+		086E4B512826EBE1005933CB /* CallReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallReportViewController.swift; sourceTree = "<group>"; };
+		086E4B532826ECBB005933CB /* ReportPersonAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPersonAlertViewController.swift; sourceTree = "<group>"; };
 		086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAnswerTeamViewController.swift; sourceTree = "<group>"; };
 		087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icArrowDropDown@2x.png"; sourceTree = "<group>"; };
@@ -633,10 +641,13 @@
 			isa = PBXGroup;
 			children = (
 				0868B03427CB6D820018464B /* AddMemberAlertViewController.swift */,
+				086E4B532826ECBB005933CB /* ReportPersonAlertViewController.swift */,
 				0868B03627CB6D820018464B /* AgoraViewController.swift */,
 				0868B03127CB6D820018464B /* CallClosedViewController.swift */,
+				086E4B512826EBE1005933CB /* CallReportViewController.swift */,
 				0868B03327CB6D820018464B /* ChannelSectionHeader.swift */,
 				0868B03227CB6D820018464B /* ChannelViewController.swift */,
+				086E4B4F2826D2CD005933CB /* ChannelTeamViewController.swift */,
 				0868B03027CB6D820018464B /* UserCollectionViewCell.swift */,
 			);
 			path = calling;
@@ -651,15 +662,16 @@
 				0868B04227CB6D930018464B /* EvaluateViewController.swift */,
 				0868B04127CB6D930018464B /* RequestTableViewCell.swift */,
 				080F9C2527E9EBE00055FAF8 /* CallRequstHistoryViewController.swift */,
+				086E4B4D2826BCAE005933CB /* CallRequstTeamHistoryViewController.swift */,
 				08AFB34C281E78C0006D90B5 /* CallAgreeViewController.swift */,
 				080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */,
 				08AFB350281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift */,
 				08AFB352281F1415006D90B5 /* CallRefusePopupViewController.swift */,
 				0868B04327CB6D930018464B /* CallAnswerViewController.swift */,
+				086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */,
 				0868B03527CB6D820018464B /* ChannelWaitingViewController.swift */,
 				083AFB342821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift */,
 				083AFB372821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift */,
-				086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */,
 			);
 			path = callingManage;
 			sourceTree = "<group>";
@@ -1270,13 +1282,16 @@
 				1F55CF2D2751FCA800CD35EC /* TabbarController.swift in Sources */,
 				087A23EA27FAF23800E76893 /* CreateTeamPartTableViewCell.swift in Sources */,
 				1F5428282805A16E00F5179B /* resetViewController.swift in Sources */,
+				086E4B522826EBE1005933CB /* CallReportViewController.swift in Sources */,
 				0868B03D27CB6D830018464B /* AgoraViewController.swift in Sources */,
+				086E4B542826ECBB005933CB /* ReportPersonAlertViewController.swift in Sources */,
 				1F8760002821C9FE0051E89A /* NotifyTableViewCell.swift in Sources */,
 				08AE418D28057C0E007CBE5F /* DetailProfileProjectExViewController.swift in Sources */,
 				0868B04727CB6D930018464B /* CallManageViewController.swift in Sources */,
 				1F64AF5A2813FA7F00D7B2BD /* SetATimeViewController.swift in Sources */,
 				0868B03A27CB6D830018464B /* ChannelSectionHeader.swift in Sources */,
 				083AFB1D2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift in Sources */,
+				086E4B502826D2CD005933CB /* ChannelTeamViewController.swift in Sources */,
 				08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */,
 				1F542826280598FA00F5179B /* searchViewController.swift in Sources */,
 				0868B01E27CB6A6C0018464B /* JoinSuccessViewController.swift in Sources */,
@@ -1330,6 +1345,7 @@
 				1F64AF4E280ED3E400D7B2BD /* MyPageViewController.swift in Sources */,
 				1F64AF5C281401C600D7B2BD /* SendTimePickerView.swift in Sources */,
 				0868B04927CB6D930018464B /* EvaluateViewController.swift in Sources */,
+				086E4B4E2826BCAE005933CB /* CallRequstTeamHistoryViewController.swift in Sources */,
 				086A23DA280C5C7600B37C01 /* DetailProfileToolNLangCollectionView.swift in Sources */,
 				080F9C2427E9DEA70055FAF8 /* QuestionnaireViewController.swift in Sources */,
 				1FAD4D662821DFC700707E30 /* CompletedTeamCell.swift in Sources */,
@@ -1492,7 +1508,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RX53PD2JKA;
+				DEVELOPMENT_TEAM = 3WXYTFH2K7;
+				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
@@ -1521,7 +1538,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RX53PD2JKA;
+				DEVELOPMENT_TEAM = 3WXYTFH2K7;
+				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";

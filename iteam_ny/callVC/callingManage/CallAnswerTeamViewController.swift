@@ -23,14 +23,9 @@ class CallAnswerTeamViewController: UIViewController {
     
     // [삭제 예정] 시연을 위한 변수
     var counter:Int = 0
-    var name: String = ""
+    var name: String = "speaker"
     var myNickname = ""
-    var myTeamname = "" {
-        willSet(newValue) {
-            print("fdsafdsafdsa   \(newValue)")
-            fetchChangedData(teamname: newValue)
-        }
-    }
+    var myTeamname = "" 
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     var callTimeArr: [[String]] = []
     var questionArr: [[String]] = []
@@ -40,6 +35,7 @@ class CallAnswerTeamViewController: UIViewController {
     var fetchedInputUIDToNickName: String = ""
     var teamIndex: [String] = []
     var teamIndexForSend: [String] = []
+    var callTeamIndex: [String] = []
     var nowRequestedUid: String = "" {
         willSet(newValue) {
             print(newValue)
@@ -59,6 +55,8 @@ class CallAnswerTeamViewController: UIViewController {
         setUI()
         // 이 문제도x
         fetchData()
+        
+        fetchChangedData()
         
 
     }
@@ -158,6 +156,9 @@ class CallAnswerTeamViewController: UIViewController {
                                 if myCallTime[i]["teamName"] != nil {
                                     teamIndex.append(myCallTime[i]["teamName"]!)
                                 }
+                                if myCallTime[i]["stmt"] == "통화" {
+                                    callTeamIndex.append(myCallTime[i]["teamName"]!)
+                                }
                                 // 이 문제x
                                 fetchNickname(userUID: myCallTime[i]["callerUid"]!)
                                 break
@@ -173,10 +174,15 @@ class CallAnswerTeamViewController: UIViewController {
                                 fetchTeam(teamname: myCallTime[i]["receiverNickname"]!, stmt: myCallTime[i]["stmt"]!)
                                 
                                 callTimeArrSend.append((myCallTime[i]["callTime"]?.components(separatedBy: ", "))!)
+                                print("callTimeArrSend \(callTimeArrSend)")
                                 questionArrSend.append((myCallTime[i]["Question"]?.components(separatedBy: ", "))!)
+                                print("questionArrSend \(questionArrSend)")
                                 
                                 if myCallTime[i]["teamName"] != nil {
                                     teamIndexForSend.append(myCallTime[i]["teamName"]!)
+                                }
+                                if myCallTime[i]["stmt"] == "통화" {
+                                    callTeamIndex.append(myCallTime[i]["teamName"]!)
                                 }
                                 
                                 break
@@ -267,9 +273,11 @@ class CallAnswerTeamViewController: UIViewController {
     
     // 팀 이름으로 팀 정보 받아오기
     func fetchTeam(teamname: String, stmt: String) {
-        let userdb = db.child("Team").child(teamname)
+        let justTeamname = teamname.replacingOccurrences(of: " 팀", with: "")
+        let userdb = db.child("Team").child(justTeamname)
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
-            var teamname: String = teamname
+            print("here \(teamname)")
+            var teamname: String = justTeamname
             var part: String = ""
             var purpose: String = ""
             
@@ -287,7 +295,7 @@ class CallAnswerTeamViewController: UIViewController {
             purpose = purpose.replacingOccurrences(of: ", ", with: "/")
             purpose += " • " + part + " 구인 중"
             
-            var person = Person(nickname: teamname, position: purpose, callStm: stmt, profileImg: "")
+            var person = Person(nickname: justTeamname, position: purpose, callStm: stmt, profileImg: "")
             
             personList.append(person)
             whenISendOtherTeam.append(person)
@@ -370,7 +378,7 @@ class CallAnswerTeamViewController: UIViewController {
     
     
     // 바뀐 데이터 불러오기
-    func fetchChangedData(teamname: String) {
+    func fetchChangedData() {
         personList.removeAll()
         
         // 아님
@@ -388,7 +396,7 @@ class CallAnswerTeamViewController: UIViewController {
             }
             
         })
-        db.child("Team").child(teamname).observe(.childChanged, with:{ (snapshot) -> Void in
+        db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
                 self.fetchData()
@@ -468,6 +476,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         cell.nicknameLabel.text = personList[indexPath.row].nickname
         
         
+        
         // 같은 학교 처리
         if cell.nicknameLabel.text == "시연" {
             cell.sameSchoolLabel.layer.borderWidth = 0.5
@@ -538,8 +547,10 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             cell.callStateBtn.setTitleColor(.white, for: .normal)
             cell.callStateBtn.layer.cornerRadius = cell.callStateBtn.frame.height/2
             cell.callStateBtn.translatesAutoresizingMaskIntoConstraints = false
+            cell.callStateBtn.backgroundColor = UIColor(named: "purple_184")
             
             // 버튼 그라디언트
+            /*
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = cell.callStateBtn.bounds
             gradientLayer.colors = [UIColor(named: "purple_184")?.cgColor, UIColor(named: "green_151")?.cgColor]
@@ -548,6 +559,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             gradientLayer.frame = cell.callStateBtn.bounds
             cell.callStateBtn.layer.insertSublayer(gradientLayer, at: 0)
             cell.callStateBtn.layer.masksToBounds = true
+             */
             
         }
         return cell
@@ -624,33 +636,44 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             
         }
         else if personList[indexPath.row].callStm == "요청됨" {
-            let historyVC = thisStoryboard.instantiateViewController(withIdentifier: "historyVC") as! CallRequstHistoryViewController
+            let historyVC = thisStoryboard.instantiateViewController(withIdentifier: "teamHistoryVC") as! CallRequstTeamHistoryViewController
             historyVC.modalPresentationStyle = .fullScreen
             
             var indexCount = -1
             
             for i in 0...indexPath.row {
                 if personList[i].callStm == "요청됨" {
+                    print(indexCount)
                     indexCount += 1
                 }
             }
             historyVC.callTime = callTimeArrSend[indexCount]
-            historyVC.person = personList[indexPath.row]
-            historyVC.questionArr = questionArr[indexPath.row]
+            historyVC.teamFormatPerson = personList[indexPath.row]
+            historyVC.questionArr = questionArrSend[indexCount]
             historyVC.teamIndex = teamIndexForSend[indexCount]
             
             present(historyVC, animated: true, completion: nil)
         }
         else if personList[indexPath.row].callStm == "통화" {
-            let callingVC = storyboard?.instantiateViewController(withIdentifier: "callingVC") as! ChannelViewController
+            let callingVC = storyboard?.instantiateViewController(withIdentifier: "callingTeamVC") as! ChannelTeamViewController
             
             callingVC.nickname = personList[indexPath.row].nickname
             var position = personList[indexPath.row].position
             callingVC.position = String(position)
-           
+            var indexCount = -1
+            // 오류
+            for i in 0...indexPath.row {
+                if personList[i].callStm == "통화" {
+                    print("indexCount \(indexCount)")
+                    indexCount += 1
+                }
+            }
         
+            callingVC.teamIndex = callTeamIndex[indexCount]
+            callingVC.nowEntryPersonUid = Auth.auth().currentUser!.uid
+            
             callingVC.name = name
-            callingVC.profile = personList[indexPath.row].profileImg
+            callingVC.image = personList[indexPath.row].profileImg
             callingVC.modalPresentationStyle = .fullScreen
             present(callingVC, animated: true, completion: nil)
         }

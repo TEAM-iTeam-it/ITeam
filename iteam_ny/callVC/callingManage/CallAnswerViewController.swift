@@ -24,7 +24,7 @@ class CallAnswerViewController: UIViewController {
     
     // [삭제 예정] 시연을 위한 변수
     var counter:Int = 0
-    var name: String = ""
+    var name: String = "speaker"
     var myNickname = ""
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     var callTimeArr: [[String]] = []
@@ -651,7 +651,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             }
             historyVC.callTime = callTimeArrSend[indexCount]
             historyVC.person = personList[indexPath.row]
-            historyVC.questionArr = questionArr[indexPath.row]
+            historyVC.questionArr = questionArrSend[indexCount]
             historyVC.teamIndex = teamIndexForSend[indexCount]
             
             present(historyVC, animated: true, completion: nil)
