@@ -14,6 +14,7 @@ class ChannelTeamViewController: UIViewController {
     @IBOutlet var callButtons: [UIButton]!
     @IBOutlet weak var leaveButton: UIButton!
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var reportButton: UIButton!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     
     // 입장할 때 speaker로 받기
@@ -33,10 +34,14 @@ class ChannelTeamViewController: UIViewController {
     var userID: UInt = 0
     
     // 말하고 있는 사람들
-    var activeSpeakers: Set<UInt> = []
+    var activeSpeakers: Array<UInt> = []
     
     // 말하고 있는 사람
-    var activeSpeaker: UInt?
+    var activeSpeaker: UInt = 0 {
+        willSet(newValue) {
+            collection.reloadData()
+        }
+    }
     
     // 듣고 있는 사람
     var activeAudience: Set<UInt> = []
@@ -53,12 +58,34 @@ class ChannelTeamViewController: UIViewController {
     var teamIndex: String = ""
     var nowEntryPersonUid: String = ""
     var participantList: [Person] = []
+    var thisCallTeamname: String = "" {
+        willSet(newValue) {
+            checkIamLeader(teamname: newValue)
+        }
+    }
+    // 리더인지, caller(개인) 인지
+    var amiLeader: Bool = false
+    // caller, leader 모두 아닐 때 신고하기 버튼 없앰
+    var amiCaller: Bool = true {
+        willSet(newValue) {
+            print("amiCaller \(amiCaller)")
+            if newValue == false && !amiLeader {
+                DispatchQueue.main.async {
+                    self.reportButton.isHidden = true
+                }
+            }
+        }
+    }
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("hi")
         
-        
+        // collectionview 세팅
         collection.collectionViewLayout = CollectionViewLeftAlignFlowLayout()
         if let flowLayout = collection?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -67,10 +94,16 @@ class ChannelTeamViewController: UIViewController {
         collection.delegate = self
         collection.backgroundColor = .clear
         
+        // 참여한 사람 추가 밑 불러오기
         addParticipant()
         fetchParticipant()
         
+        // 팀 이름 받아와서 본인이 리더인지 확인
+        fetchTeamName()
+        
         fetchNickname(userUID: Auth.auth().currentUser!.uid)
+        
+        // 아고라 세팅
         requestMicrophonePermission()
         connectAgora()
         joinChannel()
@@ -78,6 +111,9 @@ class ChannelTeamViewController: UIViewController {
         setUI()
         
         fetchNickNameToUID(nickname: nickname)
+        
+        // 바뀐 데이터 불러오기
+        fetchChangedData()
         
     }
     
@@ -89,6 +125,9 @@ class ChannelTeamViewController: UIViewController {
         
         
     }
+    
+    
+    // 참여하는 사람에 추가
     func addParticipant() {
         
         var updateString: String = ""
@@ -117,24 +156,65 @@ class ChannelTeamViewController: UIViewController {
         }
         
     }
+    // 참여하는 사람에서 삭제
+    func removeParticipant() {
+        var updateString: String = ""
+        var lastDatas: [String] = []
+        
+        // 데이터 받아와서 이미 있으면 지워주기
+        db.child("Call").child(teamIndex).child("participant").observeSingleEvent(of: .value) { [self] snapshot in
+            if snapshot.value as? String != nil {
+                var lastData: String! = snapshot.value as? String
+                lastDatas = lastData.components(separatedBy: ", ")
+                
+                for i in 0..<lastDatas.count {
+                    if lastDatas[i] == Auth.auth().currentUser!.uid {
+                        lastDatas.remove(at: i)
+                        break
+                    }
+                }
+                for i in 0..<lastDatas.count {
+                    if lastDatas[i] == "" {
+                        lastDatas.remove(at: i)
+                        break
+                    }
+                    if i == 0 {
+                        updateString += lastDatas[i]
+                    }
+                    else {
+                        updateString += ", \(lastDatas[i])"
+                    }
+                }
+            }
+            let values: [String: Any] = [ "participant": updateString ]
+            // 데이터 추가
+            self.db.child("Call").child(teamIndex).updateChildValues(values)
+            fetchParticipant()
+        }
+    }
+    
+    // 참여하는 사람 받아오기
     func fetchParticipant() {
         
         var updateString: String = ""
         
-        // 데이터 받아와서 이미 있으면 합쳐주기
         db.child("Call").child(teamIndex).child("participant").observeSingleEvent(of: .value) { [self] snapshot in
             var lastDatas: [String] = []
-            var lastData: String! = snapshot.value as? String
-            if lastData  != nil {
-                lastDatas = lastData.components(separatedBy: ", ")
-                for i in 0..<lastDatas.count {
-                    fetchUser(userUID: lastDatas[i])
+            if let participant = snapshot.value as? String {
+                if participant != nil && participant != ""{
+                    lastDatas = participant.components(separatedBy: ", ")
+                    for i in 0..<lastDatas.count {
+                        fetchUser(userUID: lastDatas[i])
+                    }
                 }
             }
+                    
         }
     }
+    
     // uid로 user 정보 받기
     func fetchUser(userUID: String) {
+        participantList.removeAll()
         let userdb = db.child("user").child(userUID)
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
             var nickname: String = ""
@@ -207,13 +287,16 @@ class ChannelTeamViewController: UIViewController {
     }
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IACYcpozxkwAhBzDg/2gXB7Q/fwjwwehN+mn7DnGZnm9BzfvbuoAAAAAEAA/6Ep2Q+x3YgEAAQBD7Hdi", channelId: "testToken11", info: nil, uid: userID,
+        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IACYcpozxkwAhBzDg/2gXB7Q/fwjwwehN+mn7DnGZnm9BzfvbuoAAAAAEAA/6Ep2Q+x3YgEAAQBD7Hdi",
+                           channelId: "testToken11",
+                           info: nil,
+                           uid: userID,
                            joinSuccess: {(_, uid, elapsed) in
             self.userID = uid
             if self.role == .audience {
                 self.activeAudience.insert(uid)
             } else {
-                self.activeSpeakers.insert(uid)
+                self.activeSpeakers.append(uid)
             }
             self.collection.reloadData()
             print("joinChannel")
@@ -235,7 +318,7 @@ class ChannelTeamViewController: UIViewController {
         }
     }
     
-    // uid로 닉네임 반환
+    // uid로 personlist에 Person 추가
     func fetchNickname(userUID: String)  {
         let userdb = db.child("user").child(userUID)
         var part: String = ""
@@ -268,8 +351,46 @@ class ChannelTeamViewController: UIViewController {
                 detailPart += part
             }
             user = Person(nickname: myNickname, position: detailPart, callStm: "", profileImg: imageName)
-            print("user \(user.nickname) \(user.position)")
             users.append(user)
+        }
+    }
+    
+    // 바뀐 데이터 불러오기
+    func fetchChangedData() {
+        db.child("Call").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.fetchParticipant()
+            }
+        })
+    }
+    
+    func fetchTeamName() {
+        db.child("Call").child(teamIndex).child("receiverNickname").observeSingleEvent(of: .value) { [self] snapshot in
+            var receiverNicknameValue: String! = snapshot.value as? String
+            var receiverNickname = receiverNicknameValue.replacingOccurrences(of: " 팀", with: "")
+            thisCallTeamname = receiverNickname
+            
+        }
+    }
+    func checkIamLeader(teamname: String) {
+        db.child("Team").child(teamname).child("leader").observeSingleEvent(of: .value) { [self] snapshot in
+            var leaderUid: String! = snapshot.value as? String
+            if leaderUid == Auth.auth().currentUser!.uid {
+                amiLeader = true
+            }
+            checkIamCaller()
+        }
+    }
+    func checkIamCaller() {
+        db.child("Call").child(teamIndex).child("callerUid").observeSingleEvent(of: .value) { [self] snapshot in
+            var callerUid: String! = snapshot.value as? String
+            if callerUid == Auth.auth().currentUser!.uid {
+                amiCaller = true
+            }
+            else {
+                amiCaller = false
+            }
         }
     }
     
@@ -278,11 +399,18 @@ class ChannelTeamViewController: UIViewController {
         self.agkit?.leaveChannel()
         AgoraRtcEngineKit.destroy()
         
+        removeParticipant()
         let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallClosedVC") as! CallClosedViewController
-        print("channelViewController : \(otherPersonUID) ")
-        popupVC.otherPersonUID = otherPersonUID
-        popupVC.modalPresentationStyle = .overFullScreen
-        present(popupVC, animated: false, completion: nil)
+        // 통화 끝났을 때 개인, 팀원은 그냥 종료/팀장은 개인을 팀원으로 추가할지!
+        if amiLeader {
+            popupVC.otherPersonUID = otherPersonUID
+            popupVC.amILeader = true
+            popupVC.modalPresentationStyle = .overFullScreen
+            present(popupVC, animated: false, completion: nil)
+        }
+        else {
+            dismiss(animated: true)
+        }
     }
     
     
@@ -296,11 +424,17 @@ extension ChannelTeamViewController: AgoraRtcEngineDelegate {
             // 듣는 사람에서 뺴주고
             self.activeAudience.remove(uid)
             // 말하는 사람들에 넣어준다.
-            self.activeSpeakers.insert(uid)
+            if !activeSpeakers.contains(uid) {
+                self.activeSpeakers.append(uid)
+            }
             //멈췄을때
         case .stopped, .failed:
             // 말하는 사람에서 삭제한다.
-            self.activeSpeakers.remove(uid)
+            for i in 0..<activeSpeakers.count {
+                if activeSpeakers[i] == uid {
+                    activeSpeakers.remove(at: i)
+                }
+            }
         default:
             return
         }
@@ -336,6 +470,14 @@ extension ChannelTeamViewController: UICollectionViewDelegate, UICollectionViewD
         }
         else {
             cell.setUI(image: participantList[indexPath.row].profileImg, nickname: participantList[indexPath.row].nickname, position: participantList[indexPath.row].position)
+            if !activeSpeakers.isEmpty || activeSpeakers != nil {
+                print("activeSpeakers.count \(activeSpeakers.count)")
+                if indexPath.row <= activeSpeakers.count-1 {
+                    if activeSpeakers[indexPath.row] == activeSpeaker {
+                        print("participantList[indexPath.row].nickname \(participantList[indexPath.row].nickname)")
+                    }
+                }
+            }
         }
         
         return cell
