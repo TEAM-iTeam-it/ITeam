@@ -8,8 +8,10 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import Kingfisher
 
 class HomeViewController: UIViewController, PickpartDataDelegate{
+    
     @IBOutlet weak var myPart: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memberStackVIew: UIStackView!
@@ -37,10 +39,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         let nextEntryIndex = memberStackVIew.arrangedSubviews.count - 1
 
         // scrollview의 스크롤이 이동할 위치계산
-        // 현 위치에서 add button의 높이 만큼 이레러
-//                let offset = CGPoint(x: scrollView.contentOffset.x, y:
-//        scrollView.contentOffset.y + addButtonContainerView.bounds.size.height)
-
         let offset = CGPoint(x: scrollView.contentOffset.x + addButtonContainerView.bounds.size.width , y:
                         scrollView.contentOffset.y)
 
@@ -49,7 +47,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         newEntryView.isHidden = true
 
         // 만들어진 stack view를 add button앞에다가 추가
-memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
+        memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
 
         // 0.25초 동안 추가된 뷰가 보이게 하면서 scrollview의 스크롤 이동
         UIView.animate(withDuration: 0.25) {
@@ -88,9 +86,7 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
 //    let numberLabel = UILabel()
 //    numberLabel.text = number
 //    numberLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-    // 이 label의 horizontal contenthugging을 249, compressionResistance 749로 해서 stackview의 남은 공간을 꽉 채우게 한다.
-//            numberLabel.setContentHuggingPriority(UILayoutPriority.defaultLow - 1.0, for: .horizontal)
-//            numberLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh - 1.0, for: .horizontal)
+
     //stack 뷰에 차례대로 쌓는다.
         stack.addArrangedSubview(pickimage)
 //    stack.addArrangedSubview(dateLabel)
@@ -118,7 +114,39 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
     var ref: DatabaseReference! //Firebase Realtime Database
     
     var userList: [Uid] = []
+    //알고리즘 - 진행중
+    var userprofileDetail: UserProfileDetail?
 //    var image = [UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser5")]
+    
+   //알고리즘 - 진행중
+    func sortList(a:Int, b:Int) -> Bool {
+        let celebrity1: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는" ]
+        let celebrity2: [String] = ["외향적인", "열정적인", "사교성이 있는" ]
+        let celebrity3: [String] = ["자신감 있는", "의사 결정을 잘하는", "목표 지향적인"]
+        let celebrity4: [String] = ["문제를 극복하는", "도전적인", "추진력있는"]
+        let celebrity5: [String] = ["전략적인", "신중한", "정확히 판단하는"]
+        let detail = userprofileDetail
+        let char = detail?.character
+
+        let charindex: [String] = (char?.components(separatedBy: ", "))!
+        let f = charindex[0]
+        let s = charindex[1]
+        let l = charindex[2]
+        
+        //나의 성향 출력
+        if let firstIndex = celebrity1.firstIndex(of: f) {
+            print("창의적인")
+        }
+        for mych in charindex {
+            if let firstIndex = celebrity1.firstIndex(of: mych) {
+                print("창의적인")
+            }
+        }
+
+        
+        return a>b
+        
+    }
        
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -131,7 +159,7 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
               // Get user value
               let value = snapshot.value as? NSDictionary
               let partDetail = value?["partDetail"] as? String ?? ""
-                
+
                 self.myPart.text = "\(partDetail)"
                 
             }) { error in
@@ -161,6 +189,9 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
 //                    let userData = try JSONDecoder().decode([String: UserProfile].self, from: jsonData)
                     let userData = try JSONDecoder().decode([String: Uid].self, from: jsonData)
                     let showUserList = Array(userData.values)
+                    
+                    //
+                    
                     self.userList = showUserList.sorted { $0.rank < $1.rank } //정렬 순서
                     
                     print("countentArray.cout : \(showUserList.count)")
@@ -187,7 +218,6 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
                 catch let error {
                     print("ERROR JSON parasing \(error.localizedDescription)")
                 }
-                
                 print("countentArray2.cout : \(self.userList.count)")
                 
             }
@@ -206,18 +236,13 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             addFriendButton.layer.shadowOffset = CGSize(width: 0, height: 4) // 위치조정
             addFriendButton.layer.shadowRadius = 5 // 반경
             addFriendButton.layer.shadowOpacity = 0.3 // alpha값
-            
-            
-
        }
 
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
        }
     
-        
 }
-
 
     extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         
@@ -233,6 +258,23 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             cell.school.text = "\(userList[indexPath.row].userProfile.schoolName)"
             cell.partLabel.text = "\(userList[indexPath.row].userProfile.partDetail) • "
             cell.userPurpose.text = "\(userList[indexPath.row].userProfileDetail.purpose)"
+            
+        //gs://iteam-test.appspot.com/user_profile_image/AgXjS1Qu5DM8CHMPFqabDeFmgG92.jpg
+//            var url2 = "gs://iteam-test.appspot.com/user_profile_image/"
+//            let imageURL = URL(string: userList[indexPath.row].userImageURL)
+//            cell.userImage.kf.setImage(with: imageURL)
+//            cell.userImage.kf.setImage(with: imageURL)
+            //kingfisher
+//            var url:[String] = ["gs://iteam-test.appspot.com/user_profile_image/8LpKA1ngmnOoLYlqJTyTqovAk6r1.jpg","gs://iteam-test.appspot.com/user_profile_image/BApgRw1uC5aaCFhIndjvZUf5ba22.jpg", "gs://iteam-test.appspot.com/user_profile_image/AgXjS1Qu5DM8CHMPFqabDeFmgG92.jpg",
+//            "gs://iteam-test.appspot.com/user_profile_image/ioyypRfWH5SryhVvJwvxZxxcyMF3.jpg","gs://iteam-test.appspot.com/user_profile_image/bj2kJjtateXp5mp9KGLoHtyOZ183.jpg"]
+//            var url = "gs://iteam-test.appspot.com/user_profile_image/"
+//            let uid: String = "7DNtefn5EBPbSI8By0g1IeVS0Jg1"
+//            let url1 = url + uid + ".jpg"
+//            print(url1)
+//            let imageURL = URL(string: userList[indexPath.row].userImageURL)
+//            let imageURL = URL(string: url[indexPath.row])
+//            let imageURL = URL(string: url1)
+//            cell.userImage.kf.setImage(with: imageURL)
             
                return cell
            }

@@ -47,25 +47,3 @@ struct EX0: Codable {
     let exDetail : String
     
 }
-
-//struct UserProfile: Codable{
-//    let id : Int
-//    let rank : Int
-//    let userprofileDetail: UserProfileDetail
-//    let isSelected: Bool? // 사용자 클릭시 생성
-//}
-//
-//struct UserProfileDetail: Codable{
-//    let name : String
-////    let userImageURL : String
-//    let part : String
-//    let purpose : String
-//    let character: String
-//    let language: String
-//    let interest: String
-//    let date : String
-//    let exDetail : String
-//    let calltime : String
-//    let portfolio : String
-//    let contactLink : String
-//}

@@ -11,12 +11,14 @@ class SendTimePickerView:UIViewController{
     @IBOutlet weak var saveBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     var select_Time: String = ""
     var dataN : Int = 0
     var numberI : String = ""
     var delegate : SendTimeDataDelegate?
     
+
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
         let datePickerView = sender
         let formatter = DateFormatter()
@@ -32,13 +34,25 @@ class SendTimePickerView:UIViewController{
             numberI = "세번째"
         }
         select_Time = formatter.string(from: datePickerView.date)
-//        self.delegate?.SendTimeDataDelegate(data: select_Time)
-//        self.dismiss(animated: true, completion: nil)
+//        var components = DateComponents()
+//        components.day = 10
+//        let maxDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
+//        components.day = 1
+//        let minDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
+//
+//        datePickerView.maximumDate = maxDate
+//        datePickerView.minimumDate = minDate
     }
     @IBAction func saveAction(_ sender: UIButton) {
-        
-        self.delegate?.SendTimeData(data: numberI + select_Time )
-        self.dismiss(animated: true, completion: nil)
+        if select_Time.isEmpty{
+            saveBtn.isEnabled = false
+            self.dismiss(animated: true, completion: nil)
+        }
+        else {
+            self.delegate?.SendTimeData(data: numberI + select_Time )
+            self.dismiss(animated: true, completion: nil)
+            
+        }
         
     }
     
