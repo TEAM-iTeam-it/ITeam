@@ -29,6 +29,7 @@ class QuestionViewController: UIViewController{
         }
 
         var stmtString: String = "요청됨"
+        var receiverTypeString: String = "personal"
         var QuestionString: String = ""
         for i in 0..<arr.count {
             if i == arr.count-1 {
@@ -40,9 +41,11 @@ class QuestionViewController: UIViewController{
         }
         let Question: [String: String] = [ "Question": QuestionString]
         let stmt: [String: String] = ["stmt": stmtString]
+        let receiverType1: [String: String] = ["receiverType": receiverTypeString]
         ref = Database.database().reference()
         ref.child("Call").child(IndexN).updateChildValues(Question)
         ref.child("Call").child(IndexN).updateChildValues(stmt)
+        ref.child("Call").child(IndexN).updateChildValues(receiverType1)
     }
     @IBOutlet weak var tableView: UITableView!
     
