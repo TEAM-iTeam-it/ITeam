@@ -681,9 +681,21 @@
                                                             <outlet property="delegate" destination="8xF-ao-qlB" id="IS6-cb-lPw"/>
                                                         </connections>
                                                     </collectionView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀장" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5o-Ck-4OD">
+                                                        <rect key="frame" x="20" y="107.5" width="26" height="16"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="16" id="eiA-Em-nrv"/>
+                                                            <constraint firstAttribute="width" constant="26" id="i3o-Ov-8U5"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="8"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" name="purple_249"/>
                                                 <constraints>
+                                                    <constraint firstItem="a5o-Ck-4OD" firstAttribute="leading" secondItem="z21-IX-TSZ" secondAttribute="leading" constant="20" id="697-Ne-ofM"/>
+                                                    <constraint firstItem="a5o-Ck-4OD" firstAttribute="top" secondItem="UXH-uA-koB" secondAttribute="bottom" constant="20" id="DOk-XM-feu"/>
                                                     <constraint firstItem="RsB-Xc-BiZ" firstAttribute="leading" secondItem="z21-IX-TSZ" secondAttribute="leading" constant="19" id="SOK-tQ-65D"/>
                                                     <constraint firstItem="RsB-Xc-BiZ" firstAttribute="top" secondItem="UXH-uA-koB" secondAttribute="bottom" constant="19" id="cLc-g3-zW4"/>
                                                     <constraint firstItem="ut6-1u-dJl" firstAttribute="leading" secondItem="z21-IX-TSZ" secondAttribute="leading" constant="20" id="cnz-nR-Ry8"/>
@@ -1164,10 +1176,12 @@
                         <outlet property="callTimeBtn" destination="tmG-ED-Hci" id="3ZL-xW-nwo"/>
                         <outlet property="contactLinkTF" destination="Ug9-pP-HMG" id="Dgn-oh-AfA"/>
                         <outlet property="introduceTF" destination="dIc-kJ-FeX" id="bql-yI-2Vj"/>
+                        <outlet property="leaderLabel" destination="a5o-Ck-4OD" id="3Y0-6w-61T"/>
                         <outlet property="navigationBar" destination="hny-1a-xVA" id="uTA-Um-lQq"/>
                         <outlet property="partLabel" destination="ibb-Bj-84v" id="IIF-qM-R6c"/>
                         <outlet property="partLabelConstraintTop" destination="GHE-m4-WWa" id="ubi-Ib-D5j"/>
                         <outlet property="partLabelHeight" destination="btb-AR-78t" id="TZJ-00-3Gl"/>
+                        <outlet property="profileImageColl" destination="RsB-Xc-BiZ" id="PYW-VP-RAz"/>
                         <outlet property="purposeBtn" destination="bL4-Fl-8NN" id="aE7-QD-70O"/>
                         <outlet property="regionLabel" destination="PmH-0n-zpN" id="H8z-q0-epv"/>
                         <outlet property="regionLabelConstraintTop" destination="lcZ-qS-FJL" id="g7y-Mb-608"/>

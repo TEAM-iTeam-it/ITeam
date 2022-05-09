@@ -15,6 +15,7 @@ class CreateTeamProfileViewController: UIViewController {
     
 
     @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var leaderLabel: UILabel!
     @IBOutlet weak var profileImageColl: UICollectionView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var purposeBtn: UIButton!
@@ -29,15 +30,17 @@ class CreateTeamProfileViewController: UIViewController {
     @IBOutlet weak var partLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var regionLabelConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var regionLabelHeight: NSLayoutConstraint!
-    
-    
-    
     @IBOutlet var serviceTypeBtns: [UIButton]!
+    
+    let db = Database.database().reference()
+    
     var didTeamNameWrote: Int = 0
     var didPurpleWrote: Int = 0
     var didPartWrote: Bool = false
     var didRegionWrote: Bool = false
     var partString: String = ""
+    // 팀원이 있다면 넘어올 팀원 uid 배열
+    var memeberList: [String]?
     
     var didWroteAllAnswer: Int = 0 {
         willSet(newValue) {
@@ -73,6 +76,10 @@ class CreateTeamProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+       setLayout()
+
+    }
+    func setLayout() {
         // 데이터 기입 여부에 따라 constraint 변경
         // 라벨 세팅
         if partLabel.text == "" {
@@ -95,7 +102,6 @@ class CreateTeamProfileViewController: UIViewController {
             regionLabelConstraintTop.constant = 15
             regionLabelHeight.constant = 25
         }
-
     }
     
     
@@ -109,14 +115,18 @@ class CreateTeamProfileViewController: UIViewController {
         navigationBar.shadowImage = UIImage()
         
         
-        // @나연 : 유저 프로필(사진, 이름) 세팅
-        let user1 = CustomUser(userName: "나", imageName: teamImages[0])
-        let user2 = CustomUser(userName: "케빈", imageName: teamImages[1])
-        let user3 = CustomUser(userName: "제이크", imageName: teamImages[2])
+        // 유저 프로필(사진, 이름) 세팅 - 나, 다른 팀원들
+        let myself = CustomUser(userName: "나", imageName: teamImages[0])
+        teamMembers.append(myself)
+        print("memeberList \(memeberList)")
         
-        teamMembers.append(user1)
-        teamMembers.append(user2)
-        teamMembers.append(user3)
+        DispatchQueue.main.async {
+            for i in 0..<self.memeberList!.count {
+                self.fetchNickname(userUID: self.memeberList![i])
+                print(self.teamMembers.count)
+            }
+            self.profileImageColl.reloadData()
+        }
         
         // 버튼 디자인 세팅
         saveBtn.layer.cornerRadius = 8
@@ -197,12 +207,15 @@ class CreateTeamProfileViewController: UIViewController {
         partLabelConstraintTop.constant = 0
         partLabelHeight.constant = 0
         
-        // 라벨 세팅
         regionLabel.text = ""
         regionLabel.isHidden = true
         regionLabelConstraintTop.constant = 0
         regionLabelHeight.constant = 0
         
+        leaderLabel.textColor = UIColor.white
+        leaderLabel.backgroundColor = UIColor(named: "purple_184")
+        leaderLabel.layer.cornerRadius = leaderLabel.frame.height/2
+        leaderLabel.layer.masksToBounds = true
         
         // texfield 사용 중 스크롤시 키보드 내리기 위함
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapMethod))
@@ -210,6 +223,30 @@ class CreateTeamProfileViewController: UIViewController {
         singleTapGestureRecognizer.isEnabled = true
         singleTapGestureRecognizer.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+    // uid로 user 닉네임 반환
+    func fetchNickname(userUID: String)  {
+        let userdb = db.child("user").child(userUID)
+     
+        userdb.observeSingleEvent(of: .value) { [self] snapshot in
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let value = snap.value as? NSDictionary
+                
+                if snap.key == "userProfile" {
+                    for (key, content) in value! {
+                        if key as! String == "nickname" {
+                            let user = CustomUser(userName: content as! String, imageName: teamImages[0])
+                            teamMembers.append(user)
+                            print("user.userName \(user.userName)")
+                            profileImageColl.reloadData()
+                           
+                        }
+                    }
+                }
+            }
+        }
     }
     
     // [Button Action] 뒤로 가기
@@ -270,9 +307,11 @@ class CreateTeamProfileViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
+        // 현재 팀은 각 팀원에게 전부 추가해줘야함
+        let currentTeam: [String: Any] = [ "currentTeam": teamNameTF.text]
         let purpose: [String: Any] = [ "purpose": purposeBtn.titleLabel?.text]
         let serviceType: [String: Any] = [ "serviceType": serviceType[0]]
+        let leader: [String: Any] = ["leader": ""]
         let part: [String: Any] = [ "part": partString]
         let activeZone: [String: Any] = [ "activeZone": regionLabel.text]
         let introduce: [String: Any] = [ "introduce": introduceTF.text]
@@ -284,27 +323,21 @@ class CreateTeamProfileViewController: UIViewController {
         ref = Database.database().reference()
         // 데이터 추가
         if let teamNameTF = teamNameTF.text {
+            
             ref.child("Team").child(teamNameTF).updateChildValues(purpose)
-            
             ref.child("Team").child(teamNameTF).updateChildValues(serviceType)
-            
             ref.child("Team").child(teamNameTF)
                 .updateChildValues(part)
-            
             ref.child("Team").child(teamNameTF).updateChildValues(detailPart)
-            
             ref.child("Team").child(teamNameTF).updateChildValues(activeZone)
-            
             ref.child("Team").child(teamNameTF).updateChildValues(introduce)
-            
+            ref.child("Team").child(teamNameTF).updateChildValues(leader)
             ref.child("Team").child(teamNameTF).updateChildValues(callTime)
-            
             ref.child("Team").child(teamNameTF).updateChildValues(contactLink)
-            
             ref.child("Team").child(teamNameTF).updateChildValues(memberList)
-            
         }
-        
+        // 현재 팀 이름은 각 팀원에게 전부 추가해줘야함
+        //ref.child("user").child(Auth.auth().currentUser?.uid).updateChildValues(currentTeam)
     }
     
     // [Button Action] 서비스 유형 선택 - 단일 선택 처리

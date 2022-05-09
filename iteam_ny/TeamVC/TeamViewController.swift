@@ -62,6 +62,7 @@ class TeamViewController: UIViewController {
     let teamCallStoryboard: UIStoryboard = UIStoryboard(name: "TeamCallRequest", bundle: nil)
     
     let db = Database.database().reference()
+    var memberList: [String]?
     
     
     override func viewDidLoad() {
@@ -137,7 +138,7 @@ class TeamViewController: UIViewController {
                     // 꾸린 팀원이 있을 때
                     else {
                         haveMember = true
-                        let memberList = value?.components(separatedBy: ", ")
+                        memberList = value?.components(separatedBy: ", ")
                         var count = 0
                         
                         // 수정해야함 - 안돌음
@@ -197,11 +198,13 @@ class TeamViewController: UIViewController {
             if haveTeamProfile {
                 let teamProfileVC = thisStoryboard.instantiateViewController(withIdentifier: "teamProfileVC") as! CreateTeamProfileViewController
                 teamProfileVC.modalPresentationStyle = .fullScreen
+                teamProfileVC.memeberList = memberList
                 present(teamProfileVC, animated: true, completion: nil)
             }
             // 팀원이 있고 프로필은 없을 때 팀 프로필 생성
             else {
                 let teamProfileVC = thisStoryboard.instantiateViewController(withIdentifier: "teamProfileVC") as! CreateTeamProfileViewController
+                teamProfileVC.memeberList = memberList
                 teamProfileVC.modalPresentationStyle = .fullScreen
                 present(teamProfileVC, animated: true, completion: nil)
             }
