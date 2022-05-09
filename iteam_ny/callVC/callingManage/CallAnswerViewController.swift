@@ -42,7 +42,7 @@ class CallAnswerViewController: UIViewController {
         }
     }
     var callingOtherUid: String = ""
-    
+    var url = "gs://iteam-test.appspot.com/user_profile_image/"
    
     
     
@@ -77,11 +77,7 @@ class CallAnswerViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         
-        // kingfisher 사용하기 위한 url
-        var url = "gs://iteam-test.appspot.com/user_profile_image/"
-        let uid: String = "7DNtefn5EBPbSI8By0g1IeVS0Jg1"
-        url = url + uid + ".jpg"
-        imageView.setImage(with: url)
+       
         
     }
     
@@ -248,7 +244,7 @@ class CallAnswerViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
+            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
             
             personList.append(person)
             answerListTableView.reloadData()
@@ -480,7 +476,26 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnswerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AnswerPersonCell", for: indexPath) as! AnswerTableViewCell
         cell.nicknameLabel.text = personList[indexPath.row].nickname
+        // kingfisher 사용하기 위한 url
         
+        let uid: String = personList[indexPath.row].profileImg
+        var urlString: URL?
+        
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+          if let error = error {
+            // Handle any errors
+          } else {
+            print(url)
+              urlString = url
+              imageView.kf.setImage(with: url)
+              cell.profileImg.kf.setImage(with: url)
+          }
+        }
+        
+        cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
         
         // 같은 학교 처리
         if cell.nicknameLabel.text == "시연" {

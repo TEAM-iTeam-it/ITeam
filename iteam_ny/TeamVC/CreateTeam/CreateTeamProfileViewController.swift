@@ -35,17 +35,22 @@ class CreateTeamProfileViewController: UIViewController {
     let db = Database.database().reference()
     
     var didTeamNameWrote: Int = 0
+    var didContactLinkWrote: Int = 0
     var didPurpleWrote: Int = 0
     var didPartWrote: Bool = false
     var didRegionWrote: Bool = false
     var partString: String = ""
     // 팀원이 있다면 넘어올 팀원 uid 배열
-    var memeberList: [String]?
+    var memberList: [String]?
+    var haveTeamProfile: Bool = false
     
     var didWroteAllAnswer: Int = 0 {
         willSet(newValue) {
-            print("newvalue = \(newValue)")
-            if newValue >= 5 {
+            if newValue >= 7
+                && !serviceType.isEmpty
+                && partLabel.text != ""
+                && regionLabel.text != ""
+                && contactLinkTF.hasText  {
                 saveBtn.backgroundColor = UIColor(named: "purple_184")
                 saveBtn.setTitleColor(UIColor.white, for: .normal)
                 saveBtn.isEnabled = true
@@ -69,8 +74,18 @@ class CreateTeamProfileViewController: UIViewController {
     // @나연 : 여기서 내 팀 데이터를 받아서 팀원의 "UID.png"제목의 프로필 사진들을 받아옴
     let teamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
     var teamMembers: [CustomUser] = []
-    
-    
+    var didfetchedAllMembers: Bool = false {
+        willSet {
+            if newValue == true {
+                DispatchQueue.main.async {
+                    self.fetchTemaInfo()
+                }
+            }
+        }
+    }
+    var teamname: String?
+    var teamProfile: TeamProfile = TeamProfile(purpose: "", serviceType: "", part: "", detailPart: "", introduce: "", contactLink: "", callTime: "", activeZone: "", memberList: "")
+    var designerDetailPart: [String] = ["UI/UX 디자이너", "일러스트레이터", "모델러"]
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,21 +124,20 @@ class CreateTeamProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
+     
     }
     
     func setUI() {
         navigationBar.shadowImage = UIImage()
         
+        if !(memberList?.contains(Auth.auth().currentUser!.uid))! {
+            memberList?.insert(Auth.auth().currentUser!.uid, at: 0)
+        }
         
         // 유저 프로필(사진, 이름) 세팅 - 나, 다른 팀원들
-        let myself = CustomUser(userName: "나", imageName: teamImages[0])
-        teamMembers.append(myself)
-        print("memeberList \(memeberList)")
-        
         DispatchQueue.main.async {
-            for i in 0..<self.memeberList!.count {
-                self.fetchNickname(userUID: self.memeberList![i])
-                print(self.teamMembers.count)
+            for i in 0..<self.memberList!.count {
+                self.fetchNickname(userUID: self.memberList![i])
             }
             self.profileImageColl.reloadData()
         }
@@ -223,7 +237,102 @@ class CreateTeamProfileViewController: UIViewController {
         singleTapGestureRecognizer.isEnabled = true
         singleTapGestureRecognizer.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressCalled(gestureRecognizer:)))
+        profileImageColl.addGestureRecognizer(longPressGesture)
     }
+    
+    // 팀프로필 있을 때 가져오기
+    func fetchTemaInfo() {
+        guard let teamname = teamname else {
+            return
+        }
+        db.child("Team").child(teamname).observeSingleEvent(of: .value) { [self] snapshot in
+            
+            let value = snapshot.value as! [String : String]
+            teamProfile = TeamProfile(
+                purpose: value["purpose"] ?? "",
+                serviceType: value["serviceType"] ?? "",
+                part: value["part"] ?? "",
+                detailPart: value["detailPart"] ?? "",
+                introduce: value["introduce"] ?? "",
+                contactLink: value["contactLink"] ?? "",
+                callTime: value["callTime"] ?? "",
+                activeZone: value["activeZone"] ?? "",
+                memberList: value["memberList"] ?? ""
+            )
+            
+            // 뷰 세팅
+            DispatchQueue.main.async { [self] in
+                // 데이터 불러와 세팅
+                self.teamNameTF.text = self.teamname
+                self.purposeBtn.setTitle(self.teamProfile.purpose, for: .normal)
+                switch self.teamProfile.serviceType {
+                case "앱 서비스":
+                    self.serviceTypeBtns[0].layer.backgroundColor = UIColor(named: "purple_247")?.cgColor
+                    self.serviceTypeBtns[0].setTitleColor(UIColor(named: "purple_184"), for: .normal)
+                    self.serviceTypeBtns[0].layer.borderWidth = 0.5
+                    self.serviceTypeBtns[0].layer.borderColor = UIColor(named: "purple_247")?.cgColor
+                    self.serviceTypeBtns[0].titleLabel?.font = UIFont.fontWithName(type: .medium, size: 14)
+                    self.serviceType.append("앱 서비스")
+                case "웹 서비스":
+                    self.serviceTypeBtns[1].layer.backgroundColor = UIColor(named: "purple_247")?.cgColor
+                    self.serviceTypeBtns[1].setTitleColor(UIColor(named: "purple_184"), for: .normal)
+                    self.serviceTypeBtns[1].layer.borderWidth = 0.5
+                    self.serviceTypeBtns[1].layer.borderColor = UIColor(named: "purple_247")?.cgColor
+                    self.serviceTypeBtns[1].titleLabel?.font = UIFont.fontWithName(type: .medium, size: 14)
+                    self.serviceType.append("웹 서비스")
+                default:
+                    self.serviceTypeBtns[2].layer.backgroundColor = UIColor(named: "purple_247")?.cgColor
+                    self.serviceTypeBtns[2].setTitleColor(UIColor(named: "purple_184"), for: .normal)
+                    self.serviceTypeBtns[2].layer.borderWidth = 0.5
+                    self.serviceTypeBtns[2].layer.borderColor = UIColor(named: "purple_247")?.cgColor
+                    self.serviceTypeBtns[2].titleLabel?.font = UIFont.fontWithName(type: .medium, size: 14)
+                    self.serviceType.append("게임")
+                }
+                self.partLabel.text = self.teamProfile.detailPart
+                self.regionLabel.text = self.teamProfile.activeZone
+                if self.teamProfile.introduce != "" {
+                    self.introduceTF.text = self.teamProfile.introduce
+                }
+                if self.teamProfile.callTime != "" {
+                    self.callTimeBtn.setTitle(self.teamProfile.callTime, for: .normal)
+                }
+                if self.teamProfile.contactLink != "" {
+                    self.contactLinkTF.text = self.teamProfile.contactLink
+                }
+                
+                
+                // 디자인 세팅
+                self.didWroteAllAnswer = 6
+               
+                didPurpleWrote = 1
+                didPartWrote = true
+                didRegionWrote = true
+                didContactLinkWrote = 1
+                self.saveBtn.isEnabled = true
+                self.teamNameTF.textColor = UIColor(named: "gray_196")
+                self.teamNameTF.isEnabled = false
+                purposeBtn.setTitleColor(.black, for: .normal)
+                callTimeBtn.setTitleColor(.black, for: .normal)
+                setLayout()
+                
+                var leaderUserInfo = CustomUser(userName: "", imageName: "", uid: "")
+                // 팀장 맨 앞에 배치
+                for i in 0..<teamMembers.count {
+                    if self.teamMembers[i].uid == value["leader"] {
+                        leaderUserInfo = self.teamMembers[i]
+                        teamMembers.remove(at: i)
+                        break
+                    }
+                }
+                teamMembers.insert(leaderUserInfo, at: 0)
+                profileImageColl.reloadData()
+            }
+            
+        }
+    }
+    
     // uid로 user 닉네임 반환
     func fetchNickname(userUID: String)  {
         let userdb = db.child("user").child(userUID)
@@ -237,9 +346,8 @@ class CreateTeamProfileViewController: UIViewController {
                 if snap.key == "userProfile" {
                     for (key, content) in value! {
                         if key as! String == "nickname" {
-                            let user = CustomUser(userName: content as! String, imageName: teamImages[0])
+                            let user = CustomUser(userName: content as! String, imageName: teamImages[0], uid: userUID)
                             teamMembers.append(user)
-                            print("user.userName \(user.userName)")
                             profileImageColl.reloadData()
                            
                         }
@@ -247,6 +355,24 @@ class CreateTeamProfileViewController: UIViewController {
                 }
             }
         }
+        if userUID == memberList?.last {
+            didfetchedAllMembers = true
+        }
+    }
+    func snapShotOfCall(_ inputView: UIView) -> UIView {
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+            
+        let cellSnapshot: UIView = UIImageView(image: image)
+        cellSnapshot.layer.masksToBounds = false
+        cellSnapshot.layer.cornerRadius = 0.0
+        cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
+        cellSnapshot.layer.shadowRadius = 5.0
+        cellSnapshot.layer.shadowOpacity = 0.4
+            
+        return cellSnapshot
     }
     
     // [Button Action] 뒤로 가기
@@ -304,20 +430,67 @@ class CreateTeamProfileViewController: UIViewController {
     }
     // 데이터 저장
     func saveDataAction() {
+        
+        var memberListString: String = ""
+        guard var memberList = memberList else {
+            return
+        }
+
+        if !memberList.contains(Auth.auth().currentUser!.uid) {
+            memberList.insert( Auth.auth().currentUser!.uid, at: 0)
+        }
+        
+        for i in 0..<memberList.count {
+            if i == 0 {
+                memberListString = memberList[0]
+            }
+            else {
+                memberListString += ", \(memberList[i])"
+            }
+        }
+        if partString == "" {
+            var partArr: [String] = []
+            var newPartString: String = ""
+            if let partLabelText = partLabel.text {
+                if partLabelText.contains("기획자") {
+                    partArr.append("기획자")
+                    
+                }
+                if partLabelText.contains("개발") {
+                    partArr.append("개발자")
+                }
+                for designPart in designerDetailPart {
+                    if partLabelText.contains(designPart) {
+                        partArr.append("디자이너")
+                        break
+                    }
+                }
+            }
+            for i in 0..<partArr.count {
+                if i == 0 {
+                    newPartString = partArr[0]
+                }
+                else {
+                    newPartString += ", \(partArr[i])"
+                }
+            }
+            partString = newPartString
+        }
+        
         guard let user = Auth.auth().currentUser else {
             return
         }
-        // 현재 팀은 각 팀원에게 전부 추가해줘야함
+        
         let currentTeam: [String: Any] = [ "currentTeam": teamNameTF.text]
         let purpose: [String: Any] = [ "purpose": purposeBtn.titleLabel?.text]
         let serviceType: [String: Any] = [ "serviceType": serviceType[0]]
-        let leader: [String: Any] = ["leader": ""]
+        let leader: [String: Any] = ["leader": teamMembers[0].uid]
         let part: [String: Any] = [ "part": partString]
         let activeZone: [String: Any] = [ "activeZone": regionLabel.text]
         let introduce: [String: Any] = [ "introduce": introduceTF.text]
         let callTime: [String: Any] = [ "callTime": callTimeBtn.titleLabel?.text]
         let contactLink: [String: Any] = [ "contactLink": contactLinkTF.text]
-        let memberList: [String: Any] = [ "memberList": user.uid]
+        let memberListValue: [String: Any] = [ "memberList": memberListString]
         let detailPart: [String: Any] = ["detailPart": partLabel.text]
         
         ref = Database.database().reference()
@@ -334,15 +507,16 @@ class CreateTeamProfileViewController: UIViewController {
             ref.child("Team").child(teamNameTF).updateChildValues(leader)
             ref.child("Team").child(teamNameTF).updateChildValues(callTime)
             ref.child("Team").child(teamNameTF).updateChildValues(contactLink)
-            ref.child("Team").child(teamNameTF).updateChildValues(memberList)
+            ref.child("Team").child(teamNameTF).updateChildValues(memberListValue)
         }
         // 현재 팀 이름은 각 팀원에게 전부 추가해줘야함
-        //ref.child("user").child(Auth.auth().currentUser?.uid).updateChildValues(currentTeam)
+        for i in 0..<memberList.count {
+            ref.child("user").child(memberList[i]).updateChildValues(currentTeam)            
+        }
     }
     
     // [Button Action] 서비스 유형 선택 - 단일 선택 처리
     @IBAction func serviceTypeAction(_ sender: UIButton) {
-        
         // 이미 클릭한 경우 -> 클릭 취소
         if serviceType.contains((sender.titleLabel?.text)!) {
             sender.layer.backgroundColor = UIColor.clear.cgColor
@@ -388,7 +562,6 @@ class CreateTeamProfileViewController: UIViewController {
                 
             }
         }
-        print("serviceType : \(serviceType)")
     }
     
     // 통화 가능 시간 bottom sheet 띄우기
@@ -433,6 +606,7 @@ extension CreateTeamProfileViewController: UITextFieldDelegate, UIScrollViewDele
             scrollView.scroll(to: .bottom)
         }
         addFillCount()
+        addFillCountContactLink()
         textField.resignFirstResponder()
         return true
     }
@@ -449,12 +623,14 @@ extension CreateTeamProfileViewController: UITextFieldDelegate, UIScrollViewDele
     
     @objc func TapMethod(sender: UITapGestureRecognizer) {
         addFillCount()
+        addFillCountContactLink()
         self.view.endEditing(true)
     }
     
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
         addFillCount()
+        addFillCountContactLink()
         self.view.endEditing(true)
     }
     
@@ -476,6 +652,23 @@ extension CreateTeamProfileViewController: UITextFieldDelegate, UIScrollViewDele
             
         }
     }
+    func addFillCountContactLink() {
+        if contactLinkTF.hasText {
+            if didContactLinkWrote == 1 {
+            }
+            else {
+                didContactLinkWrote = 1
+                didWroteAllAnswer += didContactLinkWrote
+            }
+        }
+        else {
+            if didContactLinkWrote == 1 {
+                didWroteAllAnswer -= 1
+                didContactLinkWrote = 0
+            }
+            
+        }
+    }
 }
 
 
@@ -486,12 +679,27 @@ extension CreateTeamProfileViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "makingMyTeamProfileCell", for: indexPath) as! CreateTeamProfileImageCollectionViewCell
+        cell.profileImage.layer.cornerRadius = cell.profileImage.frame.height/2
+        if teamMembers[indexPath.row].uid == Auth.auth().currentUser!.uid {
+            cell.nameLabel.text = "나"
+        }
+        else {
+            cell.nameLabel.text = teamMembers[indexPath.row].userName
+        }
         
-        cell.nameLabel.text = teamMembers[indexPath.row].userName
-        cell.profileImage.image = UIImage(named: teamMembers[indexPath.row].imageName)
+        let uid: String = teamMembers[indexPath.row].uid
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+          if let error = error {
+              print("에러 \(error.localizedDescription)")
+          } else {
+              cell.profileImage.kf.setImage(with: url)
+          }
+        }
         cell.profileImage.layer.masksToBounds = true
         cell.layer.masksToBounds = true
-        cell.profileImage.layer.masksToBounds = true
         cell.nameLabel.sizeToFit()
         return cell
         
@@ -511,10 +719,12 @@ extension CreateTeamProfileViewController: UICollectionViewDelegateFlowLayout {
 class CustomUser {
     var userName: String = ""
     var imageName: String = ""
+    var uid: String = ""
     
-    init(userName: String, imageName: String) {
+    init(userName: String, imageName: String, uid: String) {
         self.userName = userName
         self.imageName = imageName
+        self.uid = uid
     }
 }
 enum FontType {
@@ -564,9 +774,11 @@ extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataD
         self.partLabel.text = detailPart
       
         // 포지션이 채워지면 카운트를 올려줌
-        if !self.partLabel.text!.isEmpty {
-            didWroteAllAnswer += 1
-            didPartWrote = true
+        if !self.partLabel.text!.isEmpty || partLabel.text != "" {
+            if !didPartWrote {
+                didWroteAllAnswer += 1
+                didPartWrote = true
+            }
         }
         else {
             // 포지션을 채웠다가 비우면 카운트를 내려줌
@@ -576,7 +788,6 @@ extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataD
                 didPartWrote = false
             }
         }
-        
     }
     
     func sendRegionData(data: [String]) {
@@ -594,16 +805,18 @@ extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataD
         self.regionLabel.text = region
         
         // 지역이 채워지면 카운트를 올려줌
-        if !self.regionLabel.text!.isEmpty {
-            didWroteAllAnswer += 1
-            didRegionWrote = true
+        if !self.regionLabel.text!.isEmpty || regionLabel.text != "" {
+            if !didRegionWrote {
+                didWroteAllAnswer += 1
+                didRegionWrote = true
+            }
         }
         else {
             // 포지션을 채웠다가 비우면 카운트를 내려줌
             // 처음 입력 시부터 입력하지 않았다면 카운트 변경 없음
             if didRegionWrote {
                 didWroteAllAnswer -= 1
-                didPartWrote = false
+                didRegionWrote = false
             }
         }
     }
@@ -633,3 +846,104 @@ extension CreateTeamProfileViewController: UISheetPresentationControllerDelegate
     }
 }
 
+extension CreateTeamProfileViewController {
+    @objc func longPressCalled(gestureRecognizer: UIGestureRecognizer) {
+        guard let longPress = gestureRecognizer as? UILongPressGestureRecognizer else { return }
+        let state = longPress.state
+        let locationInView = longPress.location(in: profileImageColl)
+        let indexPath = profileImageColl.indexPathForItem(at: locationInView)
+    
+        
+        // 최초 indexPath 변수
+        struct Initial {
+            static var initialIndexPath: IndexPath?
+        }
+        
+        // 스냅샷
+        struct MyCell {
+            static var cellSnapshot: UIView?
+            static var cellIsAnimating: Bool = false
+            static var cellNeedToShow: Bool = false
+        }
+        
+        // UIGestureRecognizer 상태에 따른 case 분기처리
+        switch state {
+            
+        // longPress 제스처가 시작할 때 case
+        case UIGestureRecognizer.State.began:
+            if indexPath != nil {
+                Initial.initialIndexPath = indexPath
+                var cell: UICollectionViewCell? = UICollectionViewCell()
+                cell = profileImageColl.cellForItem(at: indexPath!)
+                
+                MyCell.cellSnapshot = snapShotOfCall(cell!)
+                
+                var center = cell?.center
+                MyCell.cellSnapshot!.center = center!
+                // 원래 처음 꾹 누른 부분의 기존 row는 가려준다.
+                MyCell.cellSnapshot!.alpha = 0.0
+                profileImageColl.addSubview(MyCell.cellSnapshot!)
+                
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    center?.y = locationInView.y
+                    MyCell.cellIsAnimating = true
+                    MyCell.cellSnapshot!.center = center!
+                    MyCell.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                    MyCell.cellSnapshot!.alpha = 0.98
+                    cell?.alpha = 0.0
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        MyCell.cellIsAnimating = false
+                        if MyCell.cellNeedToShow {
+                            MyCell.cellNeedToShow = false
+                            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                                cell?.alpha = 1
+                            })
+                        } else {
+                            cell?.isHidden = true
+                        }
+                    }
+                })
+            }
+        // longPress 제스처가 변경될 때 case
+        case UIGestureRecognizer.State.changed:
+            if MyCell.cellSnapshot != nil {
+                var center = MyCell.cellSnapshot!.center
+                center.y = locationInView.y
+                MyCell.cellSnapshot!.center = center
+                
+                if ((indexPath != nil) && (indexPath != Initial.initialIndexPath)) && Initial.initialIndexPath != nil {
+                    // 메모리 관련 이슈때문에 바꿔준 부분
+                    teamMembers.insert(self.teamMembers.remove(at: Initial.initialIndexPath!.row), at: indexPath!.row)
+                    profileImageColl.moveItem(at: Initial.initialIndexPath!, to: indexPath!)
+                    Initial.initialIndexPath = indexPath
+                }
+            }
+        // longPress 제스처가 끝났을 때 case
+        default:
+            if Initial.initialIndexPath != nil {
+                let cell = profileImageColl.cellForItem(at: Initial.initialIndexPath!)
+                if MyCell.cellIsAnimating {
+                    MyCell.cellNeedToShow = true
+                } else {
+                    cell?.isHidden = false
+                    cell?.alpha = 0.0
+                }
+                
+                UIView.animate(withDuration: 0.2, animations: { () -> Void in
+                    MyCell.cellSnapshot!.center = (cell?.center)!
+                    MyCell.cellSnapshot!.transform = CGAffineTransform.identity
+                    MyCell.cellSnapshot!.alpha = 0.0
+                    cell?.alpha = 1.0
+                    
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        Initial.initialIndexPath = nil
+                        MyCell.cellSnapshot!.removeFromSuperview()
+                        MyCell.cellSnapshot = nil
+                    }
+                })
+            }
+        }
+    }
+}

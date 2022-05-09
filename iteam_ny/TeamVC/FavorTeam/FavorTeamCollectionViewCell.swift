@@ -57,14 +57,13 @@ class FavorTeamCollectionViewCell: UICollectionViewCell {
         
         imageData = imageData.reversed()
     }
+
     @IBAction func likeButtonAction(_ sender: UIButton) {
         if likeBool {
-            print("지우자")
             likeBool = false
             removeDataAcion()
         }
         else {
-            print("추가하자")
             likeBool = true
             pullDataAcion()
         }
@@ -106,11 +105,8 @@ class FavorTeamCollectionViewCell: UICollectionViewCell {
                 var lastData: String! = snapshot.value as? String
                 lastDatas = lastData.components(separatedBy: ", ")
                 
-                print(lastDatas)
                 for i in 0..<lastDatas.count {
-                    print(i)
                     if lastDatas[i] == self.teamName.text! {
-                        print(i)
                         lastDatas.remove(at: i)
                         break
                     }
@@ -151,6 +147,25 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favorTeamImageCell", for: indexPath) as! FavorTeamImagesCollectionViewCell
         cell.userImages.isHidden = false
+        cell.layer.cornerRadius = cell.frame.height/2
+        
+        print("usersUID \(usersUID)")
+        let uid: String = usersUID[indexPath.row]
+        var urlString: URL?
+        
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+          if let error = error {
+              print("에러 \(error.localizedDescription)")
+          } else {
+            print(url)
+              urlString = url
+              cell.userImages.kf.setImage(with: url)
+          }
+        }
+        /*
         if imageData.count <= 3 {
             // 받아온 사진 리사이징, 셀에 설정
             if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
@@ -186,7 +201,7 @@ extension FavorTeamCollectionViewCell: UICollectionViewDelegate, UICollectionVie
             }
             
         }
-        cell.layer.cornerRadius = cell.frame.height/2
+         */
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor
         cell.layer.masksToBounds = true

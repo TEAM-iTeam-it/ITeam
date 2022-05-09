@@ -130,13 +130,11 @@ class MakingAppTeamViewController: UIViewController {
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
         db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
             DispatchQueue.main.async {
                 self.fetchData()
             }
         })
         db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
             DispatchQueue.main.async {
                 self.doesContainFavorTeam()
             }
