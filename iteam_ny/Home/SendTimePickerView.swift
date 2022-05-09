@@ -36,9 +36,15 @@ class SendTimePickerView:UIViewController{
 //        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func saveAction(_ sender: UIButton) {
-        
-        self.delegate?.SendTimeData(data: numberI + select_Time )
-        self.dismiss(animated: true, completion: nil)
+        if select_Time.isEmpty{
+                    saveBtn.isEnabled = false
+                    self.dismiss(animated: true, completion: nil)
+                }
+                else {
+                    self.delegate?.SendTimeData(data: numberI + select_Time )
+                    self.dismiss(animated: true, completion: nil)
+
+                }
         
     }
     
