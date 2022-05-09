@@ -14,6 +14,9 @@ class AnswerTableViewCell: UITableViewCell {
     @IBOutlet weak var callStateBtn: UIButton!
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var sameSchoolLabel: UILabel!
+    @IBOutlet weak var cancelLabel: UILabel!
+    @IBOutlet weak var callingStateBtn: CallStatementButton!
+    @IBOutlet weak var nicknameToSameSchoolConst: NSLayoutConstraint!
     
 
     override func awakeFromNib() {

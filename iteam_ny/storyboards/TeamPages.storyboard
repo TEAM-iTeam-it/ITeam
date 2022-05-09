@@ -2346,7 +2346,6 @@
         <image name="imgUser10.png" width="50" height="50"/>
         <image name="imgUser4.png" width="50" height="50"/>
         <image name="imgUser8.png" width="50" height="50"/>
-        <image name="searchIcon.png" width="28" height="28"/>
         <image name="searchIconBlack.png" width="32" height="32"/>
         <image name="sliderIcon.png" width="32" height="32"/>
         <image name="xmark" catalog="system" width="128" height="113"/>

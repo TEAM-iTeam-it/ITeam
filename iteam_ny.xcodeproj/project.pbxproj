@@ -143,6 +143,9 @@
 		086E4B502826D2CD005933CB /* ChannelTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E4B4F2826D2CD005933CB /* ChannelTeamViewController.swift */; };
 		086E4B522826EBE1005933CB /* CallReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E4B512826EBE1005933CB /* CallReportViewController.swift */; };
 		086E4B542826ECBB005933CB /* ReportPersonAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E4B532826ECBB005933CB /* ReportPersonAlertViewController.swift */; };
+		086E4B582827E46F005933CB /* profileGradientBorder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 086E4B552827E46C005933CB /* profileGradientBorder@3x.png */; };
+		086E4B592827E46F005933CB /* profileGradientBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 086E4B562827E46D005933CB /* profileGradientBorder@2x.png */; };
+		086E4B5A2827E46F005933CB /* profileGradientBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 086E4B572827E46E005933CB /* profileGradientBorder.png */; };
 		086FAF662824F54E0075737B /* CallAnswerTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */; };
 		087A23DB27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */; };
 		087A23E327FACAB700E76893 /* icArrowDropDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */; };
@@ -379,6 +382,9 @@
 		086E4B4F2826D2CD005933CB /* ChannelTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTeamViewController.swift; sourceTree = "<group>"; };
 		086E4B512826EBE1005933CB /* CallReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallReportViewController.swift; sourceTree = "<group>"; };
 		086E4B532826ECBB005933CB /* ReportPersonAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPersonAlertViewController.swift; sourceTree = "<group>"; };
+		086E4B552827E46C005933CB /* profileGradientBorder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profileGradientBorder@3x.png"; sourceTree = "<group>"; };
+		086E4B562827E46D005933CB /* profileGradientBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profileGradientBorder@2x.png"; sourceTree = "<group>"; };
+		086E4B572827E46E005933CB /* profileGradientBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileGradientBorder.png; sourceTree = "<group>"; };
 		086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAnswerTeamViewController.swift; sourceTree = "<group>"; };
 		087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		087A23E027FACAB500E76893 /* icArrowDropDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icArrowDropDown@2x.png"; sourceTree = "<group>"; };
@@ -742,6 +748,9 @@
 		0868B06227CB6EBE0018464B /* image_source */ = {
 			isa = PBXGroup;
 			children = (
+				086E4B572827E46E005933CB /* profileGradientBorder.png */,
+				086E4B562827E46D005933CB /* profileGradientBorder@2x.png */,
+				086E4B552827E46C005933CB /* profileGradientBorder@3x.png */,
 				083AFB292821EEE500B2AF00 /* group216.png */,
 				083AFB2A2821EEE700B2AF00 /* group216@2x.png */,
 				083AFB282821EEE400B2AF00 /* group216@3x.png */,
@@ -1123,6 +1132,7 @@
 				08B2F2EF27F75A05008F7085 /* teamPageLogo.png in Resources */,
 				08B2F2F127F77A0F008F7085 /* TeamPages_AllTeams.storyboard in Resources */,
 				1F64AF54280EE83900D7B2BD /* ic_friends.png in Resources */,
+				086E4B582827E46F005933CB /* profileGradientBorder@3x.png in Resources */,
 				08BFBE9727F590D800A6F6B0 /* Mypages.storyboard in Resources */,
 				081F267E27F399C100F17332 /* imgUser7.png in Resources */,
 				080F9C3127EA17470055FAF8 /* btnAdd1.png in Resources */,
@@ -1146,6 +1156,7 @@
 				1F5AC97527D6BEB600146C0E /* UserListCell.xib in Resources */,
 				1FFD2E4427FC02650068520D /* ic_rate@3x.png in Resources */,
 				1FFD2E3627FBEE420068520D /* btn_option@3x.png in Resources */,
+				086E4B5A2827E46F005933CB /* profileGradientBorder.png in Resources */,
 				1FFD2E3727FBEE420068520D /* btn_option.png in Resources */,
 				0863BCFD280C059B00AFB2B9 /* btnAddSmall@2x.png in Resources */,
 				0863BD02280C059B00AFB2B9 /* btnAddSmall.png in Resources */,
@@ -1173,6 +1184,7 @@
 				087FA8C227E9B942000E741B /* rectangleEditImage@3x.png in Resources */,
 				080F9C2C27EA04240055FAF8 /* icCheckPurple.png in Resources */,
 				0833416B27F3317F005B4F31 /* sliderIcon@3x.png in Resources */,
+				086E4B592827E46F005933CB /* profileGradientBorder@2x.png in Resources */,
 				1F64AF52280EE83000D7B2BD /* ic_team.png in Resources */,
 				080F9C2B27EA04240055FAF8 /* icCheckPurple@3x.png in Resources */,
 				1F64AF4B280ED04000D7B2BD /* img_logo.png in Resources */,

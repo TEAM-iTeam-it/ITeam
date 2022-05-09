@@ -15,6 +15,8 @@ class ChannelTeamViewController: UIViewController {
     @IBOutlet weak var leaveButton: UIButton!
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var reportButton: UIButton!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var timeExplainLabel: UILabel!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     
     // 입장할 때 speaker로 받기
@@ -37,11 +39,7 @@ class ChannelTeamViewController: UIViewController {
     var activeSpeakers: Array<UInt> = []
     
     // 말하고 있는 사람
-    var activeSpeaker: UInt = 0 {
-        willSet(newValue) {
-            collection.reloadData()
-        }
-    }
+    var activeSpeaker: UInt?
     
     // 듣고 있는 사람
     var activeAudience: Set<UInt> = []
@@ -76,6 +74,9 @@ class ChannelTeamViewController: UIViewController {
             }
         }
     }
+    // 타이머
+    var secondsLeft: Int = 180
+    var timer: Timer?
     
     
     
@@ -115,6 +116,9 @@ class ChannelTeamViewController: UIViewController {
         // 바뀐 데이터 불러오기
         fetchChangedData()
         
+        // 타이머 시작
+        timerButtonClicked()
+        
     }
     
     func setUI() {
@@ -125,7 +129,62 @@ class ChannelTeamViewController: UIViewController {
         
         
     }
+    @IBAction func leaveChannel(_ sender: UIButton) {
+        self.agkit?.createRtcChannel("testToken11")?.leave()
+        self.agkit?.leaveChannel()
+        AgoraRtcEngineKit.destroy()
+        
+        removeParticipant()
+        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallClosedVC") as! CallClosedViewController
+        // 통화 끝났을 때 개인, 팀원은 그냥 종료/팀장은 개인을 팀원으로 추가할지!
+        if amiLeader {
+            popupVC.otherPersonUID = otherPersonUID
+            popupVC.amILeader = true
+            popupVC.modalPresentationStyle = .overFullScreen
+            present(popupVC, animated: false, completion: nil)
+        }
+        else {
+            dismiss(animated: true)
+        }
+    }
+    @IBAction func reportPerson(_ sender: UIButton) {
+        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallReportVC") as! CallReportViewController
+        popupVC.otherPersonUID = otherPersonUID
+        popupVC.modalPresentationStyle = .overFullScreen
+        present(popupVC, animated: false, completion: nil)
+    }
     
+    func updateTimerLabel() {
+        var minutes = self.secondsLeft / 60
+        var seconds = self.secondsLeft % 60
+        
+        if self.secondsLeft < 10 {
+            self.timerLabel.textColor = UIColor.red
+        } else {
+            self.timerLabel.textColor = UIColor.black
+        }
+        
+        if self.secondsLeft > 0 {
+            self.timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
+        } else {
+            self.timerLabel.isHidden = true
+            self.timeExplainLabel.text = "통화시간이 종료되었습니다"
+        }
+        
+    }
+    
+    func timerButtonClicked() {
+        updateTimerLabel()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (t) in
+            // 30 -> 1로 수정해야함
+            self.secondsLeft -= 1
+            self.updateTimerLabel()
+            
+            if self.secondsLeft == 0 {
+                self.leaveChannel(UIButton())
+            }
+        }
+    }
     
     // 참여하는 사람에 추가
     func addParticipant() {
@@ -156,6 +215,7 @@ class ChannelTeamViewController: UIViewController {
         }
         
     }
+    
     // 참여하는 사람에서 삭제
     func removeParticipant() {
         var updateString: String = ""
@@ -394,24 +454,6 @@ class ChannelTeamViewController: UIViewController {
         }
     }
     
-    @IBAction func leaveChannel(_ sender: UIButton) {
-        self.agkit?.createRtcChannel("testToken11")?.leave()
-        self.agkit?.leaveChannel()
-        AgoraRtcEngineKit.destroy()
-        
-        removeParticipant()
-        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallClosedVC") as! CallClosedViewController
-        // 통화 끝났을 때 개인, 팀원은 그냥 종료/팀장은 개인을 팀원으로 추가할지!
-        if amiLeader {
-            popupVC.otherPersonUID = otherPersonUID
-            popupVC.amILeader = true
-            popupVC.modalPresentationStyle = .overFullScreen
-            present(popupVC, animated: false, completion: nil)
-        }
-        else {
-            dismiss(animated: true)
-        }
-    }
     
     
 }
@@ -443,6 +485,7 @@ extension ChannelTeamViewController: AgoraRtcEngineDelegate {
     
     // 현재 말하는 사람 설정
     func rtcEngine(_ engine: AgoraRtcEngineKit, activeSpeaker speakerUid: UInt) {
+        //현재 말하는 사람으로 설정해준다.
         self.activeSpeaker = speakerUid
         self.collection.reloadData()
     }
@@ -470,6 +513,7 @@ extension ChannelTeamViewController: UICollectionViewDelegate, UICollectionViewD
         }
         else {
             cell.setUI(image: participantList[indexPath.row].profileImg, nickname: participantList[indexPath.row].nickname, position: participantList[indexPath.row].position)
+            
             if !activeSpeakers.isEmpty || activeSpeakers != nil {
                 print("activeSpeakers.count \(activeSpeakers.count)")
                 if indexPath.row <= activeSpeakers.count-1 {

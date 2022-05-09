@@ -497,12 +497,16 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.sameSchoolLabel.isHidden = true
         }
         
-
-        
+        cell.cancelLabel.isHidden = true
         cell.positionLabel.text = personList[indexPath.row].position
-     //   cell.callStateBtn.titleLabel?.font = .systemFont(ofSize: 13)
         cell.callStateBtn.layer.cornerRadius = cell.callStateBtn.frame.height/2
         cell.callStateBtn.setTitle("\(personList[indexPath.row].callStm)", for: .normal)
+        cell.selectionStyle = .none
+        
+        cell.callStateBtn.layer.cornerRadius = cell.callStateBtn.frame.height/2
+        cell.callStateBtn.setTitle("\(personList[indexPath.row].callStm)", for: .normal)
+        cell.callingStateBtn.setTitle("\(personList[indexPath.row].callStm)", for: .normal)
+        cell.callStateBtn.layer.masksToBounds = true
         cell.selectionStyle = .none
         
         cell.callStateBtn.backgroundColor = .clear
@@ -515,6 +519,8 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.profileImg.image = UIImage(named: "\(personList[indexPath.row].profileImg)")
         cell.profileImg.image?.withRenderingMode(.alwaysTemplate)
+        cell.callStateBtn.isHidden = false
+        cell.callingStateBtn.isHidden = true
         
         // 버튼 색상 처리
         if personList[indexPath.row].callStm == "요청거절됨" || personList[indexPath.row].callStm == "요청취소됨" {
@@ -522,10 +528,18 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.callStateBtn.backgroundColor = .systemGray6
             cell.callStateBtn.setTitleColor(.lightGray, for: .normal)
             
+            cell.cancelLabel.text = "요청 거절됨"
+            cell.cancelLabel.textColor = UIColor(named: "red_254")
+            cell.nicknameToSameSchoolConst.constant = 6
+            cell.cancelLabel.isHidden = false
+            cell.callStateBtn.isHidden = true
+            
             if personList[indexPath.row].callStm == "요청취소됨" {
                 cell.nicknameLabel.textColor = .systemGray5
                 cell.positionLabel.textColor = .systemGray5
                 cell.profileImg.tintColor = UIColor(named: "gray_light2")
+                cell.cancelLabel.text = "요청 취소됨"
+                cell.cancelLabel.textColor = UIColor(named: "gray_196")
             }
         }
         else if personList[indexPath.row].callStm == "대기 중" {
@@ -549,20 +563,12 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
     
         
         else if personList[indexPath.row].callStm == "통화" {
-            cell.callStateBtn.setTitleColor(.white, for: .normal)
-            cell.callStateBtn.layer.cornerRadius = cell.callStateBtn.frame.height/2
-            cell.callStateBtn.translatesAutoresizingMaskIntoConstraints = false
-            
-            // 버튼 그라디언트
-            let gradientLayer = CAGradientLayer()
-            gradientLayer.frame = cell.callStateBtn.bounds
-            gradientLayer.colors = [UIColor(named: "purple_184")?.cgColor, UIColor(named: "green_151")?.cgColor]
-            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-            gradientLayer.frame = cell.callStateBtn.bounds
-            cell.callStateBtn.layer.insertSublayer(gradientLayer, at: 0)
-            cell.callStateBtn.layer.masksToBounds = true
-            
+            cell.callingStateBtn.setTitleColor(.white, for: .normal)
+            cell.callingStateBtn.layer.cornerRadius = cell.callingStateBtn.frame.height/2
+            cell.callingStateBtn.translatesAutoresizingMaskIntoConstraints = false
+            cell.callingStateBtn.backgroundColor = UIColor(named: "purple_184")
+            cell.callStateBtn.isHidden = true
+            cell.callingStateBtn.isHidden = false
         }
         return cell
     }
