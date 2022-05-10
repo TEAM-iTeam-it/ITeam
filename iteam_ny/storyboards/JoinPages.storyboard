@@ -3811,6 +3811,9 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBN-Vc-NTz">
                                                     <rect key="frame" x="78" y="17" width="9" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="17" id="gCc-YZ-Jns"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -4333,14 +4336,6 @@
                                     <constraint firstAttribute="height" constant="0.5" id="BLY-u6-dXI"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0Qf-oz-ZWk">
-                                <rect key="frame" x="172" y="662.5" width="70" height="69"/>
-                                <color key="tintColor" systemColor="systemGrayColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="E0r-Fr-6tA"/>
-                                    <constraint firstAttribute="width" constant="70" id="r9m-rf-e5c"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS 개발" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Drh-81-rJc">
                                 <rect key="frame" x="185" y="766" width="44.5" height="16"/>
                                 <constraints>
@@ -4414,6 +4409,79 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hsQ-lB-TsN">
+                                <rect key="frame" x="115" y="660" width="184" height="74"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="74" id="EJU-Gr-9WA"/>
+                                    <constraint firstAttribute="width" constant="184" id="bjb-uJ-hd5"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wdr-BM-8hd">
+                                    <size key="itemSize" width="70" height="70"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="waitingTeamProfileCell" id="Hr7-LL-ptg" customClass="TeamProfileImageCollectionViewCell" customModule="iteam_ny" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="2" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XKJ-s9-Ea7">
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQ5-B0-f4s" customClass="GradientView" customModule="iteam_ny" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPl-7p-v6n">
+                                                            <rect key="frame" x="25" y="26" width="20" height="18"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="hPl-7p-v6n" firstAttribute="centerX" secondItem="nQ5-B0-f4s" secondAttribute="centerX" id="bkY-13-58d"/>
+                                                        <constraint firstAttribute="height" constant="70" id="lwe-1r-vsn"/>
+                                                        <constraint firstAttribute="width" constant="70" id="m7o-oe-GtO"/>
+                                                        <constraint firstItem="hPl-7p-v6n" firstAttribute="centerY" secondItem="nQ5-B0-f4s" secondAttribute="centerY" id="vl4-0L-GYH"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser4.png" translatesAutoresizingMaskIntoConstraints="NO" id="4DV-th-JRu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="NI7-8T-E1P"/>
+                                                        <constraint firstAttribute="height" constant="70" id="bOW-nl-Xr5"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4DV-th-JRu" firstAttribute="top" secondItem="XKJ-s9-Ea7" secondAttribute="top" id="2AB-UK-DvX"/>
+                                                <constraint firstItem="4DV-th-JRu" firstAttribute="leading" secondItem="XKJ-s9-Ea7" secondAttribute="leading" id="3qR-AZ-rcH"/>
+                                                <constraint firstItem="nQ5-B0-f4s" firstAttribute="centerY" secondItem="4DV-th-JRu" secondAttribute="centerY" id="6kZ-0L-bdq"/>
+                                                <constraint firstAttribute="bottom" secondItem="4DV-th-JRu" secondAttribute="bottom" id="Gu9-t4-A9l"/>
+                                                <constraint firstItem="4DV-th-JRu" firstAttribute="centerY" secondItem="XKJ-s9-Ea7" secondAttribute="centerY" id="Net-Ro-Iav"/>
+                                                <constraint firstAttribute="trailing" secondItem="4DV-th-JRu" secondAttribute="trailing" id="VWL-L0-YcG"/>
+                                                <constraint firstItem="nQ5-B0-f4s" firstAttribute="centerX" secondItem="4DV-th-JRu" secondAttribute="centerX" id="Ztb-9l-Wts"/>
+                                                <constraint firstItem="4DV-th-JRu" firstAttribute="centerX" secondItem="XKJ-s9-Ea7" secondAttribute="centerX" id="ZuQ-2T-gUR"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="gradientView" destination="nQ5-B0-f4s" id="kpo-gc-yRK"/>
+                                            <outlet property="memberCountLabel" destination="hPl-7p-v6n" id="rBR-Vk-tuo"/>
+                                            <outlet property="userImage" destination="4DV-th-JRu" id="pmd-B9-ceF"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0Qf-oz-ZWk">
+                                <rect key="frame" x="172" y="662.5" width="70" height="69"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="E0r-Fr-6tA"/>
+                                    <constraint firstAttribute="width" constant="70" id="r9m-rf-e5c"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Dj2-fc-Z9y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4437,6 +4505,8 @@
                             <constraint firstItem="sdM-RW-9H8" firstAttribute="top" secondItem="ckX-aW-mSW" secondAttribute="bottom" constant="60" id="mvB-YO-4ez"/>
                             <constraint firstItem="4Iu-kh-pfa" firstAttribute="centerX" secondItem="Drh-81-rJc" secondAttribute="centerX" id="vCg-g6-dd5"/>
                             <constraint firstItem="Dj2-fc-Z9y" firstAttribute="bottom" secondItem="Drh-81-rJc" secondAttribute="bottom" constant="80" id="vbP-cv-Knn"/>
+                            <constraint firstItem="hsQ-lB-TsN" firstAttribute="centerX" secondItem="0Qf-oz-ZWk" secondAttribute="centerX" id="xH6-II-foi"/>
+                            <constraint firstItem="hsQ-lB-TsN" firstAttribute="centerY" secondItem="0Qf-oz-ZWk" secondAttribute="centerY" id="zmC-PP-1TF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8yt-gl-b4H"/>
@@ -4446,6 +4516,7 @@
                         <outlet property="positionLabel" destination="Drh-81-rJc" id="3hP-di-Rte"/>
                         <outlet property="profileImg" destination="0Qf-oz-ZWk" id="YPD-75-EcZ"/>
                         <outlet property="sameSchoolLabel" destination="He7-Nh-yCj" id="GSf-gC-oeI"/>
+                        <outlet property="teamProfileCollectionView" destination="hsQ-lB-TsN" id="BVe-vs-OR6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Trh-tr-J7F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -5418,14 +5489,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-8D-Heu">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-8D-Heu">
                                         <rect key="frame" x="95" y="30" width="184" height="74"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="184" id="sY3-qt-1vc"/>
                                             <constraint firstAttribute="height" constant="74" id="y94-3j-V6Y"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZME-jq-qQ5">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZME-jq-qQ5">
                                             <size key="itemSize" width="70" height="70"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -5433,7 +5504,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="detailTeamProfileCell" id="x0U-cz-MJ8" customClass="TeamProfileImageCollectionViewCell" customModule="iteam_ny" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                <rect key="frame" x="0.0" y="2" width="70" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JWR-sv-QMY">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>

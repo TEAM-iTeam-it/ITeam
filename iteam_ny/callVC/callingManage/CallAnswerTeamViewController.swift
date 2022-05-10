@@ -55,14 +55,15 @@ class CallAnswerTeamViewController: UIViewController {
         
         setUI()
         // 이 문제도x
-        fetchData()
+       // fetchData()
         
-        fetchChangedData()
+        //fetchChangedData()
         
 
     }
     override func viewWillAppear(_ animated: Bool) {
-        answerListTableView.reloadData()
+        //setUI()
+        fetchData()
     }
     
     func setUI() {
@@ -78,10 +79,39 @@ class CallAnswerTeamViewController: UIViewController {
 
         
     }
+    func removeArr() {
+        
+        personList.removeAll()
+        whenIReceivedOtherPerson.removeAll()
+        whenISendOtherTeam.removeAll()
+        
+        callTimeArr.removeAll()
+        questionArr.removeAll()
+        callTimeArrSend.removeAll()
+        questionArrSend.removeAll()
+        didISent.removeAll()
+        
+        teamIndex.removeAll()
+        teamIndexForSend.removeAll()
+        callTeamIndex.removeAll()
+        
+        //answerListTableView.reloadData()
+        
+        toGoSegue = "대기"
+        counter = 0
+        name = "speaker"
+        myNickname = ""
+        myTeamname = ""
+       
+        fetchedInputUIDToNickName = ""
+       
+        nowRequestedUid = ""
+        callingOtherUid = ""
+    }
     
     func fetchData() {
         
-        personList.removeAll()
+        removeArr()
         
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         //print("myTeamname \(myTeamname)")
@@ -114,6 +144,7 @@ class CallAnswerTeamViewController: UIViewController {
                 
                 // 나와 관련된 call 가져오기
                 for child in snapshot.children {
+                    print("snapshot.children \(snapshot.children)")
                     let snap = child as! DataSnapshot
                     let value = snap.value as? NSDictionary
                     
@@ -187,9 +218,7 @@ class CallAnswerTeamViewController: UIViewController {
                                 }
                                 
                                 callTimeArrSend.append((myCallTime[i]["callTime"]?.components(separatedBy: ", "))!)
-                                print("callTimeArrSend \(callTimeArrSend)")
                                 questionArrSend.append((myCallTime[i]["Question"]?.components(separatedBy: ", "))!)
-                                print("questionArrSend \(questionArrSend)")
                                 
                                 if myCallTime[i]["teamName"] != nil {
                                     teamIndexForSend.append(myCallTime[i]["teamName"]!)
@@ -289,7 +318,6 @@ class CallAnswerTeamViewController: UIViewController {
         let justTeamname = teamname.replacingOccurrences(of: " 팀", with: "")
         let userdb = db.child("Team").child(justTeamname)
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
-            print("here \(teamname)")
             var teamname: String = justTeamname
             var part: String = ""
             var purpose: String = ""
@@ -357,7 +385,6 @@ class CallAnswerTeamViewController: UIViewController {
                 part = partDetail + part
                 
             }
-            print("userUID \(userUID)")
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
             
@@ -392,12 +419,13 @@ class CallAnswerTeamViewController: UIViewController {
     
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
-        personList.removeAll()
+        
         
         // 아님
         db.child("Call").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
+                self.removeArr()
                 self.fetchData()
             }
         })
@@ -405,6 +433,7 @@ class CallAnswerTeamViewController: UIViewController {
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
+                self.removeArr()
                 self.fetchData()
             }
             
@@ -412,6 +441,7 @@ class CallAnswerTeamViewController: UIViewController {
         db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
+                self.removeArr()
                 self.fetchData()
             }
 
@@ -481,6 +511,7 @@ class CallAnswerTeamViewController: UIViewController {
 
 extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("personList.count \(personList.count)")
         return personList.count
     }
     
@@ -554,7 +585,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     cell.circleTitleView.isHidden = false
                     
                     let teamFirstName = personList[indexPath.row].nickname[personList[indexPath.row].nickname.startIndex]
-                    print(teamFirstName)
                     cell.teamProfileLabel.text = String(teamFirstName)
                     
                 }
@@ -595,7 +625,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     cell.circleTitleView.isHidden = false
                     
                     let teamFirstName = personList[indexPath.row].nickname[personList[indexPath.row].nickname.startIndex]
-                    print(teamFirstName)
                     cell.teamProfileLabel.text = String(teamFirstName)
                     
                 }
@@ -622,20 +651,18 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         else if personList[indexPath.row].callStm == "요청옴" {
-            for j in 0..<personList.count {
-                print(personList[j].nickname)
-                print(personList[j].profileImg)
-            }
+            print("whenIReceivedOtherPerson.count \(whenIReceivedOtherPerson.count)")
             for i in 0..<whenIReceivedOtherPerson.count {
                 if whenIReceivedOtherPerson[i].nickname == personList[indexPath.row].nickname {
-                    
                     // kingfisher 사용하기 위한 url
                     let uid: String = personList[indexPath.row].profileImg
+                    print("uid \(uid)")
                     let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
                     
                     // Fetch the download URL
                     starsRef.downloadURL { [self] url, error in
                         if let error = error {
+                            print("error \(error.localizedDescription)")
                         } else {
                             cell.profileImg.kf.setImage(with: url)
                         }
@@ -657,7 +684,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     cell.circleTitleView.isHidden = false
                     
                     let teamFirstName = personList[indexPath.row].nickname[personList[indexPath.row].nickname.startIndex]
-                    print(teamFirstName)
                     cell.teamProfileLabel.text = String(teamFirstName)
                     
                 }
@@ -679,7 +705,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     cell.circleTitleView.isHidden = false
                     
                     let teamFirstName = personList[indexPath.row].nickname[personList[indexPath.row].nickname.startIndex]
-                    print(teamFirstName)
                     cell.teamProfileLabel.text = String(teamFirstName)
                     
                 }
@@ -727,14 +752,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             // 1. 내가 보낸 경우 -> 팀을 표시해야함
             for i in 0..<whenISendOtherTeam.count {
                 if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
-                    var indexCount = -1
-                    
-                    for i in 0...indexPath.row {
-                        if personList[i].callStm == "대기 중" {
-                            indexCount += 1
-                        }
-                    }
-                    
+            
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
                     var position = personList[indexPath.row].position
@@ -744,24 +762,17 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     
                     waitingRoomVC.fromPerson = myNickname
                     waitingRoomVC.toPerson = personList[indexPath.row].nickname
-                    waitingRoomVC.questionArr = questionArrSend[indexPath.row]
-                    waitingRoomVC.callTime = callTimeArrSend[indexCount][0]
-                    
-                    // waitingRoomVC.profile = personList[(sender as? Int)!].profileImg
+                    // 대기 중, 요청됨, 통화도 보낸 사람으로 구분
+                    waitingRoomVC.questionArr = questionArrSend[i]
+                    waitingRoomVC.callTime = callTimeArrSend[i][0]
+                    waitingRoomVC.profile = personList[indexPath.row].profileImg
                     
                 }
             }
             // 2. 내가 승인한 경우
             for i in 0..<whenIReceivedOtherPerson.count {
                 if whenIReceivedOtherPerson[i].nickname == personList[indexPath.row].nickname {
-                    var indexCount = -1
-                    
-                    for i in 0...indexPath.row {
-                        if personList[i].callStm == "대기 중" {
-                            indexCount += 1
-                        }
-                    }
-                    
+                
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
                     var position = personList[indexPath.row].position
@@ -771,10 +782,10 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     
                     waitingRoomVC.fromPerson = personList[indexPath.row].nickname
                     waitingRoomVC.toPerson = myNickname
-                    waitingRoomVC.questionArr = questionArr[indexPath.row]
-                    waitingRoomVC.callTime = callTimeArr[indexCount][0]
                     
-                    // waitingRoomVC.profile = personList[(sender as? Int)!].profileImg
+                    waitingRoomVC.questionArr = questionArr[i]
+                    waitingRoomVC.callTime = callTimeArr[i][0]
+                    waitingRoomVC.profile = personList[indexPath.row].profileImg
                     
                 }
             }
@@ -785,20 +796,14 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         else if personList[indexPath.row].callStm == "요청됨" {
             let historyVC = thisStoryboard.instantiateViewController(withIdentifier: "teamHistoryVC") as! CallRequstTeamHistoryViewController
             historyVC.modalPresentationStyle = .fullScreen
-            
-            var indexCount = -1
-            
-            for i in 0...indexPath.row {
-                if personList[i].callStm == "요청됨" {
-                    print(indexCount)
-                    indexCount += 1
+            for i in 0..<whenISendOtherTeam.count {
+                if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
+                    historyVC.callTime = callTimeArrSend[i]
+                    historyVC.teamFormatPerson = personList[indexPath.row]
+                    historyVC.questionArr = questionArrSend[i]
+                    historyVC.teamIndex = teamIndexForSend[i]
                 }
             }
-            historyVC.callTime = callTimeArrSend[indexCount]
-            historyVC.teamFormatPerson = personList[indexPath.row]
-            historyVC.questionArr = questionArrSend[indexCount]
-            historyVC.teamIndex = teamIndexForSend[indexCount]
-            
             present(historyVC, animated: true, completion: nil)
         }
         else if personList[indexPath.row].callStm == "통화" {
@@ -807,18 +812,21 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             callingVC.nickname = personList[indexPath.row].nickname
             var position = personList[indexPath.row].position
             callingVC.position = String(position)
-            var indexCount = -1
-            // 오류
-            for i in 0...indexPath.row {
-                if personList[i].callStm == "통화" {
-                    print("indexCount \(indexCount)")
-                    indexCount += 1
+            
+            // 내가 보냈을 때
+            for i in 0..<whenISendOtherTeam.count {
+                if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
+                    callingVC.teamIndex = callTeamIndex[i]
                 }
             }
-        
-            callingVC.teamIndex = callTeamIndex[indexCount]
+            // 내가 받았을 때
+            for j in 0..<whenIReceivedOtherPerson.count {
+                if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
+                    callingVC.teamIndex = callTeamIndex[j]
+                }
+            }
+           
             callingVC.nowEntryPersonUid = Auth.auth().currentUser!.uid
-            
             callingVC.name = name
             callingVC.image = personList[indexPath.row].profileImg
             callingVC.modalPresentationStyle = .fullScreen
@@ -829,17 +837,16 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             let storyboard: UIStoryboard = UIStoryboard(name: "CallAgree", bundle: nil)
             if let nextView = storyboard.instantiateInitialViewController() as? UINavigationController,
                let nextViewChild = nextView.viewControllers.first as? CallAgreeViewController {
-                var indexCount = -1
-                
-                for i in 0...indexPath.row {
-                    if personList[i].callStm == "요청옴" {
-                        indexCount += 1
+              
+                for j in 0..<whenIReceivedOtherPerson.count {
+                    if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
+                        
+                        nextViewChild.times = callTimeArr[j]
+                        nextViewChild.questionArr = questionArr[j]
+                        nextViewChild.teamName = teamIndex[j]
+                        nextViewChild.callerNickname = fetchedInputUIDToNickName
                     }
                 }
-                nextViewChild.times = callTimeArr[indexCount]
-                nextViewChild.questionArr = questionArr[indexPath.row]
-                nextViewChild.teamName = teamIndex[indexCount]
-                nextViewChild.callerNickname = fetchedInputUIDToNickName
                 
                 nextView.modalPresentationStyle = .fullScreen
                 self.present(nextView, animated: true, completion: nil)

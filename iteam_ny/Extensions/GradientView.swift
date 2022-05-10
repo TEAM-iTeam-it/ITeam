@@ -21,7 +21,6 @@ class GradientView: UIView {
         l.colors = [UIColor(named: "purple_184")?.cgColor, UIColor(named: "purple_247")?.cgColor]
         l.startPoint = CGPoint(x: 0, y: 0)
         l.endPoint = CGPoint(x: 1, y: 1)
-        l.cornerRadius = 8
         layer.insertSublayer(l, at: 0)
         return l
     }()

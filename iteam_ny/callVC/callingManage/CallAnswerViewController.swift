@@ -55,12 +55,12 @@ class CallAnswerViewController: UIViewController {
         answerListTableView.dataSource = self
         
         setUI()
-        fetchData()
         
         // 바뀐 데이터 불러오기
-        fetchChangedData()
+        //fetchChangedData()
     }
     override func viewWillAppear(_ animated: Bool) {
+        fetchData()
         //answerListTableView.reloadData()
     }
     
@@ -423,7 +423,7 @@ class CallAnswerViewController: UIViewController {
     
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
-        personList.removeAll()
+        removeArr()
         db.child("Call").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
@@ -656,7 +656,6 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     var position = personList[indexPath.row].position
                     waitingRoomVC.position = position
                     
-                    //personList[indexPath.row].
                     
                     waitingRoomVC.fromPerson = myNickname
                     waitingRoomVC.toPerson = personList[indexPath.row].nickname
@@ -670,14 +669,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             // 2. 내가 승인한 경우
             for i in 0..<whenIReceivedOtherPerson.count {
                 if whenIReceivedOtherPerson[i].nickname == personList[indexPath.row].nickname {
-                    var indexCount = -1
-                    
-                    for i in 0...indexPath.row {
-                        if personList[i].callStm == "대기 중" {
-                            indexCount += 1
-                        }
-                    }
-                    
+              
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
                     var position = personList[indexPath.row].position
@@ -688,9 +680,8 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     waitingRoomVC.fromPerson = personList[indexPath.row].nickname
                     waitingRoomVC.toPerson = myNickname
                     
-                    
-                    waitingRoomVC.questionArr = questionArr[indexPath.row]
-                    waitingRoomVC.callTime = callTimeArr[indexCount][0]
+                    waitingRoomVC.questionArr = questionArr[i]
+                    waitingRoomVC.callTime = callTimeArr[i][0]
                     waitingRoomVC.profile = personList[indexPath.row].profileImg
                     
                 }
