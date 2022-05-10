@@ -79,19 +79,21 @@ class CallRequstHistoryViewController: UIViewController {
                 profileImageView.kf.setImage(with: url)
             }
         }
-    
+        profileImageView.layer.cornerRadius = profileImageView.frame.height/2
+        
         
         titleLabel.text = "\(person.nickname) 님이 요청을 확인 중입니다."
         nickNameLabel.text = person.nickname
         infoLabel.text = person.position
         
         for i in 0..<callTime.count {
-            if callTime[i].contains("0분") {
-                callTimeLabels[i].text = callTime[i].replacingOccurrences(of: "0분", with: "")
+            callTimeLabels[i].sizeToFit()
+            if callTime[i].contains("00분") {
+                callTimeLabels[i].text = callTime[i].replacingOccurrences(of: "00분", with: "")
             }
             else {
                 callTimeLabels[i].text = callTime[i]
-                
+                print(callTime[i])
             }
         }
         

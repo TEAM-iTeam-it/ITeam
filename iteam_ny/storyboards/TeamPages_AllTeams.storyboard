@@ -75,8 +75,10 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiT-an-rYk">
                                                     <rect key="frame" x="20" y="10" width="50" height="50"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="7eD-uu-Xwv"/>
                                                         <constraint firstAttribute="height" constant="50" id="GxQ-vL-DW9"/>
                                                         <constraint firstAttribute="width" constant="50" id="Zud-fI-zMF"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="kf7-tv-WNA"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="19"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

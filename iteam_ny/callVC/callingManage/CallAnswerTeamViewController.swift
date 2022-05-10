@@ -75,11 +75,7 @@ class CallAnswerTeamViewController: UIViewController {
         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("취소") })
         
         conditionChangeBtn.menu = UIMenu(title: "상태를 선택해주세요", image: UIImage(systemName: "heart.fill"), identifier: nil, options: .displayInline, children: [requestList, denied, canceled, cancel])
-        // Do any additional setup after loading the view.
-        
-        
-        let url = "gs://iteam-test.appspot.com/user_profile_image/7DNtefn5EBPbSI8By0g1IeVS0Jg1.jpg"
-        //imageView.setImage(with: url)
+
         
     }
     
@@ -88,7 +84,7 @@ class CallAnswerTeamViewController: UIViewController {
         personList.removeAll()
         
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
-        
+        //print("myTeamname \(myTeamname)")
         // 내 닉네임 받아오기
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
             
@@ -104,7 +100,7 @@ class CallAnswerTeamViewController: UIViewController {
                         }
                     }
                 }
-                if snap.key == "currentTeamname" {
+                if snap.key == "currentTeam" {
                     let value: String = teamnameValue!
                     myTeamname = value
                 }
@@ -148,10 +144,20 @@ class CallAnswerTeamViewController: UIViewController {
                         // 내가 받은 팀인 경우
                         if myCallTime[i]["receiverNickname"] == myTeamname + " 팀" {
                             if myCallTime[i]["receiverType"] != nil && myCallTime[i]["receiverType"] == "team" {
-                                // 이 문제x
-                                fetchUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
-                                // 이 문제x
-                                fetchIReceivedOtherUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
+                                
+                                // 요청옴은 따로 넘겨줘야함
+                                if myCallTime[i]["stmt"] == "통화"
+                                    || myCallTime[i]["stmt"] == "대기 중"
+                                    || myCallTime[i]["stmt"] == "요청취소됨"
+                                    || myCallTime[i]["stmt"] == "요청거절됨" {
+                                    
+                                    fetchUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
+                                    fetchIReceivedOtherUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
+                                }
+                                else {
+                                    fetchUser(userUID: myCallTime[i]["callerUid"]!, stmt: "요청옴")
+                                    fetchIReceivedOtherUser(userUID: myCallTime[i]["callerUid"]!, stmt: "요청옴")
+                                }
                                 callTimeArr.append((myCallTime[i]["callTime"]?.components(separatedBy: ", "))!)
                                 questionArr.append((myCallTime[i]["Question"]?.components(separatedBy: ", "))!)
                                 if myCallTime[i]["teamName"] != nil {
@@ -160,7 +166,6 @@ class CallAnswerTeamViewController: UIViewController {
                                 if myCallTime[i]["stmt"] == "통화" {
                                     callTeamIndex.append(myCallTime[i]["teamName"]!)
                                 }
-                                // 이 문제x
                                 fetchNickname(userUID: myCallTime[i]["callerUid"]!)
                                 break
                             }
@@ -169,10 +174,17 @@ class CallAnswerTeamViewController: UIViewController {
                         if myCallTime[i]["callerUid"] == Auth.auth().currentUser?.uid {
                             
                             if myCallTime[i]["receiverType"] != nil && myCallTime[i]["receiverType"] == "team" {
-                                // 여기서 오류 발생
-                                //fetchUID(nickname: myCallTime[i]["receiverNickname"]!, stmt: myCallTime[i]["stmt"]!)
-                                // 해결 -> 이 문제 아님
-                                fetchTeam(teamname: myCallTime[i]["receiverNickname"]!, stmt: myCallTime[i]["stmt"]!)
+                             
+                                if myCallTime[i]["stmt"] == "통화"
+                                    || myCallTime[i]["stmt"] == "대기 중"
+                                    || myCallTime[i]["stmt"] == "요청취소됨"
+                                    || myCallTime[i]["stmt"] == "요청거절됨" {
+                                    
+                                    fetchTeam(teamname: myCallTime[i]["receiverNickname"]!, stmt: myCallTime[i]["stmt"]!)
+                                }
+                                else {
+                                    fetchTeam(teamname: myCallTime[i]["receiverNickname"]!, stmt: "요청됨")
+                                }
                                 
                                 callTimeArrSend.append((myCallTime[i]["callTime"]?.components(separatedBy: ", "))!)
                                 print("callTimeArrSend \(callTimeArrSend)")
@@ -265,7 +277,7 @@ class CallAnswerTeamViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
+            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
             
             personList.append(person)
             answerListTableView.reloadData()
@@ -345,9 +357,9 @@ class CallAnswerTeamViewController: UIViewController {
                 part = partDetail + part
                 
             }
+            print("userUID \(userUID)")
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
-            
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
+            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
             
             whenIReceivedOtherPerson.append(person)
         }
@@ -513,11 +525,16 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         
         cell.positionLabel.textColor = UIColor(named: "gray_121")
         
-        cell.profileImg.image = UIImage(named: "\(personList[indexPath.row].profileImg)")
-        cell.profileImg.image?.withRenderingMode(.alwaysTemplate)
+        //cell.profileImg.image = UIImage(named: "\(personList[indexPath.row].profileImg)")
+       // cell.profileImg.image?.withRenderingMode(.alwaysTemplate)
         cell.callStateBtn.isHidden = false
         cell.callingStateBtn.isHidden = true
         
+        // 팀일 경우 디자인 세팅
+        cell.teamProfileLabel.isHidden = true
+        cell.circleTitleView.isHidden = true
+        cell.circleTitleView.layer.cornerRadius = cell.circleTitleView.frame.height/2
+        cell.circleTitleView.layer.masksToBounds = true
         
         // 버튼 색상 처리
         if personList[indexPath.row].callStm == "요청거절됨" || personList[indexPath.row].callStm == "요청취소됨" {
@@ -530,6 +547,36 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             cell.cancelLabel.isHidden = false
             cell.callStateBtn.isHidden = true
             
+            for i in 0..<whenISendOtherTeam.count {
+                if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
+                    cell.profileImg.isHidden = true
+                    cell.teamProfileLabel.isHidden = false
+                    cell.circleTitleView.isHidden = false
+                    
+                    let teamFirstName = personList[indexPath.row].nickname[personList[indexPath.row].nickname.startIndex]
+                    print(teamFirstName)
+                    cell.teamProfileLabel.text = String(teamFirstName)
+                    
+                }
+            }
+            // 다른 사람이 우리 팀으로 보낸 경우 -> 개인 표시
+            for j in 0..<whenIReceivedOtherPerson.count {
+                if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
+                    // kingfisher 사용하기 위한 url
+                    let uid: String = personList[indexPath.row].profileImg
+                    let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+                    
+                    // Fetch the download URL
+                    starsRef.downloadURL { [self] url, error in
+                        if let error = error {
+                        } else {
+                            cell.profileImg.kf.setImage(with: url)
+                        }
+                    }
+                }
+            }
+            
+            
             if personList[indexPath.row].callStm == "요청취소됨" {
                 cell.nicknameLabel.textColor = .systemGray5
                 cell.positionLabel.textColor = .systemGray5
@@ -540,18 +587,81 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             }
         }
         else if personList[indexPath.row].callStm == "대기 중" {
+            // 내가 팀에 보낸 경우 -> 팀 표시
+            for i in 0..<whenISendOtherTeam.count {
+                if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
+                    cell.profileImg.isHidden = true
+                    cell.teamProfileLabel.isHidden = false
+                    cell.circleTitleView.isHidden = false
+                    
+                    let teamFirstName = personList[indexPath.row].nickname[personList[indexPath.row].nickname.startIndex]
+                    print(teamFirstName)
+                    cell.teamProfileLabel.text = String(teamFirstName)
+                    
+                }
+            }
+            // 다른 사람이 우리 팀으로 보낸 경우 -> 개인 표시
+            for j in 0..<whenIReceivedOtherPerson.count {
+                if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
+                    // kingfisher 사용하기 위한 url
+                    let uid: String = personList[indexPath.row].profileImg
+                    let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+                    
+                    // Fetch the download URL
+                    starsRef.downloadURL { [self] url, error in
+                        if let error = error {
+                        } else {
+                            cell.profileImg.kf.setImage(with: url)
+                        }
+                    }
+                }
+            }
             cell.callStateBtn.layer.borderWidth = 0
             cell.callStateBtn.backgroundColor = UIColor(named: "purple_184")
             cell.callStateBtn.setTitleColor(.white, for: .normal)
         }
         
         else if personList[indexPath.row].callStm == "요청옴" {
+            for j in 0..<personList.count {
+                print(personList[j].nickname)
+                print(personList[j].profileImg)
+            }
+            for i in 0..<whenIReceivedOtherPerson.count {
+                if whenIReceivedOtherPerson[i].nickname == personList[indexPath.row].nickname {
+                    
+                    // kingfisher 사용하기 위한 url
+                    let uid: String = personList[indexPath.row].profileImg
+                    let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+                    
+                    // Fetch the download URL
+                    starsRef.downloadURL { [self] url, error in
+                        if let error = error {
+                        } else {
+                            cell.profileImg.kf.setImage(with: url)
+                        }
+                    }
+                }
+            }
+            
             cell.callStateBtn.layer.borderWidth = 0
             cell.callStateBtn.backgroundColor = UIColor(named: "green_dark")
             cell.callStateBtn.setTitleColor(.white, for: .normal)
             
         }
         else if personList[indexPath.row].callStm == "요청됨" {
+            
+            for i in 0..<whenISendOtherTeam.count {
+                if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
+                    cell.profileImg.isHidden = true
+                    cell.teamProfileLabel.isHidden = false
+                    cell.circleTitleView.isHidden = false
+                    
+                    let teamFirstName = personList[indexPath.row].nickname[personList[indexPath.row].nickname.startIndex]
+                    print(teamFirstName)
+                    cell.teamProfileLabel.text = String(teamFirstName)
+                    
+                }
+            }
             cell.callStateBtn.layer.borderWidth = 0.5
             cell.callStateBtn.layer.borderColor = UIColor(named: "gray_196")?.cgColor
             cell.callStateBtn.setTitleColor(UIColor(named: "gray_51"), for: .normal)
@@ -560,6 +670,38 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         else if personList[indexPath.row].callStm == "통화" {
+            
+            // 내가 팀에 보낸 경우 -> 팀 표시
+            for i in 0..<whenISendOtherTeam.count {
+                if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
+                    cell.profileImg.isHidden = true
+                    cell.teamProfileLabel.isHidden = false
+                    cell.circleTitleView.isHidden = false
+                    
+                    let teamFirstName = personList[indexPath.row].nickname[personList[indexPath.row].nickname.startIndex]
+                    print(teamFirstName)
+                    cell.teamProfileLabel.text = String(teamFirstName)
+                    
+                }
+            }
+            // 다른 사람이 우리 팀으로 보낸 경우 -> 개인 표시
+            for j in 0..<whenIReceivedOtherPerson.count {
+                if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
+                    // kingfisher 사용하기 위한 url
+                    let uid: String = personList[indexPath.row].profileImg
+                    let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+                    
+                    // Fetch the download URL
+                    starsRef.downloadURL { [self] url, error in
+                        if let error = error {
+                        } else {
+                            cell.profileImg.kf.setImage(with: url)
+                        }
+                    }
+                }
+            }
+            
+            
             cell.callingStateBtn.setTitleColor(.white, for: .normal)
             cell.callingStateBtn.layer.cornerRadius = cell.callingStateBtn.frame.height/2
             cell.callingStateBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -582,7 +724,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             let waitingRoomVC = thisStoryboard.instantiateViewController(withIdentifier: "waitingRoomVC") as! ChannelWaitingViewController
             waitingRoomVC.modalPresentationStyle = .fullScreen
             
-            // 1. 내가 보낸 경우
+            // 1. 내가 보낸 경우 -> 팀을 표시해야함
             for i in 0..<whenISendOtherTeam.count {
                 if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
                     var indexCount = -1

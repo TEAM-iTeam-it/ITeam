@@ -653,8 +653,8 @@
 				086E4B512826EBE1005933CB /* CallReportViewController.swift */,
 				0868B03327CB6D820018464B /* ChannelSectionHeader.swift */,
 				0868B03227CB6D820018464B /* ChannelViewController.swift */,
-				086E4B4F2826D2CD005933CB /* ChannelTeamViewController.swift */,
 				0868B03027CB6D820018464B /* UserCollectionViewCell.swift */,
+				086E4B4F2826D2CD005933CB /* ChannelTeamViewController.swift */,
 			);
 			path = calling;
 			sourceTree = "<group>";

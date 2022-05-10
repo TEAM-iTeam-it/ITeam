@@ -47,6 +47,7 @@ class ChannelWaitingViewController: UIViewController {
         profileImg.layer.cornerRadius = profileImg.frame.height/2
         
         // kingfisher 사용하기 위한 url
+        print("profile \(profile)")
         let uid: String = profile
         
         let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
@@ -61,6 +62,7 @@ class ChannelWaitingViewController: UIViewController {
         callTimeLabel.text = "\(callTime)에"
         name = "speaker"
     }
+    
     @IBAction func backBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }

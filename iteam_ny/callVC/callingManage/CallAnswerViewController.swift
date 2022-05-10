@@ -61,7 +61,7 @@ class CallAnswerViewController: UIViewController {
         fetchChangedData()
     }
     override func viewWillAppear(_ animated: Bool) {
-        answerListTableView.reloadData()
+        //answerListTableView.reloadData()
     }
     
     func setUI() {
@@ -91,6 +91,7 @@ class CallAnswerViewController: UIViewController {
         didISent.removeAll()
         teamIndex.removeAll()
         teamIndexForSend.removeAll()
+        answerListTableView.reloadData()
     }
     func fetchData() {
         
@@ -154,8 +155,19 @@ class CallAnswerViewController: UIViewController {
                         // 내가 받은 경우
                         if myCallTime[i]["receiverNickname"] == myNickname {
                             if myCallTime[i]["receiverType"] != nil && myCallTime[i]["receiverType"] == "personal" {
-                                fetchUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
-                                fetchIReceivedOtherUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
+                          
+                                if myCallTime[i]["stmt"] == "통화"
+                                    || myCallTime[i]["stmt"] == "대기 중"
+                                    || myCallTime[i]["stmt"] == "요청취소됨"
+                                    || myCallTime[i]["stmt"] == "요청거절됨" {
+                                    
+                                    fetchUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
+                                    fetchIReceivedOtherUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
+                                }
+                                else {
+                                    fetchUser(userUID: myCallTime[i]["callerUid"]!, stmt: "요청옴")
+                                    fetchIReceivedOtherUser(userUID: myCallTime[i]["callerUid"]!, stmt: "요청옴")
+                                }
                                 callTimeArr.append((myCallTime[i]["callTime"]?.components(separatedBy: ", "))!)
                                 questionArr.append((myCallTime[i]["Question"]?.components(separatedBy: ", "))!)
                                 if myCallTime[i]["teamName"] != nil {
@@ -169,7 +181,17 @@ class CallAnswerViewController: UIViewController {
                         if myCallTime[i]["callerUid"] == Auth.auth().currentUser?.uid {
                             
                             if myCallTime[i]["receiverType"] != nil && myCallTime[i]["receiverType"] == "personal" {
-                                fetchUID(nickname: myCallTime[i]["receiverNickname"]!, stmt: myCallTime[i]["stmt"]!)
+                                if myCallTime[i]["stmt"] == "통화"
+                                    || myCallTime[i]["stmt"] == "대기 중"
+                                    || myCallTime[i]["stmt"] == "요청취소됨"
+                                    || myCallTime[i]["stmt"] == "요청거절됨" {
+                                    
+                                    fetchUID(nickname: myCallTime[i]["receiverNickname"]!, stmt: myCallTime[i]["stmt"]!)
+                                }
+                                else {
+                                    fetchUID(nickname: myCallTime[i]["receiverNickname"]!, stmt: "요청됨")
+                                }
+                                
                                 callTimeArrSend.append((myCallTime[i]["callTime"]?.components(separatedBy: ", "))!)
                                 questionArrSend.append((myCallTime[i]["Question"]?.components(separatedBy: ", "))!)
                                 
@@ -548,6 +570,11 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         cell.profileImg.image?.withRenderingMode(.alwaysTemplate)
         cell.callStateBtn.isHidden = false
         cell.callingStateBtn.isHidden = true
+        cell.grayImageView.isHidden = true
+        cell.grayImageView.layer.cornerRadius = cell.grayImageView.frame.height/2
+        
+        
+        
         
         // 버튼 색상 처리
         if personList[indexPath.row].callStm == "요청거절됨" || personList[indexPath.row].callStm == "요청취소됨" {
@@ -564,9 +591,10 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             if personList[indexPath.row].callStm == "요청취소됨" {
                 cell.nicknameLabel.textColor = .systemGray5
                 cell.positionLabel.textColor = .systemGray5
-                cell.profileImg.tintColor = UIColor(named: "gray_light2")
+               // cell.profileImg.tintColor = UIColor(named: "gray_light2")
                 cell.cancelLabel.text = "요청 취소됨"
                 cell.cancelLabel.textColor = UIColor(named: "gray_196")
+                cell.grayImageView.isHidden = false
             }
         }
         else if personList[indexPath.row].callStm == "대기 중" {
@@ -614,9 +642,8 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             // 1. 내가 보낸 경우
             for i in 0..<whenISendOtherPerson.count {
                 if whenISendOtherPerson[i].nickname == personList[indexPath.row].nickname {
-                    var indexCount = -1
-                    
                     /*
+                    var indexCount = -1
                     for i in 0...indexPath.row {
                         if personList[i].callStm == "대기 중" {
                             indexCount += 1
@@ -664,8 +691,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     
                     waitingRoomVC.questionArr = questionArr[indexPath.row]
                     waitingRoomVC.callTime = callTimeArr[indexCount][0]
-                    
-                    // waitingRoomVC.profile = personList[(sender as? Int)!].profileImg
+                    waitingRoomVC.profile = personList[indexPath.row].profileImg
                     
                 }
             }
