@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import Kingfisher
 
 class CallRequstHistoryViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
@@ -18,6 +19,7 @@ class CallRequstHistoryViewController: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet var callTimeLabels: [UILabel]!
     @IBOutlet weak var questionTableview: UITableView!
+    @IBOutlet weak var profileImageView: UIImageView!
     
     var personUID: String = ""
     let db = Database.database().reference()
@@ -62,6 +64,22 @@ class CallRequstHistoryViewController: UIViewController {
         profileView.layer.shadowOpacity = 0.2
         profileView.layer.shadowRadius = 8.0
         
+        // kingfisher 사용하기 위한 url
+        let uid: String = person.profileImg
+        var urlString: URL?
+        
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+        
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+            if let error = error {
+                // Handle any errors
+            } else {
+                print(url)
+                profileImageView.kf.setImage(with: url)
+            }
+        }
+    
         
         titleLabel.text = "\(person.nickname) 님이 요청을 확인 중입니다."
         nickNameLabel.text = person.nickname

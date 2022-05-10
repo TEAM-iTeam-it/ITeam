@@ -7,6 +7,8 @@
 
 import UIKit
 import MaterialComponents.MaterialBottomSheet
+import Kingfisher
+import FirebaseStorage
 
 class ChannelWaitingViewController: UIViewController {
 
@@ -24,16 +26,40 @@ class ChannelWaitingViewController: UIViewController {
     
     @IBOutlet weak var callTimeLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var sameSchoolLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUI()
+        
+    }
+    func setUI() {
+        sameSchoolLabel.layer.borderWidth = 0.5
+        sameSchoolLabel.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+        sameSchoolLabel.textColor = UIColor(named: "purple_184")
+        
+        sameSchoolLabel.layer.cornerRadius = sameSchoolLabel.frame.height/2
+        sameSchoolLabel.text = "같은 학교"
+        
         nicknameLabel.text = nickname
         positionLabel.text = position
         profileImg.layer.cornerRadius = profileImg.frame.height/2
-        profileImg.image = UIImage(named: "\(profile).png")
+        
+        // kingfisher 사용하기 위한 url
+        let uid: String = profile
+        
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+        
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+            if let error = error {
+            } else {
+                profileImg.kf.setImage(with: url)
+            }
+        }
         callTimeLabel.text = "\(callTime)에"
         name = "speaker"
-        // Do any additional setup after loading the view.
     }
     @IBAction func backBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

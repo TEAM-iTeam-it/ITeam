@@ -80,10 +80,22 @@ class CallAnswerViewController: UIViewController {
        
         
     }
-    
+    func removeArr() {
+        personList.removeAll()
+        whenIReceivedOtherPerson.removeAll()
+        whenISendOtherPerson.removeAll()
+        callTimeArr.removeAll()
+        questionArr.removeAll()
+        callTimeArrSend.removeAll()
+        questionArrSend.removeAll()
+        didISent.removeAll()
+        teamIndex.removeAll()
+        teamIndexForSend.removeAll()
+    }
     func fetchData() {
         
-        personList.removeAll()
+        removeArr()
+        
         
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         
@@ -476,8 +488,8 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnswerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AnswerPersonCell", for: indexPath) as! AnswerTableViewCell
         cell.nicknameLabel.text = personList[indexPath.row].nickname
-        // kingfisher 사용하기 위한 url
         
+        // kingfisher 사용하기 위한 url
         let uid: String = personList[indexPath.row].profileImg
         var urlString: URL?
         
@@ -593,8 +605,6 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        
-        
         if personList[indexPath.row].callStm == "대기 중" {
             // 수정 필요-> 내가 받은 경우, 보낸 경우 구분해야함
             let waitingRoomVC = thisStoryboard.instantiateViewController(withIdentifier: "waitingRoomVC") as! ChannelWaitingViewController
@@ -606,11 +616,13 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                 if whenISendOtherPerson[i].nickname == personList[indexPath.row].nickname {
                     var indexCount = -1
                     
+                    /*
                     for i in 0...indexPath.row {
                         if personList[i].callStm == "대기 중" {
                             indexCount += 1
                         }
                     }
+                     */
                     
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
@@ -621,10 +633,10 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     
                     waitingRoomVC.fromPerson = myNickname
                     waitingRoomVC.toPerson = personList[indexPath.row].nickname
-                    waitingRoomVC.questionArr = questionArrSend[indexPath.row]
-                    waitingRoomVC.callTime = callTimeArrSend[indexCount][0]
-                    
-                    // waitingRoomVC.profile = personList[(sender as? Int)!].profileImg
+                   // 대기 중, 요청됨, 통화도 보낸 사람으로 구분
+                    waitingRoomVC.questionArr = questionArrSend[i]
+                    waitingRoomVC.callTime = callTimeArrSend[i][0]
+                    waitingRoomVC.profile = personList[indexPath.row].profileImg
                     
                 }
             }
@@ -648,6 +660,8 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     
                     waitingRoomVC.fromPerson = personList[indexPath.row].nickname
                     waitingRoomVC.toPerson = myNickname
+                    
+                    
                     waitingRoomVC.questionArr = questionArr[indexPath.row]
                     waitingRoomVC.callTime = callTimeArr[indexCount][0]
                     
@@ -663,17 +677,18 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             let historyVC = thisStoryboard.instantiateViewController(withIdentifier: "historyVC") as! CallRequstHistoryViewController
             historyVC.modalPresentationStyle = .fullScreen
             
-            var indexCount = -1
-            
-            for i in 0...indexPath.row {
-                if personList[i].callStm == "요청됨" {
-                    indexCount += 1
+            for i in 0..<whenISendOtherPerson.count {
+                if whenISendOtherPerson[i].nickname == personList[indexPath.row].nickname {
+                
+                    historyVC.callTime = callTimeArrSend[i]
+                    print(callTimeArrSend)
+                    historyVC.person = personList[indexPath.row]
+                    historyVC.questionArr = questionArrSend[i]
+                    historyVC.teamIndex = teamIndexForSend[i]
+                    
                 }
             }
-            historyVC.callTime = callTimeArrSend[indexCount]
-            historyVC.person = personList[indexPath.row]
-            historyVC.questionArr = questionArrSend[indexCount]
-            historyVC.teamIndex = teamIndexForSend[indexCount]
+            
             
             present(historyVC, animated: true, completion: nil)
         }
