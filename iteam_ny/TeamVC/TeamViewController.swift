@@ -124,7 +124,10 @@ class TeamViewController: UIViewController {
         
         teamdb.observeSingleEvent(of: .value, with: { [self] (snapshot) in
             let values = snapshot.value
-            let dic = values as! [String: [String:Any]]
+            guard let dic = values as? [String: [String:Any]] else {
+                haveTeamProfile = false
+                return }
+            
             if !memberList.contains(Auth.auth().currentUser!.uid) {
                 memberList.insert(Auth.auth().currentUser!.uid, at: 0)
             }

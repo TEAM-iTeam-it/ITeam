@@ -536,7 +536,9 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             cell.sameSchoolLabel.isHidden = true
         }
         
-        
+        cell.selectionStyle = .none
+
+        // 기본 디자인 세팅
         cell.cancelLabel.isHidden = true
         cell.positionLabel.text = personList[indexPath.row].position
         cell.callStateBtn.setTitle("\(personList[indexPath.row].callStm)", for: .normal)
@@ -546,7 +548,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         cell.callStateBtn.setTitle("\(personList[indexPath.row].callStm)", for: .normal)
         cell.callingStateBtn.setTitle("\(personList[indexPath.row].callStm)", for: .normal)
         cell.callStateBtn.layer.masksToBounds = true
-        cell.selectionStyle = .none
         
         cell.callStateBtn.backgroundColor = .clear
         cell.callStateBtn.layer.borderWidth = 0.5
@@ -555,11 +556,12 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         cell.nicknameLabel.textColor = .black
         
         cell.positionLabel.textColor = UIColor(named: "gray_121")
-        
-        //cell.profileImg.image = UIImage(named: "\(personList[indexPath.row].profileImg)")
-       // cell.profileImg.image?.withRenderingMode(.alwaysTemplate)
         cell.callStateBtn.isHidden = false
         cell.callingStateBtn.isHidden = true
+        
+        
+        // 개인일 경우
+        cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
         
         // 팀일 경우 디자인 세팅
         cell.teamProfileLabel.isHidden = true
@@ -813,12 +815,27 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             var position = personList[indexPath.row].position
             callingVC.position = String(position)
             
-            // 내가 보냈을 때
-            for i in 0..<whenISendOtherTeam.count {
-                if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
-                    callingVC.teamIndex = callTeamIndex[i]
+            
+            var callCount: Int = -1
+            for j in 0..<indexPath.row{
+                if personList[j].callStm == "통화" {
+                    callCount += 1
                 }
             }
+            
+            // 보낸 거랑 어캐 구분..?
+            
+          
+            // 내가 보냈을 때 ->
+            for i in 0..<whenISendOtherTeam.count {
+                if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname && whenISendOtherTeam[i].callStm == "통화" {
+                    print(i)
+                    print("callTeamIndex \(callTeamIndex)")
+                    callingVC.teamIndex = callTeamIndex[callCount]
+                }
+            }
+             
+             
             // 내가 받았을 때
             for j in 0..<whenIReceivedOtherPerson.count {
                 if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {

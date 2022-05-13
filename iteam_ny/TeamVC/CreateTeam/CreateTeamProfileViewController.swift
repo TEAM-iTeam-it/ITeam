@@ -39,6 +39,7 @@ class CreateTeamProfileViewController: UIViewController {
     var didPurpleWrote: Int = 0
     var didPartWrote: Bool = false
     var didRegionWrote: Bool = false
+    var didCallTimeWrote: Bool = false
     var partString: String = ""
     // 팀원이 있다면 넘어올 팀원 uid 배열
     var memberList: [String]?
@@ -46,8 +47,10 @@ class CreateTeamProfileViewController: UIViewController {
     
     var didWroteAllAnswer: Int = 0 {
         willSet(newValue) {
+            print("newValue \(newValue)")
             if newValue >= 7
                 && !serviceType.isEmpty
+                && !serviceType.contains("")
                 && partLabel.text != ""
                 && regionLabel.text != ""
                 && contactLinkTF.hasText  {
@@ -823,6 +826,24 @@ extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataD
     func sendCallTimeData(data: String) {
         self.callTimeBtn.setTitle(data, for: .normal)
         self.callTimeBtn.setTitleColor(UIColor.black, for: .normal)
+        
+        // 지역이 채워지면 카운트를 올려줌
+        if !self.callTimeBtn.titleLabel!.text!.isEmpty || callTimeBtn.titleLabel!.text != "통화하기 좋은 시간을 선택해 주세요" {
+            if !didCallTimeWrote {
+                didWroteAllAnswer += 1
+                didCallTimeWrote = true
+            }
+        }
+        else {
+            // 포지션을 채웠다가 비우면 카운트를 내려줌
+            // 처음 입력 시부터 입력하지 않았다면 카운트 변경 없음
+            if didRegionWrote {
+                didWroteAllAnswer -= 1
+                didCallTimeWrote = false
+            }
+        }
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import Kingfisher
 
 class CallRequstTeamHistoryViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
@@ -33,6 +34,11 @@ class CallRequstTeamHistoryViewController: UIViewController {
     var teamImageData: [Data] = []
     var resizedImage: UIImage = UIImage()
     var memberList: [String] = []
+    var teamMemberUid: [String] = [] {
+        willSet {
+            profileImageCollectionView.reloadData()
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -64,7 +70,7 @@ class CallRequstTeamHistoryViewController: UIViewController {
         team = Team(teamName: teamFormatPerson.nickname, purpose: "", part: teamFormatPerson.position, images: [])
         
         fetchTeam()
-       // leader =
+        fetchTeamUid()
     }
     
 
@@ -90,6 +96,23 @@ class CallRequstTeamHistoryViewController: UIViewController {
             }
         })
     }
+    func fetchTeamUid() {
+        let userdb = db.child("Team").child(team.teamName)
+        userdb.observeSingleEvent(of: .value) { [self] snapshot in
+            var memberString: String = ""
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let value = snap.value as? String
+                
+                if snap.key == "memberList" {
+                    memberString = value ?? ""
+                    teamMemberUid = memberString.components(separatedBy: ", ")
+                }
+            }
+        }
+    }
+    
     // uid로 user 닉네임 반환
     func fetchNickname(userUID: String)  {
         let userdb = db.child("user").child(userUID)
@@ -131,8 +154,8 @@ class CallRequstTeamHistoryViewController: UIViewController {
         infoLabel.text = team.part
         
         for i in 0..<callTime.count {
-            if callTime[i].contains("0분") {
-                callTimeLabels[i].text = callTime[i].replacingOccurrences(of: "0분", with: "")
+            if callTime[i].contains("00분") {
+                callTimeLabels[i].text = callTime[i].replacingOccurrences(of: "00분", with: "")
             }
             else {
                 callTimeLabels[i].text = callTime[i]
@@ -156,59 +179,48 @@ extension CallRequstTeamHistoryViewController: UITableViewDelegate, UITableViewD
 }
 extension CallRequstTeamHistoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var count = 0
-        if teamImageData.count > 2 {
-           count = 3
+        if teamMemberUid.count <= 3 {
+            return teamMemberUid.count
         }
         else {
-            count = teamImageData.count
+            return 3
         }
-        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 커스텀 셀 따로 만들지 않고 어차피 이미지만 들어간 셀이라 그냥 사용
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailTeamProfileCell", for: indexPath) as! TeamProfileImageCollectionViewCell
-        
+        cell.userImage.layer.cornerRadius = cell.userImage.frame.height/2
+        cell.userImage.layer.masksToBounds = true
+        cell.layer.masksToBounds = true
+        cell.userImage.backgroundColor = .clear
         cell.userImage.isHidden = false
+        cell.gradientView.layer.cornerRadius =  cell.gradientView.frame.height/2
+        cell.gradientView.layer.masksToBounds = true
+        cell.gradientView.isHidden = true
         
-        if teamImageData.count <= 3 {
-            // 받아온 사진 리사이징, 셀에 설정
-            if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
-                resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
-                cell.userImage.image = resizedImage
-            }
-            else {
-                // 데이터 받아오기 전까지 기본 이미지
-                resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
-                cell.userImage.image = resizedImage
+        
+        // kingfisher 사용하기 위한 url
+        let uid: String = teamMemberUid[indexPath.row]
+        print(uid)
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+        starsRef.downloadURL { [self] url, error in
+            if let error = error {
+                cell.userImage.image = UIImage()
+            } else {
+                cell.userImage.kf.setImage(with: url)
             }
         }
-        else {
-            // collectionview index가 거꾸로임
-            if indexPath.row == 1 || indexPath.row == 2 {
-                // 받아온 사진 리사이징, 셀에 설정
-                if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
-                    resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
-                    cell.userImage.image = resizedImage
-                }
-                else {
-                    // 데이터 받아오기 전까지 기본 이미지
-                    resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
-                    cell.userImage.image = resizedImage
-                }
-                
-            }
-            else if indexPath.row == 0 {
-                // 3명 이상인 팀원에 대한 팀원 수 뷰
-                cell.gradientView.layer.cornerRadius = cell.frame.height/2
+        
+        // Fetch the download URL
+        if teamMemberUid.count > 3  {
+            if indexPath.row == 2 {
                 cell.userImage.isHidden = true
-                cell.memberCountLabel.text = "+\(teamImageData.count-2)"
-
-      
+                cell.gradientView.isHidden = false
+                cell.memberCountLabel.text = "+\(teamMemberUid.count-2)"
             }
-            
         }
+            
         
         // 셀 디자인 및 데이터 세팅
         cell.layer.cornerRadius = cell.frame.height/2
@@ -220,14 +232,6 @@ extension CallRequstTeamHistoryViewController: UICollectionViewDelegate, UIColle
         
         return cell
     }
-    // 이미지 리사이징
-    func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!
-    }
     
     
 }
@@ -235,15 +239,15 @@ extension CallRequstTeamHistoryViewController: UICollectionViewDelegateFlowLayou
 
     // 옆 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return -30.0
+        return -20.0
         
     }
 
     // cell 사이즈
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let width = 75
-        let height = 75
+        let width = 74
+        let height = 74
         
 
         let size = CGSize(width: width, height: height)
@@ -254,8 +258,8 @@ extension CallRequstTeamHistoryViewController: UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let itemWidth = 75
-        let spacingWidth = -20
+        let itemWidth = 74
+        let spacingWidth = -10
         let numberOfItems = collectionView.numberOfItems(inSection: section)
         let cellSpacingWidth = numberOfItems * spacingWidth
         let totalCellWidth = numberOfItems * itemWidth + cellSpacingWidth

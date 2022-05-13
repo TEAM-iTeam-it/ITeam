@@ -102,7 +102,13 @@ class FavorTeamViewController: UIViewController {
         teamNameList.removeAll()
         db.child("Team").observeSingleEvent(of: .value, with: { [self] (snapshot) in
             let values = snapshot.value
-            let dic = values as! [String: [String:Any]]
+            guard let dic = values as? [String: [String:Any]] else {
+                collView.isHidden = true
+                addalertLabel.isHidden = false
+                addButton.isHidden = true
+                return
+            }
+            
             self.teamListNew.removeAll()
             self.teamNamesNew.removeAll()
             var count = 0
