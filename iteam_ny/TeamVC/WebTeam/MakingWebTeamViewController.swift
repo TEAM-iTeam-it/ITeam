@@ -77,7 +77,6 @@ class MakingWebTeamViewController: UIViewController {
                 for i in 0..<self.teamList.count {
                     self.memberListArr.append([])
                     self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
-                   // self.fetchImages(teamIndex: i)
                 }
                 
             } catch let error {
@@ -86,39 +85,7 @@ class MakingWebTeamViewController: UIViewController {
         }
     }
     
-    // cloud storage에서 사진 불러오기
-    func fetchImages(teamIndex: Int) {
-        
-        // 초기화를 위해 생성한 imageData index 비워주기
-        if teamIndex == 0 && imageData[0] != nil {
-            imageData.removeAll()
-        }
-        
-        // 미리 방 반들어줌
-        self.imageData.append(Array(repeating: Data(),count: memberListArr[teamIndex].count))
-     
-        // 한 팀의 이미지 받아오기
-        for memberIndex in 0..<memberListArr[teamIndex].count {
-            let userUID = memberListArr[teamIndex][memberIndex]
-            let storage = Storage.storage().reference().child("user_profile_image").child(userUID + ".jpg")
-            storage.downloadURL { url, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    // 다운로드 성공
-                    self.imageURL = url!
-                    let data = try? Data(contentsOf: self.imageURL)
-                   
-                    // 동적으로 데이터 세팅 및 collectionview 리로드
-                    DispatchQueue.main.async {
-                        self.imageData[teamIndex][memberIndex] = data!
-                        self.didFetched = true
-                    }
-                }
-            }
-        }
-        
-    }
+ 
  
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
@@ -173,7 +140,7 @@ extension MakingWebTeamViewController: UICollectionViewDelegate, UICollectionVie
         cell.teamName.text = teamNameList[indexPath.row] + " 팀"
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
-     //   cell.imageData = self.imageData[indexPath.row]
+        cell.userUID = memberListArr[indexPath.row]
         
         if lastDatas.contains(cell.teamName.text!) {
             cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -195,7 +162,6 @@ extension MakingWebTeamViewController: UICollectionViewDelegate, UICollectionVie
             allTeamVC.modalPresentationStyle = .fullScreen
             allTeamVC.teamName = teamNameList[indexPath.row] + " 팀"
             allTeamVC.teamProfile = teamList[indexPath.row]
-           // allTeamVC.teamImageData = imageData[indexPath.row]
             allTeamVC.favorTeamList = lastDatas
             present(allTeamVC, animated: true, completion: nil)
         }

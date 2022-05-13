@@ -269,7 +269,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
         let pw = "11111111111"
         // [수정 필요] 학교 이메일만 가능하도록 처리
-        if id.contains("swu.ac.kr") || id.contains("naver.com") {
+        if id.contains("swu.ac.kr") || id.contains("naver.com") || id.contains("gmail.com") {
             Auth.auth().createUser(withEmail: id, password: pw) { authResult, error in
                 if(error != nil) {
                     print("회원가입 실패")

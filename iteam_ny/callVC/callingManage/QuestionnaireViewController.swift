@@ -6,8 +6,10 @@
 //
 
 import UIKit
+
 import FirebaseDatabase
 import FirebaseStorage
+import Kingfisher
 
 class QuestionnaireViewController: UIViewController {
 
@@ -79,33 +81,16 @@ class QuestionnaireViewController: UIViewController {
     // cloud storage에서 사진 불러오기
     func fetchImages(uid: String) {
         
-        let storage = Storage.storage().reference().child("user_profile_image").child(uid + ".jpg")
+        // kingfisher 사용하기 위한 url
+        let uid: String = uid
         
-        storage.downloadURL { [self] url, error in
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+        
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
             if let error = error {
-                print(error.localizedDescription)
             } else {
-                // 다운로드 성공
-                print("사진 다운로드 성공")
-                let imageURL = url!
-                let data = try? Data(contentsOf: imageURL)
-                
-                // 데이터 받아오기 전까지 기본 이미지
-                if let fetchedImage = UIImage(data: data!) {
-                    resizedImage = resizeImage(image: fetchedImage, width: 35, height: 35)
-                    
-                }
-                else {
-                    // 받아온 사진 리사이징, 셀에 설정
-                    resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 35, height: 35)
-                }
-               
-                
-                // 비동기적으로 데이터 세팅 및 collectionview 리로드
-                DispatchQueue.main.async {
-                    userImage.image = resizedImage
-                    
-                }
+                userImage.kf.setImage(with: url)
             }
         }
     }

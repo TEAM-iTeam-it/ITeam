@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
-import SwiftUI
+import Kingfisher
 
 class CallAnswerTeamViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
@@ -114,7 +114,6 @@ class CallAnswerTeamViewController: UIViewController {
         removeArr()
         
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
-        //print("myTeamname \(myTeamname)")
         // 내 닉네임 받아오기
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
             
@@ -144,7 +143,6 @@ class CallAnswerTeamViewController: UIViewController {
                 
                 // 나와 관련된 call 가져오기
                 for child in snapshot.children {
-                    print("snapshot.children \(snapshot.children)")
                     let snap = child as! DataSnapshot
                     let value = snap.value as? NSDictionary
                     
@@ -184,6 +182,7 @@ class CallAnswerTeamViewController: UIViewController {
                                     
                                     fetchUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
                                     fetchIReceivedOtherUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
+                                    callTeamIndex.append(myCallTime[i]["teamName"]!)
                                 }
                                 else {
                                     fetchUser(userUID: myCallTime[i]["callerUid"]!, stmt: "요청옴")
@@ -193,9 +192,6 @@ class CallAnswerTeamViewController: UIViewController {
                                 questionArr.append((myCallTime[i]["Question"]?.components(separatedBy: ", "))!)
                                 if myCallTime[i]["teamName"] != nil {
                                     teamIndex.append(myCallTime[i]["teamName"]!)
-                                }
-                                if myCallTime[i]["stmt"] == "통화" {
-                                    callTeamIndex.append(myCallTime[i]["teamName"]!)
                                 }
                                 fetchNickname(userUID: myCallTime[i]["callerUid"]!)
                                 break
@@ -511,7 +507,6 @@ class CallAnswerTeamViewController: UIViewController {
 
 extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("personList.count \(personList.count)")
         return personList.count
     }
     
@@ -568,7 +563,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         cell.circleTitleView.isHidden = true
         cell.circleTitleView.layer.cornerRadius = cell.circleTitleView.frame.height/2
         cell.circleTitleView.layer.masksToBounds = true
-        
+        print(personList[indexPath.row].callStm)
         // 버튼 색상 처리
         if personList[indexPath.row].callStm == "요청거절됨" || personList[indexPath.row].callStm == "요청취소됨" {
             cell.layer.borderWidth = 0.0
@@ -633,16 +628,22 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             }
             // 다른 사람이 우리 팀으로 보낸 경우 -> 개인 표시
             for j in 0..<whenIReceivedOtherPerson.count {
+                print("akak")
                 if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
                     // kingfisher 사용하기 위한 url
                     let uid: String = personList[indexPath.row].profileImg
+                    print(uid)
                     let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
                     
                     // Fetch the download URL
                     starsRef.downloadURL { [self] url, error in
                         if let error = error {
+                            print("error.localizedDescription \(error.localizedDescription)")
                         } else {
-                            cell.profileImg.kf.setImage(with: url)
+                            
+                            DispatchQueue.main.async {
+                                cell.profileImg.kf.setImage(with: url)
+                            }
                         }
                     }
                 }
@@ -653,12 +654,10 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         else if personList[indexPath.row].callStm == "요청옴" {
-            print("whenIReceivedOtherPerson.count \(whenIReceivedOtherPerson.count)")
             for i in 0..<whenIReceivedOtherPerson.count {
                 if whenIReceivedOtherPerson[i].nickname == personList[indexPath.row].nickname {
                     // kingfisher 사용하기 위한 url
                     let uid: String = personList[indexPath.row].profileImg
-                    print("uid \(uid)")
                     let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
                     
                     // Fetch the download URL
@@ -817,8 +816,10 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             
             
             var callCount: Int = -1
-            for j in 0..<indexPath.row{
+            print(personList[0].callStm)
+            for j in 0...indexPath.row{
                 if personList[j].callStm == "통화" {
+                    print("추가")
                     callCount += 1
                 }
             }
@@ -829,17 +830,16 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             // 내가 보냈을 때 ->
             for i in 0..<whenISendOtherTeam.count {
                 if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname && whenISendOtherTeam[i].callStm == "통화" {
-                    print(i)
-                    print("callTeamIndex \(callTeamIndex)")
                     callingVC.teamIndex = callTeamIndex[callCount]
                 }
             }
              
-             
             // 내가 받았을 때
             for j in 0..<whenIReceivedOtherPerson.count {
-                if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
-                    callingVC.teamIndex = callTeamIndex[j]
+                if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname && whenIReceivedOtherPerson[j].callStm == "통화" {
+                    print(j)
+                    print(callCount)
+                    callingVC.teamIndex = callTeamIndex[callCount]
                 }
             }
            
@@ -855,9 +855,11 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             if let nextView = storyboard.instantiateInitialViewController() as? UINavigationController,
                let nextViewChild = nextView.viewControllers.first as? CallAgreeViewController {
               
+                print(whenIReceivedOtherPerson.count)
                 for j in 0..<whenIReceivedOtherPerson.count {
                     if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
-                        
+                        print(callTimeArr[0])
+                        print(j)
                         nextViewChild.times = callTimeArr[j]
                         nextViewChild.questionArr = questionArr[j]
                         nextViewChild.teamName = teamIndex[j]

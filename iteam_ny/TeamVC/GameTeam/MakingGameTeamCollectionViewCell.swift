@@ -39,6 +39,8 @@ class MakingGameTeamCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    var userUID: [String] = []
+    
     // delegate와 datasource를 내부 collectionview로 옮겨줌
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -127,67 +129,48 @@ extension MakingGameTeamCollectionViewCell: UICollectionViewDelegate, UICollecti
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var count = 0
-        if imageData.count > 2 {
-           count = 3
+        if userUID.count <= 3 {
+            return userUID.count
         }
         else {
-            count = imageData.count
+            return 3
         }
-        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "makingGameTeamImageCell", for: indexPath) as! MakingGameTeamImageCollectionViewCell
         cell.userImage.isHidden = false
-        if imageData.count <= 3 {
-            // 받아온 사진 리사이징, 셀에 설정
-            if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
-                resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
-                cell.userImage.image = resizedImage
-            }
-            else {
-                // 데이터 받아오기 전까지 기본 이미지
-                resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
-                cell.userImage.image = resizedImage
-            }
-        }
-        else {
-            if indexPath.row == 0 || indexPath.row == 1 {
-                // 받아온 사진 리사이징, 셀에 설정
-                if let fetchedImage = UIImage(data: imageData[indexPath.row]) {
-                    resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
-                    cell.userImage.image = resizedImage
-                }
-                else {
-                    // 데이터 받아오기 전까지 기본 이미지
-                    resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
-                    cell.userImage.image = resizedImage
-                }
-                
-            }
-            else if indexPath.row == 2 {
-                // 3명 이상인 팀원에 대한 팀원 수 뷰
-                cell.gradientView.layer.cornerRadius = cell.frame.height/2
-                cell.userImage.isHidden = true
-                cell.memberCountLabel.text = "+\(imageData.count-2)"
-      
-            }
-        }
+        cell.layer.cornerRadius = cell.frame.height/2
+        cell.gradientView.isHidden = true
+        cell.memberCountLabel.isHidden = true
         cell.layer.cornerRadius = cell.frame.height/2
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(ciColor: .white).cgColor
         cell.layer.masksToBounds = true
         
+        let uid: String = userUID[indexPath.row]
+        
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+          if let error = error {
+              print("에러 \(error.localizedDescription)")
+          } else {
+              cell.userImage.kf.setImage(with: url)
+          }
+        }
+        // Fetch the download URL
+        if userUID.count > 3  {
+            if indexPath.row == 2 {
+                cell.userImage.isHidden = true
+                cell.gradientView.isHidden = false
+                cell.memberCountLabel.isHidden = false
+                cell.memberCountLabel.text = "+\(userUID.count-2)"
+            }
+        }
+        
         return cell
-    }
-    // 이미지 리사이징
-    func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!
     }
 }
 extension MakingGameTeamCollectionViewCell: UICollectionViewDelegateFlowLayout {
@@ -205,29 +188,16 @@ extension MakingGameTeamCollectionViewCell: UICollectionViewDelegateFlowLayout {
         let size = CGSize(width: width, height: height)
         return size
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout,
-            let dataSourceCount = collectionView.dataSource?.collectionView(collectionView, numberOfItemsInSection: section),
-            dataSourceCount > 0 else {
-                return .zero
-        }
-
-        let cellCount = CGFloat(dataSourceCount)
-        let itemSpacing = -3.0
-        let cellWidth = flowLayout.itemSize.width + itemSpacing
-        var insets = flowLayout.sectionInset
-
-        let totalCellWidth = (cellWidth * cellCount) - itemSpacing
-        let contentWidth = collectionView.frame.size.width - collectionView.contentInset.left - collectionView.contentInset.right
-
-        guard totalCellWidth < contentWidth else {
-            return insets
-        }
-
-        let padding = (contentWidth - totalCellWidth) / 2.0
-        insets.left = padding
-        insets.right = padding
-        return insets
+    // 중앙 정렬
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        let itemWidth = 50
+        let spacingWidth = -5
+        let numberOfItems = collectionView.numberOfItems(inSection: section)
+        let cellSpacingWidth = numberOfItems * spacingWidth
+        let totalCellWidth = numberOfItems * itemWidth + cellSpacingWidth
+        let inset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth)) / 2
+        return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
     }
 }

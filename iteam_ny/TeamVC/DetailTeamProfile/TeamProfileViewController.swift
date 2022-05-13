@@ -6,9 +6,13 @@
 //
 
 import UIKit
-import MaterialComponents.MaterialBottomSheet
+
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
+import Kingfisher
+import MaterialComponents.MaterialBottomSheet
+
 
 class TeamProfileViewController: UIViewController {
 
@@ -268,14 +272,13 @@ class TeamProfileViewController: UIViewController {
 
 extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var count = 0
-        if teamImageData.count > 2 {
-           count = 3
+        var memberUID = teamProfile.memberList.components(separatedBy: ", ")
+        if memberUID.count <= 3 {
+            return memberUID.count
         }
         else {
-            count = teamImageData.count
+            return 3
         }
-        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -283,45 +286,32 @@ extension TeamProfileViewController: UICollectionViewDelegate, UICollectionViewD
         // 커스텀 셀 따로 만들지 않고 어차피 이미지만 들어간 셀이라 그냥 사용
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailTeamProfileCell", for: indexPath) as! TeamProfileImageCollectionViewCell
         
+        // 셀 세팅
         cell.userImage.isHidden = false
+        cell.gradientView.isHidden = true
+        cell.memberCountLabel.isHidden = true
         
-        if teamImageData.count <= 3 {
-            // 받아온 사진 리사이징, 셀에 설정
-            if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
-                resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
-                cell.userImage.image = resizedImage
-            }
-            else {
-                // 데이터 받아오기 전까지 기본 이미지
-                resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
-                cell.userImage.image = resizedImage
+        var memberUID = teamProfile.memberList.components(separatedBy: ", ")
+        
+        
+        let uid: String =  memberUID[indexPath.row]
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+        starsRef.downloadURL { [self] url, error in
+            if let error = error {
+                cell.userImage.image = UIImage()
+            } else {
+                cell.userImage.kf.setImage(with: url)
             }
         }
-        else {
-            // collectionview index가 거꾸로임
-            if indexPath.row == 1 || indexPath.row == 2 {
-                // 받아온 사진 리사이징, 셀에 설정
-                if let fetchedImage = UIImage(data: teamImageData[indexPath.row]) {
-                    resizedImage = resizeImage(image: fetchedImage, width: 50, height: 50)
-                    cell.userImage.image = resizedImage
-                }
-                else {
-                    // 데이터 받아오기 전까지 기본 이미지
-                    resizedImage = resizeImage(image: UIImage(named: "imgUser4.png")!, width: 50, height: 50)
-                    cell.userImage.image = resizedImage
-                }
-                
-            }
-            else if indexPath.row == 0 {
-                // 3명 이상인 팀원에 대한 팀원 수 뷰
-                cell.gradientView.layer.cornerRadius = cell.frame.height/2
+        if memberUID.count > 3  {
+            if indexPath.row == 0 {
                 cell.userImage.isHidden = true
-                cell.memberCountLabel.text = "+\(teamImageData.count-2)"
-
-      
+                cell.gradientView.isHidden = false
+                cell.memberCountLabel.isHidden = false
+                cell.memberCountLabel.text = "+\(memberUID.count-2)"
             }
-            
         }
+        
         
         // 셀 디자인 및 데이터 세팅
         cell.layer.cornerRadius = cell.frame.height/2

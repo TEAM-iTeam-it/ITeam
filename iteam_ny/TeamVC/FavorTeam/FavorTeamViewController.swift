@@ -14,16 +14,12 @@ import Kingfisher
 class FavorTeamViewController: UIViewController {
     
     @IBOutlet weak var collView: UICollectionView!
-    
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var addalertLabel: UILabel!
-    var images: [String] = []
+    
     var teamList: [TeamProfile] = []
     var teamNameList: [String] = []
     var memberListArr: [[String]] = [[]]
-    var uiImages: [[UIImage]] = [[]]
-    // 프로필 이미지 URL을 위한 변수
-    var imageURL: URL  = NSURL() as URL
-    var imageData: [[Data]] = [[]]
     let db = Database.database().reference()
     var doesFavorTeamExisted: Bool = false
     var didFetched: Bool = false {
@@ -32,8 +28,6 @@ class FavorTeamViewController: UIViewController {
         }
     }
     var teamNames: [String] = []
-    @IBOutlet weak var addButton: UIButton!
-    
     var teamListNew: [TeamProfile] = []
     var teamNamesNew: [String] = []
     var userUID: [[String]] = []
@@ -68,10 +62,22 @@ class FavorTeamViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
     }
-    
+    func removeData() {
+        self.memberListArr.removeAll()
+        teamList.removeAll()
+        teamNameList.removeAll()
+        memberListArr.removeAll()
+        doesFavorTeamExisted = false
+        didFetched = false
+        teamNames.removeAll()
+        teamListNew.removeAll()
+        teamNamesNew.removeAll()
+        userUID.removeAll()
+        
+    }
     // 서버에서 팀 받아오기
     func fetchData() {
-        self.memberListArr.removeAll()
+        removeData()
         
         let favorTeamList = db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").child("teamName")
         
@@ -152,7 +158,7 @@ class FavorTeamViewController: UIViewController {
                 for i in 0..<self.teamList.count {
                     self.memberListArr.append([])
                     self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
-                    self.fetchImages(teamIndex: i)
+                    self.fetchMemberUID(teamIndex: i)
                 }
                 
             }
@@ -160,44 +166,13 @@ class FavorTeamViewController: UIViewController {
         
     }
     
-    // cloud storage에서 사진 불러오기
-    func fetchImages(teamIndex: Int) {
-        
-        // 초기화를 위해 생성한 imageData index 비워주기
-        if teamIndex == 0 && imageData[0] != nil {
-            imageData.removeAll()
-        }
+    func fetchMemberUID(teamIndex: Int) {
         
         // 미리 방 반들어줌
-        self.imageData.append(Array(repeating: Data(),count: memberListArr[teamIndex].count))
         self.userUID.append(Array(repeating: "",count: memberListArr[teamIndex].count))
-        
-        // 한 팀의 이미지 받아오기
+        // 한 팀의 UID 받기
         for memberIndex in 0..<memberListArr[teamIndex].count {
-            
             userUID[teamIndex][memberIndex] = memberListArr[teamIndex][memberIndex]
-            /*
-            
-            let storage = Storage.storage().reference().child("user_profile_image").child(userUID[teamIndex][memberIndex] + ".jpg")
-            
-            storage.downloadURL { url, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    // 다운로드 성공
-                    print("사진 다운로드 성공")
-                    self.imageURL = url!
-                    let data = try? Data(contentsOf: self.imageURL)
-                    
-                    // 비동기적으로 데이터 세팅 및 collectionview 리로드
-                    DispatchQueue.main.async {
-                        self.imageData[teamIndex][memberIndex] = data!
-                        self.didFetched = true
-                    }
-                }
-            }
-             */
-            
         }
         
     }
@@ -205,14 +180,14 @@ class FavorTeamViewController: UIViewController {
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
         // 이게 문제
-        /*
+        
         db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
                 self.fetchData()
             }
         })
-         */
+        
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
@@ -269,7 +244,6 @@ extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDat
             allTeamVC.modalPresentationStyle = .fullScreen
             allTeamVC.teamName = teamNames[indexPath.row]
             allTeamVC.teamProfile = teamList[indexPath.row]
-            //   allTeamVC.teamImageData = imageData[indexPath.row]
             allTeamVC.favorTeamList = teamNames
             
             present(allTeamVC, animated: true, completion: nil)
