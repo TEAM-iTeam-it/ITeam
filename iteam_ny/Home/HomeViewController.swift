@@ -36,10 +36,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         // add button 한 칸 앞 index를 가져 온다
         let nextEntryIndex = memberStackVIew.arrangedSubviews.count - 1
 
-        // scrollview의 스크롤이 이동할 위치계산
-        // 현 위치에서 add button의 높이 만큼 이레러
-//                let offset = CGPoint(x: scrollView.contentOffset.x, y:
-//        scrollView.contentOffset.y + addButtonContainerView.bounds.size.height)
 
         let offset = CGPoint(x: scrollView.contentOffset.x + addButtonContainerView.bounds.size.width , y:
                         scrollView.contentOffset.y)
@@ -66,37 +62,49 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
     pickimage.heightAnchor.constraint(equalToConstant: 70).isActive = true
     pickimage.backgroundColor = UIColor.purple
     pickimage.layer.cornerRadius = 35
-        pickimage.setTitle(text, for: .normal)
-    // 현재날 짜는 짧게(M/D/Y) 가져온다
-//    let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-//    // uuid를 가져온다
-//    let number = NSUUID().uuidString
-    // 스택뷰를 만들고
-    // 각 속성을 아래와 같이 한다.
-    // IB에서 하는 것과 같다
+    pickimage.setTitle(text, for: .normal)
+    //진행중
+    pickimage.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+        
     let stack = UIStackView()
     stack.axis = .vertical
     stack.alignment = .center
     stack.distribution = .fill
     stack.spacing = 3
 
-    // 날짜르 표시해줄 Label를 만든다
-//    let dateLabel = UILabel()
-//    dateLabel.text = date
-//    dateLabel.font = UIFont.preferredFont(forTextStyle: .body)
-//    // uuid를 만들 Label을 만든다
-//    let numberLabel = UILabel()
-//    numberLabel.text = number
-//    numberLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-    // 이 label의 horizontal contenthugging을 249, compressionResistance 749로 해서 stackview의 남은 공간을 꽉 채우게 한다.
-//            numberLabel.setContentHuggingPriority(UILayoutPriority.defaultLow - 1.0, for: .horizontal)
-//            numberLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh - 1.0, for: .horizontal)
-    //stack 뷰에 차례대로 쌓는다.
-        stack.addArrangedSubview(pickimage)
-//    stack.addArrangedSubview(dateLabel)
-//    stack.addArrangedSubview(numberLabel)
+    stack.addArrangedSubview(pickimage)
     return stack
     }
+    //진행중
+    @objc func tapped(sender: UIButton) {
+        print(sender.currentTitle)
+//        print(userList)
+        print(userList.count)
+//        if let userPart = userList.userProfile {
+//        print("The name of the airport is \(userPart).")
+//        } else {
+//        print("That airport isn't in the airports dictionary.")
+//        }
+
+//        for string in userList {
+//            if ((userList.userProfile.part = sender.currentTitle) != nil){
+//
+//            }
+//        }
+//        for key in showerList {
+//            if key == "friendRequest" {
+//                for k in snapData.values {
+//                    if k is [String] {
+//                        self.giverList = (k as? [String])!
+//                        print(self.giverList)
+//                    }
+//
+//                }
+//            }
+//
+//        }
+//        userList[indexPath.row].userProfile.partDetail
+        }
     
     func SendCategoryData(data: String) {
         if data == "개발자"{
@@ -116,10 +124,43 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
     }
 
     var ref: DatabaseReference! //Firebase Realtime Database
-    
+    //
+    var fillteredData = [String]()
     var userList: [Uid] = []
-//    var image = [UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser5")]
-       
+    //알고리즘 - 진행중
+        var userprofileDetail: UserProfileDetail?
+    //    var image = [UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser5")]
+        
+       //알고리즘 - 진행중
+        func sortList(a:Int, b:Int) -> Bool {
+            let celebrity1: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는" ]
+            let celebrity2: [String] = ["외향적인", "열정적인", "사교성이 있는" ]
+            let celebrity3: [String] = ["자신감 있는", "의사 결정을 잘하는", "목표 지향적인"]
+            let celebrity4: [String] = ["문제를 극복하는", "도전적인", "추진력있는"]
+            let celebrity5: [String] = ["전략적인", "신중한", "정확히 판단하는"]
+            let detail = userprofileDetail
+            let char = detail?.character
+
+            let charindex: [String] = (char?.components(separatedBy: ", "))!
+            let f = charindex[0]
+            let s = charindex[1]
+            let l = charindex[2]
+
+            //나의 성향 출력
+            if let firstIndex = celebrity1.firstIndex(of: f) {
+                print("창의적인")
+            }
+            for mych in charindex {
+                if let firstIndex = celebrity1.firstIndex(of: mych) {
+                    print("창의적인")
+                }
+            }
+
+
+            return a>b
+
+        }
+    
         override func viewDidLoad() {
             super.viewDidLoad()
            
@@ -155,14 +196,13 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             ref.observe(.value) { snapshot in
                 guard let value = snapshot.value as? [String: [String: Any]] else { return }
                 
-                
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: value)
 //                    let userData = try JSONDecoder().decode([String: UserProfile].self, from: jsonData)
                     let userData = try JSONDecoder().decode([String: Uid].self, from: jsonData)
                     let showUserList = Array(userData.values)
                     self.userList = showUserList.sorted { $0.rank < $1.rank } //정렬 순서
-                    
+        
                     print("countentArray.cout : \(showUserList.count)")
                     
                     DispatchQueue.main.async {
@@ -189,7 +229,6 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
                 }
                 
                 print("countentArray2.cout : \(self.userList.count)")
-                
             }
             
             
