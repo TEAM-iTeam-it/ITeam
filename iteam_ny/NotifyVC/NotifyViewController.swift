@@ -15,11 +15,9 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var ref: DatabaseReference!
     let db = Database.database().reference()
     var notiContent: [Noti] = []
-    var RequestContent: [Request] = []
     var giverList: [String] = []
     var friendList: [Friend] = []
     var friendUid:[String] = []
-    var giverNumber: [String] = []
     
     
 
@@ -30,20 +28,18 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         notiContent.append(Noti(content: "이성책임 팀과의 통화가 곧 시작됩니다.", date: "04/20 14:30", profileImg: "imgUser8"))
         notiContent.append(Noti(content: "레인 님과의 통화가 곧 시작됩니다.", date: "04/17 15:04", profileImg: "imgUser5"))
-        RequestContent.append(Request(content: "에일리 님이 친구를 요청했습니다.", date: "04/17 15:04", profileImg: "imgUser5"))
-        RequestContent.append(Request(content: "레인 님과의 통화가 곧 시작됩니다.", date: "04/17 15:04", profileImg: "imgUser5"))
         
         fetchFreindRequest()
         fetchChangedData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //notifyTableView.reloadData()
+        notifyTableView.reloadData()
         
     }
     // giverList에 나에게 친구요청한 사람 uid 받아와짐
     func fetchFreindRequest() {
-//        giverList.removeAll()
+        giverList.removeAll()
         
         let ref = Database.database().reference()
         let userUID = Auth.auth().currentUser!.uid
@@ -73,7 +69,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     var partDetail: String = ""
                     var purpose: String = ""
                     var uid: String = ""
-                    
                     
                     for child in snapshot.children {
                         let snap = child as! DataSnapshot
@@ -110,7 +105,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     var friend = Friend(uid: uid, nickname: nickname, position: part, profileImg: "")
                     friendList.append(friend)
-                    //notifyTableView.reloadData()
+                    notifyTableView.reloadData()
                 }
             }
         }
@@ -165,7 +160,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //           Database.database().reference().child("user").child(userUID).child("friendRequest").queryEqual(toValue: fuid).removeValue()
             
         //친구 리스트에 추가 진행중
-            
             var Index: String = ""
 //            Database.database().reference().child("user").child(userUID).child("friendsList").updateChildValues(fUid)
             db.child("user").child(userUID).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
@@ -184,7 +178,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
            cell.refuse = { [unowned self] in
            // 1. DB 에서 요청 데이터 삭제하기
             let userUID = Auth.auth().currentUser!.uid
-               Database.database().reference().child("user").child(userUID).child("friendRequest").removeValue()
+//               Database.database().reference().child("user").child(userUID).child("friendRequest").removeValue()
            self.friendList.remove(at: indexPath.row)
                notifyTableView.reloadData()
 //           self.requestCV.reloadData()
@@ -235,25 +229,7 @@ class Noti {
         self.content = content
         self.date = date
         self.profileImg = profileImg
-        //self.profileImg = profileImg
     }
     
     
-}
-
-class Request {
-    var content: String
-    var date: String
-    var profileImg: String
-
-    //var profileImg: UIImage
-
-    init(content: String, date: String, profileImg: String ) {
-        self.content = content
-        self.date = date
-        self.profileImg = profileImg
-        //self.profileImg = profileImg
-    }
-
-
 }

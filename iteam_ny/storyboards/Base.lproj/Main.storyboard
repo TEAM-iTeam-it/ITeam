@@ -589,6 +589,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="팀원 추가" id="9j5-k1-9t5"/>
+                    <connections>
+                        <outlet property="myFriendTableView" destination="azM-4g-ZOR" id="CSp-NZ-MQc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tie-V3-gb1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
