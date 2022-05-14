@@ -10,10 +10,12 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class HomeViewController: UIViewController, PickpartDataDelegate{
+    
     @IBOutlet weak var myPart: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memberStackVIew: UIStackView!
     var text:String = ""
+    var pickpart:[String] = []
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var addFriendButton: UIButton!
     @IBAction func addEntry(_ sender: UIButton) {
@@ -75,36 +77,75 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
     stack.addArrangedSubview(pickimage)
     return stack
     }
-    //진행중
+    //파트별로 리스트 띄우기 진행중
     @objc func tapped(sender: UIButton) {
+        pickpart.removeAll()
         print(sender.currentTitle)
 //        print(userList)
-        print(userList.count)
-//        if let userPart = userList.userProfile {
-//        print("The name of the airport is \(userPart).")
-//        } else {
-//        print("That airport isn't in the airports dictionary.")
-//        }
-
-//        for string in userList {
-//            if ((userList.userProfile.part = sender.currentTitle) != nil){
-//
-//            }
-//        }
-//        for key in showerList {
-//            if key == "friendRequest" {
-//                for k in snapData.values {
-//                    if k is [String] {
-//                        self.giverList = (k as? [String])!
-//                        print(self.giverList)
-//                    }
-//
-//                }
-//            }
-//
-//        }
-//        userList[indexPath.row].userProfile.partDetail
+//        print(userList.count)
+        //특정 데이터만 읽기
+        //let ref: DatabaseReference!
+        let usersRef = Database.database().reference().child("user")
+        let queryRef = usersRef.queryOrdered(byChild: "userProfile/part").queryEqual(toValue: sender.currentTitle)
+        var userUID: String = ""
+        queryRef.observeSingleEvent(of: .value) { [self] snapshot in
+                for child in snapshot.children {
+                    let snap = child as! DataSnapshot
+                    let value = snap.value as? NSDictionary
+                    userUID = snap.key
+                    pickpart.append(userUID)
+                    
+                }
+                print(pickpart)
         }
+        // 특정 목록만 띄우기
+        ref.observe(.value) { snapshot in
+            guard var value = snapshot.value as? [String: [String: Any]] else { return }
+            print(value.keys)
+            
+            for abc in value.keys {
+//                print(abc)
+//                for partcategory in self.pickpart{
+                if (self.pickpart.contains("\(abc)")) == false{
+                        print(abc)
+                        value.removeValue(forKey: "\(abc)")
+                }
+//            }
+        }
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: value)
+                let userData = try JSONDecoder().decode([String: Uid].self, from: jsonData)
+                let showUserList = Array(userData.values)
+                self.userList = showUserList.sorted { $0.rank < $1.rank } //정렬 순서
+    
+                print("바뀐 수 : \(showUserList.count)")
+                
+                DispatchQueue.main.async {
+                    self.homeTableView.reloadData()
+                    print("바뀐 수 : \(self.userList.count)")
+                }
+                
+            }catch let DecodingError.dataCorrupted(context) {
+                print("바뀐error2 : ",context)
+            } catch let DecodingError.keyNotFound(key, context) {
+                print("바뀐Key '\(key)' not found:", context.debugDescription)
+                print("바뀐codingPath:", context.codingPath)
+            } catch let DecodingError.valueNotFound(value, context) {
+                print("바뀐Value '\(value)' not found:", context.debugDescription)
+                print("바뀐codingPath:", context.codingPath)
+            } catch let DecodingError.typeMismatch(type, context)  {
+                print("바뀐Type '\(type)' mismatch:", context.debugDescription)
+                print("바뀐codingPath:", context.codingPath)
+            } catch {
+                print("바뀐error: ", error)
+            }
+            catch let error {
+                print("바뀐ERROR JSON parasing \(error.localizedDescription)")
+            }
+            
+            print("바뀐 countentArray2.cout : \(self.userList.count)")
+        }
+    }
     
     func SendCategoryData(data: String) {
         if data == "개발자"{
@@ -198,7 +239,6 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
                 
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: value)
-//                    let userData = try JSONDecoder().decode([String: UserProfile].self, from: jsonData)
                     let userData = try JSONDecoder().decode([String: Uid].self, from: jsonData)
                     let showUserList = Array(userData.values)
                     self.userList = showUserList.sorted { $0.rank < $1.rank } //정렬 순서
