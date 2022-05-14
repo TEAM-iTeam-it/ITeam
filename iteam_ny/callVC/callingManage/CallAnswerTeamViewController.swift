@@ -12,8 +12,6 @@ import FirebaseStorage
 import Kingfisher
 
 class CallAnswerTeamViewController: UIViewController {
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var conditionChangeBtn: UIButton!
     @IBOutlet weak var answerListTableView: UITableView!
     
     var personList: [Person] = []
@@ -70,12 +68,14 @@ class CallAnswerTeamViewController: UIViewController {
         counter = 0
         name = "speaker"
         
+        /*
         let requestList = UIAction(title: "요청됨", handler: { _ in print("요청내역") })
         let denied = UIAction(title: "요청수락", handler: { _ in print("거절함") })
         let canceled = UIAction(title: "통화", handler: { _ in print("취소됨") })
         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("취소") })
         
-        conditionChangeBtn.menu = UIMenu(title: "상태를 선택해주세요", image: UIImage(systemName: "heart.fill"), identifier: nil, options: .displayInline, children: [requestList, denied, canceled, cancel])
+       conditionChangeBtn.menu = UIMenu(title: "상태를 선택해주세요", image: UIImage(systemName: "heart.fill"), identifier: nil, options: .displayInline, children: [requestList, denied, canceled, cancel])
+         */
 
         
     }
