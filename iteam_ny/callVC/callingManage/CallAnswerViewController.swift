@@ -13,7 +13,6 @@ import FirebaseStorage
 
 class CallAnswerViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var conditionChangeBtn: UIButton!
     @IBOutlet weak var answerListTableView: UITableView!
     
     var personList: [Person] = []
@@ -68,18 +67,16 @@ class CallAnswerViewController: UIViewController {
         counter = 0
         name = "speaker"
         
+        /*
         let requestList = UIAction(title: "요청됨", handler: { _ in print("요청내역") })
         let denied = UIAction(title: "요청수락", handler: { _ in print("거절함") })
         let canceled = UIAction(title: "통화", handler: { _ in print("취소됨") })
         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("취소") })
 
         conditionChangeBtn.menu = UIMenu(title: "상태를 선택해주세요", image: UIImage(systemName: "heart.fill"), identifier: nil, options: .displayInline, children: [requestList, denied, canceled, cancel])
-        // Do any additional setup after loading the view.
-        
-        
-       
-        
+         */
     }
+    
     func removeArr() {
         personList.removeAll()
         whenIReceivedOtherPerson.removeAll()
@@ -91,8 +88,9 @@ class CallAnswerViewController: UIViewController {
         didISent.removeAll()
         teamIndex.removeAll()
         teamIndexForSend.removeAll()
-        answerListTableView.reloadData()
+       // answerListTableView.reloadData()
     }
+    
     func fetchData() {
         
         removeArr()
@@ -513,20 +511,19 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         
         // kingfisher 사용하기 위한 url
         let uid: String = personList[indexPath.row].profileImg
-        var urlString: URL?
         
         let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
-
+        
         // Fetch the download URL
         starsRef.downloadURL { [self] url, error in
-          if let error = error {
-            // Handle any errors
-          } else {
-            print(url)
-              urlString = url
-              imageView.kf.setImage(with: url)
-              cell.profileImg.kf.setImage(with: url)
-          }
+            if let error = error {
+                // Handle any errors
+            } else {
+                DispatchQueue.main.async {
+                    imageView.kf.setImage(with: url)
+                    cell.profileImg.kf.setImage(with: url)
+                }
+            }
         }
         
         cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2

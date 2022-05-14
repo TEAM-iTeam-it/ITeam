@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ce8-cR-c6d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ce8-cR-c6d">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -1269,14 +1269,13 @@
         <!--통화-->
         <scene sceneID="EmQ-HN-I4o">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CKa-KU-qir" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CKa-KU-qir" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="통화" id="QOM-qy-IHZ">
                         <imageReference key="image" image="phone" catalog="system" symbolScale="medium"/>
                         <imageReference key="selectedImage" image="phone.fill" catalog="system" symbolScale="medium"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vyk-9l-4m2">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2814,7 +2813,7 @@
     </scenes>
     <designables>
         <designable name="SR2-nu-ucD">
-            <size key="intrinsicContentSize" width="166.5" height="48"/>
+            <size key="intrinsicContentSize" width="194.5" height="58"/>
         </designable>
     </designables>
     <resources>
