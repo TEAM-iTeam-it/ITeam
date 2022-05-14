@@ -420,26 +420,26 @@ class CallAnswerTeamViewController: UIViewController {
         // 아님
         db.child("Call").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
+            
                 self.removeArr()
                 self.fetchData()
-            }
+            
         })
         // 아님
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
+            
                 self.removeArr()
                 self.fetchData()
-            }
+            
             
         })
         db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
+            
                 self.removeArr()
                 self.fetchData()
-            }
+            
 
         })
     }
@@ -597,7 +597,10 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     starsRef.downloadURL { [self] url, error in
                         if let error = error {
                         } else {
-                            cell.profileImg.kf.setImage(with: url)
+                            DispatchQueue.main.async {
+                                
+                                cell.profileImg.kf.setImage(with: url)
+                            }
                         }
                     }
                 }
@@ -721,7 +724,10 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     starsRef.downloadURL { [self] url, error in
                         if let error = error {
                         } else {
-                            cell.profileImg.kf.setImage(with: url)
+                            print("url \(url)")
+                            DispatchQueue.main.async {
+                                cell.profileImg.kf.setImage(with: url)
+                            }
                         }
                     }
                 }
