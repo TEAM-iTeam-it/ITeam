@@ -6,8 +6,11 @@
 //
 
 import UIKit
+
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
+import Kingfisher
 
 class HomeViewController: UIViewController, PickpartDataDelegate{
     
@@ -16,6 +19,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     @IBOutlet weak var memberStackVIew: UIStackView!
     var text:String = ""
     var pickpart:[String] = []
+    var userListUID = ""
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var addFriendButton: UIButton!
     @IBAction func addEntry(_ sender: UIButton) {
@@ -293,7 +297,6 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
        }
-    
         
 }
 
@@ -307,13 +310,40 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
        
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserListCell",for: indexPath) as? UserListCell else {return UITableViewCell()}
-                
+            
             cell.userName.text = "\(userList[indexPath.row].userProfile.nickname)"
             cell.school.text = "\(userList[indexPath.row].userProfile.schoolName)"
             cell.partLabel.text = "\(userList[indexPath.row].userProfile.partDetail) • "
             cell.userPurpose.text = "\(userList[indexPath.row].userProfileDetail.purpose)"
             
-               return cell
+            let nickname: String = "\(userList[indexPath.row].userProfile.nickname)"
+            
+            let userdb = Database.database().reference().child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
+            userdb.observeSingleEvent(of: .value) { [self] snapshot in
+                var userUID: String = ""
+                
+                for child in snapshot.children {
+                    let snap = child as! DataSnapshot
+                    let value = snap.value as? NSDictionary
+                    
+                    userUID = snap.key
+                }
+                userListUID = userUID
+            }
+            // kingfisher 사용하기 위한 url
+            print(userListUID)
+            let uid: String = userListUID
+            let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+            
+            // Fetch the download URL
+            starsRef.downloadURL { [self] url, error in
+                if let error = error {
+                } else {
+                    cell.userImage.kf.setImage(with: url)
+                }
+            }
+            
+            return cell
            }
         
         func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
