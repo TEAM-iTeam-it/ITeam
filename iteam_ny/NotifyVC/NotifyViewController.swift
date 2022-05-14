@@ -18,11 +18,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var giverList: [String] = []
     var friendList: [Friend] = []
     var friendUid:[String] = []
-    
-    
-
-//    var RequestContent: [Request] = []
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +32,53 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         notifyTableView.reloadData()
         
     }
+//    func fetchFreindRequest() {
+//        giverList.removeAll()
+//        let ref = Database.database().reference()
+//        let userUID = Auth.auth().currentUser!.uid
+//        ref.child("user").child(userUID).observeSingleEvent(of: .value){ snapshot in
+//
+//          for child in snapshot.children {
+//                  let snap = child as! DataSnapshot
+//                  let value = snap.value as? NSDictionary
+//
+//    for key in snapData.keys {
+            //    if key == "friendRequest" {
+            //        for k in snapData.values {
+            //            if k is [String] {
+            //                self.giverList = (k as? [String])!
+            //            }
+            //
+            //        }
+            //    }
+            //
+            //}
+//              for (key, content) in value! {
+//              if key as! String == "receiverNickname" && content as! String == myNickname {
+//                    var newValue = value as! [String : String]
+//                    newValue["teamName"] = snap.key
+//                    myCallTime.append(newValue)
+//                    hasReceived = true
+//                   didISent.append(false)
+//                   break
+//                }
+//               if key as! String == "callerUid" && content as! String == Auth.auth().currentUser?.uid {
+//                  var newValue = value as! [String : String]
+//                  newValue["teamName"] = snap.key
+//                  myCallTime.append(newValue)
+//                  didISent.append(true)
+//                  break
+//        }
+//    }
+//
+//            }
+//        }
+//    }
+    
+
     // giverList에 나에게 친구요청한 사람 uid 받아와짐
     func fetchFreindRequest() {
         giverList.removeAll()
-        
         let ref = Database.database().reference()
         let userUID = Auth.auth().currentUser!.uid
         ref.child("user").child(userUID).observeSingleEvent(of: .value){ snapshot in
@@ -50,8 +88,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     for k in snapData.values {
                         if k is [String] {
                             self.giverList = (k as? [String])!
-//                            print(self.giverList)
-                           
                         }
 
                     }
@@ -102,14 +138,12 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         
                     }
                     part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
-                    
                     var friend = Friend(uid: uid, nickname: nickname, position: part, profileImg: "")
                     friendList.append(friend)
                     notifyTableView.reloadData()
                 }
             }
         }
-        
         notifyTableView.reloadData()
     }
     
@@ -121,7 +155,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             DispatchQueue.main.async {
                 self.fetchFreindRequest()
             }
-            
         })
     }
     
@@ -171,7 +204,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
            self.friendList.remove(at: indexPath.row)
-            notifyTableView.reloadData()
+//            notifyTableView.reloadData()
 //           self.UITableView.reloadData()
         }
             //거절하기 버튼 눌렀을 때 실행할 함수 선언

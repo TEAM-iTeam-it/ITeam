@@ -44,10 +44,10 @@ class SetATimeViewController: UIViewController{
     }
     //다음 버튼 클릭했을때
     @IBAction func TimeNextBtn(_ sender: UIButton) {
+        
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
         var callTimeString: String = ""
         var first: String = ""
         var second: String = ""

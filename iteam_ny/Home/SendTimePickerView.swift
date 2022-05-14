@@ -51,5 +51,4 @@ class SendTimePickerView:UIViewController{
 }
 protocol SendTimeDataDelegate {
     func SendTimeData(data: String)
-
 }
