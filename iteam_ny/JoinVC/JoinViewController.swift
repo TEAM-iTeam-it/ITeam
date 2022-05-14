@@ -61,7 +61,8 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     
     // Firebase Realtime Database 루트
-    var ref: DatabaseReference!
+    var ref: DatabaseReference! = Database.database().reference()
+    
     
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     override func viewDidLoad() {
@@ -397,8 +398,8 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         guard let user = Auth.auth().currentUser else {
             return
         }
-        ref = Database.database().reference()
         ref.child("user").child(user.uid).updateChildValues(["password": passwd])
+        ref.child("user").child(user.uid).updateChildValues(["rank": 200])
         let nicknameVC = self.storyboard?.instantiateViewController(withIdentifier: "nicknameVC")
         self.navigationController?.pushViewController(nicknameVC!, animated: true)
         
@@ -632,7 +633,6 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 
                 
                 // 닉네임이 이미 있는지 확인
-                ref = Database.database().reference()
                 let userItemRef = ref.child("user")
                 let query = userItemRef.queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nicknameText)
                 

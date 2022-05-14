@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import FirebaseAuth
 import FirebaseDatabase
 import Firebase
@@ -199,5 +200,6 @@ extension MakingGameTeamCollectionViewCell: UICollectionViewDelegateFlowLayout {
         let totalCellWidth = numberOfItems * itemWidth + cellSpacingWidth
         let inset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth)) / 2
         return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
+        
     }
 }
