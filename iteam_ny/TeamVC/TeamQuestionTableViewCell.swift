@@ -37,12 +37,12 @@ class TeamQuestionTableViewCell: UITableViewCell {
     }
     @IBAction func selectBtnAction(_ sender: UIButton) {
         func setTrueButton() {
+            sender.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
             sender.tintColor = UIColor(named: "purple_184")
-           // sender.setImage(UIImage(named: "checkmark.circle.fill"), for: .normal)
         }
         func setFalseButton() {
+            sender.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
             sender.tintColor = UIColor(named: "gray_229")
-            //sender.setImage(UIImage(named: "checkmark.circle"), for: .normal)
         }
         
         if didSelected == false {

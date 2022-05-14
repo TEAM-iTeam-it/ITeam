@@ -44,3 +44,22 @@ class CallGradientButton: UIButton {
         return l
     }()
 }
+class CallStatementButton: UIButton {
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradientLayer.frame = bounds
+    }
+
+    private lazy var gradientLayer: CAGradientLayer = {
+        let l = CAGradientLayer()
+        l.frame = self.bounds
+        l.colors = [UIColor(named: "purple_184")?.cgColor, UIColor(named: "green_144")?.cgColor]
+        l.startPoint = CGPoint(x: 0, y: 0.5)
+        l.endPoint = CGPoint(x: 1, y: 0.5)
+        l.cornerRadius = frame.height/2
+        layer.insertSublayer(l, at: 0)
+    
+        return l
+    }()
+}

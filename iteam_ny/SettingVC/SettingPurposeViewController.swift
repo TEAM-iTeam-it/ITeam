@@ -26,18 +26,26 @@ class SettingPurposeViewController: UIViewController {
     @IBOutlet weak var startupImg: UIImageView!
     @IBOutlet weak var etcImg: UIImageView!
     @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var purposeButtonConstraintWidth: NSLayoutConstraint!
+    @IBOutlet weak var purposeView: UIView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUI()
+    }
+    
+    func setUI() {
         nextBtn.layer.cornerRadius = 8
         for i in 0...purposeBtns.count-1 {
             purposeBtns[i].layer.cornerRadius = 16
         }
         nextBtn.backgroundColor = UIColor(named: "gray_196")
         nextBtn.isEnabled = false
-        // Do any additional setup after loading the view.
+        
+        purposeButtonConstraintWidth.constant =  purposeView.frame.width
     }
     @IBAction func purposeBtn(_ sender: UIButton) {
         if purposes.contains((sender.titleLabel?.text)!) {

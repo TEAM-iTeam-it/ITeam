@@ -23,6 +23,7 @@ class TeamProfileTeamListViewController: UIViewController {
     }
     var teamImageData: [Data] = []
     var teamMemberUID: String = ""
+    var memberUID: [String] = []
     let db = Database.database().reference()
     
     
@@ -30,8 +31,8 @@ class TeamProfileTeamListViewController: UIViewController {
         super.viewDidLoad()
 
         // setData()
-        fetchMember()
         setUI()
+        fetchMember()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,7 +44,7 @@ class TeamProfileTeamListViewController: UIViewController {
         view.layer.cornerRadius = 30
         view.layer.masksToBounds = true
         
-  
+        memberUID = teamMemberUID.components(separatedBy: ", ")
         
         
 //        if let presentationController = presentationController as? UISheetPresentationController {
@@ -58,7 +59,6 @@ class TeamProfileTeamListViewController: UIViewController {
     
     func fetchMember() {
         
-        let memberUID = teamMemberUID.components(separatedBy: ", ")
         print(memberUID.count)
         // self.memberListArr.removeAll()
         
@@ -124,25 +124,36 @@ class TeamProfileTeamListViewController: UIViewController {
 }
 extension TeamProfileTeamListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return personProfileList.count
+        if !memberUID.isEmpty && memberUID.count <= 3 {
+            return memberUID.count
+        }
+        else {
+            return 3
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TeamProfileTeamMemberTableViewCell = tableView.dequeueReusableCell(withIdentifier: "teamMemberListCell", for: indexPath) as! TeamProfileTeamMemberTableViewCell
         
-        cell.nicknameLabel.text = personProfileList[indexPath.row].nickname
-        cell.partLabel.text = "\(personProfileList[indexPath.row].partDetail)•\(personProfileList[indexPath.row].purpose)"
-        
-        var fetchedImage = UIImage()
-        if !teamImageData.isEmpty {
-            if teamImageData[indexPath.row] != nil && UIImage(data: teamImageData[indexPath.row]) != nil {
-                fetchedImage = UIImage(data: teamImageData[indexPath.row])!
-            }
+        if !personProfileList.isEmpty {
             
+            cell.nicknameLabel.text = personProfileList[indexPath.row].nickname
+            cell.partLabel.text = "\(personProfileList[indexPath.row].partDetail)•\(personProfileList[indexPath.row].purpose)"
+            cell.profileImage.layer.cornerRadius = 25
+            
+            // kingfisher 사용하기 위한 url
+            let uid: String = memberUID[indexPath.row]
+            
+            let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+            
+            // Fetch the download URL
+            starsRef.downloadURL { [self] url, error in
+                if let error = error {
+                } else {
+                    cell.profileImage.kf.setImage(with: url)
+                }
+            }
         }
-        let resizedImage = self.resizeImage(image: fetchedImage, width: 50, height: 50)
-        cell.profileImage.layer.cornerRadius = 25
-        cell.profileImage.image = resizedImage
         
         return cell
     }

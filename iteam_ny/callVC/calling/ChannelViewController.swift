@@ -7,14 +7,22 @@
 
 import UIKit
 import AgoraRtcKit
+import FirebaseAuth
+import FirebaseDatabase
+import SwiftUI
 
 class ChannelViewController: UIViewController {
-
+    
+    @IBOutlet weak var timeExplainLabel: UILabel!
     @IBOutlet var callButtons: [UIButton]!
     @IBOutlet weak var leaveButton: UIButton!
+    @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var sameSchoolLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var timerLabel: UILabel!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
-   
+    
     // 입장할 때 입력한 이름 받을 변수
     var name: String = ""
     
@@ -37,8 +45,18 @@ class ChannelViewController: UIViewController {
     // 듣고 있는 사람
     var activeAudience: Set<UInt> = []
     
+    // 상대 UID
+    var otherPersonUID: String = ""
+    
     // 말하는 사람인지 듣는 사람인지 역할
     lazy var role:AgoraClientRole = name == "speaker" || name == "speaker2" ? .broadcaster : .audience
+    
+    let db = Database.database().reference()
+    
+    
+    // 타이머
+    var secondsLeft: Int = 180
+    var timer: Timer?
     
     
     override func viewDidLoad() {
@@ -52,13 +70,59 @@ class ChannelViewController: UIViewController {
         
         setUI()
         
+        fetchNickNameToUID(nickname: nickname)
+        
     }
     
     func setUI() {
+        sameSchoolLabel.layer.borderWidth = 0.5
+        sameSchoolLabel.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+        sameSchoolLabel.textColor = UIColor(named: "purple_184")
+        
+        sameSchoolLabel.layer.cornerRadius = sameSchoolLabel.frame.height/2
+        sameSchoolLabel.text = "같은 학교"
+        
         for i in 0..<callButtons.count {
             callButtons[i].layer.cornerRadius = callButtons[0].frame.height/2
         }
+        nicknameLabel.text = nickname
+        infoLabel.text = position
+        
+        timerButtonClicked()
+        
     }
+    func updateTimerLabel() {
+        var minutes = self.secondsLeft / 60
+        var seconds = self.secondsLeft % 60
+        
+        if self.secondsLeft < 10 {
+            self.timerLabel.textColor = UIColor.red
+        } else {
+            self.timerLabel.textColor = UIColor.black
+        }
+        
+        if self.secondsLeft > 0 {
+            self.timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
+        } else {
+            self.timerLabel.isHidden = true
+            self.timeExplainLabel.text = "통화시간이 종료되었습니다"
+        }
+        
+    }
+    
+    func timerButtonClicked() {
+        updateTimerLabel()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (t) in
+            // 30 -> 1로 수정해야함
+            self.secondsLeft -= 30
+            self.updateTimerLabel()
+            
+            if self.secondsLeft == 0 {
+                self.leaveChannel(UIButton())
+            }
+        }
+    }
+    
     // 채널 연결
     func connectAgora() {
         // 앱아이디로 실행
@@ -72,99 +136,87 @@ class ChannelViewController: UIViewController {
         // 현재 역할 설정
         agkit?.setClientRole(role)
     }
+    
     // 음성 권한
     func requestMicrophonePermission(){
-         AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
-             if granted {
-                 print("Mic: 권한 허용")
-             } else {
-                 print("Mic: 권한 거부")
-             }
-         })
-     }
+        AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
+            if granted {
+                print("Mic: 권한 허용")
+            } else {
+                print("Mic: 권한 거부")
+            }
+        })
+    }
+    
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IAAvlMB6K7xJuF/M7YZPYmRHSvYzr6/cnigwFVLzWZgouzfvbuoAAAAAEABD/MfDr+lyYgEAAQCv6XJi", channelId: "testToken11", info: nil, uid: userID,
-            joinSuccess: {(_, uid, elapsed) in
+        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IACYcpozxkwAhBzDg/2gXB7Q/fwjwwehN+mn7DnGZnm9BzfvbuoAAAAAEAA/6Ep2Q+x3YgEAAQBD7Hdi", channelId: "testToken11", info: nil, uid: userID,
+                           joinSuccess: {(_, uid, elapsed) in
             self.userID = uid
             if self.role == .audience {
                 self.activeAudience.insert(uid)
             } else {
                 self.activeSpeakers.insert(uid)
             }
-            self.collection.reloadData()
             print("joinChannel")
         })
     }
+    func fetchNickNameToUID(nickname: String)  {
+        let userdb = db.child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
+        userdb.observeSingleEvent(of: .value) { [self] snapshot in
+            var userUID: String = ""
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let value = snap.value as? NSDictionary
+                
+                userUID = snap.key
+            }
+            otherPersonUID = userUID
+        }
+    }
+    
     @IBAction func leaveChannel(_ sender: UIButton) {
         self.agkit?.createRtcChannel("testToken11")?.leave()
         self.agkit?.leaveChannel()
         AgoraRtcEngineKit.destroy()
         
-        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallClosedVC")
+        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallClosedVC") as! CallClosedViewController
+        popupVC.otherPersonUID = otherPersonUID
+        popupVC.modalPresentationStyle = .overFullScreen
+        present(popupVC, animated: false, completion: nil)
+    }
+    @IBAction func reportPerson(_ sender: UIButton) {
+        let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "CallReportVC") as! CallReportViewController
+        popupVC.otherPersonUID = otherPersonUID
         popupVC.modalPresentationStyle = .overFullScreen
         present(popupVC, animated: false, completion: nil)
     }
     
-
-
+    
+    
 }
 extension ChannelViewController: AgoraRtcEngineDelegate {
     //Agora안에 듣는 사람이나 말하는 사람 정보가 바뀌었을때
     func rtcEngine(_ engine: AgoraRtcEngineKit, remoteAudioStateChangedOfUid uid: UInt, state: AgoraAudioRemoteState, reason: AgoraAudioRemoteStateReason, elapsed: Int) {
         switch state {
-        // 말하기를 시작할때
+            // 말하기를 시작할때
         case .decoding, .starting:
             // 듣는 사람에서 뺴주고
             self.activeAudience.remove(uid)
             // 말하는 사람들에 넣어준다.
             self.activeSpeakers.insert(uid)
-        //멈췄을때
+            //멈췄을때
         case .stopped, .failed:
             // 말하는 사람에서 삭제한다.
             self.activeSpeakers.remove(uid)
         default:
             return
         }
-        self.collection.reloadData()
     }
     
     // 현재 말하는 사람 설정
     func rtcEngine(_ engine: AgoraRtcEngineKit, activeSpeaker speakerUid: UInt) {
         self.activeSpeaker = speakerUid
-        self.collection.reloadData()
     }
-}
-extension ChannelViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    //듣는 사람과 말하는 사람 섹션 2개를 만들어줌.
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        //2
-        return 1
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0 ? activeSpeakers.count : activeAudience.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collection.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! UserCollectionViewCell
-        
-        if indexPath.section == 0 {
-            cell.setUI(image: profile, nickname: nickname, position: position)
-        }else{
-            cell.setUI(image: profile, nickname: nickname, position: nickname)
-        }
-        
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        let sectionHeader = collection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ChannelSectionHeader", for: indexPath) as! ChannelSectionHeader
-        
-        //sectionHeader.headerLabel.text = indexPath.section == 0 ? "Speakers" : "Audience"
-        sectionHeader.headerLabel.text = indexPath.section == 0 ? "" : "Audience"
-        
-        return sectionHeader
-        
-    }
-    
 }

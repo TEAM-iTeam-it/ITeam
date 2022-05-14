@@ -9,11 +9,17 @@ import UIKit
 
 class AnswerTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var teamProfileLabel: UILabel!
+    @IBOutlet weak var circleTitleView: GradientView!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var callStateBtn: UIButton!
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var sameSchoolLabel: UILabel!
+    @IBOutlet weak var cancelLabel: UILabel!
+    @IBOutlet weak var callingStateBtn: CallStatementButton!
+    @IBOutlet weak var grayImageView: UIView!
+    @IBOutlet weak var nicknameToSameSchoolConst: NSLayoutConstraint!
     
 
     override func awakeFromNib() {

@@ -28,6 +28,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
     var callIndex: String = ""
     var dateTimes: [String] = []
     var receiverNickname: String = ""
+    var receiverType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +56,12 @@ class TeamCallRequestQuestionViewController: UIViewController {
         
         
         func setTrueButton() {
+            sender.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
             sender.tintColor = UIColor(named: "purple_184")
-           // sender.setImage(UIImage(named: "checkmark.circle.fill"), for: .normal)
         }
         func setFalseButton() {
+            sender.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
             sender.tintColor = UIColor(named: "gray_229")
-            //sender.setImage(UIImage(named: "checkmark.circle"), for: .normal)
         }
         
         // 5개 제한
@@ -231,12 +232,14 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 let callTime: [String: String] = [ "callTime": callTimeString]
                 let callerUid: [String: Any] = ["callerUid": Auth.auth().currentUser?.uid]
                 let receiverNickname: [String: String] = ["receiverNickname": receiverNickname]
+                let receiverType: [String: String] = ["receiverType": receiverType]
                 let question: [String: String] = ["Question": questionString]
                 let stmt: [String: String] = ["stmt": "요청됨"]
                 
                 db.child("Call").child(callIndex).updateChildValues(callTime)
                 db.child("Call").child(callIndex).updateChildValues(callerUid)
                 db.child("Call").child(callIndex).updateChildValues(receiverNickname)
+                db.child("Call").child(callIndex).updateChildValues(receiverType)
                 db.child("Call").child(callIndex).updateChildValues(question)
                 db.child("Call").child(callIndex).updateChildValues(stmt)
             }

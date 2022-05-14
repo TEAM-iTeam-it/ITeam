@@ -18,7 +18,6 @@ class TeamViewController: UIViewController {
     
     var hasFavorTeam = false {
         willSet(newValue) {
-            print("newValue \(newValue)")
             if newValue {
                 favorTeamViewHeight.constant = 280
             }
@@ -32,8 +31,10 @@ class TeamViewController: UIViewController {
     var haveTeamProfile: Bool = false {
         willSet(newValue) {
             if newValue {
-                explainLabel.text = "팀 프로필 생성을 통해 팀원을 모집해 보세요"
-                print("팀 프로필 있음")
+                if haveMember {
+                    explainLabel.text = "팀 프로필 업데이트를 통해 매칭률을 높여보세요"
+                    print("팀프로필, 팀원 있음")
+                }
             }
         }
     }
@@ -62,7 +63,14 @@ class TeamViewController: UIViewController {
     let teamCallStoryboard: UIStoryboard = UIStoryboard(name: "TeamCallRequest", bundle: nil)
     
     let db = Database.database().reference()
-    
+    var memberList: [String] = []
+    var teamName: String = "" {
+        willSet {
+            if newValue != "" {
+                checkMyTeamProfile()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         
@@ -88,11 +96,27 @@ class TeamViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         
         
+        fetchMyTeamname()
         //exmplainLabel.text = fdsa
-        checkMyTeamProfile()
+      //  checkMyTeamProfile()
         checkMyTeamMember()
         fetchFavorTeam()
         
+    }
+    func fetchMyTeamname() {
+        db.child("user").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { [self] (snapshot) in
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let value = snap.value as? String
+                
+                if snap.key == "currentTeam" {
+                    if let value = value {
+                        teamName = value
+                    }
+                }
+            }
+        })
     }
     // 팀 프로필을 생성했는지 검사
     func checkMyTeamProfile() {
@@ -100,13 +124,20 @@ class TeamViewController: UIViewController {
         
         teamdb.observeSingleEvent(of: .value, with: { [self] (snapshot) in
             let values = snapshot.value
-            let dic = values as! [String: [String:Any]]
+            guard let dic = values as? [String: [String:Any]] else {
+                haveTeamProfile = false
+                return }
+            
+            if !memberList.contains(Auth.auth().currentUser!.uid) {
+                memberList.insert(Auth.auth().currentUser!.uid, at: 0)
+            }
      
             var count = 0
             for index in dic{
-                let memberlist = index.value["memberList"] as! String
-                if memberlist.contains(Auth.auth().currentUser!.uid) {
-                    userTeamUIDList = memberlist.replacingOccurrences(of: Auth.auth().currentUser!.uid, with: "").components(separatedBy: ", ").filter({ $0 != "" })
+                let memberlistString = index.value["memberList"] as! String
+                var memberListArr = memberlistString.components(separatedBy: ", ")
+                if index.key == teamName {
+                    userTeamUIDList = memberlistString.replacingOccurrences(of: Auth.auth().currentUser!.uid, with: "").components(separatedBy: ", ").filter({ $0 != "" })
                     haveTeamProfile = true
                     count += 1
                 }
@@ -137,13 +168,13 @@ class TeamViewController: UIViewController {
                     // 꾸린 팀원이 있을 때
                     else {
                         haveMember = true
-                        let memberList = value?.components(separatedBy: ", ")
+                        memberList = (value?.components(separatedBy: ", "))!
                         var count = 0
                         
                         // 수정해야함 - 안돌음
                         // 팀프로필에 있는 팀원과 현재 꾸리고 있는 내 팀이 같은지 비교
                         // 같으면 이미 프로필 만든 것, 다르면 프로필 안만든 것
-                        memberList!.diffIndicesNotConsideringOrder(from: userTeamUIDList).forEach {_ in
+                        memberList.diffIndicesNotConsideringOrder(from: userTeamUIDList).forEach {_ in
                             count += 1
                              // print("diff value: \(memberList![$0])")
                         }
@@ -164,6 +195,7 @@ class TeamViewController: UIViewController {
         db.child("Team").observe(.childChanged, with:{ [self] (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
+                fetchMyTeamname()
                 checkMyTeamProfile()
                 checkMyTeamMember()
             }
@@ -171,6 +203,7 @@ class TeamViewController: UIViewController {
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ [self] (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
+                fetchMyTeamname()
                 checkMyTeamProfile()
                 checkMyTeamMember()
             }
@@ -197,11 +230,18 @@ class TeamViewController: UIViewController {
             if haveTeamProfile {
                 let teamProfileVC = thisStoryboard.instantiateViewController(withIdentifier: "teamProfileVC") as! CreateTeamProfileViewController
                 teamProfileVC.modalPresentationStyle = .fullScreen
+                
+                teamProfileVC.memberList = memberList
+                teamProfileVC.haveTeamProfile = true
+                teamProfileVC.teamname = teamName
                 present(teamProfileVC, animated: true, completion: nil)
             }
             // 팀원이 있고 프로필은 없을 때 팀 프로필 생성
             else {
                 let teamProfileVC = thisStoryboard.instantiateViewController(withIdentifier: "teamProfileVC") as! CreateTeamProfileViewController
+                
+                teamProfileVC.memberList = memberList
+                
                 teamProfileVC.modalPresentationStyle = .fullScreen
                 present(teamProfileVC, animated: true, completion: nil)
             }
@@ -224,7 +264,6 @@ class TeamViewController: UIViewController {
         favorTeamList.observeSingleEvent(of: .value) { [self] favorSnapshot in
             
             let value = favorSnapshot.value as? String ?? "none"
-            print("value \(value)")
             if value == "none" || value == "" {
                 hasFavorTeam = false
             }
