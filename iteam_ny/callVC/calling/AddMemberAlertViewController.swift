@@ -37,61 +37,36 @@ class AddMemberAlertViewController: UIViewController {
         present(evaluVC, animated: true)
         
     }
-    
+    func currentDateTime() -> String {
+        var formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm"
+        var currentDateString = formatter.string(from: Date())
+
+        return currentDateString
+        
+    }
     // 친구요청
     func sendFriendRequest() {
         ref = Database.database().reference()
         
-        var updateGiverUid: [String] = []
         
         // 데이터 받아와서 이미 있으면 합쳐주기
+        var index: String = ""
+        ref = Database.database().reference()
         ref.child("user").child(otherPersonUID).child("friendRequest").observeSingleEvent(of: .value) { [self] snapshot in
-          
-            var lastData: [String]? = snapshot.value as? [String]
-            if lastData == nil || lastData == [] {
-                print("상대에게 내 요청이 없을 때")
-                updateGiverUid.append(userUID)
-                // 데이터 추가
-                ref.child("user").child(otherPersonUID).child("friendRequest").setValue(updateGiverUid)
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                index = "\(snapshots.count)"
+                let valueUID = ["requestUID" : userUID]
+                let valueTime = ["requestTime" : currentDateTime()]
+                let valueStmt = ["requestStmt" : "요청"]
                 
+                // 요청한 시간과 함께 넘겨주기
+                let dataPath = ref.child("user").child(otherPersonUID).child("friendRequest").child(index)
+                dataPath.updateChildValues(valueUID)
+                dataPath.updateChildValues(valueTime)
+                dataPath.updateChildValues(valueStmt)
             }
-            else {
-                print("이미 내가 상대에게 요청했을 때")
-                if !lastData!.contains(userUID) {
-                    lastData?.append(userUID)
-                    updateGiverUid = lastData!
-                    // 데이터 추가
-                    ref.child("user").child(otherPersonUID).child("friendRequest").setValue(updateGiverUid)
-                }
-            }
-            
-            // giverList에 나에게 요청건 사람 uid 받아와짐
-            var giverList: [String] = []
-            fetchFreindRequest()
-            
-            func fetchFreindRequest() {
-                ref.child("user").child(userUID).observeSingleEvent(of: .value){ snapshot in
-                    guard let snapData = snapshot.value as? [String:Any] else {return}
-                    for key in snapData.keys {
-                        if key == "friendRequest" {
-                            for k in snapData.values {
-                                if k is [String] {
-                                    giverList = (k as? [String])!
-                                    print(giverList)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            
-            
-            
-            
         }
-        
-        
     }
     
 }
