@@ -56,12 +56,12 @@ class TeamCallRequestQuestionViewController: UIViewController {
         
         
         func setTrueButton() {
+            sender.setImage(UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
             sender.tintColor = UIColor(named: "purple_184")
-           // sender.setImage(UIImage(named: "checkmark.circle.fill"), for: .normal)
         }
         func setFalseButton() {
+            sender.setImage(UIImage(systemName: "checkmark.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
             sender.tintColor = UIColor(named: "gray_229")
-            //sender.setImage(UIImage(named: "checkmark.circle"), for: .normal)
         }
         
         // 5개 제한

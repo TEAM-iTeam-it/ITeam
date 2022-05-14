@@ -3818,7 +3818,7 @@
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="speaker.2.fill" catalog="system">
+                                        <buttonConfiguration key="configuration" style="plain" image="speaker.wave.2.fill" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="28"/>
                                         </buttonConfiguration>
                                     </button>
@@ -4410,7 +4410,7 @@
                                     <action selector="backBtn:" destination="hOQ-HL-VP0" eventType="touchUpInside" id="eMQ-sW-qtW"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HEH-kY-yej">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HEH-kY-yej">
                                 <rect key="frame" x="20" y="101" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="3ry-4r-Hco"/>
@@ -5607,7 +5607,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UIn-od-emi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-996" y="3354"/>
+            <point key="canvasLocation" x="-568" y="3203"/>
         </scene>
         <!--CallAgreeNC-->
         <scene sceneID="l9I-Tt-27U">
@@ -6095,7 +6095,7 @@
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="speaker.2.fill" catalog="system">
+                                                <buttonConfiguration key="configuration" style="plain" image="speaker.wave.2.fill" catalog="system">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15"/>
                                                 </buttonConfiguration>
                                             </button>
@@ -6360,7 +6360,7 @@
         <image name="phone.down.fill" catalog="system" width="128" height="52"/>
         <image name="profileGradientBorder.png" width="80" height="80"/>
         <image name="searchIcon.png" width="28" height="28"/>
-        <image name="speaker.2.fill" catalog="system" width="128" height="90"/>
+        <image name="speaker.wave.2.fill" catalog="system" width="128" height="90"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="gray_121">
             <color red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
