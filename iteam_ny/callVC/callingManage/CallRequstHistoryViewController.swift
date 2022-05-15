@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
@@ -35,7 +36,7 @@ class CallRequstHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //fetchUser(userUID: personUID, stmt: "요청됨")
         setUI()
         questionTableview.delegate = self
@@ -79,16 +80,13 @@ class CallRequstHistoryViewController: UIViewController {
         
         // kingfisher 사용하기 위한 url
         let uid: String = person.profileImg
-        var urlString: URL?
         
         let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
         
         // Fetch the download URL
         starsRef.downloadURL { [self] url, error in
             if let error = error {
-                // Handle any errors
             } else {
-                print(url)
                 profileImageView.kf.setImage(with: url)
             }
         }

@@ -265,7 +265,6 @@ class MakingGameTeamViewController: UIViewController {
     func doesContainFavorTeam() {
         let user = Auth.auth().currentUser!
         let ref = Database.database().reference()
-        var doesContainBool: Bool = false
         
         ref.child("user").child(user.uid).child("likeTeam").child("teamName").observeSingleEvent(of: .value) {snapshot in
             let lastData: String! = snapshot.value as? String

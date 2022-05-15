@@ -83,7 +83,7 @@ class CallRequstTeamHistoryViewController: UIViewController {
             let dic = values as! [String: String]
             for i in dic.keys {
                 if i == "memberList" {
-                    let memberListString = dic["memberList"] as! String
+                    let memberListString = dic["memberList"]!
                     memberList = memberListString.components(separatedBy: ", ")
                     print(memberList)
                 }
@@ -204,8 +204,9 @@ extension CallRequstTeamHistoryViewController: UICollectionViewDelegate, UIColle
         let uid: String = teamMemberUid[indexPath.row]
         print(uid)
         let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
-        starsRef.downloadURL { [self] url, error in
+        starsRef.downloadURL { url, error in
             if let error = error {
+                print(error.localizedDescription)
                 cell.userImage.image = UIImage()
             } else {
                 cell.userImage.kf.setImage(with: url)

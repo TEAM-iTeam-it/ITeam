@@ -119,7 +119,6 @@ class CallAnswerViewController: UIViewController {
             //queryEqual(toValue: myNickname)
             favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
                 var myCallTime: [[String:String]] = []
-                var receiverType: [String] = []
                 
                 // 나와 관련된 call 가져오기
                 for child in snapshot.children {
@@ -276,7 +275,7 @@ class CallAnswerViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
+            let person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
             
             personList.append(person)
             answerListTableView.reloadData()
@@ -326,7 +325,7 @@ class CallAnswerViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
+            let person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
             
             whenIReceivedOtherPerson.append(person)
         }
@@ -374,7 +373,7 @@ class CallAnswerViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
+            let person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
             
             whenISendOtherPerson.append(person)
         }
@@ -387,7 +386,6 @@ class CallAnswerViewController: UIViewController {
             
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
-                let value = snap.value as? NSDictionary
                 
                 userUID = snap.key 
             }
@@ -474,7 +472,7 @@ class CallAnswerViewController: UIViewController {
                // let cell = sender as! AnswerTableViewCell
                 destination.nickname = personList[(sender as? Int)!].nickname
                 // var position = personList[(sender as? Int)!].position.split(separator: "•")
-                var position = personList[(sender as? Int)!].position
+                let position = personList[(sender as? Int)!].position
                 destination.position = String(position)
                 destination.profile = personList[(sender as? Int)!].profileImg
             }
@@ -490,7 +488,6 @@ class CallAnswerViewController: UIViewController {
             
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
-                let value = snap.value as? NSDictionary
                 
                 userUID = snap.key
             }
@@ -517,10 +514,10 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         // Fetch the download URL
         starsRef.downloadURL { [self] url, error in
             if let error = error {
-                // Handle any errors
+                print(error.localizedDescription)
             } else {
                 DispatchQueue.main.async {
-                    imageView.kf.setImage(with: url)
+                    self.imageView.kf.setImage(with: url)
                     cell.profileImg.kf.setImage(with: url)
                 }
             }
@@ -650,7 +647,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
-                    var position = personList[indexPath.row].position
+                    let position = personList[indexPath.row].position
                     waitingRoomVC.position = position
                     
                     
@@ -669,7 +666,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
               
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
-                    var position = personList[indexPath.row].position
+                    let position = personList[indexPath.row].position
                     waitingRoomVC.position = position
                     
                     //personList[indexPath.row].
@@ -710,7 +707,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             let callingVC = storyboard?.instantiateViewController(withIdentifier: "callingVC") as! ChannelViewController
             
             callingVC.nickname = personList[indexPath.row].nickname
-            var position = personList[indexPath.row].position
+            let position = personList[indexPath.row].position
             callingVC.position = String(position)
            
         

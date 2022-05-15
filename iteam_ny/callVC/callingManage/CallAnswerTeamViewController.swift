@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
@@ -20,11 +21,9 @@ class CallAnswerTeamViewController: UIViewController {
     var toGoSegue: String = "대기"
     let db = Database.database().reference()
     
-    // [삭제 예정] 시연을 위한 변수
-    var counter:Int = 0
     var name: String = "speaker"
     var myNickname = ""
-    var myTeamname = "" 
+    var myTeamname = ""
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     var callTimeArr: [[String]] = []
     var questionArr: [[String]] = []
@@ -54,11 +53,11 @@ class CallAnswerTeamViewController: UIViewController {
         
         setUI()
         // 이 문제도x
-       // fetchData()
+        // fetchData()
         
         //fetchChangedData()
         
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         //setUI()
@@ -66,18 +65,17 @@ class CallAnswerTeamViewController: UIViewController {
     }
     
     func setUI() {
-        counter = 0
         name = "speaker"
         
         /*
-        let requestList = UIAction(title: "요청됨", handler: { _ in print("요청내역") })
-        let denied = UIAction(title: "요청수락", handler: { _ in print("거절함") })
-        let canceled = UIAction(title: "통화", handler: { _ in print("취소됨") })
-        let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("취소") })
-        
-       conditionChangeBtn.menu = UIMenu(title: "상태를 선택해주세요", image: UIImage(systemName: "heart.fill"), identifier: nil, options: .displayInline, children: [requestList, denied, canceled, cancel])
+         let requestList = UIAction(title: "요청됨", handler: { _ in print("요청내역") })
+         let denied = UIAction(title: "요청수락", handler: { _ in print("거절함") })
+         let canceled = UIAction(title: "통화", handler: { _ in print("취소됨") })
+         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("취소") })
+         
+         conditionChangeBtn.menu = UIMenu(title: "상태를 선택해주세요", image: UIImage(systemName: "heart.fill"), identifier: nil, options: .displayInline, children: [requestList, denied, canceled, cancel])
          */
-
+        
         
     }
     func removeArr() {
@@ -99,13 +97,12 @@ class CallAnswerTeamViewController: UIViewController {
         //answerListTableView.reloadData()
         
         toGoSegue = "대기"
-        counter = 0
         name = "speaker"
         myNickname = ""
         myTeamname = ""
-       
+        
         fetchedInputUIDToNickName = ""
-       
+        
         nowRequestedUid = ""
         callingOtherUid = ""
         amiLeader = false
@@ -203,7 +200,7 @@ class CallAnswerTeamViewController: UIViewController {
                         if myCallTime[i]["callerUid"] == Auth.auth().currentUser?.uid {
                             
                             if myCallTime[i]["receiverType"] != nil && myCallTime[i]["receiverType"] == "team" {
-                             
+                                
                                 if myCallTime[i]["stmt"] == "통화"
                                     || myCallTime[i]["stmt"] == "대기 중"
                                     || myCallTime[i]["stmt"] == "요청취소됨"
@@ -304,7 +301,7 @@ class CallAnswerTeamViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
+            let person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
             
             personList.append(person)
             answerListTableView.reloadData()
@@ -355,7 +352,7 @@ class CallAnswerTeamViewController: UIViewController {
                 let snap = child as! DataSnapshot
                 let value = snap.value as? NSDictionary
                 
-
+                
                 if snap.key == "userProfile" {
                     for (key, content) in value! {
                         if key as! String == "nickname" {
@@ -384,13 +381,13 @@ class CallAnswerTeamViewController: UIViewController {
                 
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
+            let person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
             
             whenIReceivedOtherPerson.append(person)
         }
     }
-
- 
+    
+    
     // uid로 user 닉네임 반환
     func fetchNickname(userUID: String)  {
         let userdb = db.child("user").child(userUID)
@@ -423,26 +420,26 @@ class CallAnswerTeamViewController: UIViewController {
         db.child("Call").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             
-                self.removeArr()
-                self.fetchData()
+            self.removeArr()
+            self.fetchData()
             
         })
         // 아님
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             
-                self.removeArr()
-                self.fetchData()
+            self.removeArr()
+            self.fetchData()
             
             
         })
         db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             
-                self.removeArr()
-                self.fetchData()
+            self.removeArr()
+            self.fetchData()
             
-
+            
         })
     }
     
@@ -500,12 +497,12 @@ class CallAnswerTeamViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: "", profileImg: userUID)
+            let person = Person(nickname: nickname, position: part, callStm: "", profileImg: userUID)
             
             leader = person
         }
     }
-
+    
     
     // 삭제할 코드 - 유닛 테스트
     @IBAction func testSignout(_ sender: UIButton) {
@@ -522,29 +519,11 @@ class CallAnswerTeamViewController: UIViewController {
         exit(0)
     }
     
-    
-    
-    // [삭제 예정] 시연을 위한 nextbutton
-    @IBAction func nextBtn(_ sender: UIButton) {
-        if counter == 0 {
-            personList[0].callStm = "통화대기"
-            answerListTableView.reloadData()
-            toGoSegue = "통화대기"
-            counter += 1
-        }
-        if counter == 1{
-            personList[0].callStm = "통화시작"
-            answerListTableView.reloadData()
-            toGoSegue = "통화시작"
-        }
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "waitingVC" {
             if let destination = segue.destination as? ChannelWaitingViewController {
-                // let cell = sender as! AnswerTableViewCell
                 destination.nickname = personList[(sender as? Int)!].nickname
-                // var position = personList[(sender as? Int)!].position.split(separator: "•")
-                var position = personList[(sender as? Int)!].position
+                let position = personList[(sender as? Int)!].position
                 destination.position = String(position)
                 destination.profile = personList[(sender as? Int)!].profileImg
             }
@@ -558,8 +537,6 @@ class CallAnswerTeamViewController: UIViewController {
             
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
-                let value = snap.value as? NSDictionary
-                
                 userUID = snap.key
             }
             nowRequestedUid = userUID
@@ -577,8 +554,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         let cell: AnswerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AnswerTeamCell", for: indexPath) as! AnswerTableViewCell
         cell.nicknameLabel.text = personList[indexPath.row].nickname
         
-        
-        
         // 같은 학교 처리
         if cell.nicknameLabel.text == "시연" {
             cell.sameSchoolLabel.layer.borderWidth = 0.5
@@ -595,7 +570,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         cell.selectionStyle = .none
-
+        
         // 기본 디자인 세팅
         cell.cancelLabel.isHidden = true
         cell.positionLabel.text = personList[indexPath.row].position
@@ -656,9 +631,9 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     let uid: String = personList[indexPath.row].profileImg
                     let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
                     
-                    // Fetch the download URL
-                    starsRef.downloadURL { [self] url, error in
+                    starsRef.downloadURL { url, error in
                         if let error = error {
+                            print(error.localizedDescription)
                         } else {
                             DispatchQueue.main.async {
                                 
@@ -701,8 +676,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     print(uid)
                     let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
                     
-                    // Fetch the download URL
-                    starsRef.downloadURL { [self] url, error in
+                    starsRef.downloadURL { url, error in
                         if let error = error {
                             print("error.localizedDescription \(error.localizedDescription)")
                         } else {
@@ -727,7 +701,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
                     
                     // Fetch the download URL
-                    starsRef.downloadURL { [self] url, error in
+                    starsRef.downloadURL { url, error in
                         if let error = error {
                             print("error \(error.localizedDescription)")
                         } else {
@@ -784,10 +758,10 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
                     
                     // Fetch the download URL
-                    starsRef.downloadURL { [self] url, error in
+                    starsRef.downloadURL { url, error in
                         if let error = error {
+                            print(error.localizedDescription)
                         } else {
-                            print("url \(url)")
                             DispatchQueue.main.async {
                                 cell.profileImg.kf.setImage(with: url)
                             }
@@ -822,10 +796,10 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             // 1. 내가 보낸 경우 -> 팀을 표시해야함
             for i in 0..<whenISendOtherTeam.count {
                 if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname {
-            
+                    
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
-                    var position = personList[indexPath.row].position
+                    let position = personList[indexPath.row].position
                     waitingRoomVC.position = position
                     
                     //personList[indexPath.row].
@@ -842,10 +816,10 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             // 2. 내가 승인한 경우
             for i in 0..<whenIReceivedOtherPerson.count {
                 if whenIReceivedOtherPerson[i].nickname == personList[indexPath.row].nickname {
-                
+                    
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
-                    var position = personList[indexPath.row].position
+                    let position = personList[indexPath.row].position
                     waitingRoomVC.position = position
                     
                     //personList[indexPath.row].
@@ -880,7 +854,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             let callingVC = storyboard?.instantiateViewController(withIdentifier: "callingTeamVC") as! ChannelTeamViewController
             
             callingVC.nickname = personList[indexPath.row].nickname
-            var position = personList[indexPath.row].position
+            let position = personList[indexPath.row].position
             callingVC.position = String(position)
             
             
@@ -895,14 +869,14 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             
             // 보낸 거랑 어캐 구분..?
             
-          
+            
             // 내가 보냈을 때 ->
             for i in 0..<whenISendOtherTeam.count {
                 if whenISendOtherTeam[i].nickname == personList[indexPath.row].nickname && whenISendOtherTeam[i].callStm == "통화" {
                     callingVC.teamIndex = callTeamIndex[callCount]
                 }
             }
-             
+            
             // 내가 받았을 때
             for j in 0..<whenIReceivedOtherPerson.count {
                 if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname && whenIReceivedOtherPerson[j].callStm == "통화" {
@@ -911,7 +885,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     callingVC.teamIndex = callTeamIndex[callCount]
                 }
             }
-           
+            
             callingVC.nowEntryPersonUid = Auth.auth().currentUser!.uid
             callingVC.name = name
             callingVC.image = personList[indexPath.row].profileImg
