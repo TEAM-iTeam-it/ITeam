@@ -6,10 +6,12 @@
 //
 
 import UIKit
+
 import Firebase
+import FirebaseAuth
 import FirebaseStorage
-import Tabman
 import Kingfisher
+import Tabman
 
 class FavorTeamViewController: UIViewController {
     
@@ -22,15 +24,27 @@ class FavorTeamViewController: UIViewController {
     var memberListArr: [[String]] = [[]]
     let db = Database.database().reference()
     var doesFavorTeamExisted: Bool = false
-    var didFetched: Bool = false {
-        didSet {
-            self.collView.reloadData()
+    var didTeamListFetched: Bool = false {
+        willSet(newValue) {
+            if newValue {
+                fetchMyProfile()
+            }
+        }
+    }
+    var didMyProfileFetched: Int = 0 {
+        willSet(newValue) {
+            print("newValue \(newValue)")
+            if newValue >= 2 {
+                teamSorting()
+            }
         }
     }
     var teamNames: [String] = []
     var teamListNew: [TeamProfile] = []
     var teamNamesNew: [String] = []
     var userUID: [[String]] = []
+    var userProfileDetail: UserProfileDetail = UserProfileDetail(activeZone: "", character: "", purpose: "", wantGrade: "")
+    var userProfile: UserProfile = UserProfile(nickname: "", part: "", partDetail: "", schoolName: "", portfolio: Portfolio(calltime: "", contactLink: "", ex0: EX0(date: "", exDetail: ""), interest: "", portfolioLink: "", toolNLanguage: ""))
     
     
     // 팀 더보기
@@ -45,12 +59,117 @@ class FavorTeamViewController: UIViewController {
             present(allTeamNavigation, animated: true, completion: nil)
         }
     }
-    
+    func teamSorting() {
+        var poo = ["C": "Canada", "B": "Bulgaria", "A": "Australia"]
+        var purposeRank: [Int : Int] = [:]
+        var activeZone = [Bool](repeating: false, count: teamList.count)
+        var sortedActiveZone = [Bool](repeating: false, count: teamList.count)
+        var part = [Bool](repeating: false, count: teamList.count)
+        var sortedPart = [Bool](repeating: false, count: teamList.count)
+        let userPurpose = userProfileDetail.purpose.components(separatedBy: ", ")
+        var newTeamList: [TeamProfile] = []
+        var newTeamNames: [String] = []
+        var newUserUID: [[String]] = []
+        
+        
+        // 조건 세팅
+
+        print("teamList.count \(teamList.count)")
+        for i in 0..<teamList.count {
+            // 내 목적 순위에 따라 점수 세팅
+            if teamList[i].purpose == userPurpose[0] {
+                purposeRank[i] = 4
+            }
+            else if teamList[i].purpose == userPurpose[1] {
+                purposeRank[i] = 3
+            }
+            else if teamList[i].purpose == userPurpose[2] {
+                purposeRank[i] = 2
+            }
+            else {
+                purposeRank[i] = 1
+            }
+            print("purposeRank.values \(purposeRank.values)")
+            // 활동 지역 중복 여부 세팅
+            let userActiveZone: [String] = userProfileDetail.activeZone
+                .components(separatedBy: ", ")
+            
+            for index in 0..<userActiveZone.count {
+                if teamList[i].activeZone.contains(userActiveZone[index]) {
+                    activeZone[i] = true
+                    
+                }
+            }
+            
+            // 구하는 포지션 중복 여부 세팅
+            if teamList[i].detailPart.contains(userProfile.partDetail) {
+                part[i] = true
+            }
+            
+        }
+        
+        // sorting
+        
+        // 1. 목적 소팅
+        
+        print("purposeRank.key \(purposeRank[0])")
+        let sortedByPurpose = purposeRank.sorted { $0.1 > $1.1 }
+        
+        for dic in sortedByPurpose {
+            print("dic.key = \(dic.key)")
+            print("dic.value = \(dic.value)")
+            // 목적에 따라 소팅된 팀 리스트
+            newTeamList.append(teamList[dic.key])
+            // 팀리스트와 활동 지역을 맞춰줌
+            sortedActiveZone.append(activeZone[dic.key])
+            sortedPart.append(part[dic.key])
+            newTeamNames.append(teamNames[dic.key])
+            newUserUID.append(userUID[dic.key])
+        }
+        
+        // 2. 활동지역, 포지션 일치 소팅
+        var allTrue: [TeamProfile] = []
+        var oneTypeTrue: [TeamProfile] = []
+        var allFalse: [TeamProfile] = []
+        
+        
+        for j in 0..<newTeamList.count {
+            
+            if sortedActiveZone[j] && sortedPart[j] {
+                allTrue.append(newTeamList[j])
+            }
+            else if sortedActiveZone[j] || sortedPart[j]{
+                oneTypeTrue.append(newTeamList[j])
+            }
+            else {
+                allFalse.append(newTeamList[j])
+            }
+        }
+        var resultTeamList: [TeamProfile] = []
+        
+        resultTeamList += allTrue
+        resultTeamList += oneTypeTrue
+        resultTeamList += allFalse
+        
+        print("teamNames[0] \(teamNames[0])")
+        print("newTeamNames[0] \(newTeamNames[0])")
+        teamList = resultTeamList
+        teamNames = newTeamNames
+        userUID = newUserUID
+        
+        
+        collView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // 데이터 받아오기
         fetchData()
+        
+        //fetchMyProfile()
+        
         addalertLabel.isHidden = true
         
         // 바뀐 데이터 불러오기
@@ -68,13 +187,49 @@ class FavorTeamViewController: UIViewController {
         teamNameList.removeAll()
         memberListArr.removeAll()
         doesFavorTeamExisted = false
-        didFetched = false
+        didMyProfileFetched = 0
         teamNames.removeAll()
         teamListNew.removeAll()
         teamNamesNew.removeAll()
         userUID.removeAll()
         
     }
+    // 본인 정보 가져오기
+    func fetchMyProfile() {
+        db.child("user").child(Auth.auth().currentUser!.uid).child("userProfileDetail")
+            .observeSingleEvent(of: .value) { [self] snapshot in
+                guard let snapData = snapshot.value as? [String : Any] else { return }
+                let data = try! JSONSerialization.data(withJSONObject: snapData, options: .prettyPrinted )
+                print("data \(data)")
+                do {
+                    let decoder = JSONDecoder()
+                    let profile = try decoder.decode(UserProfileDetail.self, from: data)
+                    userProfileDetail = profile
+                    print("abcabc")
+                    didMyProfileFetched += 1
+                } catch let error {
+                    print("\(error.localizedDescription)")
+                }
+            }
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("userProfile").observeSingleEvent(of: .value) { [self] snapshot in
+                guard let snapData = snapshot.value as? [String : Any] else { return }
+                let data = try! JSONSerialization.data(withJSONObject: snapData, options: .prettyPrinted)
+                
+                do {
+                    let decoder = JSONDecoder()
+                    let profile = try decoder.decode(UserProfile.self, from: data)
+                    userProfile = profile
+                    print("cbacba")
+                    didMyProfileFetched += 1
+                } catch let error {
+                    print("\(error.localizedDescription)")
+                }
+            }
+    }
+    
+    
+    
     // 서버에서 팀 받아오기
     func fetchData() {
         removeData()
@@ -147,25 +302,26 @@ class FavorTeamViewController: UIViewController {
                     update(teamList: teamListNew, teamNames: teamNamesNew)
                 }
             }
-            func update(teamList: [TeamProfile], teamNames: [String]) {
-                // 오류-> 데이터 업데이트되면 이 부분 실행 안됨
-                self.teamList = teamList
-                self.teamNames = teamNames
-                DispatchQueue.main.async {
-                    self.collView.reloadData()
-                }
-                // 한 팀의 멤버들 UID배열
-                for i in 0..<self.teamList.count {
-                    self.memberListArr.append([])
-                    self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
-                    self.fetchMemberUID(teamIndex: i)
-                }
-                
-            }
+            didTeamListFetched = true
         })
         
     }
-    
+    // member uid 받아오기 만들기
+    func update(teamList: [TeamProfile], teamNames: [String]) {
+        // 오류-> 데이터 업데이트되면 이 부분 실행 안됨
+        self.teamList = teamList
+        self.teamNames = teamNames
+        DispatchQueue.main.async {
+            self.collView.reloadData()
+        }
+        // 한 팀의 멤버들 UID배열
+        for i in 0..<self.teamList.count {
+            self.memberListArr.append([])
+            self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
+            self.fetchMemberUID(teamIndex: i)
+        }
+        
+    }
     func fetchMemberUID(teamIndex: Int) {
         
         // 미리 방 반들어줌
@@ -195,6 +351,8 @@ class FavorTeamViewController: UIViewController {
             }
         })
     }
+    
+    
     
     
     
