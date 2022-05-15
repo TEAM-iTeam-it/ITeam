@@ -21,8 +21,6 @@ class CallAnswerViewController: UIViewController {
     var toGoSegue: String = "대기"
     let db = Database.database().reference()
     
-    // [삭제 예정] 시연을 위한 변수
-    var counter:Int = 0
     var name: String = "speaker"
     var myNickname = ""
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
@@ -64,7 +62,6 @@ class CallAnswerViewController: UIViewController {
     }
     
     func setUI() {
-        counter = 0
         name = "speaker"
         
         /*
@@ -450,22 +447,6 @@ class CallAnswerViewController: UIViewController {
         exit(0)
     }
     
-    
-    
-    // [삭제 예정] 시연을 위한 nextbutton
-    @IBAction func nextBtn(_ sender: UIButton) {
-        if counter == 0 {
-            personList[0].callStm = "통화대기"
-            answerListTableView.reloadData()
-            toGoSegue = "통화대기"
-            counter += 1
-        }
-        if counter == 1{
-            personList[0].callStm = "통화시작"
-            answerListTableView.reloadData()
-            toGoSegue = "통화시작"
-        }
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "waitingVC" {
             if let destination = segue.destination as? ChannelWaitingViewController {
@@ -506,12 +487,9 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: AnswerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AnswerPersonCell", for: indexPath) as! AnswerTableViewCell
         cell.nicknameLabel.text = personList[indexPath.row].nickname
         
-        // kingfisher 사용하기 위한 url
         let uid: String = personList[indexPath.row].profileImg
-        
         let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
         
-        // Fetch the download URL
         starsRef.downloadURL { [self] url, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -636,15 +614,6 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             // 1. 내가 보낸 경우
             for i in 0..<whenISendOtherPerson.count {
                 if whenISendOtherPerson[i].nickname == personList[indexPath.row].nickname {
-                    /*
-                    var indexCount = -1
-                    for i in 0...indexPath.row {
-                        if personList[i].callStm == "대기 중" {
-                            indexCount += 1
-                        }
-                    }
-                     */
-                    
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
                     let position = personList[indexPath.row].position
