@@ -20,25 +20,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rh-Gg-OGP">
-                                <rect key="frame" x="258" y="799.5" width="63" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="THd-Wp-3PB"/>
-                                </constraints>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="로그인">
-                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="15"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="wJe-8V-Yz1" kind="modal" modalPresentationStyle="fullScreen" id="9H4-Cw-te8"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ivu-3z-Od6">
                                 <rect key="frame" x="74" y="364" width="266" height="65"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STo-9R-gUS">
-                                <rect key="frame" x="20" y="744" width="374" height="46"/>
+                                <rect key="frame" x="20" y="714" width="374" height="46"/>
                                 <color key="backgroundColor" name="purple_184"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="K8L-Hi-ibk"/>
@@ -61,24 +47,38 @@
                                     <action selector="userDelete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rSu-fV-r5k"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이미 계정이 있나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpR-hP-20Y">
-                                <rect key="frame" x="124" y="810" width="119" height="18"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOn-tf-C1A">
+                                <rect key="frame" x="116.5" y="780" width="181.5" height="32"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이미 계정이 있나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpR-hP-20Y">
+                                        <rect key="frame" x="0.0" y="0.0" width="118.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                        <color key="textColor" name="gray_121"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rh-Gg-OGP">
+                                        <rect key="frame" x="118.5" y="0.0" width="63" height="32"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="로그인">
+                                            <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="15"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="wJe-8V-Yz1" kind="modal" modalPresentationStyle="fullScreen" id="9H4-Cw-te8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tpR-hP-20Y" secondAttribute="bottom" constant="34" id="195-cD-13T"/>
                             <constraint firstItem="Ivu-3z-Od6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2Ny-fM-7W5"/>
-                            <constraint firstItem="tpR-hP-20Y" firstAttribute="top" secondItem="STo-9R-gUS" secondAttribute="bottom" constant="20" id="9Lf-Fd-Ncm"/>
+                            <constraint firstItem="HOn-tf-C1A" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="NpG-Sn-HPn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HOn-tf-C1A" secondAttribute="bottom" constant="50" id="aZ4-yl-wty"/>
+                            <constraint firstItem="HOn-tf-C1A" firstAttribute="top" secondItem="STo-9R-gUS" secondAttribute="bottom" constant="20" id="fvo-Ki-pyM"/>
                             <constraint firstItem="STo-9R-gUS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="keB-pp-uTc"/>
-                            <constraint firstItem="2Rh-Gg-OGP" firstAttribute="leading" secondItem="tpR-hP-20Y" secondAttribute="trailing" constant="15" id="n7x-xF-DDi"/>
-                            <constraint firstItem="2Rh-Gg-OGP" firstAttribute="centerY" secondItem="tpR-hP-20Y" secondAttribute="centerY" id="oJ2-hF-h9x"/>
                             <constraint firstItem="Ivu-3z-Od6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="320" id="ohq-o2-03v"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2Rh-Gg-OGP" secondAttribute="trailing" constant="93" id="ytS-nU-9vV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="STo-9R-gUS" secondAttribute="trailing" constant="20" id="znD-a7-Rbc"/>
                         </constraints>
                     </view>
@@ -4309,15 +4309,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwT-z3-0vt">
-                                <rect key="frame" x="20" y="644" width="372" height="148"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
-                                <connections>
-                                    <action selector="nextBtn:" destination="5yl-MN-8V6" eventType="touchUpInside" id="tkz-XY-Ro2"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="eYc-5t-6rl">
                                 <rect key="frame" x="134" y="526" width="106" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
