@@ -12,7 +12,6 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class CallAnswerViewController: UIViewController {
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var answerListTableView: UITableView!
     
     var personList: [Person] = []
@@ -33,9 +32,7 @@ class CallAnswerViewController: UIViewController {
     var teamIndex: [String] = []
     var teamIndexForSend: [String] = []
     var nowRequestedUid: String = "" {
-        willSet(newValue) {
-            print(newValue)
-            callingOtherUid = newValue
+        willSet(newValue) {            callingOtherUid = newValue
         }
     }
     var callingOtherUid: String = ""
@@ -85,7 +82,6 @@ class CallAnswerViewController: UIViewController {
         didISent.removeAll()
         teamIndex.removeAll()
         teamIndexForSend.removeAll()
-       // answerListTableView.reloadData()
     }
     
     func fetchData() {
@@ -419,15 +415,14 @@ class CallAnswerViewController: UIViewController {
         removeArr()
         db.child("Call").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
-                self.fetchData()
-            }
+            
+            self.removeArr()
+            self.fetchData()
         })
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
-                self.fetchData()
-            }
+            self.removeArr()
+            self.fetchData()
             
         })
     }
@@ -479,12 +474,13 @@ class CallAnswerViewController: UIViewController {
 }
 extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("personlinstCount = \(personList.count)")
         return personList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnswerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AnswerPersonCell", for: indexPath) as! AnswerTableViewCell
+        
+        cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
         cell.nicknameLabel.text = personList[indexPath.row].nickname
         
         let uid: String = personList[indexPath.row].profileImg
@@ -495,13 +491,11 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                 print(error.localizedDescription)
             } else {
                 DispatchQueue.main.async {
-                    self.imageView.kf.setImage(with: url)
                     cell.profileImg.kf.setImage(with: url)
                 }
             }
         }
         
-        cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
         
         // 같은 학교 처리
         if cell.nicknameLabel.text == "시연" {
@@ -661,7 +655,6 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                 if whenISendOtherPerson[i].nickname == personList[indexPath.row].nickname {
                 
                     historyVC.callTime = callTimeArrSend[i]
-                    print(callTimeArrSend)
                     historyVC.person = personList[indexPath.row]
                     historyVC.questionArr = questionArrSend[i]
                     historyVC.teamIndex = teamIndexForSend[i]

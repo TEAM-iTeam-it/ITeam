@@ -4321,10 +4321,6 @@
                                     <action selector="testSignout:" destination="5yl-MN-8V6" eventType="touchUpInside" id="Q8X-w7-4qD"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pfV-3z-jft">
-                                <rect key="frame" x="87" y="494" width="221" height="205"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qmK-O0-NI8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4337,7 +4333,6 @@
                     </view>
                     <connections>
                         <outlet property="answerListTableView" destination="O31-Nz-GkJ" id="Hyt-U7-0q2"/>
-                        <outlet property="imageView" destination="pfV-3z-jft" id="swa-tN-rb5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3pX-Tj-77R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
