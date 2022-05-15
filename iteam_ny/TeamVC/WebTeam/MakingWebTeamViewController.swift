@@ -201,6 +201,7 @@ class MakingWebTeamViewController: UIViewController {
     
     // 서버에서 팀 받아오기
     func fetchData() {
+        removeData()
         
         let favorTeamList = db.child("Team")
         let query = favorTeamList.queryOrdered(byChild: "serviceType").queryEqual(toValue: "웹 서비스")
@@ -229,6 +230,21 @@ class MakingWebTeamViewController: UIViewController {
             
             didTeamListFetched = true
         }
+    }
+    // data 초기화
+    func removeData() {
+        teamList.removeAll()
+        teamNameList.removeAll()
+        lastDatas.removeAll()
+        
+        memberListArr.removeAll()
+        
+        didTeamListFetched = false
+        didMyProfileFetched = 0
+        userProfileDetail = UserProfileDetail(activeZone: "", character: "", purpose: "", wantGrade: "")
+        userProfile = UserProfile(nickname: "", part: "", partDetail: "", schoolName: "", portfolio: Portfolio(calltime: "", contactLink: "", ex0: EX0(date: "", exDetail: ""), interest: "", portfolioLink: "", toolNLanguage: ""))
+        collView.reloadData()
+        
     }
     
  
