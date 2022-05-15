@@ -60,8 +60,22 @@ class FavorTeamViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 데이터 받아오기
+        fetchData()
+        
+        addalertLabel.isHidden = true
+        
+        // 바뀐 데이터 불러오기
+        fetchChangedData()
+        
+    }
+    // MARK: - Functions
+    
+    // 팀 소팅
     func teamSorting() {
-        var poo = ["C": "Canada", "B": "Bulgaria", "A": "Australia"]
         var purposeRank: [Int : Int] = [:]
         var activeZone = [Bool](repeating: false, count: teamList.count)
         var sortedActiveZone = [Bool](repeating: false, count: teamList.count)
@@ -74,8 +88,6 @@ class FavorTeamViewController: UIViewController {
         
         
         // 조건 세팅
-
-        print("teamList.count \(teamList.count)")
         for i in 0..<teamList.count {
             // 내 목적 순위에 따라 점수 세팅
             if teamList[i].purpose == userPurpose[0] {
@@ -90,7 +102,6 @@ class FavorTeamViewController: UIViewController {
             else {
                 purposeRank[i] = 1
             }
-            print("purposeRank.values \(purposeRank.values)")
             // 활동 지역 중복 여부 세팅
             let userActiveZone: [String] = userProfileDetail.activeZone
                 .components(separatedBy: ", ")
@@ -98,7 +109,6 @@ class FavorTeamViewController: UIViewController {
             for index in 0..<userActiveZone.count {
                 if teamList[i].activeZone.contains(userActiveZone[index]) {
                     activeZone[i] = true
-                    
                 }
             }
             
@@ -112,13 +122,9 @@ class FavorTeamViewController: UIViewController {
         // sorting
         
         // 1. 목적 소팅
-        
-        print("purposeRank.key \(purposeRank[0])")
         let sortedByPurpose = purposeRank.sorted { $0.1 > $1.1 }
         
         for dic in sortedByPurpose {
-            print("dic.key = \(dic.key)")
-            print("dic.value = \(dic.value)")
             // 목적에 따라 소팅된 팀 리스트
             newTeamList.append(teamList[dic.key])
             // 팀리스트와 활동 지역을 맞춰줌
@@ -152,8 +158,6 @@ class FavorTeamViewController: UIViewController {
         resultTeamList += oneTypeTrue
         resultTeamList += allFalse
         
-        print("teamNames[0] \(teamNames[0])")
-        print("newTeamNames[0] \(newTeamNames[0])")
         teamList = resultTeamList
         teamNames = newTeamNames
         userUID = newUserUID
@@ -162,26 +166,7 @@ class FavorTeamViewController: UIViewController {
         collView.reloadData()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        // 데이터 받아오기
-        fetchData()
-        
-        //fetchMyProfile()
-        
-        addalertLabel.isHidden = true
-        
-        // 바뀐 데이터 불러오기
-        fetchChangedData()
-        
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
-    }
+    // 데이터 초기화
     func removeData() {
         self.memberListArr.removeAll()
         teamList.removeAll()
@@ -195,6 +180,7 @@ class FavorTeamViewController: UIViewController {
         userUID.removeAll()
         
     }
+    
     // 본인 정보 가져오기
     func fetchMyProfile() {
         db.child("user").child(Auth.auth().currentUser!.uid).child("userProfileDetail")
@@ -260,6 +246,7 @@ class FavorTeamViewController: UIViewController {
             
         }
     }
+    
     func fetchFavorTeam() {
         teamNameList.removeAll()
         db.child("Team").observeSingleEvent(of: .value, with: { [self] (snapshot) in
@@ -361,6 +348,7 @@ class FavorTeamViewController: UIViewController {
     
 }
 
+// MARK: - Extensions
 extension FavorTeamViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return teamList.count
