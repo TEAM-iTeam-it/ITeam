@@ -8,7 +8,6 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-import Firebase
 
 class MakingAppTeamViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -205,7 +204,6 @@ class MakingAppTeamViewController: UIViewController {
     
     // 서버에서 팀 받아오기
     func fetchData() {
-        self.memberListArr.removeAll()
         
         let favorTeamList = db.child("Team")
         let query = favorTeamList.queryOrdered(byChild: "serviceType").queryEqual(toValue: "앱 서비스")

@@ -14,17 +14,31 @@ class MakingWebTeamViewController: UIViewController {
     @IBOutlet weak var collView: UICollectionView!
     var teamList: [TeamProfile] = []
     var teamNameList: [String] = []
+    var lastDatas: [String] = []
+    
     var memberListArr: [[String]] = [[]]
-    // 프로필 이미지 URL을 위한 변수
-    var imageURL: URL  = NSURL() as URL
-    var imageData: [[Data]] = [[]]
     let db = Database.database().reference()
-    var didFetched: Bool = false {
-        didSet {
-            self.collView.reloadData()
+    
+    var didTeamListFetched: Bool = false {
+        willSet(newValue) {
+            if newValue {
+                fetchMyProfile()
+            }
         }
     }
-    var lastDatas: [String] = []
+    var didMyProfileFetched: Int = 0 {
+        willSet(newValue) {
+            print("newValue \(newValue)")
+            if newValue >= 2 {
+                teamSorting()
+            }
+        }
+    }
+    
+    var userProfileDetail: UserProfileDetail = UserProfileDetail(activeZone: "", character: "", purpose: "", wantGrade: "")
+    var userProfile: UserProfile = UserProfile(nickname: "", part: "", partDetail: "", schoolName: "", portfolio: Portfolio(calltime: "", contactLink: "", ex0: EX0(date: "", exDetail: ""), interest: "", portfolioLink: "", toolNLanguage: ""))
+    
+    
     
     // 더보기 버튼
     @IBAction func moreTeamBtn(_ sender: UIButton) {
@@ -45,6 +59,7 @@ class MakingWebTeamViewController: UIViewController {
         
         // 데이터 받아오기
         fetchData()
+        
         // 바뀐 데이터 불러오기
         fetchChangedData()
         
@@ -54,14 +69,143 @@ class MakingWebTeamViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
     }
+    
+    // MARK: - Functions
+    // 팀 소팅
+    func teamSorting() {
+        var purposeRank: [Int : Int] = [:]
+        var activeZone = [Bool](repeating: false, count: teamList.count)
+        var sortedActiveZone = [Bool](repeating: false, count: teamList.count)
+        var part = [Bool](repeating: false, count: teamList.count)
+        var sortedPart = [Bool](repeating: false, count: teamList.count)
+        let userPurpose = userProfileDetail.purpose.components(separatedBy: ", ")
+        var newTeamList: [TeamProfile] = []
+        var newTeamNames: [String] = []
+        var newUserUID: [[String]] = []
+        
+        
+        // 조건 세팅
+        for i in 0..<teamList.count {
+            // 내 목적 순위에 따라 점수 세팅
+            if teamList[i].purpose == userPurpose[0] {
+                purposeRank[i] = 4
+            }
+            else if teamList[i].purpose == userPurpose[1] {
+                purposeRank[i] = 3
+            }
+            else if teamList[i].purpose == userPurpose[2] {
+                purposeRank[i] = 2
+            }
+            else {
+                purposeRank[i] = 1
+            }
+            // 활동 지역 중복 여부 세팅
+            let userActiveZone: [String] = userProfileDetail.activeZone
+                .components(separatedBy: ", ")
+            
+            for index in 0..<userActiveZone.count {
+                if teamList[i].activeZone.contains(userActiveZone[index]) {
+                    activeZone[i] = true
+                }
+            }
+            
+            // 구하는 포지션 중복 여부 세팅
+            if teamList[i].detailPart.contains(userProfile.partDetail) {
+                part[i] = true
+            }
+            
+        }
+        
+        // sorting
+        
+        // 1. 목적 소팅
+        let sortedByPurpose = purposeRank.sorted { $0.1 > $1.1 }
+        
+        for dic in sortedByPurpose {
+            // 목적에 따라 소팅된 팀 리스트
+            newTeamList.append(teamList[dic.key])
+            // 팀리스트와 활동 지역을 맞춰줌
+            sortedActiveZone.append(activeZone[dic.key])
+            sortedPart.append(part[dic.key])
+            newTeamNames.append(teamNameList[dic.key])
+            newUserUID.append(memberListArr[dic.key])
+        }
+        
+        // 2. 활동지역, 포지션 일치 소팅
+        var allTrue: [TeamProfile] = []
+        var oneTypeTrue: [TeamProfile] = []
+        var allFalse: [TeamProfile] = []
+        
+        
+        for j in 0..<newTeamList.count {
+            
+            if sortedActiveZone[j] && sortedPart[j] {
+                allTrue.append(newTeamList[j])
+            }
+            else if sortedActiveZone[j] || sortedPart[j]{
+                oneTypeTrue.append(newTeamList[j])
+            }
+            else {
+                allFalse.append(newTeamList[j])
+            }
+        }
+        var resultTeamList: [TeamProfile] = []
+        
+        resultTeamList += allTrue
+        resultTeamList += oneTypeTrue
+        resultTeamList += allFalse
+        
+        print("teamNames[0] \(teamNameList[0])")
+        print("newTeamNames[0] \(newTeamNames[0])")
+        
+        teamList = resultTeamList
+        teamNameList = newTeamNames
+        memberListArr = newUserUID
+        
+        
+        collView.reloadData()
+    }
+    // 본인 정보 가져오기
+    func fetchMyProfile() {
+        db.child("user").child(Auth.auth().currentUser!.uid).child("userProfileDetail")
+            .observeSingleEvent(of: .value) { [self] snapshot in
+                guard let snapData = snapshot.value as? [String : Any] else { return }
+                let data = try! JSONSerialization.data(withJSONObject: snapData, options: .prettyPrinted )
+                print("data \(data)")
+                do {
+                    let decoder = JSONDecoder()
+                    let profile = try decoder.decode(UserProfileDetail.self, from: data)
+                    userProfileDetail = profile
+                    print("abcabc")
+                    didMyProfileFetched += 1
+                } catch let error {
+                    print("\(error.localizedDescription)")
+                }
+            }
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("userProfile").observeSingleEvent(of: .value) { [self] snapshot in
+                guard let snapData = snapshot.value as? [String : Any] else { return }
+                let data = try! JSONSerialization.data(withJSONObject: snapData, options: .prettyPrinted)
+                
+                do {
+                    let decoder = JSONDecoder()
+                    let profile = try decoder.decode(UserProfile.self, from: data)
+                    userProfile = profile
+                    print("cbacba")
+                    didMyProfileFetched += 1
+                } catch let error {
+                    print("\(error.localizedDescription)")
+                }
+            }
+    }
+    
     // 서버에서 팀 받아오기
     func fetchData() {
-        self.memberListArr.removeAll()
         
         let favorTeamList = db.child("Team")
         let query = favorTeamList.queryOrdered(byChild: "serviceType").queryEqual(toValue: "웹 서비스")
         
-        query.observeSingleEvent(of: .value) { snapshot in
+        query.observeSingleEvent(of: .value) { [self] snapshot in
             
             guard let value = snapshot.value as? [String: Any] else { return }
             
@@ -82,6 +226,8 @@ class MakingWebTeamViewController: UIViewController {
             } catch let error {
                 print(error.localizedDescription)
             }
+            
+            didTeamListFetched = true
         }
     }
     
