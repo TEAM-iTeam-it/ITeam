@@ -4920,7 +4920,6 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="backBtn:" destination="3Cn-pq-78J" eventType="touchUpInside" id="YxB-8c-rD9"/>
                                     <action selector="nextBtnClicked:" destination="7gV-Yt-bga" eventType="touchUpInside" id="2lV-FD-44l"/>
                                 </connections>
                             </button>
@@ -5089,7 +5088,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gM9-Co-bBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5362.3188405797109" y="2589.5089285714284"/>
+            <point key="canvasLocation" x="3987" y="2892"/>
         </scene>
         <!--Detail Profile Project Ex View Controller-->
         <scene sceneID="xzf-JQ-CB6">
