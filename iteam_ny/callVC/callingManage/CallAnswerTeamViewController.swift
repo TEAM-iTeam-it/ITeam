@@ -36,7 +36,6 @@ class CallAnswerTeamViewController: UIViewController {
     var callTeamIndex: [String] = []
     var nowRequestedUid: String = "" {
         willSet(newValue) {
-            print(newValue)
             callingOtherUid = newValue
         }
     }
@@ -449,7 +448,6 @@ class CallAnswerTeamViewController: UIViewController {
             let leaderUid: String! = snapshot.value as? String
             if leaderUid == Auth.auth().currentUser!.uid {
                 amiLeader = true
-                print("amiLeader set \(amiLeader)")
             }
             fetchLeader(userUID: leaderUid)
         }
@@ -601,7 +599,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         cell.circleTitleView.isHidden = true
         cell.circleTitleView.layer.cornerRadius = cell.circleTitleView.frame.height/2
         cell.circleTitleView.layer.masksToBounds = true
-        print(personList[indexPath.row].callStm)
         // 버튼 색상 처리
         if personList[indexPath.row].callStm == "요청거절됨" || personList[indexPath.row].callStm == "요청취소됨" {
             cell.layer.borderWidth = 0.0
@@ -669,11 +666,9 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             }
             // 다른 사람이 우리 팀으로 보낸 경우 -> 개인 표시
             for j in 0..<whenIReceivedOtherPerson.count {
-                print("akak")
                 if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
                     // kingfisher 사용하기 위한 url
                     let uid: String = personList[indexPath.row].profileImg
-                    print(uid)
                     let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
                     
                     starsRef.downloadURL { url, error in
@@ -705,6 +700,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                         if let error = error {
                             print("error \(error.localizedDescription)")
                         } else {
+                            print(url)
                             cell.profileImg.kf.setImage(with: url)
                         }
                     }
@@ -763,6 +759,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                             print(error.localizedDescription)
                         } else {
                             DispatchQueue.main.async {
+                                print(url)
                                 cell.profileImg.kf.setImage(with: url)
                             }
                         }
@@ -859,10 +856,8 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             
             
             var callCount: Int = -1
-            print(personList[0].callStm)
             for j in 0...indexPath.row{
                 if personList[j].callStm == "통화" {
-                    print("추가")
                     callCount += 1
                 }
             }
@@ -880,8 +875,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             // 내가 받았을 때
             for j in 0..<whenIReceivedOtherPerson.count {
                 if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname && whenIReceivedOtherPerson[j].callStm == "통화" {
-                    print(j)
-                    print(callCount)
                     callingVC.teamIndex = callTeamIndex[callCount]
                 }
             }
@@ -894,17 +887,13 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         }
         else if personList[indexPath.row].callStm == "요청옴" {
             // 리더인 경우 아닌 경우 구분
-            print("amiLeader \(amiLeader)")
             if amiLeader {
                 let storyboard: UIStoryboard = UIStoryboard(name: "CallAgree", bundle: nil)
                 if let nextView = storyboard.instantiateInitialViewController() as? UINavigationController,
                    let nextViewChild = nextView.viewControllers.first as? CallAgreeViewController {
                     
-                    print(whenIReceivedOtherPerson.count)
                     for j in 0..<whenIReceivedOtherPerson.count {
                         if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
-                            print(callTimeArr[0])
-                            print(j)
                             nextViewChild.times = callTimeArr[j]
                             nextViewChild.questionArr = questionArr[j]
                             nextViewChild.teamName = teamIndex[j]
