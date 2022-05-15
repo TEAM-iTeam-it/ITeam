@@ -59,6 +59,7 @@ class FavorTeamViewController: UIViewController {
             present(allTeamNavigation, animated: true, completion: nil)
         }
     }
+    
     func teamSorting() {
         var poo = ["C": "Canada", "B": "Bulgaria", "A": "Australia"]
         var purposeRank: [Int : Int] = [:]
