@@ -19,7 +19,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     @IBOutlet weak var memberStackVIew: UIStackView!
     var text:String = ""
     var pickpart:[String] = []
-    var userListUID = ""
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var addFriendButton: UIButton!
     @IBAction func addEntry(_ sender: UIButton) {
@@ -213,6 +212,7 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             
            // 내정보 가져오기
             let currentUser = Auth.auth().currentUser
+            
             ref.child((currentUser?.uid)!).child("userProfile").observeSingleEvent(of: .value, with: { snapshot in
               // Get user value
               let value = snapshot.value as? NSDictionary
@@ -289,14 +289,39 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             addFriendButton.layer.shadowOffset = CGSize(width: 0, height: 4) // 위치조정
             addFriendButton.layer.shadowRadius = 5 // 반경
             addFriendButton.layer.shadowOpacity = 0.3 // alpha값
-            
-            
 
        }
 
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
        }
+    var plz: [String] = []
+    var hi:String = ""
+    func fetchNickNameToUID(nickname: String) -> String {
+        var plz2 = ""
+        var userUID2: String = ""
+        let userdb = Database.database().reference().child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
+        userdb.observeSingleEvent(of: .value) { [self] snapshot in
+            
+            for child in snapshot.children {
+                
+                let snap = child as! DataSnapshot
+                let value = snap.value as? NSDictionary
+                
+                userUID2 = snap.key
+//                print(userUID2)
+                print("d")
+                
+            }
+            hi = "\(userUID2)"
+        }
+        print(hi+"z")
+//        print(plz)
+//        print(userUID2)
+//        plz.append(userUID2)
+        var greeting = "Hello, " + hi + "!"
+        return greeting
+    }
         
 }
 
@@ -316,38 +341,31 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             cell.partLabel.text = "\(userList[indexPath.row].userProfile.partDetail) • "
             cell.userPurpose.text = "\(userList[indexPath.row].userProfileDetail.purpose)"
             
-            let nickname: String = "\(userList[indexPath.row].userProfile.nickname)"
-            
-            let userdb = Database.database().reference().child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
-            userdb.observeSingleEvent(of: .value) { [self] snapshot in
-                var userUID: String = ""
-                
-                for child in snapshot.children {
-                    let snap = child as! DataSnapshot
-                    let value = snap.value as? NSDictionary
-                    
-                    userUID = snap.key
-                }
-                userListUID = userUID
-            }
+            let nickname: String = userList[indexPath.row].userProfile.nickname
             // kingfisher 사용하기 위한 url
-            print(userListUID)
-            let uid: String = userListUID
-            let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+//            let uid: String = fetchNickNameToUID(nickname: nickname)
+//            let uid: String = fetchNickNameToUID(nickname: nickname)
+            doSomething()
+            print(fetchNickNameToUID(nickname:"우다다"))
+//            print(uid)
+//            let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
             
             // Fetch the download URL
-            starsRef.downloadURL { [self] url, error in
-                if let error = error {
-                } else {
-                    cell.userImage.kf.setImage(with: url)
-                }
-            }
+//            starsRef.downloadURL { [self] url, error in
+//                if let error = error {
+//                } else {
+//                    cell.userImage.kf.setImage(with: url)
+//                }
+//            }
             
             return cell
            }
         
         func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
             return 70
+        }
+        func doSomething() {
+            print("Somaker")
         }
         
         

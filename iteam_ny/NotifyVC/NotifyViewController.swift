@@ -18,142 +18,91 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var giverList: [String] = []
     var friendList: [Friend] = []
     var friendUid:[String] = []
+    var friendUid2:[String] = []
+    var requestUID = ""
+    var requestStmt = ""
+    var requestTime = ""
+    var nickname: String = ""
+    var allInfo = ""
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         notiContent.append(Noti(content: "이성책임 팀과의 통화가 곧 시작됩니다.", date: "04/20 14:30", profileImg: "imgUser8"))
         notiContent.append(Noti(content: "레인 님과의 통화가 곧 시작됩니다.", date: "04/17 15:04", profileImg: "imgUser5"))
         
-        fetchFreindRequest()
-        fetchChangedData()
+        fetchData()
+//        fetchChangedData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         notifyTableView.reloadData()
         
     }
-//    func fetchFreindRequest() {
-//        giverList.removeAll()
-//        let ref = Database.database().reference()
-//        let userUID = Auth.auth().currentUser!.uid
-//        ref.child("user").child(userUID).observeSingleEvent(of: .value){ snapshot in
-//
-//          for child in snapshot.children {
-//                  let snap = child as! DataSnapshot
-//                  let value = snap.value as? NSDictionary
-//
-//    for key in snapData.keys {
-            //    if key == "friendRequest" {
-            //        for k in snapData.values {
-            //            if k is [String] {
-            //                self.giverList = (k as? [String])!
-            //            }
-            //
-            //        }
-            //    }
-            //
-            //}
-//              for (key, content) in value! {
-//              if key as! String == "receiverNickname" && content as! String == myNickname {
-//                    var newValue = value as! [String : String]
-//                    newValue["teamName"] = snap.key
-//                    myCallTime.append(newValue)
-//                    hasReceived = true
-//                   didISent.append(false)
-//                   break
-//                }
-//               if key as! String == "callerUid" && content as! String == Auth.auth().currentUser?.uid {
-//                  var newValue = value as! [String : String]
-//                  newValue["teamName"] = snap.key
-//                  myCallTime.append(newValue)
-//                  didISent.append(true)
-//                  break
-//        }
-//    }
-//
-//            }
-//        }
-//    }
     
-
-    // giverList에 나에게 친구요청한 사람 uid 받아와짐
-    func fetchFreindRequest() {
-        giverList.removeAll()
-        let ref = Database.database().reference()
+    func fetchData() {
+        let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         let userUID = Auth.auth().currentUser!.uid
-        ref.child("user").child(userUID).observeSingleEvent(of: .value){ snapshot in
-            guard let snapData = snapshot.value as? [String:Any] else {return}
-            for key in snapData.keys {
-                if key == "friendRequest" {
-                    for k in snapData.values {
-                        if k is [String] {
-                            self.giverList = (k as? [String])!
-                        }
-
-                    }
-                }
-
-            }
-            //uid 닉네임 가져오기
-            for uid in self.giverList{
-                self.friendUid.append(uid)
-                print(uid)
-                //friendList.append(contentsOf: <#T##Sequence#>)
-                self.db.child("user").child(uid).observeSingleEvent(of: .value) { [self] snapshot in
-                    var nickname: String = ""
-                    var part: String = ""
-                    var partDetail: String = ""
-                    var purpose: String = ""
-                    var uid: String = ""
+            // 팀 알림 가져오기
+            let favorTeamList = db.child("user").child(userUID).child("friendRequest")
+            //queryEqual(toValue: myNickname)
+            favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
+                
+                // 나와 관련된 call 가져오기
+                for child in snapshot.children {
+                    let snap = child as! DataSnapshot
+                    let value = snap.value as? NSDictionary
+//                    print (value)
                     
-                    for child in snapshot.children {
-                        let snap = child as! DataSnapshot
-                        let value = snap.value as? NSDictionary
-                        
-                        if snap.key == "userProfile" {
-                            for (key, content) in value! {
-                                if key as! String == "nickname" {
-                                    nickname = content as! String
-                                }
-                                if key as! String == "part" {
-                                    part = content as! String
-                                }
-                                if key as! String == "partDetail" {
-                                    partDetail = content as! String
+                    requestTime = value?["requestTime"] as? String ?? ""
+                    requestStmt = value?["requestStmt"] as? String ?? ""
+                    requestUID = value?["requestUID"] as? String ?? ""
+                    print(requestTime)
+                    print(requestStmt)
+                    print(requestUID)
+                    allInfo = (requestUID+","+requestStmt+","+requestTime)
+                    friendUid.append(allInfo)
+                }
+                
+                for uid in self.friendUid{
+                    self.friendUid2.append(uid)
+                    print(uid)
+                    let charindex = uid.components(separatedBy: ",")
+                    //friendList.append(contentsOf: <#T##Sequence#>)
+                    self.db.child("user").child(charindex[0]).observeSingleEvent(of: .value) { [self] snapshot in
+                        var nickname: String = ""
+
+                        for child in snapshot.children {
+                            let snap = child as! DataSnapshot
+                            let value = snap.value as? NSDictionary
+
+                            if snap.key == "userProfile" {
+                                for (key, content) in value! {
+                                    if key as! String == "nickname" {
+                                        nickname = content as! String
+                                    }
                                 }
                             }
-                            
                         }
-                        if snap.key == "userProfileDetail" {
-                            for (key, content) in value! {
-                                if key as! String == "purpose" {
-                                    purpose = content as! String
-                                }
-                            }
-                        }
-                        
+                        print("a")
+                        print(charindex[0])
+                        print(charindex[1])
+                        print(charindex[2])
+                        var friend = Friend(uid: charindex[0], nickname: nickname, position: charindex[2], profileImg: "")
+                        friendList.append(friend)
+                        notifyTableView.reloadData()
                     }
-                    if part == "개발자" {
-                        part = partDetail + part
-                        
-                    }
-                    part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
-                    var friend = Friend(uid: uid, nickname: nickname, position: part, profileImg: "")
-                    friendList.append(friend)
-                    notifyTableView.reloadData()
                 }
             }
-        }
         notifyTableView.reloadData()
     }
-    
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
-        giverList.removeAll()
+//        giverList.removeAll()
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
-                self.fetchFreindRequest()
+                self.fetchData()
             }
         })
     }
@@ -164,31 +113,17 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell: NotifyTableViewCell = tableView.dequeueReusableCell(withIdentifier: "notifyTableViewCell", for: indexPath) as! NotifyTableViewCell
-//
-//        let Rcell: FriendRequestCell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as! FriendRequestCell
-//
-//
-//        cell.ContentLabel.text = notiContent[indexPath.row].content
-//        cell.dateLabel.text = notiContent[indexPath.row].date
-//        cell.profileImg.image = UIImage(named: "\(notiContent[indexPath.row].profileImg)")
-////        cell.profileImg.image = UIImage(systemName: "person.crop.circle.fill")
-//        return cell;Rcell
-//    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        print(giverList)
-//        if giverList.isEmpty == false {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as! FriendRequestCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as! FriendRequestCell
         
         //수락 버튼
         cell.accept = { [unowned self] in
            // 1. 새로운 채팅방 개설하기 위해 DB에 채팅 데이터 추가하는 함수 호출
            // 2. DB 에서 요청 데이터 삭제하기
             let userUID = Auth.auth().currentUser!.uid
-            let fuid = friendUid[indexPath.row]
-            print(fuid)
+//            let fuid = friendUid[indexPath.row]
+            let fuid = friendList[indexPath.row].uid
+//            print(fuid)
             //데이터베이스에서 삭제...미해결
 //           Database.database().reference().child("user").child(userUID).child("friendRequest").queryEqual(toValue: fuid).removeValue()
             
@@ -204,8 +139,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
            self.friendList.remove(at: indexPath.row)
-//            notifyTableView.reloadData()
-//           self.UITableView.reloadData()
+            notifyTableView.reloadData()
         }
             //거절하기 버튼 눌렀을 때 실행할 함수 선언
            cell.refuse = { [unowned self] in
@@ -222,32 +156,10 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.DateLabel.text = friendList[indexPath.row].position
             cell.profileImg.image = UIImage(named: "\(friendList[indexPath.row].profileImg)")
             return cell
-            
-//        } else {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "notifyTableViewCell", for: indexPath) as! NotifyTableViewCell
-//            // Set up cell.label
-//
-//                cell.ContentLabel.text = notiContent[indexPath.row].content
-//                cell.dateLabel.text = notiContent[indexPath.row].date
-//                cell.profileImg.image = UIImage(named: "\(notiContent[indexPath.row].profileImg)")
-//            //        cell.profileImg.image = UIImage(systemName: "person.crop.circle.fill")
-//            return cell
-//        }
-
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 회색에서 다시 하얗게 변하도록 설정
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension Int{
-    var toDayTime :String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "MM/dd HH:mm"
-        let date = Date(timeIntervalSince1970: Double(self)/1000)
-        return dateFormatter.string(from: date)
     }
 }
 
