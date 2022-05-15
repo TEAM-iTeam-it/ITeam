@@ -42,7 +42,8 @@ class CallAnswerTeamViewController: UIViewController {
         }
     }
     var callingOtherUid: String = ""
-    
+    var amiLeader: Bool = false
+    var leader: Person = Person(nickname: "", position: "", callStm: "", profileImg: "")
     
     
     override func viewDidLoad() {
@@ -107,6 +108,7 @@ class CallAnswerTeamViewController: UIViewController {
        
         nowRequestedUid = ""
         callingOtherUid = ""
+        amiLeader = false
     }
     
     func fetchData() {
@@ -132,6 +134,7 @@ class CallAnswerTeamViewController: UIViewController {
                 if snap.key == "currentTeam" {
                     let value: String = teamnameValue!
                     myTeamname = value
+                    checkIamLeader()
                 }
             }
             // 팀 알림 가져오기
@@ -139,7 +142,6 @@ class CallAnswerTeamViewController: UIViewController {
             //queryEqual(toValue: myNickname)
             favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
                 var myCallTime: [[String:String]] = []
-                var receiverType: [String] = []
                 
                 // 나와 관련된 call 가져오기
                 for child in snapshot.children {
@@ -314,7 +316,6 @@ class CallAnswerTeamViewController: UIViewController {
         let justTeamname = teamname.replacingOccurrences(of: " 팀", with: "")
         let userdb = db.child("Team").child(justTeamname)
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
-            var teamname: String = justTeamname
             var part: String = ""
             var purpose: String = ""
             
@@ -322,21 +323,22 @@ class CallAnswerTeamViewController: UIViewController {
                 let snap = child as! DataSnapshot
                 let value = snap.value as? String
                 
-                if snap.key as! String == "part" {
-                    part = value as! String
+                if snap.key == "part" {
+                    part = value!
                 }
-                if snap.key as! String == "purpose" {
-                    purpose = value as! String
+                if snap.key == "purpose" {
+                    purpose = value!
                 }
             }
             purpose = purpose.replacingOccurrences(of: ", ", with: "/")
             purpose += " • " + part + " 구인 중"
             
-            var person = Person(nickname: justTeamname, position: purpose, callStm: stmt, profileImg: "")
+            let person = Person(nickname: justTeamname, position: purpose, callStm: stmt, profileImg: "")
             
             personList.append(person)
             whenISendOtherTeam.append(person)
             answerListTableView.reloadData()
+            
         }
     }
     
@@ -443,6 +445,67 @@ class CallAnswerTeamViewController: UIViewController {
 
         })
     }
+    
+    // 내 팀이 있다면 리더인지 확인
+    func checkIamLeader() {
+        db.child("Team").child(myTeamname).child("leader").observeSingleEvent(of: .value) { [self] snapshot in
+            let leaderUid: String! = snapshot.value as? String
+            if leaderUid == Auth.auth().currentUser!.uid {
+                amiLeader = true
+                print("amiLeader set \(amiLeader)")
+            }
+            fetchLeader(userUID: leaderUid)
+        }
+    }
+    // uid와 stmt로 user 정보 받기
+    func fetchLeader(userUID: String) {
+        let userdb = db.child("user").child(userUID)
+        userdb.observeSingleEvent(of: .value) { [self] snapshot in
+            var nickname: String = ""
+            var part: String = ""
+            var partDetail: String = ""
+            var purpose: String = ""
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let value = snap.value as? NSDictionary
+                
+                
+                if snap.key == "userProfile" {
+                    for (key, content) in value! {
+                        if key as! String == "nickname" {
+                            nickname = content as! String
+                        }
+                        if key as! String == "part" {
+                            part = content as! String
+                        }
+                        if key as! String == "partDetail" {
+                            partDetail = content as! String
+                        }
+                    }
+                    
+                }
+                if snap.key == "userProfileDetail" {
+                    for (key, content) in value! {
+                        if key as! String == "purpose" {
+                            purpose = content as! String
+                        }
+                    }
+                }
+                
+            }
+            if part == "개발자" {
+                part = partDetail + part
+                
+            }
+            part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
+            
+            var person = Person(nickname: nickname, position: part, callStm: "", profileImg: userUID)
+            
+            leader = person
+        }
+    }
+
     
     // 삭제할 코드 - 유닛 테스트
     @IBAction func testSignout(_ sender: UIButton) {
@@ -856,25 +919,43 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
             present(callingVC, animated: true, completion: nil)
         }
         else if personList[indexPath.row].callStm == "요청옴" {
-            
-            let storyboard: UIStoryboard = UIStoryboard(name: "CallAgree", bundle: nil)
-            if let nextView = storyboard.instantiateInitialViewController() as? UINavigationController,
-               let nextViewChild = nextView.viewControllers.first as? CallAgreeViewController {
-              
-                print(whenIReceivedOtherPerson.count)
-                for j in 0..<whenIReceivedOtherPerson.count {
-                    if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
-                        print(callTimeArr[0])
-                        print(j)
-                        nextViewChild.times = callTimeArr[j]
-                        nextViewChild.questionArr = questionArr[j]
-                        nextViewChild.teamName = teamIndex[j]
-                        nextViewChild.callerNickname = fetchedInputUIDToNickName
+            // 리더인 경우 아닌 경우 구분
+            print("amiLeader \(amiLeader)")
+            if amiLeader {
+                let storyboard: UIStoryboard = UIStoryboard(name: "CallAgree", bundle: nil)
+                if let nextView = storyboard.instantiateInitialViewController() as? UINavigationController,
+                   let nextViewChild = nextView.viewControllers.first as? CallAgreeViewController {
+                    
+                    print(whenIReceivedOtherPerson.count)
+                    for j in 0..<whenIReceivedOtherPerson.count {
+                        if whenIReceivedOtherPerson[j].nickname == personList[indexPath.row].nickname {
+                            print(callTimeArr[0])
+                            print(j)
+                            nextViewChild.times = callTimeArr[j]
+                            nextViewChild.questionArr = questionArr[j]
+                            nextViewChild.teamName = teamIndex[j]
+                            nextViewChild.callerNickname = fetchedInputUIDToNickName
+                        }
+                    }
+                    
+                    nextView.modalPresentationStyle = .fullScreen
+                    self.present(nextView, animated: true, completion: nil)
+                }
+            }
+            else {
+                let historyVC = thisStoryboard.instantiateViewController(withIdentifier: "historyVC") as! CallRequstHistoryViewController
+                historyVC.modalPresentationStyle = .fullScreen
+                for i in 0..<whenIReceivedOtherPerson.count {
+                    
+                    if whenIReceivedOtherPerson[i].nickname == personList[indexPath.row].nickname {
+                        historyVC.callTime = callTimeArr[i]
+                        historyVC.person = leader
+                        historyVC.questionArr = questionArr[i]
+                        historyVC.teamIndex = teamIndex[i]
+                        historyVC.isTeamMemberWaiting = true
                     }
                 }
-                
-                nextView.modalPresentationStyle = .fullScreen
-                self.present(nextView, animated: true, completion: nil)
+                present(historyVC, animated: true, completion: nil)
             }
             
         }

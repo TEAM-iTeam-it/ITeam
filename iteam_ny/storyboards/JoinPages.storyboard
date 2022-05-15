@@ -850,12 +850,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레인 님이 요청을 확인 중입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-xs-1wK">
-                                <rect key="frame" x="30" y="118" width="251" height="24"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EcV-A6-q8d">
                                 <rect key="frame" x="20" y="162" width="374" height="130"/>
                                 <subviews>
@@ -1076,6 +1070,29 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="kcl-fd-1ae">
+                                <rect key="frame" x="30" y="118" width="293.5" height="24"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀장" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkn-Cj-4id">
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="24"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-xs-1wK">
+                                        <rect key="frame" x="41" y="0.0" width="35" height="24"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="님이 요청을 확인 중입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipJ-Ew-sux">
+                                        <rect key="frame" x="82" y="0.0" width="211.5" height="24"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zta-h4-9j0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1092,27 +1109,30 @@
                             <constraint firstItem="zta-h4-9j0" firstAttribute="bottom" secondItem="dOK-iu-pwI" secondAttribute="bottom" constant="17" id="IYQ-os-5SP"/>
                             <constraint firstItem="pk2-v0-QFM" firstAttribute="top" secondItem="ZPs-dH-rAy" secondAttribute="bottom" constant="30" id="LEf-10-sv9"/>
                             <constraint firstItem="rIO-7Z-I9Y" firstAttribute="top" secondItem="wda-c8-TTR" secondAttribute="bottom" constant="20" id="O8V-ie-Eoa"/>
+                            <constraint firstItem="kcl-fd-1ae" firstAttribute="top" secondItem="pId-d7-741" secondAttribute="bottom" constant="35" id="Q5s-fm-gae"/>
                             <constraint firstItem="ZPs-dH-rAy" firstAttribute="top" secondItem="rIO-7Z-I9Y" secondAttribute="bottom" constant="30" id="S8O-EA-fJb"/>
+                            <constraint firstItem="kcl-fd-1ae" firstAttribute="leading" secondItem="zta-h4-9j0" secondAttribute="leading" constant="30" id="SDG-4g-nNa"/>
                             <constraint firstItem="pk2-v0-QFM" firstAttribute="leading" secondItem="zta-h4-9j0" secondAttribute="leading" constant="20" id="YSy-J4-CDN"/>
+                            <constraint firstItem="EcV-A6-q8d" firstAttribute="top" secondItem="kcl-fd-1ae" secondAttribute="bottom" constant="20" id="Ypb-QL-YvP"/>
                             <constraint firstItem="wda-c8-TTR" firstAttribute="leading" secondItem="zta-h4-9j0" secondAttribute="leading" constant="30" id="Zsd-vL-Vts"/>
                             <constraint firstItem="EcV-A6-q8d" firstAttribute="leading" secondItem="zta-h4-9j0" secondAttribute="leading" constant="20" id="a6q-aK-BwY"/>
                             <constraint firstItem="pId-d7-741" firstAttribute="leading" secondItem="zta-h4-9j0" secondAttribute="leading" constant="20" id="eBM-I0-rdm"/>
                             <constraint firstItem="dOK-iu-pwI" firstAttribute="leading" secondItem="zta-h4-9j0" secondAttribute="leading" constant="30" id="hta-b7-1Ep"/>
-                            <constraint firstItem="ad6-xs-1wK" firstAttribute="top" secondItem="pId-d7-741" secondAttribute="bottom" constant="35" id="iLx-xr-kgH"/>
                             <constraint firstItem="zta-h4-9j0" firstAttribute="trailing" secondItem="ZPs-dH-rAy" secondAttribute="trailing" constant="20" id="jHC-xb-gmc"/>
                             <constraint firstItem="iCR-nO-Ctt" firstAttribute="centerX" secondItem="zta-h4-9j0" secondAttribute="centerX" id="pNE-OH-9pJ"/>
                             <constraint firstItem="zta-h4-9j0" firstAttribute="trailing" secondItem="dOK-iu-pwI" secondAttribute="trailing" constant="30" id="sy5-ib-NzQ"/>
-                            <constraint firstItem="EcV-A6-q8d" firstAttribute="top" secondItem="ad6-xs-1wK" secondAttribute="bottom" constant="20" id="wc1-a0-9vN"/>
-                            <constraint firstItem="ad6-xs-1wK" firstAttribute="leading" secondItem="zta-h4-9j0" secondAttribute="leading" constant="30" id="wng-An-CgZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7HT-F7-BMa"/>
                     <connections>
                         <outlet property="infoLabel" destination="Pea-sD-5gp" id="hvV-E7-m8i"/>
+                        <outlet property="leaderLabel" destination="vkn-Cj-4id" id="m0A-hu-bXX"/>
                         <outlet property="nickNameLabel" destination="Z75-Ne-IgE" id="ED5-Tf-Qf3"/>
                         <outlet property="profileImageView" destination="cJA-8g-jX4" id="vYv-wn-uMV"/>
                         <outlet property="profileView" destination="EcV-A6-q8d" id="dLb-DF-OeX"/>
                         <outlet property="questionTableview" destination="dOK-iu-pwI" id="klv-HV-HaC"/>
+                        <outlet property="questionTitleLabel" destination="pk2-v0-QFM" id="0IP-BI-3nH"/>
+                        <outlet property="requestCancelButton" destination="iar-9Y-ryH" id="OEc-a7-L8c"/>
                         <outlet property="sameSchoolLabel" destination="OOm-du-iUn" id="pig-aj-WRR"/>
                         <outlet property="titleLabel" destination="ad6-xs-1wK" id="y51-IH-CId"/>
                         <outletCollection property="callTimeLabels" destination="jOd-9l-PWV" collectionClass="NSMutableArray" id="Tfe-gN-AGl"/>
