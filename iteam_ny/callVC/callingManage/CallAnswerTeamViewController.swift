@@ -593,6 +593,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         
         // 개인일 경우
         cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
+        cell.profileImg.isHidden = false
         
         // 팀일 경우 디자인 세팅
         cell.teamProfileLabel.isHidden = true
