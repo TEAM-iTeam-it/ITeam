@@ -145,10 +145,6 @@ class DetailProfileViewController: UIViewController  {
         let contactLink: [String: String] = [ "contactLink": callLinkTF.text ?? ""]
         let currentTeam: [String: String] = [ "currentTeam": ""]
         
-        let friendRequestStmt: [String: String] = [ "requestStmt": ""]
-        let friendRequestTime: [String: String] = [ "requestTime": ""]
-        let friendRequestUID: [String: String] = [ "requestUID": ""]
-        
         let likeTeam: [String: String] = [ "teamName": ""]
         
         ref = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).child("userProfile")
@@ -162,9 +158,6 @@ class DetailProfileViewController: UIViewController  {
         
         let refMAin = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid)
         refMAin.updateChildValues(currentTeam)
-        refMAin.child("friendRequest").child("0").updateChildValues(friendRequestStmt)
-        refMAin.child("friendRequest").child("0").updateChildValues(friendRequestTime)
-        refMAin.child("friendRequest").child("0").updateChildValues(friendRequestUID)
         
         refMAin.child("likeTeam").updateChildValues(likeTeam)
         
