@@ -13,6 +13,12 @@ class AddfriendCell: UITableViewCell {
     @IBOutlet weak var friendProfile: UILabel!
     @IBOutlet weak var friendName: UILabel!
     @IBOutlet weak var userImg: UIImageView!
+    
+    var accept : (() -> ()) = {}
+    
+    @IBAction func clickedAddBtn(_ sender: Any) {
+        accept()
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
