@@ -199,6 +199,16 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         db.child("user").child(userUID).child("friendsList").updateChildValues(fUid)
                     }
                 }
+                
+                db.child("user").child(fuid).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
+                    if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                        print(snapshots.count)
+                        Index = "\(snapshots.count)"
+                        let myUid: [String: String] = [Index : userUID]
+                        db.child("user").child(fuid).child("friendsList").updateChildValues(myUid)
+                    }
+                }
+                
                 self.friendList.remove(at: indexPath.row)
                 notifyTableView.reloadData()
             }
