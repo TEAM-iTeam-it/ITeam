@@ -78,8 +78,8 @@ class ChannelTeamViewController: UIViewController {
     var secondsLeft: Int = 180
     var timer: Timer?
     
-    
-    
+    var didMuteButtonTapped: Bool = false
+    var didSpeakerButtonTapped: Bool = false
     
     
     override func viewDidLoad() {
@@ -87,7 +87,7 @@ class ChannelTeamViewController: UIViewController {
         print("hi")
         
         // collectionview 세팅
-        collection.collectionViewLayout = CollectionViewLeftAlignFlowLayout()
+       // collection.collectionViewLayout = CollectionViewLeftAlignFlowLayout()
         if let flowLayout = collection?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
@@ -152,6 +152,33 @@ class ChannelTeamViewController: UIViewController {
         popupVC.otherPersonUID = otherPersonUID
         popupVC.modalPresentationStyle = .overFullScreen
         present(popupVC, animated: false, completion: nil)
+    }
+    @IBAction func muteVolumeDidTapped(_ sender: UIButton) {
+        if didMuteButtonTapped {
+            sender.backgroundColor = UIColor(named: "gray_229")
+            agkit!.muteLocalAudioStream(false)
+            didMuteButtonTapped = false
+
+        }
+        else {
+            sender.backgroundColor = UIColor(named: "gray_121")
+            agkit!.muteLocalAudioStream(true)
+            didMuteButtonTapped = true
+        }
+    }
+    @IBAction func switchSpeakerDidTapped(_ sender: UIButton) {
+        if didSpeakerButtonTapped {
+            sender.backgroundColor = UIColor(named: "gray_229")
+            agkit!.setEnableSpeakerphone(false)
+            didSpeakerButtonTapped = false
+
+        }
+        else {
+            sender.backgroundColor = UIColor(named: "gray_121")
+            agkit!.setEnableSpeakerphone(true)
+            didSpeakerButtonTapped = true
+        }
+        
     }
     
     func updateTimerLabel() {
@@ -315,7 +342,7 @@ class ChannelTeamViewController: UIViewController {
                 
             }
             
-            var person = Person(nickname: nickname, position: partDetail, callStm: "", profileImg: "")
+            var person = Person(nickname: nickname, position: partDetail, callStm: "", profileImg: userUID)
             
             participantList.append(person)
             collection.reloadData()
@@ -347,7 +374,7 @@ class ChannelTeamViewController: UIViewController {
     }
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IACYcpozxkwAhBzDg/2gXB7Q/fwjwwehN+mn7DnGZnm9BzfvbuoAAAAAEAA/6Ep2Q+x3YgEAAQBD7Hdi",
+        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IADtMJ/xodnk78xiE3THG6zkDgFhlvXwe8YNRJ1CiWatmzfvbuoAAAAAEAASVDxDvJmCYgEAAQC8mYJi",
                            channelId: "testToken11",
                            info: nil,
                            uid: userID,
@@ -529,24 +556,4 @@ extension ChannelTeamViewController: UICollectionViewDelegate, UICollectionViewD
     
     
 }
-class CollectionViewLeftAlignFlowLayout: UICollectionViewFlowLayout {
-    let cellSpacing: CGFloat = 10
-    
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        self.minimumLineSpacing = 10.0
-        self.sectionInset = UIEdgeInsets(top: 12.0, left: 16.0, bottom: 0.0, right: 16.0)
-        let attributes = super.layoutAttributesForElements(in: rect)
-        
-        var leftMargin = sectionInset.left
-        var maxY: CGFloat = -1.0
-        attributes?.forEach { layoutAttribute in
-            if layoutAttribute.frame.origin.y >= maxY {
-                leftMargin = sectionInset.left
-            }
-            layoutAttribute.frame.origin.x = leftMargin
-            leftMargin += layoutAttribute.frame.width + cellSpacing
-            maxY = max(layoutAttribute.frame.maxY, maxY)
-        }
-        return attributes
-    }
-}
+

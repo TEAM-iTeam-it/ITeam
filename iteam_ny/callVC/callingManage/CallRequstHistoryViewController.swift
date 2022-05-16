@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
@@ -20,6 +21,9 @@ class CallRequstHistoryViewController: UIViewController {
     @IBOutlet var callTimeLabels: [UILabel]!
     @IBOutlet weak var questionTableview: UITableView!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var leaderLabel: UILabel!
+    @IBOutlet weak var questionTitleLabel: UILabel!
+    @IBOutlet weak var requestCancelButton: UIButton!
     
     var personUID: String = ""
     let db = Database.database().reference()
@@ -27,11 +31,12 @@ class CallRequstHistoryViewController: UIViewController {
     var callTime: [String] = []
     var questionArr: [String] = []
     var teamIndex: String = ""
+    var isTeamMemberWaiting: Bool = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //fetchUser(userUID: personUID, stmt: "요청됨")
         setUI()
         questionTableview.delegate = self
@@ -64,25 +69,33 @@ class CallRequstHistoryViewController: UIViewController {
         profileView.layer.shadowOpacity = 0.2
         profileView.layer.shadowRadius = 8.0
         
+        leaderLabel.isHidden = true
+        if isTeamMemberWaiting {
+            titleLabel.textColor = UIColor(named: "green_87")
+            leaderLabel.isHidden = false
+            questionTitleLabel.text = "보내온 질문"
+            requestCancelButton.isHidden = true
+        }
+        
+        
         // kingfisher 사용하기 위한 url
         let uid: String = person.profileImg
-        var urlString: URL?
         
         let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
         
         // Fetch the download URL
         starsRef.downloadURL { [self] url, error in
             if let error = error {
-                // Handle any errors
             } else {
-                print(url)
                 profileImageView.kf.setImage(with: url)
             }
         }
         profileImageView.layer.cornerRadius = profileImageView.frame.height/2
         
+        titleLabel.text = "\(person.nickname)"
         
-        titleLabel.text = "\(person.nickname) 님이 요청을 확인 중입니다."
+        
+        
         nickNameLabel.text = person.nickname
         infoLabel.text = person.position
         
@@ -109,6 +122,9 @@ extension CallRequstHistoryViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell", for: indexPath) as! CallRequestHistoryQuestionTableViewCell
         cell.questionLabel.text = questionArr[indexPath.row]
+        if isTeamMemberWaiting {
+            cell.checkImage.image = UIImage(named: "icCheck.png")
+        }
         return cell
     }
 }

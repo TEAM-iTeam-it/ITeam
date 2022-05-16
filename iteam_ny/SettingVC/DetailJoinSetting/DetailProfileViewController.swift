@@ -138,12 +138,18 @@ class DetailProfileViewController: UIViewController  {
             return
         }
         
-        let toolNLanguage: [String: Any] = [ "toolNLanguage": toolNLangLabel.text]
-        let interest: [String: Any] = [ "interest": interestLabel.text]
-        let calltime: [String: Any] = [ "calltime": callTimeBtn.titleLabel!.text]
-        let portfolioLink: [String: Any] = [ "portfolioLink": portfoliolinkTF.text]
-        let contactLink: [String: Any] = [ "contactLink": callLinkTF.text]
+        let toolNLanguage: [String: String] = [ "toolNLanguage": toolNLangLabel.text ?? ""]
+        let interest: [String: String] = [ "interest": interestLabel.text ?? ""]
+        let calltime: [String: String] = [ "calltime": callTimeBtn.titleLabel?.text ?? ""]
+        let portfolioLink: [String: String] = [ "portfolioLink": portfoliolinkTF.text ?? ""]
+        let contactLink: [String: String] = [ "contactLink": callLinkTF.text ?? ""]
+        let currentTeam: [String: String] = [ "currentTeam": ""]
         
+        let friendRequestStmt: [String: String] = [ "requestStmt": ""]
+        let friendRequestTime: [String: String] = [ "requestTime": ""]
+        let friendRequestUID: [String: String] = [ "requestUID": ""]
+        
+        let likeTeam: [String: String] = [ "teamName": ""]
         
         ref = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).child("userProfile")
         // 데이터 추가
@@ -153,12 +159,27 @@ class DetailProfileViewController: UIViewController  {
         ref.child("portfolio").updateChildValues(portfolioLink)
         ref.child("portfolio").updateChildValues(contactLink)
         ref.child("portfolio").updateChildValues(toolNLanguage)
+        
+        let refMAin = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid)
+        refMAin.updateChildValues(currentTeam)
+        refMAin.child("friendRequest").child("0").updateChildValues(friendRequestStmt)
+        refMAin.child("friendRequest").child("0").updateChildValues(friendRequestTime)
+        refMAin.child("friendRequest").child("0").updateChildValues(friendRequestUID)
+        
+        refMAin.child("likeTeam").updateChildValues(likeTeam)
+        
+      
+        if projects.isEmpty {
+            let exDetail: [String: String] = [ "exDetail": ""]
+            let date: [String: String] = [ "date": "" ]
+            ref.child("portfolio").child("ex0").updateChildValues(exDetail)
+            ref.child("portfolio").child("ex0").updateChildValues(date)
+        }
         for i in 0..<projects.count {
-            let exDetail: [String: Any] = [ "exDetail": projects[i].details]
-            let date: [String: Any] = [ "date": projects[i].date]
-            
-            ref.child("portfolio").child("ex\(i)").updateChildValues(exDetail)
-            ref.child("portfolio").child("ex\(i)").updateChildValues(date)
+                let exDetail: [String: String] = [ "exDetail": projects[i].details]
+                let date: [String: String] = [ "date": projects[i].date]
+                ref.child("portfolio").child("ex\(i)").updateChildValues(exDetail)
+                ref.child("portfolio").child("ex\(i)").updateChildValues(date)
         }
             
         

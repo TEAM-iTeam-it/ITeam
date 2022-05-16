@@ -58,6 +58,9 @@ class ChannelViewController: UIViewController {
     var secondsLeft: Int = 180
     var timer: Timer?
     
+    var didMuteButtonTapped: Bool = false
+    var didSpeakerButtonTapped: Bool = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +117,7 @@ class ChannelViewController: UIViewController {
         updateTimerLabel()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (t) in
             // 30 -> 1로 수정해야함
-            self.secondsLeft -= 30
+            self.secondsLeft -= 1
             self.updateTimerLabel()
             
             if self.secondsLeft == 0 {
@@ -150,7 +153,7 @@ class ChannelViewController: UIViewController {
     
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IACYcpozxkwAhBzDg/2gXB7Q/fwjwwehN+mn7DnGZnm9BzfvbuoAAAAAEAA/6Ep2Q+x3YgEAAQBD7Hdi", channelId: "testToken11", info: nil, uid: userID,
+        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IADtMJ/xodnk78xiE3THG6zkDgFhlvXwe8YNRJ1CiWatmzfvbuoAAAAAEAASVDxDvJmCYgEAAQC8mYJi", channelId: "testToken11", info: nil, uid: userID,
                            joinSuccess: {(_, uid, elapsed) in
             self.userID = uid
             if self.role == .audience {
@@ -192,8 +195,34 @@ class ChannelViewController: UIViewController {
         popupVC.modalPresentationStyle = .overFullScreen
         present(popupVC, animated: false, completion: nil)
     }
-    
-    
+    @IBAction func muteVolumeDidTapped(_ sender: UIButton) {
+        if didMuteButtonTapped {
+            sender.backgroundColor = UIColor(named: "gray_229")
+            agkit!.muteLocalAudioStream(false)
+            didMuteButtonTapped = false
+
+        }
+        else {
+            sender.backgroundColor = UIColor(named: "gray_121")
+            agkit!.muteLocalAudioStream(true)
+            didMuteButtonTapped = true
+        }
+        
+    }
+    @IBAction func switchSpeakerDidTapped(_ sender: UIButton) {
+        if didSpeakerButtonTapped {
+            sender.backgroundColor = UIColor(named: "gray_229")
+            agkit!.setEnableSpeakerphone(false)
+            didSpeakerButtonTapped = false
+
+        }
+        else {
+            sender.backgroundColor = UIColor(named: "gray_121")
+            agkit!.setEnableSpeakerphone(true)
+            didSpeakerButtonTapped = true
+        }
+        
+    }
     
 }
 extension ChannelViewController: AgoraRtcEngineDelegate {

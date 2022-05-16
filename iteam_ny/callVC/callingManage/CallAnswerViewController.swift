@@ -12,7 +12,6 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class CallAnswerViewController: UIViewController {
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var answerListTableView: UITableView!
     
     var personList: [Person] = []
@@ -21,8 +20,6 @@ class CallAnswerViewController: UIViewController {
     var toGoSegue: String = "대기"
     let db = Database.database().reference()
     
-    // [삭제 예정] 시연을 위한 변수
-    var counter:Int = 0
     var name: String = "speaker"
     var myNickname = ""
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
@@ -35,9 +32,7 @@ class CallAnswerViewController: UIViewController {
     var teamIndex: [String] = []
     var teamIndexForSend: [String] = []
     var nowRequestedUid: String = "" {
-        willSet(newValue) {
-            print(newValue)
-            callingOtherUid = newValue
+        willSet(newValue) {            callingOtherUid = newValue
         }
     }
     var callingOtherUid: String = ""
@@ -64,7 +59,6 @@ class CallAnswerViewController: UIViewController {
     }
     
     func setUI() {
-        counter = 0
         name = "speaker"
         
         /*
@@ -88,7 +82,6 @@ class CallAnswerViewController: UIViewController {
         didISent.removeAll()
         teamIndex.removeAll()
         teamIndexForSend.removeAll()
-       // answerListTableView.reloadData()
     }
     
     func fetchData() {
@@ -119,7 +112,6 @@ class CallAnswerViewController: UIViewController {
             //queryEqual(toValue: myNickname)
             favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
                 var myCallTime: [[String:String]] = []
-                var receiverType: [String] = []
                 
                 // 나와 관련된 call 가져오기
                 for child in snapshot.children {
@@ -276,7 +268,7 @@ class CallAnswerViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
+            let person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: userUID)
             
             personList.append(person)
             answerListTableView.reloadData()
@@ -326,7 +318,7 @@ class CallAnswerViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
+            let person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
             
             whenIReceivedOtherPerson.append(person)
         }
@@ -374,7 +366,7 @@ class CallAnswerViewController: UIViewController {
             }
             part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
             
-            var person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
+            let person = Person(nickname: nickname, position: part, callStm: stmt, profileImg: "")
             
             whenISendOtherPerson.append(person)
         }
@@ -387,7 +379,6 @@ class CallAnswerViewController: UIViewController {
             
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
-                let value = snap.value as? NSDictionary
                 
                 userUID = snap.key 
             }
@@ -424,15 +415,14 @@ class CallAnswerViewController: UIViewController {
         removeArr()
         db.child("Call").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
-                self.fetchData()
-            }
+            
+            self.removeArr()
+            self.fetchData()
         })
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
-                self.fetchData()
-            }
+            self.removeArr()
+            self.fetchData()
             
         })
     }
@@ -452,29 +442,13 @@ class CallAnswerViewController: UIViewController {
         exit(0)
     }
     
-    
-    
-    // [삭제 예정] 시연을 위한 nextbutton
-    @IBAction func nextBtn(_ sender: UIButton) {
-        if counter == 0 {
-            personList[0].callStm = "통화대기"
-            answerListTableView.reloadData()
-            toGoSegue = "통화대기"
-            counter += 1
-        }
-        if counter == 1{
-            personList[0].callStm = "통화시작"
-            answerListTableView.reloadData()
-            toGoSegue = "통화시작"
-        }
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "waitingVC" {
             if let destination = segue.destination as? ChannelWaitingViewController {
                // let cell = sender as! AnswerTableViewCell
                 destination.nickname = personList[(sender as? Int)!].nickname
                 // var position = personList[(sender as? Int)!].position.split(separator: "•")
-                var position = personList[(sender as? Int)!].position
+                let position = personList[(sender as? Int)!].position
                 destination.position = String(position)
                 destination.profile = personList[(sender as? Int)!].profileImg
             }
@@ -490,7 +464,6 @@ class CallAnswerViewController: UIViewController {
             
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
-                let value = snap.value as? NSDictionary
                 
                 userUID = snap.key
             }
@@ -501,32 +474,28 @@ class CallAnswerViewController: UIViewController {
 }
 extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("personlinstCount = \(personList.count)")
         return personList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnswerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AnswerPersonCell", for: indexPath) as! AnswerTableViewCell
+        
+        cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
         cell.nicknameLabel.text = personList[indexPath.row].nickname
         
-        // kingfisher 사용하기 위한 url
         let uid: String = personList[indexPath.row].profileImg
-        
         let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
         
-        // Fetch the download URL
         starsRef.downloadURL { [self] url, error in
             if let error = error {
-                // Handle any errors
+                print(error.localizedDescription)
             } else {
                 DispatchQueue.main.async {
-                    imageView.kf.setImage(with: url)
                     cell.profileImg.kf.setImage(with: url)
                 }
             }
         }
         
-        cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
         
         // 같은 학교 처리
         if cell.nicknameLabel.text == "시연" {
@@ -639,18 +608,9 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             // 1. 내가 보낸 경우
             for i in 0..<whenISendOtherPerson.count {
                 if whenISendOtherPerson[i].nickname == personList[indexPath.row].nickname {
-                    /*
-                    var indexCount = -1
-                    for i in 0...indexPath.row {
-                        if personList[i].callStm == "대기 중" {
-                            indexCount += 1
-                        }
-                    }
-                     */
-                    
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
-                    var position = personList[indexPath.row].position
+                    let position = personList[indexPath.row].position
                     waitingRoomVC.position = position
                     
                     
@@ -669,7 +629,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
               
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
-                    var position = personList[indexPath.row].position
+                    let position = personList[indexPath.row].position
                     waitingRoomVC.position = position
                     
                     //personList[indexPath.row].
@@ -695,7 +655,6 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                 if whenISendOtherPerson[i].nickname == personList[indexPath.row].nickname {
                 
                     historyVC.callTime = callTimeArrSend[i]
-                    print(callTimeArrSend)
                     historyVC.person = personList[indexPath.row]
                     historyVC.questionArr = questionArrSend[i]
                     historyVC.teamIndex = teamIndexForSend[i]
@@ -710,7 +669,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             let callingVC = storyboard?.instantiateViewController(withIdentifier: "callingVC") as! ChannelViewController
             
             callingVC.nickname = personList[indexPath.row].nickname
-            var position = personList[indexPath.row].position
+            let position = personList[indexPath.row].position
             callingVC.position = String(position)
            
         

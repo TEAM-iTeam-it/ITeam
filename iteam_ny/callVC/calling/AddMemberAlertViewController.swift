@@ -33,6 +33,7 @@ class AddMemberAlertViewController: UIViewController {
         sendFriendRequest()
         let evaluVC = storyboard?.instantiateViewController(withIdentifier: "evaluVC") as! EvaluateViewController
         evaluVC.modalPresentationStyle = .fullScreen
+        evaluVC.didFriendRequest = true
         evaluVC.otherPersonUID = otherPersonUID
         present(evaluVC, animated: true)
         

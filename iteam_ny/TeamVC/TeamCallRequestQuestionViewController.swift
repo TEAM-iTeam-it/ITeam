@@ -19,7 +19,13 @@ class TeamCallRequestQuestionViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIButton!
     var addQuestionArr: [String] = [""]
-    var defaultQuestionArr: [String] = ["프로젝트를 하는 목적이 무엇인가요?", "하고 싶은 주제가 있으신가요?", "주로 작업하는 시간대가 어떻게 되시나요?", "병행하고 있는 활동이 있으신가요?", "주 사용 툴 혹은 언어는 무엇인가요?", "이번 프로젝트에서 맡고 싶은 역할이 있으신가요?"]
+    var personToTeam: [String] = ["하고 싶은 주제가 있으신가요?",
+                                  "회의는 어느 정도 빈도로 진행되나요?",
+                                  "주로 작업하는 시간대가 어떻게 되시나요?",
+                                  "팀에서 주로 사용하는 툴 혹은 언어는 무엇인가요?",
+                                  "이 팀의 강점이 무엇이라고 생각하시나요?",
+                                  "팀 분위기는 어떤가요?"]
+    //var personToPerson: [String] = ["프로젝트를 하는 목적이 무엇인가요?", "하고 싶은 주제가 있으신가요?", "주로 작업하는 시간대가 어떻게 되시나요?", "병행하고 있는 활동이 있으신가요?", "주 사용 툴 혹은 언어는 무엇인가요?", "이번 프로젝트에서 맡고 싶은 역할이 있으신가요?"]
     var resultQuestionArr: [String] = []
     var defualtQuestionSelectBoolArr: [Bool] = [false, false, false, false, false, false]
     var keyHeight: CGFloat?
@@ -66,14 +72,14 @@ class TeamCallRequestQuestionViewController: UIViewController {
         
         // 5개 제한
         print(resultQuestionArr.count)
-        print(defaultQuestionArr.count)
+        print(personToTeam.count)
         
             switch sender {
             case selectBtns[0]:
                 if defualtQuestionSelectBoolArr[0] == false {
                     if resultQuestionArr.count <= 4 {
                         defualtQuestionSelectBoolArr[0] = true
-                        resultQuestionArr.append(defaultQuestionArr[0])
+                        resultQuestionArr.append(personToTeam[0])
                         setTrueButton()
                         questionCount += 1
                     }
@@ -81,7 +87,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 else {
                     defualtQuestionSelectBoolArr[0] = false
                     for i in 0..<resultQuestionArr.count {
-                        if resultQuestionArr[i] == defaultQuestionArr[0] {
+                        if resultQuestionArr[i] == personToTeam[0] {
                             resultQuestionArr.remove(at: i)
                             questionCount -= 1
                             break
@@ -93,7 +99,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 if defualtQuestionSelectBoolArr[1] == false {
                     if resultQuestionArr.count <= 4 {
                         defualtQuestionSelectBoolArr[1] = true
-                        resultQuestionArr.append(defaultQuestionArr[1])
+                        resultQuestionArr.append(personToTeam[1])
                         setTrueButton()
                         questionCount += 1
                     }
@@ -101,7 +107,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 else {
                     defualtQuestionSelectBoolArr[1] = false
                     for i in 0..<resultQuestionArr.count {
-                        if resultQuestionArr[i] == defaultQuestionArr[1] {
+                        if resultQuestionArr[i] == personToTeam[1] {
                             resultQuestionArr.remove(at: i)
                             questionCount -= 1
                             break
@@ -113,7 +119,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 if defualtQuestionSelectBoolArr[2] == false {
                     if resultQuestionArr.count <= 4 {
                         defualtQuestionSelectBoolArr[2] = true
-                        resultQuestionArr.append(defaultQuestionArr[2])
+                        resultQuestionArr.append(personToTeam[2])
                         setTrueButton()
                         questionCount += 1
                     }
@@ -121,7 +127,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 else {
                     defualtQuestionSelectBoolArr[2] = false
                     for i in 0..<resultQuestionArr.count {
-                        if resultQuestionArr[i] == defaultQuestionArr[2] {
+                        if resultQuestionArr[i] == personToTeam[2] {
                             resultQuestionArr.remove(at: i)
                             questionCount -= 1
                             break
@@ -133,7 +139,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 if defualtQuestionSelectBoolArr[3] == false {
                     if resultQuestionArr.count <= 4 {
                         defualtQuestionSelectBoolArr[3] = true
-                        resultQuestionArr.append(defaultQuestionArr[3])
+                        resultQuestionArr.append(personToTeam[3])
                         setTrueButton()
                         questionCount += 1
                     }
@@ -141,7 +147,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 else {
                     defualtQuestionSelectBoolArr[3] = false
                     for i in 0..<resultQuestionArr.count {
-                        if resultQuestionArr[i] == defaultQuestionArr[3] {
+                        if resultQuestionArr[i] == personToTeam[3] {
                             resultQuestionArr.remove(at: i)
                             questionCount -= 1
                             break
@@ -153,7 +159,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 if defualtQuestionSelectBoolArr[4] == false {
                     if resultQuestionArr.count <= 4 {
                         defualtQuestionSelectBoolArr[4] = true
-                        resultQuestionArr.append(defaultQuestionArr[4])
+                        resultQuestionArr.append(personToTeam[4])
                         setTrueButton()
                         questionCount += 1
                     }
@@ -161,7 +167,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 else {
                     defualtQuestionSelectBoolArr[4] = false
                     for i in 0..<resultQuestionArr.count {
-                        if resultQuestionArr[i] == defaultQuestionArr[4] {
+                        if resultQuestionArr[i] == personToTeam[4] {
                             resultQuestionArr.remove(at: i)
                             questionCount -= 1
                             break
@@ -173,7 +179,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 if defualtQuestionSelectBoolArr[5] == false {
                     if resultQuestionArr.count <= 4 {
                         defualtQuestionSelectBoolArr[5] = true
-                        resultQuestionArr.append(defaultQuestionArr[5])
+                        resultQuestionArr.append(personToTeam[5])
                         setTrueButton()
                         questionCount += 1
                     }
@@ -181,7 +187,7 @@ class TeamCallRequestQuestionViewController: UIViewController {
                 else {
                     defualtQuestionSelectBoolArr[5] = false
                     for i in 0..<resultQuestionArr.count {
-                        if resultQuestionArr[i] == defaultQuestionArr[5] {
+                        if resultQuestionArr[i] == personToTeam[5] {
                             resultQuestionArr.remove(at: i)
                             questionCount -= 1
                             break

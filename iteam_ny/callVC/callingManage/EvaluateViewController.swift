@@ -25,6 +25,7 @@ class EvaluateViewController: UIViewController {
             }
         }
     }
+    var didFriendRequest: Bool = false
     
     @IBOutlet var evaluLabel: [UILabel]!
     
@@ -36,7 +37,12 @@ class EvaluateViewController: UIViewController {
         fetchNickname(userUID: otherPersonUID)
     }
     @IBAction func nextBtnClicked(_ sender: UIButton) {
-        self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        if didFriendRequest {
+            self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)            
+        }
+        else {
+            self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)     
+        }
         
     }
     @IBAction func evaluateBtn(_ sender: UIButton) {

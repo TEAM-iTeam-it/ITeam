@@ -68,7 +68,10 @@ class CallClosedViewController: UIViewController {
         present(popupVC, animated: false, completion: nil)
     }
     @IBAction func cancelBtn(_ sender: UIButton) {
-        self.dismiss(animated: false, completion: nil)
+        let evaluVC = storyboard?.instantiateViewController(withIdentifier: "evaluVC") as! EvaluateViewController
+        evaluVC.modalPresentationStyle = .fullScreen
+        evaluVC.otherPersonUID = otherPersonUID
+        present(evaluVC, animated: true)
     }
     
 }

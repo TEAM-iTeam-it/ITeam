@@ -462,7 +462,7 @@
                                             <constraint firstItem="3iq-Yl-OWv" firstAttribute="top" secondItem="BG8-wW-ad1" secondAttribute="bottom" constant="30" id="zbJ-vR-7Vt"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqK-X8-fhI">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqK-X8-fhI" customClass="GradientWhiteView" customModule="iteam_ny" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="948" width="414" height="92"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZW-cm-VDf" customClass="ActualGradientButton" customModule="iteam_ny" customModuleProvider="target">
@@ -489,7 +489,6 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="HZW-cm-VDf" firstAttribute="leading" secondItem="mqK-X8-fhI" secondAttribute="leading" constant="20" id="JeQ-2q-eZh"/>
                                             <constraint firstItem="HZW-cm-VDf" firstAttribute="top" secondItem="mqK-X8-fhI" secondAttribute="top" constant="23" id="iHD-Jj-lgs"/>

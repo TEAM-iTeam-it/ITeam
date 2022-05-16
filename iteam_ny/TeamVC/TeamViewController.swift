@@ -194,25 +194,22 @@ class TeamViewController: UIViewController {
     func fetchChangedData() {
         db.child("Team").observe(.childChanged, with:{ [self] (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
-                fetchMyTeamname()
-                checkMyTeamProfile()
-                checkMyTeamMember()
-            }
+            self.fetchMyTeamname()
+            self.checkMyTeamProfile()
+            self.checkMyTeamMember()
+            
         })
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ [self] (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
-                fetchMyTeamname()
-                checkMyTeamProfile()
-                checkMyTeamMember()
-            }
+            self.fetchMyTeamname()
+            self.checkMyTeamProfile()
+            self.checkMyTeamMember()
+            
         })
         db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ [self] (snapshot) -> Void in
             print("DB 수정됨")
-            DispatchQueue.main.async {
-                fetchFavorTeam()
-            }
+            self.fetchFavorTeam()
+            
         })
     }
     

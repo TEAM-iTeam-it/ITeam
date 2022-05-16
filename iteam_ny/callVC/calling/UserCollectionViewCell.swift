@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Kingfisher
+import FirebaseStorage
+
 class UserCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
@@ -17,11 +20,22 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     func setUI(image:String, nickname: String, position: String) {
         profileImage.layer.cornerRadius = profileImage.frame.height/2
-        profileImage.image = UIImage(named: "imgUser10.png")
+        
+        // kingfisher 사용하기 위한 url
+        let uid: String = image
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+        
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+            if let error = error {
+            } else {
+                profileImage.kf.setImage(with: url)
+            }
+        }
         otherMemberNameTF.text = nickname
         otherMemberPartTF.text = position
         profileImage.layer.masksToBounds = true
-
+        
         
         }
     
