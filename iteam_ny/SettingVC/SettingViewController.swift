@@ -272,6 +272,38 @@ class SettingViewController: UIViewController {
         // [ 수식어 데이터 추가 ]
         ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
         
+        // 테스트 코드
+        
+        let toolNLanguage: [String: String] = [ "toolNLanguage": ""]
+        let interest: [String: String] = [ "interest": ""]
+        let calltime: [String: String] = [ "calltime": ""]
+        let portfolioLink: [String: String] = [ "portfolioLink": ""]
+        let contactLink: [String: String] = [ "contactLink": ""]
+        let currentTeam: [String: String] = [ "currentTeam": ""]
+        
+        let likeTeam: [String: String] = [ "teamName": ""]
+        
+        let userProfile = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).child("userProfile")
+        // 데이터 추가
+        userProfile.child("portfolio").updateChildValues(toolNLanguage)
+        userProfile.child("portfolio").updateChildValues(interest)
+        userProfile.child("portfolio").updateChildValues(calltime)
+        userProfile.child("portfolio").updateChildValues(portfolioLink)
+        userProfile.child("portfolio").updateChildValues(contactLink)
+        userProfile.child("portfolio").updateChildValues(toolNLanguage)
+        
+        let refMAin = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid)
+        refMAin.updateChildValues(currentTeam)
+        
+        refMAin.child("likeTeam").updateChildValues(likeTeam)
+        
+        
+        let exDetail: [String: String] = [ "exDetail": ""]
+        let date: [String: String] = [ "date": "" ]
+        userProfile.child("portfolio").child("ex0").updateChildValues(exDetail)
+        userProfile.child("portfolio").child("ex0").updateChildValues(date)
+        
+        
         let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "SettingSuccessVC")
         popupVC.modalPresentationStyle = .overFullScreen
         present(popupVC, animated: false, completion: nil)
