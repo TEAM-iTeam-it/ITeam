@@ -24,6 +24,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var requestTime = ""
     var nickname: String = ""
     var allInfo = ""
+    var memberInfo = ""
 
 
     override func viewDidLoad() {
@@ -32,6 +33,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         notiContent.append(Noti(content: "레인 님과의 통화가 곧 시작됩니다.", date: "04/17 15:04", profileImg: "imgUser5"))
         
         fetchData()
+        fetchMemberData()
 //        fetchChangedData()
     }
     
@@ -40,11 +42,12 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    func fetchData2() {
+    //팀원 수락 요청 가져오기
+    func fetchMemberData() {
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         let userUID = Auth.auth().currentUser!.uid
             // 팀 알림 가져오기
-            let favorTeamList = db.child("user").child(userUID).child("MemberRequest")
+            let favorTeamList = db.child("user").child(userUID).child("memberRequest")
             //queryEqual(toValue: myNickname)
             favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
                 
@@ -60,8 +63,8 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print(requestTime)
                     print(requestStmt)
                     print(requestUID)
-                    allInfo = (requestUID+","+requestStmt+","+requestTime)
-                    friendUid.append(allInfo)
+                    memberInfo = (requestUID+","+requestStmt+","+requestTime)
+                    friendUid.append(memberInfo)
                 }
                 
                 for uid in self.friendUid{
@@ -85,10 +88,11 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             }
                         }
                         print("a")
+                        print(nickname)
                         print(charindex[0])
                         print(charindex[1])
                         print(charindex[2])
-                        var friend = Friend(uid: charindex[0], nickname: nickname, position: charindex[2], profileImg: "")
+                        var friend = Friend(uid: charindex[0], nickname: nickname + " 님이 팀원 추가를 요청했습니다.", position: charindex[2], profileImg: "")
                         friendList.append(friend)
                         notifyTableView.reloadData()
                     }
@@ -97,6 +101,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         notifyTableView.reloadData()
     }
     
+    //친구 수락 요청 가져오기
     func fetchData() {
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         let userUID = Auth.auth().currentUser!.uid
@@ -141,11 +146,11 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                 }
                             }
                         }
-                        print("a")
+                        print("b")
                         print(charindex[0])
                         print(charindex[1])
                         print(charindex[2])
-                        var friend = Friend(uid: charindex[0], nickname: nickname, position: charindex[2], profileImg: "")
+                        var friend = Friend(uid: charindex[0], nickname: nickname + " 님이 친구를 요청했습니다.", position: charindex[2], profileImg: "")
                         friendList.append(friend)
                         notifyTableView.reloadData()
                     }
