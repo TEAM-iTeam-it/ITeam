@@ -34,14 +34,14 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         notiContent.append(Noti(content: "이성책임 팀과의 통화가 곧 시작됩니다.", date: "04/20 14:30", profileImg: "imgUser8"))
         notiContent.append(Noti(content: "레인 님과의 통화가 곧 시작됩니다.", date: "04/17 15:04", profileImg: "imgUser5"))
         
-        fetchData()
-        fetchMemberData()
+        
 //        fetchChangedData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        notifyTableView.reloadData()
-        
+        fetchData()
+        fetchMemberData()
+//        notifyTableView.reloadData()
     }
     
     //팀원 수락 요청 가져오기
