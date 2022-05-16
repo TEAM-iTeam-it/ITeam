@@ -6,10 +6,127 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
-class AddFasTeam: UIViewController {
+class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var friendContent: [myFriend] = []
+    var ref: DatabaseReference!
+    let db = Database.database().reference()
+    @IBOutlet weak var myFriendTableView: UITableView!
+    var friendList: [String] = []
+    var myFriendUid:[String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fetchFreindRequest()
+//        friendContent.append(myFriend(content: "ios개발, 공모전", name: "에일리", profileImg: "imgUser5"))
     }
+    
+    func fetchFreindRequest() {
+//        giverList.removeAll()
+        
+        let ref = Database.database().reference()
+        let userUID = Auth.auth().currentUser!.uid
+        ref.child("user").child(userUID).observeSingleEvent(of: .value){ snapshot in
+            guard let snapData = snapshot.value as? [String:Any] else {return}
+            for key in snapData.keys {
+                if key == "friendsList" {
+                    for k in snapData.values {
+                        if k is [String] {
+                            self.friendList = (k as? [String])!
+//                            print(self.giverList)
+                           
+                        }
+
+                    }
+                }
+
+            }
+            //uid 닉네임 가져오기
+            for uid in self.friendList{
+                self.myFriendUid.append(uid)
+                print(uid)
+                //friendList.append(contentsOf: <#T##Sequence#>)
+                self.db.child("user").child(uid).observeSingleEvent(of: .value) { [self] snapshot in
+                    var nickname: String = ""
+                    var part: String = ""
+                    var partDetail: String = ""
+                    var purpose: String = ""
+                    var uid: String = ""
+                    
+                    for child in snapshot.children {
+                        let snap = child as! DataSnapshot
+                        let value = snap.value as? NSDictionary
+                        
+                        if snap.key == "userProfile" {
+                            for (key, content) in value! {
+                                if key as! String == "nickname" {
+                                    nickname = content as! String
+                                }
+                                if key as! String == "part" {
+                                    part = content as! String
+                                }
+                                if key as! String == "partDetail" {
+                                    partDetail = content as! String
+                                }
+                            }
+                            
+                        }
+                        if snap.key == "userProfileDetail" {
+                            for (key, content) in value! {
+                                if key as! String == "purpose" {
+                                    purpose = content as! String
+                                }
+                            }
+                        }
+                        
+                    }
+                    if part == "개발자" {
+                        part = partDetail + part
+                        
+                    }
+                    part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
+                    
+                    var friend2 = myFriend(content: part, name: nickname, profileImg: "")
+                    friendContent.append(friend2)
+                    myFriendTableView.reloadData()
+                }
+            }
+        }
+        
+        myFriendTableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return friendContent.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addfriendCell", for: indexPath) as! AddfriendCell
+        
+        cell.friendProfile.text = friendContent[indexPath.row].content
+        cell.friendName.text = friendContent[indexPath.row].name
+        cell.userImg.image = UIImage(named: "\(friendContent[indexPath.row].profileImg)")
+        
+        return cell
+    }
+    
+
+}
+
+class myFriend {
+    var content: String
+    var name: String
+    var profileImg: String
+
+    //var profileImg: UIImage
+
+    init(content: String, name: String, profileImg: String ) {
+        self.content = content
+        self.name = name
+        self.profileImg = profileImg
+    }
+
+
 }

@@ -41,7 +41,6 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="같은 학교" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lf2-sT-JUC">
                                                 <rect key="frame" x="42" y="0.0" width="36" height="13"/>
-                                                <color key="backgroundColor" name="gray_light"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="36" id="A47-g3-IXg"/>
                                                     <constraint firstAttribute="height" constant="13" id="dkV-bz-gvA"/>
@@ -103,9 +102,6 @@
     <resources>
         <image name="btn_pin1.png" width="24" height="24"/>
         <image name="imgUser5.png" width="50" height="50"/>
-        <namedColor name="gray_light">
-            <color red="0.7686274509803922" green="0.7686274509803922" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="purple_175">
             <color red="0.68627450980392157" green="0.4823529411764706" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

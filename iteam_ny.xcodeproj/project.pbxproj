@@ -189,6 +189,9 @@
 		08BFBE9D27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */; };
 		1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3B27FD868500A5DE47 /* Main.storyboard */; };
 		1F304C3F27FD86D000A5DE47 /* JoinPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */; };
+		1F4ABF93282924A80003A024 /* FriendRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF92282924A80003A024 /* FriendRequestCell.swift */; };
+		1F4ABF95282B5AC80003A024 /* AddfriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */; };
+		1F4ABF97282CB4820003A024 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF96282CB4820003A024 /* Friend.swift */; };
 		1F5428232805336100F5179B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428222805336100F5179B /* PopupViewController.swift */; };
 		1F542826280598FA00F5179B /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F542825280598FA00F5179B /* searchViewController.swift */; };
 		1F5428282805A16E00F5179B /* resetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428272805A16E00F5179B /* resetViewController.swift */; };
@@ -428,6 +431,9 @@
 		08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F304C3C27FD868500A5DE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JoinPages.storyboard; sourceTree = "<group>"; };
+		1F4ABF92282924A80003A024 /* FriendRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestCell.swift; sourceTree = "<group>"; };
+		1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddfriendCell.swift; sourceTree = "<group>"; };
+		1F4ABF96282CB4820003A024 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		1F5428222805336100F5179B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		1F542825280598FA00F5179B /* searchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
 		1F5428272805A16E00F5179B /* resetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetViewController.swift; sourceTree = "<group>"; };
@@ -942,6 +948,7 @@
 				1F5428292805B9FE00F5179B /* AddFasTeam.swift */,
 				1F64AF592813FA7F00D7B2BD /* SetATimeViewController.swift */,
 				1F64AF5B281401C600D7B2BD /* SendTimePickerView.swift */,
+				1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -953,6 +960,7 @@
 				0868B03F27CB6D930018464B /* Person.swift */,
 				1F5AC97027D6BCE800146C0E /* UserProfile.swift */,
 				0833417727F3437D005B4F31 /* Team.swift */,
+				1F4ABF96282CB4820003A024 /* Friend.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1014,6 +1022,7 @@
 			children = (
 				1F875FFD2821C8CF0051E89A /* NotifyViewController.swift */,
 				1F875FFF2821C9FE0051E89A /* NotifyTableViewCell.swift */,
+				1F4ABF92282924A80003A024 /* FriendRequestCell.swift */,
 			);
 			path = NotifyVC;
 			sourceTree = "<group>";
@@ -1270,6 +1279,7 @@
 				08BC293F281FEE9800C6214F /* UIVIewToUIImage.swift in Sources */,
 				0831AF3627E112180098D753 /* LogInViewController.swift in Sources */,
 				1F54282E280E42F100F5179B /* resetCharacterView.swift in Sources */,
+				1F4ABF97282CB4820003A024 /* Friend.swift in Sources */,
 				1F875FF5281834510051E89A /* resetRegionViewController.swift in Sources */,
 				08AE4191280585A9007CBE5F /* DetailProfileToolNLanguageViewController.swift in Sources */,
 				0863BCF4280BC70700AFB2B9 /* ScrollViewExtension.swift in Sources */,
@@ -1312,6 +1322,7 @@
 				1F5AC97127D6BCE800146C0E /* UserProfile.swift in Sources */,
 				0868B04627CB6D930018464B /* Person.swift in Sources */,
 				0868B04527CB6D930018464B /* AnswerTableViewCell.swift in Sources */,
+				1F4ABF95282B5AC80003A024 /* AddfriendCell.swift in Sources */,
 				1F875FF72818364E0051E89A /* resetPassionViewController.swift in Sources */,
 				083AFB1B2821560200B2AF00 /* TeamCallRequestViewController.swift in Sources */,
 				087A23F327FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift in Sources */,
@@ -1355,6 +1366,7 @@
 				1F875FF9281837940051E89A /* resetPurposeViewController.swift in Sources */,
 				08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */,
 				1F64AF4E280ED3E400D7B2BD /* MyPageViewController.swift in Sources */,
+				1F4ABF93282924A80003A024 /* FriendRequestCell.swift in Sources */,
 				1F64AF5C281401C600D7B2BD /* SendTimePickerView.swift in Sources */,
 				0868B04927CB6D930018464B /* EvaluateViewController.swift in Sources */,
 				086E4B4E2826BCAE005933CB /* CallRequstTeamHistoryViewController.swift in Sources */,

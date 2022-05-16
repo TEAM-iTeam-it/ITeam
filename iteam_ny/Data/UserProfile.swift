@@ -7,9 +7,9 @@
 
 import Foundation
 
-//struct user: Codable{
-//    let uid : Uid
-//}
+struct user: Codable{
+    let uid : Uid
+}
 struct Uid: Codable {
     let rank : Int
     let email : String

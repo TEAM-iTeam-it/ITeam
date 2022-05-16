@@ -42,12 +42,13 @@ class SetATimeViewController: UIViewController{
 
         bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 300
     }
+    
     //다음 버튼 클릭했을때
     @IBAction func TimeNextBtn(_ sender: UIButton) {
+        
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
         var callTimeString: String = ""
         var first: String = ""
         var second: String = ""
@@ -101,3 +102,35 @@ extension SetATimeViewController: SendTimeDataDelegate {
     
     }
 }
+//selected = true
+//for i in 0..<buttons.count {
+//    buttons[i].backgroundColor = UIColor(named: "gray_245")
+//    buttons[i].layer.borderWidth = 0
+//    timeLabel[i].textColor = UIColor(named: "gray_121")
+//    selectNumLabel[i].textColor = UIColor(named: "gray_121")
+//    selectNumLabel[i].backgroundColor = UIColor(named: "gray_229")
+//
+//}
+//sender.backgroundColor = UIColor(named: "green_243")
+//sender.layer.borderWidth = 0.5
+//sender.layer.borderColor = UIColor(named: "green_87")?.cgColor
+//
+//
+//if sender == firstButton {
+//    timeLabel[0].textColor = UIColor(named: "green_87")
+//    selectNumLabel[0].textColor = .white
+//    selectNumLabel[0].backgroundColor = UIColor(named: "green_87")
+//    selectedTime = timeLabel[0].text!
+//}
+//else if sender == secondButton {
+//    timeLabel[1].textColor = UIColor(named: "green_87")
+//    selectNumLabel[1].textColor = .white
+//    selectNumLabel[1].backgroundColor = UIColor(named: "green_87")
+//    selectedTime = timeLabel[1].text!
+//}
+//else {
+//    timeLabel[2].textColor = UIColor(named: "green_87")
+//    selectNumLabel[2].textColor = .white
+//    selectNumLabel[2].backgroundColor = UIColor(named: "green_87")
+//    selectedTime = timeLabel[2].text!
+//}

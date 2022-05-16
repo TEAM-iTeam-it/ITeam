@@ -6,14 +6,21 @@
 //
 
 import UIKit
+
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
+import Kingfisher
 
 class HomeViewController: UIViewController, PickpartDataDelegate{
+    
+    @IBOutlet weak var myImg: UIImageView!
+    @IBOutlet weak var tableviewHeight: NSLayoutConstraint!
     @IBOutlet weak var myPart: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memberStackVIew: UIStackView!
     var text:String = ""
+    var pickpart:[String] = []
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var addFriendButton: UIButton!
     @IBAction func addEntry(_ sender: UIButton) {
@@ -36,10 +43,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         // add button 한 칸 앞 index를 가져 온다
         let nextEntryIndex = memberStackVIew.arrangedSubviews.count - 1
 
-        // scrollview의 스크롤이 이동할 위치계산
-        // 현 위치에서 add button의 높이 만큼 이레러
-//                let offset = CGPoint(x: scrollView.contentOffset.x, y:
-//        scrollView.contentOffset.y + addButtonContainerView.bounds.size.height)
 
         let offset = CGPoint(x: scrollView.contentOffset.x + addButtonContainerView.bounds.size.width , y:
                         scrollView.contentOffset.y)
@@ -66,36 +69,87 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
     pickimage.heightAnchor.constraint(equalToConstant: 70).isActive = true
     pickimage.backgroundColor = UIColor.purple
     pickimage.layer.cornerRadius = 35
-        pickimage.setTitle(text, for: .normal)
-    // 현재날 짜는 짧게(M/D/Y) 가져온다
-//    let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-//    // uuid를 가져온다
-//    let number = NSUUID().uuidString
-    // 스택뷰를 만들고
-    // 각 속성을 아래와 같이 한다.
-    // IB에서 하는 것과 같다
+    pickimage.setTitle(text, for: .normal)
+    //진행중
+    pickimage.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+        
     let stack = UIStackView()
     stack.axis = .vertical
     stack.alignment = .center
     stack.distribution = .fill
     stack.spacing = 3
 
-    // 날짜르 표시해줄 Label를 만든다
-//    let dateLabel = UILabel()
-//    dateLabel.text = date
-//    dateLabel.font = UIFont.preferredFont(forTextStyle: .body)
-//    // uuid를 만들 Label을 만든다
-//    let numberLabel = UILabel()
-//    numberLabel.text = number
-//    numberLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-    // 이 label의 horizontal contenthugging을 249, compressionResistance 749로 해서 stackview의 남은 공간을 꽉 채우게 한다.
-//            numberLabel.setContentHuggingPriority(UILayoutPriority.defaultLow - 1.0, for: .horizontal)
-//            numberLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh - 1.0, for: .horizontal)
-    //stack 뷰에 차례대로 쌓는다.
-        stack.addArrangedSubview(pickimage)
-//    stack.addArrangedSubview(dateLabel)
-//    stack.addArrangedSubview(numberLabel)
+    stack.addArrangedSubview(pickimage)
     return stack
+    }
+    //파트별로 리스트 띄우기 진행중
+    @objc func tapped(sender: UIButton) {
+        pickpart.removeAll()
+        print(sender.currentTitle)
+//        print(userList)
+//        print(userList.count)
+        //특정 데이터만 읽기
+        //let ref: DatabaseReference!
+        let usersRef = Database.database().reference().child("user")
+        let queryRef = usersRef.queryOrdered(byChild: "userProfile/part").queryEqual(toValue: sender.currentTitle)
+        var userUID: String = ""
+        queryRef.observeSingleEvent(of: .value) { [self] snapshot in
+                for child in snapshot.children {
+                    let snap = child as! DataSnapshot
+                    let value = snap.value as? NSDictionary
+                    userUID = snap.key
+                    pickpart.append(userUID)
+                    
+                }
+//                print(pickpart)
+        }
+        // 특정 목록만 띄우기
+        ref.observe(.value) { snapshot in
+            guard var value = snapshot.value as? [String: [String: Any]] else { return }
+            print(value.keys)
+            
+            for abc in value.keys {
+//                print(abc)
+//                for partcategory in self.pickpart{
+                if (self.pickpart.contains("\(abc)")) == false{
+                        print(abc)
+                        value.removeValue(forKey: "\(abc)")
+                }
+//            }
+        }
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: value)
+                let userData = try JSONDecoder().decode([String: Uid].self, from: jsonData)
+                let showUserList = Array(userData.values)
+                self.userList = showUserList.sorted { $0.rank < $1.rank } //정렬 순서
+    
+//                print("바뀐 수 : \(showUserList.count)")
+                
+                DispatchQueue.main.async {
+                    self.homeTableView.reloadData()
+//                    print("바뀐 수 : \(self.userList.count)")
+                }
+                
+            }catch let DecodingError.dataCorrupted(context) {
+                print("바뀐error2 : ",context)
+            } catch let DecodingError.keyNotFound(key, context) {
+                print("바뀐Key '\(key)' not found:", context.debugDescription)
+                print("바뀐codingPath:", context.codingPath)
+            } catch let DecodingError.valueNotFound(value, context) {
+                print("바뀐Value '\(value)' not found:", context.debugDescription)
+                print("바뀐codingPath:", context.codingPath)
+            } catch let DecodingError.typeMismatch(type, context)  {
+                print("바뀐Type '\(type)' mismatch:", context.debugDescription)
+                print("바뀐codingPath:", context.codingPath)
+            } catch {
+                print("바뀐error: ", error)
+            }
+            catch let error {
+                print("바뀐ERROR JSON parasing \(error.localizedDescription)")
+            }
+            
+            print("바뀐 countentArray2.cout : \(self.userList.count)")
+        }
     }
     
     func SendCategoryData(data: String) {
@@ -116,17 +170,55 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
     }
 
     var ref: DatabaseReference! //Firebase Realtime Database
-    
+    //
+    var fillteredData = [String]()
     var userList: [Uid] = []
-//    var image = [UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser5")]
-       
-        override func viewDidLoad() {
-            super.viewDidLoad()
+    //알고리즘 - 진행중
+        var userprofileDetail: UserProfileDetail?
+
+       //알고리즘 - 진행중
+        func sortList(a:Int, b:Int) -> Bool {
+            let celebrity1: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는" ]
+            let celebrity2: [String] = ["외향적인", "열정적인", "사교성이 있는" ]
+            let celebrity3: [String] = ["자신감 있는", "의사 결정을 잘하는", "목표 지향적인"]
+            let celebrity4: [String] = ["문제를 극복하는", "도전적인", "추진력있는"]
+            let celebrity5: [String] = ["전략적인", "신중한", "정확히 판단하는"]
+            let detail = userprofileDetail
+            let char = detail?.character
+
+            let charindex: [String] = (char?.components(separatedBy: ", "))!
+            let f = charindex[0]
+            let s = charindex[1]
+            let l = charindex[2]
+
+            //나의 성향 출력
+            if let firstIndex = celebrity1.firstIndex(of: f) {
+                print("창의적인")
+            }
+            for mych in charindex {
+                if let firstIndex = celebrity1.firstIndex(of: mych) {
+                    print("창의적인")
+                }
+            }
+
+
+            return a>b
+
+        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
            
             ref = Database.database().reference().child("user")
             
            // 내정보 가져오기
             let currentUser = Auth.auth().currentUser
+        let myuid: String = Auth.auth().currentUser!.uid
             ref.child((currentUser?.uid)!).child("userProfile").observeSingleEvent(of: .value, with: { snapshot in
               // Get user value
               let value = snapshot.value as? NSDictionary
@@ -137,6 +229,15 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             }) { error in
               print(error.localizedDescription)
             }
+        let img = Storage.storage().reference().child("user_profile_image/\(myuid).jpg")
+        // Fetch the download URL
+        img.downloadURL { [self] url, error in
+            if let error = error {
+            } else {
+                myImg.kf.setImage(with: url)
+                myImg.layer.cornerRadius = myImg.frame.height/2
+            }
+        }
             
             //UITableView Cell Register
             let nibName = UINib(nibName: "UserListCell", bundle: nil)
@@ -155,14 +256,12 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             ref.observe(.value) { snapshot in
                 guard let value = snapshot.value as? [String: [String: Any]] else { return }
                 
-                
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: value)
-//                    let userData = try JSONDecoder().decode([String: UserProfile].self, from: jsonData)
                     let userData = try JSONDecoder().decode([String: Uid].self, from: jsonData)
                     let showUserList = Array(userData.values)
                     self.userList = showUserList.sorted { $0.rank < $1.rank } //정렬 순서
-                    
+        
                     print("countentArray.cout : \(showUserList.count)")
                     
                     DispatchQueue.main.async {
@@ -189,7 +288,6 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
                 }
                 
                 print("countentArray2.cout : \(self.userList.count)")
-                
             }
             
             
@@ -206,35 +304,75 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             addFriendButton.layer.shadowOffset = CGSize(width: 0, height: 4) // 위치조정
             addFriendButton.layer.shadowRadius = 5 // 반경
             addFriendButton.layer.shadowOpacity = 0.3 // alpha값
-            
-            
 
        }
 
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
        }
-    
         
 }
-
 
     extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         
         //배열의 인덱수 수가 테이블 뷰의 row 수
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            tableviewHeight.constant = CGFloat(userList.count * 70 + 110)
             return self.userList.count
            }
        
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserListCell",for: indexPath) as? UserListCell else {return UITableViewCell()}
-                
+            
             cell.userName.text = "\(userList[indexPath.row].userProfile.nickname)"
             cell.school.text = "\(userList[indexPath.row].userProfile.schoolName)"
             cell.partLabel.text = "\(userList[indexPath.row].userProfile.partDetail) • "
             cell.userPurpose.text = "\(userList[indexPath.row].userProfileDetail.purpose)"
             
-               return cell
+            // 같은 학교 처리
+            if cell.school.text == "네이버대학교" {
+                cell.school.layer.borderWidth = 0.5
+                cell.school.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+                cell.school.textColor = UIColor(named: "purple_184")
+                
+                cell.school.layer.cornerRadius = cell.school.frame.height/2
+                cell.school.text = "같은 학교"
+                cell.school.isHidden = false
+                
+            }
+            else {
+                cell.school.isHidden = true
+            }
+            
+            let nickname: String = userList[indexPath.row].userProfile.nickname
+            print(nickname)
+            
+            var userUID2 :String = ""
+            let userdb = Database.database().reference().child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
+            userdb.observeSingleEvent(of: .value) { [self] snapshot in
+                
+                for child in snapshot.children {
+                    
+                    let snap = child as! DataSnapshot
+                    let value = snap.value as? NSDictionary
+                    
+                    userUID2 = snap.key
+                    
+                }
+                let uid: String = userUID2
+//                print(fetchNickNameToUID(nickname:"우다다"))
+//                print(uid)
+                let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+                // Fetch the download URL
+                starsRef.downloadURL { [self] url, error in
+                    if let error = error {
+                    } else {
+                        cell.userImage.kf.setImage(with: url)
+                        cell.userImage.layer.cornerRadius = cell.userImage.frame.height/2
+                    }
+                }
+            }
+            return cell
            }
         
         func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
