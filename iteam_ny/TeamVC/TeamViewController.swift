@@ -107,10 +107,10 @@ class TeamViewController: UIViewController {
         db.child("user").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { [self] (snapshot) in
             
             for child in snapshot.children {
-                let snap = child as! DataSnapshot
-                let value = snap.value as? String
+                let snap = child as? DataSnapshot
+                let value = snap?.value as? String
                 
-                if snap.key == "currentTeam" {
+                if snap?.key == "currentTeam" {
                     if let value = value {
                         teamName = value
                     }
@@ -134,13 +134,16 @@ class TeamViewController: UIViewController {
      
             var count = 0
             for index in dic{
-                let memberlistString = index.value["memberList"] as! String
+                guard let memberlistString = index.value["memberList"] as? String else {
+                    return
+                }
                 var memberListArr = memberlistString.components(separatedBy: ", ")
                 if index.key == teamName {
                     userTeamUIDList = memberlistString.replacingOccurrences(of: Auth.auth().currentUser!.uid, with: "").components(separatedBy: ", ").filter({ $0 != "" })
                     haveTeamProfile = true
                     count += 1
                 }
+
             }
             if count == 0 {
                 haveTeamProfile = false

@@ -137,6 +137,8 @@ class CallAnswerTeamViewController: UIViewController {
             let favorTeamList = db.child("Call")
             //queryEqual(toValue: myNickname)
             favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
+                
+                print("snapshot \(snapshot)")
                 var myCallTime: [[String:String]] = []
                 
                 // 나와 관련된 call 가져오기
@@ -144,8 +146,8 @@ class CallAnswerTeamViewController: UIViewController {
                     let snap = child as! DataSnapshot
                     let value = snap.value as? NSDictionary
                     
+                    
                     for (key, content) in value! {
-                        
                         // 내 팀이 받는 경우를 가져오기(팀은 개인에게 보낼 수 x -> receiverType이 team이면 무조건 receiverNickname은 팀이름 )
                         if key as! String == "receiverNickname" && content as! String == myTeamname + " 팀" {
                             var newValue = value as! [String : String]
@@ -310,6 +312,7 @@ class CallAnswerTeamViewController: UIViewController {
     // 팀 이름으로 팀 정보 받아오기
     func fetchTeam(teamname: String, stmt: String) {
         let justTeamname = teamname.replacingOccurrences(of: " 팀", with: "")
+        print("justTeamname \(justTeamname)")
         let userdb = db.child("Team").child(justTeamname)
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
             var part: String = ""
@@ -444,12 +447,14 @@ class CallAnswerTeamViewController: UIViewController {
     
     // 내 팀이 있다면 리더인지 확인
     func checkIamLeader() {
-        db.child("Team").child(myTeamname).child("leader").observeSingleEvent(of: .value) { [self] snapshot in
-            let leaderUid: String! = snapshot.value as? String
-            if leaderUid == Auth.auth().currentUser!.uid {
-                amiLeader = true
-            }
-            fetchLeader(userUID: leaderUid)
+        if myTeamname != "" {
+            db.child("Team").child(myTeamname).child("leader").observeSingleEvent(of: .value) { [self] snapshot in
+                let leaderUid: String! = snapshot.value as? String
+                if leaderUid == Auth.auth().currentUser!.uid {
+                    amiLeader = true
+                }
+                fetchLeader(userUID: leaderUid)
+            }            
         }
     }
     // uid와 stmt로 user 정보 받기
