@@ -10,6 +10,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var memberAddBtn: UIButton!
     var friendContent: [myFriend] = []
     var ref: DatabaseReference!
     let db = Database.database().reference()
@@ -36,7 +37,6 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
                         if k is [String] {
                             self.friendList = (k as? [String])!
 //                            print(self.giverList)
-                           
                         }
 
                     }
@@ -53,7 +53,7 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
                     var part: String = ""
                     var partDetail: String = ""
                     var purpose: String = ""
-                    var uid: String = ""
+//                    var uid: String = ""
                     
                     for child in snapshot.children {
                         let snap = child as! DataSnapshot
@@ -88,7 +88,7 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
                     }
                     part += " • " + purpose.replacingOccurrences(of: ", ", with: "/")
                     
-                    var friend2 = myFriend(content: part, name: nickname, profileImg: "")
+                    var friend2 = myFriend(uid: uid, content: part, name: nickname, profileImg: "")
                     friendContent.append(friend2)
                     myFriendTableView.reloadData()
                 }
@@ -102,16 +102,45 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
         return friendContent.count
     }
     
+    func currentDateTime() -> String {
+        var formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm"
+        var currentDateString = formatter.string(from: Date())
+
+        return currentDateString
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addfriendCell", for: indexPath) as! AddfriendCell
         
+        cell.accept = { [unowned self] in
+        // 1. DB 에서 요청 데이터 삭제하기
+         let userUID = Auth.auth().currentUser!.uid
+            // 데이터 받아와서 이미 있으면 합쳐주기
+            var index: String = ""
+            ref = Database.database().reference()
+            ref.child("user").child(friendContent[indexPath.row].uid).child("memberRequest").observeSingleEvent(of: .value) { [self] snapshot in
+                if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                    index = "\(snapshots.count)"
+                    let valueUID = ["requestUID" : userUID]
+                    let valueTime = ["requestTime" : currentDateTime()]
+                    let valueStmt = ["requestStmt" : "요청"]
+                    
+                    // 요청한 시간과 함께 넘겨주기
+                    let dataPath = ref.child("user").child(friendContent[indexPath.row].uid).child("memberRequest").child(index)
+                    dataPath.updateChildValues(valueUID)
+                    dataPath.updateChildValues(valueTime)
+                    dataPath.updateChildValues(valueStmt)
+                }
+            }
+        myFriendTableView.reloadData()
+     }
         cell.friendProfile.text = friendContent[indexPath.row].content
         cell.friendName.text = friendContent[indexPath.row].name
         cell.userImg.image = UIImage(named: "\(friendContent[indexPath.row].profileImg)")
-        
         return cell
     }
-    
 
 }
 
@@ -119,13 +148,15 @@ class myFriend {
     var content: String
     var name: String
     var profileImg: String
+    var uid: String
 
     //var profileImg: UIImage
 
-    init(content: String, name: String, profileImg: String ) {
+    init(uid: String, content: String, name: String, profileImg: String ) {
         self.content = content
         self.name = name
         self.profileImg = profileImg
+        self.uid = uid
     }
 
 

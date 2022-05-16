@@ -19,6 +19,8 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var friendList: [Friend] = []
     var friendUid:[String] = []
     var friendUid2:[String] = []
+    var memberUid:[String] = []
+    var memberUid2:[String] = []
     var requestUID = ""
     var requestStmt = ""
     var requestTime = ""
@@ -46,10 +48,10 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func fetchMemberData() {
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         let userUID = Auth.auth().currentUser!.uid
-            // 팀 알림 가져오기
-            let favorTeamList = db.child("user").child(userUID).child("memberRequest")
+            
+            let memberRequestList = db.child("user").child(userUID).child("memberRequest")
             //queryEqual(toValue: myNickname)
-            favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
+        memberRequestList.observeSingleEvent(of: .value) { [self] snapshot in
                 
                 // 나와 관련된 call 가져오기
                 for child in snapshot.children {
@@ -64,11 +66,11 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print(requestStmt)
                     print(requestUID)
                     memberInfo = (requestUID+","+requestStmt+","+requestTime)
-                    friendUid.append(memberInfo)
+                    memberUid.append(memberInfo)
                 }
                 
-                for uid in self.friendUid{
-                    self.friendUid2.append(uid)
+                for uid in self.memberUid{
+                    self.memberUid2.append(uid)
                     print(uid)
                     let charindex = uid.components(separatedBy: ",")
                     //friendList.append(contentsOf: <#T##Sequence#>)
@@ -180,28 +182,53 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         //수락 버튼
         cell.accept = { [unowned self] in
-           // 1. 새로운 채팅방 개설하기 위해 DB에 채팅 데이터 추가하는 함수 호출
-           // 2. DB 에서 요청 데이터 삭제하기
             let userUID = Auth.auth().currentUser!.uid
-//            let fuid = friendUid[indexPath.row]
             let fuid = friendList[indexPath.row].uid
-//            print(fuid)
-            //데이터베이스에서 삭제...미해결
-//           Database.database().reference().child("user").child(userUID).child("friendRequest").queryEqual(toValue: fuid).removeValue()
+            let fnickname = friendList[indexPath.row].nickname
             
         //친구 리스트에 추가 진행중
             var Index: String = ""
-//            Database.database().reference().child("user").child(userUID).child("friendsList").updateChildValues(fUid)
-            db.child("user").child(userUID).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
-                if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                    print(snapshots.count)
-                    Index = "\(snapshots.count)"
-                    let fUid: [String: String] = [Index : fuid]
-                    db.child("user").child(userUID).child("friendsList").updateChildValues(fUid)
+            
+//          Database.database().reference().child("user").child(userUID).child("friendsList").updateChildValues(fUid)
+            if(fnickname.contains("친구")){
+                db.child("user").child(userUID).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
+                    if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                        print(snapshots.count)
+                        Index = "\(snapshots.count)"
+                        let fUid: [String: String] = [Index : fuid]
+                        db.child("user").child(userUID).child("friendsList").updateChildValues(fUid)
+                    }
                 }
+                self.friendList.remove(at: indexPath.row)
+                notifyTableView.reloadData()
             }
-           self.friendList.remove(at: indexPath.row)
-            notifyTableView.reloadData()
+   
+            
+            if(fnickname.contains("팀원")){
+                db.child("user").child(fuid).child("userTeam").observeSingleEvent(of: .value) {snapshot in
+                  let value = snapshot.value as? String ?? ""
+                    if value.isEmpty{
+                      db.child("user").child(fuid).child("userTeam").setValue(userUID)
+                    }
+                    else{
+                     db.child("user").child(fuid).child("userTeam").setValue(value + ", " + userUID)
+                    }
+                   
+                }
+                db.child("user").child(userUID).child("userTeam").observeSingleEvent(of: .value) {snapshot in
+                  let value = snapshot.value as? String ?? ""
+                    if value.isEmpty{
+                        db.child("user").child(userUID).child("userTeam").setValue(fuid)
+                    }
+                    else{
+                        db.child("user").child(userUID).child("userTeam").setValue(value + ", " + fuid )
+                    }
+                   
+                }
+                self.friendList.remove(at: indexPath.row)
+                notifyTableView.reloadData()
+            }
+
         }
             //거절하기 버튼 눌렀을 때 실행할 함수 선언
            cell.refuse = { [unowned self] in
