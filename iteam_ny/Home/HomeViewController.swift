@@ -14,6 +14,8 @@ import Kingfisher
 
 class HomeViewController: UIViewController, PickpartDataDelegate{
     
+    @IBOutlet weak var myImg: UIImageView!
+    @IBOutlet weak var tableviewHeight: NSLayoutConstraint!
     @IBOutlet weak var myPart: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memberStackVIew: UIStackView!
@@ -99,7 +101,7 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
                     pickpart.append(userUID)
                     
                 }
-                print(pickpart)
+//                print(pickpart)
         }
         // 특정 목록만 띄우기
         ref.observe(.value) { snapshot in
@@ -121,11 +123,11 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
                 let showUserList = Array(userData.values)
                 self.userList = showUserList.sorted { $0.rank < $1.rank } //정렬 순서
     
-                print("바뀐 수 : \(showUserList.count)")
+//                print("바뀐 수 : \(showUserList.count)")
                 
                 DispatchQueue.main.async {
                     self.homeTableView.reloadData()
-                    print("바뀐 수 : \(self.userList.count)")
+//                    print("바뀐 수 : \(self.userList.count)")
                 }
                 
             }catch let DecodingError.dataCorrupted(context) {
@@ -173,8 +175,7 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
     var userList: [Uid] = []
     //알고리즘 - 진행중
         var userprofileDetail: UserProfileDetail?
-    //    var image = [UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser4"),UIImage(named: "imgUser5"),UIImage(named: "imgUser5")]
-        
+
        //알고리즘 - 진행중
         func sortList(a:Int, b:Int) -> Bool {
             let celebrity1: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는" ]
@@ -204,15 +205,20 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             return a>b
 
         }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+    }
     
-        override func viewDidLoad() {
-            super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
            
             ref = Database.database().reference().child("user")
             
            // 내정보 가져오기
             let currentUser = Auth.auth().currentUser
-            
+        let myuid: String = Auth.auth().currentUser!.uid
             ref.child((currentUser?.uid)!).child("userProfile").observeSingleEvent(of: .value, with: { snapshot in
               // Get user value
               let value = snapshot.value as? NSDictionary
@@ -223,6 +229,15 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             }) { error in
               print(error.localizedDescription)
             }
+        let img = Storage.storage().reference().child("user_profile_image/\(myuid).jpg")
+        // Fetch the download URL
+        img.downloadURL { [self] url, error in
+            if let error = error {
+            } else {
+                myImg.kf.setImage(with: url)
+                myImg.layer.cornerRadius = myImg.frame.height/2
+            }
+        }
             
             //UITableView Cell Register
             let nibName = UINib(nibName: "UserListCell", bundle: nil)
@@ -295,41 +310,14 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
        }
-    var plz: [String] = []
-    var hi:String = ""
-    func fetchNickNameToUID(nickname: String) -> String {
-        var plz2 = ""
-        var userUID2: String = ""
-        let userdb = Database.database().reference().child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
-        userdb.observeSingleEvent(of: .value) { [self] snapshot in
-            
-            for child in snapshot.children {
-                
-                let snap = child as! DataSnapshot
-                let value = snap.value as? NSDictionary
-                
-                userUID2 = snap.key
-//                print(userUID2)
-                print("d")
-                
-            }
-            hi = "\(userUID2)"
-        }
-        print(hi+"z")
-//        print(plz)
-//        print(userUID2)
-//        plz.append(userUID2)
-        var greeting = "Hello, " + hi + "!"
-        return greeting
-    }
         
 }
-
 
     extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         
         //배열의 인덱수 수가 테이블 뷰의 row 수
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            tableviewHeight.constant = CGFloat(userList.count * 70 + 110)
             return self.userList.count
            }
        
@@ -341,31 +329,54 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             cell.partLabel.text = "\(userList[indexPath.row].userProfile.partDetail) • "
             cell.userPurpose.text = "\(userList[indexPath.row].userProfileDetail.purpose)"
             
+            // 같은 학교 처리
+            if cell.school.text == "네이버대학교" {
+                cell.school.layer.borderWidth = 0.5
+                cell.school.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+                cell.school.textColor = UIColor(named: "purple_184")
+                
+                cell.school.layer.cornerRadius = cell.school.frame.height/2
+                cell.school.text = "같은 학교"
+                cell.school.isHidden = false
+                
+            }
+            else {
+                cell.school.isHidden = true
+            }
+            
             let nickname: String = userList[indexPath.row].userProfile.nickname
-            // kingfisher 사용하기 위한 url
-//            let uid: String = fetchNickNameToUID(nickname: nickname)
-//            let uid: String = fetchNickNameToUID(nickname: nickname)
-            doSomething()
-            print(fetchNickNameToUID(nickname:"우다다"))
-//            print(uid)
-//            let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+            print(nickname)
             
-            // Fetch the download URL
-//            starsRef.downloadURL { [self] url, error in
-//                if let error = error {
-//                } else {
-//                    cell.userImage.kf.setImage(with: url)
-//                }
-//            }
-            
+            var userUID2 :String = ""
+            let userdb = Database.database().reference().child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
+            userdb.observeSingleEvent(of: .value) { [self] snapshot in
+                
+                for child in snapshot.children {
+                    
+                    let snap = child as! DataSnapshot
+                    let value = snap.value as? NSDictionary
+                    
+                    userUID2 = snap.key
+                    
+                }
+                let uid: String = userUID2
+//                print(fetchNickNameToUID(nickname:"우다다"))
+//                print(uid)
+                let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+                // Fetch the download URL
+                starsRef.downloadURL { [self] url, error in
+                    if let error = error {
+                    } else {
+                        cell.userImage.kf.setImage(with: url)
+                        cell.userImage.layer.cornerRadius = cell.userImage.frame.height/2
+                    }
+                }
+            }
             return cell
            }
         
         func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
             return 70
-        }
-        func doSomething() {
-            print("Somaker")
         }
         
         

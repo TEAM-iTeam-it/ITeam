@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ce8-cR-c6d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ce8-cR-c6d">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -125,9 +125,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bov-o8-3N5">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="968.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="988.5"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hhM-Yb-vnB">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hhM-Yb-vnB">
                                                 <rect key="frame" x="20" y="458" width="374" height="281"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -194,7 +194,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbW-56-F4B">
-                                                <rect key="frame" x="10" y="938" width="394" height="20.5"/>
+                                                <rect key="frame" x="10" y="958" width="394" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
@@ -210,6 +210,10 @@
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_user1.png" translatesAutoresizingMaskIntoConstraints="NO" id="tGT-m3-9dn">
                                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="70" id="OM5-hy-mlr"/>
+                                                                            <constraint firstAttribute="height" constant="70" id="XAc-56-vDj"/>
+                                                                        </constraints>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="mRO-Cg-SIi">
                                                                         <rect key="frame" x="0.0" y="85" width="70" height="36"/>
@@ -291,7 +295,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Ive-bA-vrX" secondAttribute="trailing" constant="15" id="27J-D0-2mq"/>
                                             <constraint firstItem="g70-D1-xfj" firstAttribute="leading" secondItem="bov-o8-3N5" secondAttribute="leading" constant="20" id="8Bh-hH-4YT"/>
                                             <constraint firstAttribute="trailing" secondItem="MGI-ja-2Ap" secondAttribute="trailing" constant="20" id="8uk-tM-FOA"/>
-                                            <constraint firstItem="nbW-56-F4B" firstAttribute="top" secondItem="hhM-Yb-vnB" secondAttribute="bottom" constant="10" id="9cy-Ft-gxj"/>
+                                            <constraint firstItem="nbW-56-F4B" firstAttribute="top" secondItem="hhM-Yb-vnB" secondAttribute="bottom" constant="30" id="9cy-Ft-gxj"/>
                                             <constraint firstItem="nbW-56-F4B" firstAttribute="leading" secondItem="bov-o8-3N5" secondAttribute="leading" constant="10" id="Fmn-GP-Vdo"/>
                                             <constraint firstAttribute="trailing" secondItem="DMA-xW-UIK" secondAttribute="trailing" id="Hhe-az-ytc"/>
                                             <constraint firstItem="ZYe-PS-mIa" firstAttribute="leading" secondItem="bov-o8-3N5" secondAttribute="leading" constant="20" id="SE9-3S-5vX"/>
@@ -358,8 +362,10 @@
                         <outlet property="addFriendButton" destination="Ive-bA-vrX" id="SWe-9d-Cw6"/>
                         <outlet property="homeTableView" destination="hhM-Yb-vnB" id="q1R-Ka-1dc"/>
                         <outlet property="memberStackVIew" destination="1G5-5s-GLF" id="Qj3-HH-YZU"/>
+                        <outlet property="myImg" destination="tGT-m3-9dn" id="B7C-Bp-JnI"/>
                         <outlet property="myPart" destination="iwQ-EJ-csS" id="xh7-WE-R2y"/>
                         <outlet property="scrollView" destination="DMA-xW-UIK" id="Ejp-Ay-6qM"/>
+                        <outlet property="tableviewHeight" destination="3r4-Gy-mRp" id="yhR-16-cMI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFr-iP-3hR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2854,7 +2860,7 @@
     </scenes>
     <designables>
         <designable name="SR2-nu-ucD">
-            <size key="intrinsicContentSize" width="194.5" height="58"/>
+            <size key="intrinsicContentSize" width="166.5" height="48"/>
         </designable>
     </designables>
     <resources>
