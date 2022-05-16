@@ -551,6 +551,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="추가"/>
+                                                    <connections>
+                                                        <action selector="clickedAddBtn:" destination="uXJ-l6-KNF" eventType="touchUpInside" id="Rfx-30-fZY"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
