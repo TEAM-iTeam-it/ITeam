@@ -51,7 +51,7 @@ class CallAnswerViewController: UIViewController {
         setUI()
         
         // 바뀐 데이터 불러오기
-        //fetchChangedData()
+        fetchChangedData()
     }
     override func viewWillAppear(_ animated: Bool) {
         fetchData()
@@ -225,6 +225,7 @@ class CallAnswerViewController: UIViewController {
         return convertStr
        
     }
+    
     // uid와 stmt로 user 정보 받기
     func fetchUser(userUID: String, stmt: String) {
         let userdb = db.child("user").child(userUID)
@@ -409,7 +410,6 @@ class CallAnswerViewController: UIViewController {
         }
     }
 
-    
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
         removeArr()
@@ -441,6 +441,30 @@ class CallAnswerViewController: UIViewController {
         sleep(2)
         exit(0)
     }
+    
+    @IBAction func testChangeCall(_ sender: UIButton) {
+        for i in 0..<personList.count {
+            if personList[i].callStm == "대기 중" {
+                print("박박")
+                var indexCount = -1
+                
+                for j in 0..<personList.count {
+                    if personList[j].callStm == "대기 중" {
+                        indexCount += 1
+                    }
+                }
+                let teamIndex = teamIndex[indexCount]
+                
+                let stmt: [String: String] = [ "stmt": "통화"]
+                let ref = Database.database().reference()
+                    .child("Call").child(teamIndex)
+                ref.updateChildValues(stmt)
+                
+                break
+            }
+        }
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "waitingVC" {
