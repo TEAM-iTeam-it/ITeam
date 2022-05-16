@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorage
+import Kingfisher
 
 class UserProfileController: UIViewController{
     var userprofileDetail: UserProfileDetail?
@@ -74,6 +78,7 @@ class UserProfileController: UIViewController{
 //            contactLink.text = detail.contactLink
         
         userName.text = basicinfo.nickname
+        sameSchol.text = basicinfo.schoolName
         partLabel.text = basicinfo.partDetail
         purposeLabel.text = detail.purpose
         characterLabel.text = charindex[0]
@@ -86,6 +91,50 @@ class UserProfileController: UIViewController{
         callTime.text = basicinfo.portfolio.calltime
         portfolioLabel.text = basicinfo.portfolio.portfolioLink
         contactLink.text = basicinfo.portfolio.contactLink
+        
+        
+        let nickname: String = basicinfo.nickname
+        print(nickname)
+        
+        var userUID2 :String = ""
+        let userdb = Database.database().reference().child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
+        userdb.observeSingleEvent(of: .value) { [self] snapshot in
+            
+            for child in snapshot.children {
+                
+                let snap = child as! DataSnapshot
+                let value = snap.value as? NSDictionary
+                
+                userUID2 = snap.key
+                
+            }
+            let uid: String = userUID2
+//                print(fetchNickNameToUID(nickname:"우다다"))
+//                print(uid)
+            let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+            // Fetch the download URL
+            starsRef.downloadURL { [self] url, error in
+                if let error = error {
+                } else {
+                    userImage.kf.setImage(with: url)
+                    userImage.layer.cornerRadius = userImage.frame.height/2
+                }
+            }
+        }
+        
+        if sameSchol.text == "네이버대학교" {
+            sameSchol.layer.borderWidth = 0.5
+            sameSchol.layer.borderColor = UIColor(named: "purple_184")?.cgColor
+            sameSchol.textColor = UIColor(named: "purple_184")
+            
+            sameSchol.layer.cornerRadius = sameSchol.frame.height/2
+            sameSchol.text = "같은 학교"
+            sameSchol.isHidden = false
+            
+        }
+        else {
+            sameSchol.isHidden = true
+        }
         
             
         }
