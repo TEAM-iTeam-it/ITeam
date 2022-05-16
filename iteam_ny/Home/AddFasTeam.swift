@@ -23,6 +23,9 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
         fetchFreindRequest()
 //        friendContent.append(myFriend(content: "ios개발, 공모전", name: "에일리", profileImg: "imgUser5"))
     }
+    override func viewWillAppear(_ animated: Bool) {
+        myFriendTableView.reloadData()
+    }
     
     func fetchFreindRequest() {
 //        giverList.removeAll()
