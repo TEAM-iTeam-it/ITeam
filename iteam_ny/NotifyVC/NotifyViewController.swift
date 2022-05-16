@@ -40,6 +40,63 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func fetchData2() {
+        let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
+        let userUID = Auth.auth().currentUser!.uid
+            // 팀 알림 가져오기
+            let favorTeamList = db.child("user").child(userUID).child("MemberRequest")
+            //queryEqual(toValue: myNickname)
+            favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
+                
+                // 나와 관련된 call 가져오기
+                for child in snapshot.children {
+                    let snap = child as! DataSnapshot
+                    let value = snap.value as? NSDictionary
+//                    print (value)
+                    
+                    requestTime = value?["requestTime"] as? String ?? ""
+                    requestStmt = value?["requestStmt"] as? String ?? ""
+                    requestUID = value?["requestUID"] as? String ?? ""
+                    print(requestTime)
+                    print(requestStmt)
+                    print(requestUID)
+                    allInfo = (requestUID+","+requestStmt+","+requestTime)
+                    friendUid.append(allInfo)
+                }
+                
+                for uid in self.friendUid{
+                    self.friendUid2.append(uid)
+                    print(uid)
+                    let charindex = uid.components(separatedBy: ",")
+                    //friendList.append(contentsOf: <#T##Sequence#>)
+                    self.db.child("user").child(charindex[0]).observeSingleEvent(of: .value) { [self] snapshot in
+                        var nickname: String = ""
+
+                        for child in snapshot.children {
+                            let snap = child as! DataSnapshot
+                            let value = snap.value as? NSDictionary
+
+                            if snap.key == "userProfile" {
+                                for (key, content) in value! {
+                                    if key as! String == "nickname" {
+                                        nickname = content as! String
+                                    }
+                                }
+                            }
+                        }
+                        print("a")
+                        print(charindex[0])
+                        print(charindex[1])
+                        print(charindex[2])
+                        var friend = Friend(uid: charindex[0], nickname: nickname, position: charindex[2], profileImg: "")
+                        friendList.append(friend)
+                        notifyTableView.reloadData()
+                    }
+                }
+            }
+        notifyTableView.reloadData()
+    }
+    
     func fetchData() {
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         let userUID = Auth.auth().currentUser!.uid

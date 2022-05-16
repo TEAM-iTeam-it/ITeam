@@ -229,7 +229,7 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             }) { error in
               print(error.localizedDescription)
             }
-        let img = Storage.storage().reference().child("user_profile_image/\(myuid).jpg")
+        let img = Storage.storage().reference().child("user_profile_image/\(Auth.auth().currentUser!.uid).jpg")
         // Fetch the download URL
         img.downloadURL { [self] url, error in
             if let error = error {
