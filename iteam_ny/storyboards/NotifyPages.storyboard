@@ -102,7 +102,10 @@
                                                         <constraint firstAttribute="height" constant="28" id="DwG-hQ-54r"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="수락"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="수락">
+                                                        <backgroundConfiguration key="background" cornerRadius="10"/>
+                                                        <color key="baseBackgroundColor" name="purple_184"/>
+                                                    </buttonConfiguration>
                                                     <connections>
                                                         <action selector="clickedAccept:" destination="Txa-6A-zJw" eventType="touchUpInside" id="z2r-XZ-v5Z"/>
                                                     </connections>
@@ -114,7 +117,13 @@
                                                         <constraint firstAttribute="height" constant="28" id="gHu-tT-FRU"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="거절"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="삭제">
+                                                        <backgroundConfiguration key="background" cornerRadius="10" strokeWidth="0.5">
+                                                            <color key="strokeColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </backgroundConfiguration>
+                                                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
                                                     <connections>
                                                         <action selector="clickedRefuse:" destination="Txa-6A-zJw" eventType="touchUpInside" id="0Ru-dj-elz"/>
                                                     </connections>
@@ -171,6 +180,9 @@
     </scenes>
     <resources>
         <image name="imgUser8.png" width="50" height="50"/>
+        <namedColor name="purple_184">
+            <color red="0.72156862745098038" green="0.3843137254901961" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -203,8 +203,8 @@
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMA-xW-UIK">
                                                 <rect key="frame" x="0.0" y="130" width="414" height="173"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="left" distribution="equalSpacing" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1G5-5s-GLF">
-                                                        <rect key="frame" x="30" y="25" width="417" height="121"/>
+                                                    <stackView opaque="NO" contentMode="left" distribution="equalSpacing" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1G5-5s-GLF">
+                                                        <rect key="frame" x="30" y="25" width="230" height="121"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Lmr-j4-tan">
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="118"/>
@@ -236,10 +236,10 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FNS-lQ-xom">
-                                                                <rect key="frame" x="100" y="0.0" width="217" height="121"/>
+                                                                <rect key="frame" x="90" y="0.0" width="50" height="121"/>
                                                                 <color key="backgroundColor" red="0.56470588239999997" green="1" blue="0.78823529410000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="217" id="dG6-d4-ZYM"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="dG6-d4-ZYM"/>
                                                                     <constraint firstAttribute="height" constant="121" id="iTz-BK-E5Z"/>
                                                                 </constraints>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mhc-Ce-cQG">
@@ -299,7 +299,7 @@
                                                                 </connections>
                                                             </collectionView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgt-ik-f6n">
-                                                                <rect key="frame" x="347" y="0.0" width="70" height="70"/>
+                                                                <rect key="frame" x="160" y="0.0" width="70" height="70"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="70" id="Wcc-mw-LNX"/>
                                                                     <constraint firstAttribute="width" constant="70" id="nYb-zu-kRX"/>

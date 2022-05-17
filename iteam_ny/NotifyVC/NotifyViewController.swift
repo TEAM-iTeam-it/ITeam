@@ -285,6 +285,8 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if friendList[indexPath.row].stmt == "수락"{
             cell.refuseBtn.layer.isHidden = true
             cell.AcceptedBtn.setTitle("추가됨", for: .normal)
+            cell.AcceptedBtn.backgroundColor = .white
+            cell.AcceptedBtn.layer.borderWidth = 0.5
         }
         if friendList[indexPath.row].stmt == "요청"{
             cell.refuseBtn.layer.isHidden = false
