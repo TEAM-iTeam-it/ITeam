@@ -211,31 +211,31 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //수락 버튼
         cell.accept = { [unowned self] in
             let userUID = Auth.auth().currentUser!.uid
-            let fuid = friendList[indexPath.row].uid
-            let fnickname = friendList[indexPath.row].nickname
+            let uid = friendList[indexPath.row].uid
+            let nickname = friendList[indexPath.row].nickname
             
         //친구 리스트에 추가 진행중
             var Index: String = ""
             
 //          Database.database().reference().child("user").child(userUID).child("friendsList").updateChildValues(fUid)
-            if(fnickname.contains("친구")){
-                print("여기는 오류가 ㅇ나ㅣ야!!!\(fnickname)")
+            if(nickname.contains("친구")){
+                print("여기는 오류가 ㅇ나ㅣ야!!!\(nickname)")
                 db.child("user").child(userUID).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
                     print("\(userUID)이건아니다ㅏㅏㅏㅏㅏㅏㅏ")
                     if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                         print(snapshots.count)
                         Index = "\(snapshots.count)"
-                        let fUid: [String: String] = [Index : fuid]
-                        db.child("user").child(userUID).child("friendsList").setValue(fUid)
+                        let fUid: [String: String] = [Index : uid]
+                        db.child("user").child(userUID).child("friendsList").updateChildValues(fUid)
                     }
                 }
                 
-                db.child("user").child(fuid).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
+                db.child("user").child(uid).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
                     if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                         print(snapshots.count)
                         Index = "\(snapshots.count)"
                         let myUid: [String: String] = [Index : userUID]
-                        db.child("user").child(fuid).child("friendsList").setValue(myUid)
+                        db.child("user").child(uid).child("friendsList").updateChildValues(myUid)
                     }
                 }
 //                self.friendList.remove(at: indexPath.row)
@@ -244,24 +244,24 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
    
             
-            if(fnickname.contains("팀원")){
-                db.child("user").child(fuid).child("userTeam").observeSingleEvent(of: .value) {snapshot in
+            if(nickname.contains("팀원")){
+                db.child("user").child(uid).child("userTeam").observeSingleEvent(of: .value) {snapshot in
                   let value = snapshot.value as? String ?? ""
                     if value.isEmpty{
-                      db.child("user").child(fuid).child("userTeam").setValue(userUID)
+                      db.child("user").child(uid).child("userTeam").setValue(userUID)
                     }
                     else{
-                     db.child("user").child(fuid).child("userTeam").setValue(value + ", " + userUID)
+                     db.child("user").child(uid).child("userTeam").setValue(value + ", " + userUID)
                     }
                    
                 }
                 db.child("user").child(userUID).child("userTeam").observeSingleEvent(of: .value) {snapshot in
                   let value = snapshot.value as? String ?? ""
                     if value.isEmpty{
-                        db.child("user").child(userUID).child("userTeam").setValue(fuid)
+                        db.child("user").child(userUID).child("userTeam").setValue(uid)
                     }
                     else{
-                        db.child("user").child(userUID).child("userTeam").setValue(value + ", " + fuid )
+                        db.child("user").child(userUID).child("userTeam").setValue(value + ", " + uid )
                     }
                    
                 }

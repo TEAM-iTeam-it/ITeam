@@ -580,7 +580,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="azM-4g-ZOR">
-                                <rect key="frame" x="0.0" y="200" width="414" height="320"/>
+                                <rect key="frame" x="0.0" y="200" width="414" height="652"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addfriendCell" rowHeight="70" id="uXJ-l6-KNF" customClass="AddfriendCell" customModule="iteam_ny" customModuleProvider="target">
@@ -616,7 +616,10 @@
                                                         <constraint firstAttribute="width" constant="49" id="yd7-Tm-nJf"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="추가"/>
+                                                    <buttonConfiguration key="configuration" style="gray" title="추가">
+                                                        <fontDescription key="titleFontDescription" type="system" pointSize="11"/>
+                                                        <color key="baseForegroundColor" name="gray_dark2"/>
+                                                    </buttonConfiguration>
                                                     <connections>
                                                         <action selector="clickedAddBtn:" destination="uXJ-l6-KNF" eventType="touchUpInside" id="Rfx-30-fZY"/>
                                                     </connections>
@@ -657,7 +660,7 @@
                             <constraint firstItem="azM-4g-ZOR" firstAttribute="top" secondItem="ckm-NT-Cek" secondAttribute="bottom" constant="15" id="RSe-eU-kGT"/>
                             <constraint firstItem="azM-4g-ZOR" firstAttribute="leading" secondItem="XuF-n4-2H0" secondAttribute="leading" id="WZv-Hn-PlM"/>
                             <constraint firstItem="IDr-s0-EGS" firstAttribute="trailing" secondItem="XuF-n4-2H0" secondAttribute="trailing" constant="10" id="aUa-a1-tcI"/>
-                            <constraint firstItem="XuF-n4-2H0" firstAttribute="bottom" secondItem="azM-4g-ZOR" secondAttribute="bottom" constant="342" id="k8J-tH-Wuz"/>
+                            <constraint firstItem="XuF-n4-2H0" firstAttribute="bottom" secondItem="azM-4g-ZOR" secondAttribute="bottom" constant="10" id="k8J-tH-Wuz"/>
                             <constraint firstItem="ckm-NT-Cek" firstAttribute="top" secondItem="IDr-s0-EGS" secondAttribute="bottom" constant="15" id="oGW-HN-7kQ"/>
                             <constraint firstItem="ckm-NT-Cek" firstAttribute="leading" secondItem="XuF-n4-2H0" secondAttribute="leading" constant="30" id="vnX-0I-i9N"/>
                             <constraint firstItem="XuF-n4-2H0" firstAttribute="trailing" secondItem="azM-4g-ZOR" secondAttribute="trailing" id="z7v-un-5Zg"/>
@@ -1102,12 +1105,14 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="selectTime_1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1S-WF-zjv">
                                 <rect key="frame" x="20" y="212" width="374" height="107"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="107" id="ia7-hj-2FN"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="첫 번째 후보를 선택해 주세요">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="gray_121"/>
                                 </state>
                                 <connections>
                                     <action selector="btnClicked:" destination="sYu-cz-XiC" eventType="touchUpInside" id="CJn-CW-61J"/>
@@ -1116,25 +1121,27 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="후보 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0Y-QP-b5t">
                                 <rect key="frame" x="40" y="252" width="60" height="28"/>
-                                <color key="backgroundColor" name="gray_229"/>
+                                <color key="backgroundColor" name="purple_247"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="Gtd-k9-wfo"/>
                                     <constraint firstAttribute="width" constant="60" id="ksh-hU-FjK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="14"/>
-                                <color key="textColor" name="gray_121"/>
+                                <color key="textColor" name="purple_184"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="selectTime_2" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvL-bD-BnE">
                                 <rect key="frame" x="20" y="339" width="374" height="107"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="107" id="IcS-9B-hVG"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="두 번째 후보를 선택해 주세요">
-                                    <backgroundConfiguration key="background" cornerRadius="10"/>
-                                    <color key="baseBackgroundColor" name="gray_light3"/>
-                                </buttonConfiguration>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="두 번째 후보를 선택해 주세요">
+                                    <color key="titleColor" name="gray_121"/>
+                                </state>
                                 <connections>
                                     <action selector="btnClicked:" destination="sYu-cz-XiC" eventType="touchUpInside" id="z2A-iP-CZD"/>
                                 </connections>
@@ -1157,38 +1164,40 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="selectTime_3" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAp-kp-oS1">
                                 <rect key="frame" x="20" y="466" width="374" height="107"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="107" id="IpI-0R-hHj"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="세 번째 후보를 선택해 주세요">
-                                    <backgroundConfiguration key="background" cornerRadius="10"/>
-                                    <color key="baseBackgroundColor" name="gray_light3"/>
-                                </buttonConfiguration>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="세 번째 후보를 선택해 주세요">
+                                    <color key="titleColor" name="gray_121"/>
+                                </state>
                                 <connections>
                                     <action selector="btnClicked:" destination="sYu-cz-XiC" eventType="touchUpInside" id="nkB-4B-mu9"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="후보 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9GX-IV-d91">
                                 <rect key="frame" x="40" y="379" width="60" height="28"/>
-                                <color key="backgroundColor" name="gray_229"/>
+                                <color key="backgroundColor" name="purple_247"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="gRa-Zu-zc4"/>
                                     <constraint firstAttribute="height" constant="28" id="gy1-Fi-Qzj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="14"/>
-                                <color key="textColor" name="gray_121"/>
+                                <color key="textColor" name="purple_184"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="후보 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aK-xG-Xuy">
                                 <rect key="frame" x="40" y="506" width="60" height="28"/>
-                                <color key="backgroundColor" name="gray_229"/>
+                                <color key="backgroundColor" name="purple_247"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="6ER-Tq-k83"/>
                                     <constraint firstAttribute="width" constant="60" id="c1L-XR-knF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="14"/>
-                                <color key="textColor" name="gray_121"/>
+                                <color key="textColor" name="purple_184"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1219,6 +1228,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZN4-8b-rV2"/>
                     <connections>
+                        <outlet property="candidateBtn_1" destination="c0Y-QP-b5t" id="h4w-FE-NlJ"/>
+                        <outlet property="candidateLabel_2" destination="9GX-IV-d91" id="b4S-3z-Ldj"/>
+                        <outlet property="candidateLabel_3" destination="4aK-xG-Xuy" id="ZtK-HP-ueT"/>
                         <outlet property="selectTime_1" destination="H1S-WF-zjv" id="JGg-AK-Na7"/>
                         <outlet property="selectTime_2" destination="KvL-bD-BnE" id="oTM-mb-PUb"/>
                         <outlet property="selectTime_3" destination="LAp-kp-oS1" id="5dc-aM-X0o"/>
@@ -3004,17 +3016,20 @@
         <namedColor name="gray_245">
             <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="gray_dark2">
+            <color red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="gray_light">
             <color red="0.7686274509803922" green="0.7686274509803922" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_light2">
             <color red="0.85490196078431369" green="0.85490196078431369" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="gray_light3">
-            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="purple_184">
             <color red="0.72156862745098038" green="0.3843137254901961" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="purple_247">
+            <color red="0.96862745098039216" green="0.92941176470588238" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="purple_light">
             <color red="0.95686274509803926" green="0.90588235294117647" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

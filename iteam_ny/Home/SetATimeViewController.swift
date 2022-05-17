@@ -16,6 +16,10 @@ class SetATimeViewController: UIViewController{
     var ref: DatabaseReference!
     
 //    @IBOutlet var TimeBtns: [UIButton]!
+    
+    @IBOutlet weak var candidateLabel_3: UILabel!
+    @IBOutlet weak var candidateLabel_2: UILabel!
+    @IBOutlet weak var candidateBtn_1: UILabel!
     @IBOutlet weak var selectTime_3: UIButton!
     @IBOutlet weak var selectTime_2: UIButton!
     @IBOutlet weak var selectTime_1: UIButton!
@@ -23,6 +27,13 @@ class SetATimeViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        candidateBtn_1.isHidden = true
+        candidateLabel_2.isHidden = true
+        candidateLabel_3.isHidden = true
+        selectTime_3.layer.cornerRadius = 8
+        selectTime_2.layer.cornerRadius = 8
+        selectTime_1.layer.cornerRadius = 8
         
     }
     @IBOutlet var Buttons: Array<UIButton>!
@@ -90,14 +101,51 @@ extension SetATimeViewController: SendTimeDataDelegate {
         if dhdh.contains("첫번째"){
             self.selectTime_1.setTitle(result, for: .normal)
             self.selectTime_1.setTitleColor(UIColor.black, for: .normal)
+            
+            candidateBtn_1.isHidden = false
+            candidateBtn_1.layer.cornerRadius = 10
+            
+            selectTime_1.backgroundColor = .white
+            selectTime_1.layer.borderWidth = 0
+            selectTime_1.layer.borderColor = UIColor.black.cgColor
+            selectTime_1.layer.shadowColor = UIColor.black.cgColor
+            selectTime_1.layer.shadowOffset = CGSize(width: 0, height: 0)
+            selectTime_1.layer.shadowOpacity = 0.2
+            selectTime_1.layer.shadowRadius = 10
+            selectTime_1.layer.masksToBounds = false
         }
         if dhdh.contains("두번째"){
             self.selectTime_2.setTitle(result, for: .normal)
             self.selectTime_2.setTitleColor(UIColor.black, for: .normal)
+            
+            candidateLabel_2.isHidden = false
+            candidateLabel_2.layer.cornerRadius = 10
+            
+            
+            selectTime_2.backgroundColor = .white
+            selectTime_2.layer.borderWidth = 0
+            selectTime_2.layer.borderColor = UIColor.black.cgColor
+            selectTime_2.layer.shadowColor = UIColor.black.cgColor
+            selectTime_2.layer.shadowOffset = CGSize(width: 0, height: 0)
+            selectTime_2.layer.shadowOpacity = 0.2
+            selectTime_2.layer.shadowRadius = 10
+            selectTime_2.layer.masksToBounds = false
         }
         if dhdh.contains("세번째"){
             self.selectTime_3.setTitle(result, for: .normal)
             self.selectTime_3.setTitleColor(UIColor.black, for: .normal)
+            
+            candidateLabel_3.isHidden = false
+            candidateLabel_3.layer.cornerRadius = 10
+            
+            selectTime_3.backgroundColor = .white
+            selectTime_3.layer.borderWidth = 0
+            selectTime_3.layer.borderColor = UIColor.black.cgColor
+            selectTime_3.layer.shadowColor = UIColor.black.cgColor
+            selectTime_3.layer.shadowOffset = CGSize(width: 0, height: 0)
+            selectTime_3.layer.shadowOpacity = 0.2
+            selectTime_3.layer.shadowRadius = 10
+            selectTime_3.layer.masksToBounds = false
         }
     
     }

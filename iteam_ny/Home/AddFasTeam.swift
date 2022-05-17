@@ -22,26 +22,38 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchFreindRequest()
+        fetchFreind()
+        fetchChangedData()
 //        friendContent.append(myFriend(content: "ios개발, 공모전", name: "에일리", profileImg: "imgUser5"))
     }
     override func viewWillAppear(_ animated: Bool) {
-        myFriendTableView.reloadData()
+        //myFriendTableView.reloadData()
+    }
+    func fetchChangedData() {
+//        teamMembers.removeAll()
+        Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).child("friendsList").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.fetchFreind()
+//                self.fetchMemberData()
+            }
+        })
     }
     
-    func fetchFreindRequest() {
-//        giverList.removeAll()
+    func fetchFreind() {
+        friendContent.removeAll()
         
-        let ref = Database.database().reference()
+//        let ref =
         let userUID = Auth.auth().currentUser!.uid
-        ref.child("user").child(userUID).observeSingleEvent(of: .value){ snapshot in
+        Database.database().reference().child("user").child(userUID).observeSingleEvent(of: .value){ snapshot in
             guard let snapData = snapshot.value as? [String:Any] else {return}
             for key in snapData.keys {
-                if key == "friendsList" {
+                print(key + "@@")
+                if key == "friendsList"{
                     for k in snapData.values {
                         if k is [String] {
                             self.friendList = (k as? [String])!
-//                            print(self.giverList)
+                            print(self.friendList)
                         }
 
                     }
@@ -51,7 +63,7 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
             //uid 닉네임 가져오기
             for uid in self.friendList{
                 self.myFriendUid.append(uid)
-                print(uid)
+                print(uid + "!!!!!!!!!!!")
                 //friendList.append(contentsOf: <#T##Sequence#>)
                 self.db.child("user").child(uid).observeSingleEvent(of: .value) { [self] snapshot in
                     var nickname: String = ""
@@ -140,7 +152,10 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
                 }
             }
         myFriendTableView.reloadData()
-     }
+            cell.addBtn.backgroundColor = UIColor(named: "purple_184")
+            cell.addBtn.layer.cornerRadius = 5
+            cell.addBtn.titleLabel?.textColor = .white
+    }
         let friendImg = friendContent[indexPath.row].uid
         let starsRef = Storage.storage().reference().child("user_profile_image/\(friendImg).jpg")
         // Fetch the download URL
