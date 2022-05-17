@@ -44,5 +44,17 @@ class MyPageModifyViewController: UIViewController  {
         }
         
     }
-
+    @IBAction func logoutDidTapped(_ sender: UIButton) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            print("로그아웃됨. 앱이 종료됩니다")
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+        
+        sleep(2)
+        exit(0)
+    }
+    
 }
