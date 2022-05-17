@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
+import Kingfisher
 
 class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var memberAddBtn: UIButton!
@@ -139,9 +141,20 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
             }
         myFriendTableView.reloadData()
      }
+        let friendImg = friendContent[indexPath.row].uid
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(friendImg).jpg")
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+            if let error = error {
+            } else {
+                cell.userImg.kf.setImage(with: url)
+                cell.userImg.layer.cornerRadius = cell.userImg.frame.height/2
+            }
+        }
+        
         cell.friendProfile.text = friendContent[indexPath.row].content
         cell.friendName.text = friendContent[indexPath.row].name
-        cell.userImg.image = UIImage(named: "\(friendContent[indexPath.row].profileImg)")
+//        cell.userImg.image = UIImage(named: "\(friendContent[indexPath.row].profileImg)")
         return cell
     }
 
