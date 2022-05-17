@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ce8-cR-c6d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ce8-cR-c6d">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -1390,13 +1390,13 @@
             </objects>
             <point key="canvasLocation" x="1256.521739130435" y="1325.8928571428571"/>
         </scene>
-        <!--홈-->
+        <!--Navigation Controller-->
         <scene sceneID="XFi-Tj-Rjb">
             <objects>
                 <navigationController autoresizesArchivedViewToFullSize="NO" id="qW4-Fw-JGZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" id="us4-qi-gmB">
-                        <imageReference key="image" image="house" catalog="system" symbolScale="medium"/>
-                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="medium"/>
+                    <tabBarItem key="tabBarItem" title="" id="us4-qi-gmB">
+                        <imageReference key="image" image="icTbHome.png" symbolScale="medium"/>
+                        <imageReference key="selectedImage" image="icTbHouseFill.png" symbolScale="medium"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2kf-JU-hLZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1418,6 +1418,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" red="0.72156862745098038" green="0.38431372549019605" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
@@ -1432,13 +1433,13 @@
             </objects>
             <point key="canvasLocation" x="-3855" y="646"/>
         </scene>
-        <!--통화-->
+        <!--Navigation Controller-->
         <scene sceneID="EmQ-HN-I4o">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CKa-KU-qir" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="통화" id="QOM-qy-IHZ">
-                        <imageReference key="image" image="phone" catalog="system" symbolScale="medium"/>
-                        <imageReference key="selectedImage" image="phone.fill" catalog="system" symbolScale="medium"/>
+                    <tabBarItem key="tabBarItem" title="" id="QOM-qy-IHZ">
+                        <imageReference key="image" image="icTbPhone.png" symbolScale="medium"/>
+                        <imageReference key="selectedImage" image="icTbPhoneFill.png" symbolScale="medium"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vyk-9l-4m2">
@@ -2178,13 +2179,13 @@
             </objects>
             <point key="canvasLocation" x="-1117" y="-1134"/>
         </scene>
-        <!--팀 탐색-->
+        <!--Navigation Controller-->
         <scene sceneID="Nm8-IC-glJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Waa-1z-F4R" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="팀 탐색" id="2RC-ke-jR6">
-                        <imageReference key="image" image="person.2" catalog="system" symbolScale="medium"/>
-                        <imageReference key="selectedImage" image="person.2.fill" catalog="system" symbolScale="medium"/>
+                    <tabBarItem key="tabBarItem" title="" id="2RC-ke-jR6">
+                        <imageReference key="image" image="icTbTeam.png" symbolScale="medium"/>
+                        <imageReference key="selectedImage" image="icTbTeamFill.png" symbolScale="medium"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vax-Pl-7YA">
@@ -2200,13 +2201,13 @@
             </objects>
             <point key="canvasLocation" x="-2775" y="2705"/>
         </scene>
-        <!--알림-->
+        <!--Navigation Controller-->
         <scene sceneID="EXV-U6-6bP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="djO-ev-988" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="알림" id="yxK-ET-TnK">
-                        <imageReference key="image" image="bell" catalog="system" symbolScale="medium"/>
-                        <imageReference key="selectedImage" image="bell.fill" catalog="system" symbolScale="medium"/>
+                    <tabBarItem key="tabBarItem" title="" id="yxK-ET-TnK">
+                        <imageReference key="image" image="icTbBell.png" symbolScale="medium"/>
+                        <imageReference key="selectedImage" image="icTbBellFill.png" symbolScale="medium"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cAw-7l-0Gq">
@@ -2222,12 +2223,12 @@
             </objects>
             <point key="canvasLocation" x="-2775" y="3475"/>
         </scene>
-        <!--마이페이지-->
+        <!--Navigation Controller-->
         <scene sceneID="Yp2-Rq-YHp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TGn-lm-ol6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="마이페이지" selectedImage="person.crop.circle.fill" catalog="system" id="Sce-5a-WsQ">
-                        <imageReference key="image" image="person.crop.circle" catalog="system" symbolScale="medium"/>
+                    <tabBarItem key="tabBarItem" title="" selectedImage="icTbMypageFill.png" id="Sce-5a-WsQ">
+                        <imageReference key="image" image="icTbMypage.png" symbolScale="medium"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vbv-6X-Ggk">
@@ -2979,20 +2980,26 @@
     </scenes>
     <designables>
         <designable name="SR2-nu-ucD">
-            <size key="intrinsicContentSize" width="166.5" height="48"/>
+            <size key="intrinsicContentSize" width="194.5" height="58"/>
         </designable>
     </designables>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <image name="bell" catalog="system" width="128" height="124"/>
-        <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="btn_option.png" width="32" height="32"/>
         <image name="btn_pin2.png" width="32" height="32"/>
         <image name="checkmark.square.fill" catalog="system" width="128" height="114"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
-        <image name="house" catalog="system" width="128" height="106"/>
-        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="icMoreRight.png" width="16" height="16"/>
+        <image name="icTbBell.png" width="32" height="32"/>
+        <image name="icTbBellFill.png" width="32" height="32"/>
+        <image name="icTbHome.png" width="32" height="32"/>
+        <image name="icTbHouseFill.png" width="32" height="32"/>
+        <image name="icTbMypage.png" width="32" height="32"/>
+        <image name="icTbMypageFill.png" width="32" height="32"/>
+        <image name="icTbPhone.png" width="32" height="32"/>
+        <image name="icTbPhoneFill.png" width="32" height="32"/>
+        <image name="icTbTeam.png" width="32" height="32"/>
+        <image name="icTbTeamFill.png" width="32" height="32"/>
         <image name="ic_rate.png" width="24" height="24"/>
         <image name="imgUser10.png" width="50" height="50"/>
         <image name="imgUser4.png" width="50" height="50"/>
@@ -3000,12 +3007,7 @@
         <image name="img_logo.png" width="107" height="26"/>
         <image name="img_user1.png" width="70" height="70"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
-        <image name="person.2" catalog="system" width="128" height="81"/>
-        <image name="person.2.fill" catalog="system" width="128" height="80"/>
-        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
-        <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="phone" catalog="system" width="128" height="115"/>
-        <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="gray_121">
             <color red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
