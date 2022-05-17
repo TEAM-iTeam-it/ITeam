@@ -14,7 +14,7 @@ import Kingfisher
 
 class CallAnswerTeamViewController: UIViewController {
     @IBOutlet weak var answerListTableView: UITableView!
-    
+    var updateFetchData: Bool = false
     var personList: [Person] = []
     var whenIReceivedOtherPerson: [Person] = []
     var whenISendOtherTeam: [Person] = []
@@ -54,15 +54,49 @@ class CallAnswerTeamViewController: UIViewController {
         // 이 문제도x
         // fetchData()
         
-        //fetchChangedData()
+        fetchChangedData()
         
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        //setUI()
         fetchData()
+        //setUI()
     }
-    
+    @IBAction func testChangeCall(_ sender: UIButton) {
+        
+        let stmt: [String: String] = [ "stmt": "통화"]
+        
+        for i in 0..<personList.count {
+            if personList[i].callStm == "대기 중" {
+                var indexCount = -1
+                
+                for j in 0..<personList.count {
+                    if personList[j].callStm == "대기 중" {
+                        indexCount += 1
+                    }
+                }
+               
+                
+                for j in 0..<whenIReceivedOtherPerson.count {
+                    if whenIReceivedOtherPerson[j].nickname == personList[indexCount].nickname {
+                        let ref = Database.database().reference()
+                            .child("Call").child(teamIndex[j])
+                        ref.updateChildValues(stmt)
+                        break
+                    }
+                }
+                for j in 0..<whenISendOtherTeam.count {
+                    if whenISendOtherTeam[j].nickname == personList[indexCount].nickname {
+                        let ref = Database.database().reference()
+                            .child("Call").child(teamIndexForSend[j])
+                        ref.updateChildValues(stmt)
+                        break
+                    }
+                }
+                break
+            }
+        }
+    }
     func setUI() {
         name = "speaker"
         
@@ -105,6 +139,7 @@ class CallAnswerTeamViewController: UIViewController {
         nowRequestedUid = ""
         callingOtherUid = ""
         amiLeader = false
+        
     }
     
     func fetchData() {
@@ -114,7 +149,6 @@ class CallAnswerTeamViewController: UIViewController {
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         // 내 닉네임 받아오기
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
-            
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let value = snap.value as? NSDictionary
@@ -137,8 +171,6 @@ class CallAnswerTeamViewController: UIViewController {
             let favorTeamList = db.child("Call")
             //queryEqual(toValue: myNickname)
             favorTeamList.observeSingleEvent(of: .value) { [self] snapshot in
-                
-                print("snapshot \(snapshot)")
                 var myCallTime: [[String:String]] = []
                 
                 // 나와 관련된 call 가져오기
@@ -157,7 +189,7 @@ class CallAnswerTeamViewController: UIViewController {
                             break
                         }
                         // 내가 요청한 사람일 경우를 가져오기
-                        if key as! String == "callerUid" && content as! String == Auth.auth().currentUser?.uid {
+                        else if key as! String == "callerUid" && content as! String == Auth.auth().currentUser?.uid {
                             var newValue = value as! [String : String]
                             newValue["teamName"] = snap.key
                             myCallTime.append(newValue)
@@ -198,7 +230,7 @@ class CallAnswerTeamViewController: UIViewController {
                             }
                         }
                         // 내가 팀에 요청한 경우
-                        if myCallTime[i]["callerUid"] == Auth.auth().currentUser?.uid {
+                        else if myCallTime[i]["callerUid"] == Auth.auth().currentUser?.uid {
                             
                             if myCallTime[i]["receiverType"] != nil && myCallTime[i]["receiverType"] == "team" {
                                 
@@ -228,7 +260,6 @@ class CallAnswerTeamViewController: UIViewController {
                         }
                         
                     }
-                    
                     
                 }
             }
@@ -261,13 +292,14 @@ class CallAnswerTeamViewController: UIViewController {
     }
     // uid와 stmt로 user 정보 받기
     func fetchUser(userUID: String, stmt: String) {
+        var count: Int = 0
         let userdb = db.child("user").child(userUID)
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
             var nickname: String = ""
             var part: String = ""
             var partDetail: String = ""
             var purpose: String = ""
-            
+            count += 1
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let value = snap.value as? NSDictionary
@@ -312,7 +344,6 @@ class CallAnswerTeamViewController: UIViewController {
     // 팀 이름으로 팀 정보 받아오기
     func fetchTeam(teamname: String, stmt: String) {
         let justTeamname = teamname.replacingOccurrences(of: " 팀", with: "")
-        print("justTeamname \(justTeamname)")
         let userdb = db.child("Team").child(justTeamname)
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
             var part: String = ""
@@ -333,7 +364,6 @@ class CallAnswerTeamViewController: UIViewController {
             purpose += " • " + part + " 구인 중"
             
             let person = Person(nickname: justTeamname, position: purpose, callStm: stmt, profileImg: "")
-            
             personList.append(person)
             whenISendOtherTeam.append(person)
             answerListTableView.reloadData()
@@ -419,26 +449,28 @@ class CallAnswerTeamViewController: UIViewController {
         
         
         // 아님
-        db.child("Call").observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
+        db.child("Call").observe(.childChanged, with:{ [self] (snapshot) -> Void in
+            print("snapshot.childrenCount \(snapshot.childrenCount)")
             
-            self.removeArr()
-            self.fetchData()
+            if !updateFetchData {
+                updateFetchData = true
+                self.fetchData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                    self.updateFetchData = false
+                })
+            }
             
         })
         // 아님
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
             
-            self.removeArr()
             self.fetchData()
             
             
         })
         db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
+            print("DB 수정됨 team")
             
-            self.removeArr()
             self.fetchData()
             
             
@@ -706,7 +738,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                         if let error = error {
                             print("error \(error.localizedDescription)")
                         } else {
-                            print(url)
                             cell.profileImg.kf.setImage(with: url)
                         }
                     }
@@ -765,7 +796,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                             print(error.localizedDescription)
                         } else {
                             DispatchQueue.main.async {
-                                print(url)
                                 cell.profileImg.kf.setImage(with: url)
                             }
                         }

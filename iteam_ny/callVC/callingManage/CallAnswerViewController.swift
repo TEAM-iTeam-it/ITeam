@@ -13,7 +13,7 @@ import FirebaseStorage
 
 class CallAnswerViewController: UIViewController {
     @IBOutlet weak var answerListTableView: UITableView!
-    
+    var updateFetchData: Bool = false
     var personList: [Person] = []
     var whenIReceivedOtherPerson: [Person] = []
     var whenISendOtherPerson: [Person] = []
@@ -412,16 +412,22 @@ class CallAnswerViewController: UIViewController {
 
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
-        removeArr()
-        db.child("Call").observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
-            
-            self.removeArr()
-            self.fetchData()
+
+        db.child("Call").observe(.childChanged, with:{ [self] (snapshot) -> Void in
+            print("DB 수정됨 Call")
+            if !updateFetchData {
+                updateFetchData = true
+                self.fetchData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                    print("personList.count \(personList.count)")
+                    print("updateFetchData \(updateFetchData)")
+                    self.updateFetchData = false
+                })
+            }
         })
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
-            self.removeArr()
+            print("DB 수정됨 user")
+            
             self.fetchData()
             
         })
