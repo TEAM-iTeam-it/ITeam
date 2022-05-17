@@ -13,14 +13,16 @@ class Friend {
     var position: String
     var profileImg: String
     var uid:String
+    var stmt : String
     
     //var profileImg: UIImage
     
-    init(uid:String,nickname: String, position: String, profileImg: String ) {
+    init(uid:String,nickname: String, position: String, profileImg: String , stmt:String ) {
         self.nickname = nickname
         self.uid = uid
         self.position = position
         self.profileImg = profileImg
+        self.stmt = stmt
         //self.profileImg = profileImg
     }
     

@@ -14,6 +14,7 @@ import Kingfisher
 
 class HomeViewController: UIViewController, PickpartDataDelegate{
     
+    @IBOutlet weak var collectionViewWidth: NSLayoutConstraint!
     @IBOutlet weak var myImg: UIImageView!
     @IBOutlet weak var tableviewHeight: NSLayoutConstraint!
     @IBOutlet weak var myPart: UILabel!
@@ -21,6 +22,8 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     @IBOutlet weak var memberStackVIew: UIStackView!
     var text:String = ""
     var pickpart:[String] = []
+    var teamMembers: [MyTeam] = []
+    @IBOutlet weak var memberColl: UICollectionView!
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var addFriendButton: UIButton!
     @IBAction func addEntry(_ sender: UIButton) {
@@ -59,7 +62,7 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             newEntryView.isHidden = false
             self.scrollView.contentOffset = offset
         }
-}
+    }
 
 // 수직 스택뷰 안에 들어갈 수평 스택뷰들 만든다.
     private func createEntryView() -> UIView {
@@ -73,23 +76,23 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
     //진행중
     pickimage.addTarget(self, action: #selector(tapped), for: .touchUpInside)
         
-    let stack = UIStackView()
-    stack.axis = .vertical
-    stack.alignment = .center
-    stack.distribution = .fill
-    stack.spacing = 3
-
-    stack.addArrangedSubview(pickimage)
-    return stack
+ 
+        
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.distribution = .fill
+        stack.spacing = 3
+   
+        stack.addArrangedSubview(pickimage)
+        return stack
     }
     //파트별로 리스트 띄우기 진행중
     @objc func tapped(sender: UIButton) {
         pickpart.removeAll()
         print(sender.currentTitle)
-//        print(userList)
-//        print(userList.count)
+        
         //특정 데이터만 읽기
-        //let ref: DatabaseReference!
         let usersRef = Database.database().reference().child("user")
         let queryRef = usersRef.queryOrdered(byChild: "userProfile/part").queryEqual(toValue: sender.currentTitle)
         var userUID: String = ""
@@ -109,25 +112,20 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             print(value.keys)
             
             for abc in value.keys {
-//                print(abc)
-//                for partcategory in self.pickpart{
+
                 if (self.pickpart.contains("\(abc)")) == false{
                         print(abc)
                         value.removeValue(forKey: "\(abc)")
                 }
-//            }
         }
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: value)
                 let userData = try JSONDecoder().decode([String: Uid].self, from: jsonData)
                 let showUserList = Array(userData.values)
                 self.userList = showUserList.sorted { $0.rank < $1.rank } //정렬 순서
-    
-//                print("바뀐 수 : \(showUserList.count)")
                 
                 DispatchQueue.main.async {
                     self.homeTableView.reloadData()
-//                    print("바뀐 수 : \(self.userList.count)")
                 }
                 
             }catch let DecodingError.dataCorrupted(context) {
@@ -170,6 +168,24 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
     }
 
     var ref: DatabaseReference! //Firebase Realtime Database
+    
+    func removeArr() {
+        
+        teamMembers.removeAll()
+//        myMemberList.removeAll()
+    }
+    
+    func fetchChangedData() {
+//        teamMembers.removeAll()
+        removeArr()
+        Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.fetchMemberList()
+//                self.fetchMemberData()
+            }
+        })
+    }
     //
     var fillteredData = [String]()
     var userList: [Uid] = []
@@ -201,21 +217,20 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
                 }
             }
 
-
             return a>b
 
         }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-
+//        fetchMemberList()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-           
+        fetchMemberList()
+        fetchChangedData()
             ref = Database.database().reference().child("user")
-            
            // 내정보 가져오기
             let currentUser = Auth.auth().currentUser
         let myuid: String = Auth.auth().currentUser!.uid
@@ -310,8 +325,71 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
        }
-        
-}
+//    var memberindex: [String] = []
+    
+    // 팀원이 있는지 검사
+    
+    func fetchMemberList() {
+   //        teamMembers.removeAll()
+           removeArr()
+           let ref = Database.database().reference()
+           var myMemberList = ""
+   
+            let userUID = Auth.auth().currentUser!.uid
+        Database.database().reference().child("user").child(userUID).observeSingleEvent(of: .value){ snapshot in
+                guard let snapData = snapshot.value as? [String:String] else {return}
+                for key in snapData.keys {
+                    if key == "userTeam" {
+                        for k in snapData.values {
+                            if k is String {
+                            myMemberList = (k as? String)!
+                            }
+                        }
+                    }
+                }
+               let memberindex = myMemberList.components(separatedBy: ", ")
+               //uid 닉네임 가져오기
+               for muid in memberindex{
+   //                self.myFriendUid.append(uid)
+                   print(muid + "!!!!!!!!!!!")
+                   //friendList.append(contentsOf: <#T##Sequence#>)
+                   Database.database().reference().child("user").child(muid).observeSingleEvent(of: .value) { [self] snapshot in
+                       var mnickname: String = ""
+                       var mpart: String = ""
+                       var partDetail: String = ""
+   //                    var uid: String = ""
+   
+                       for child in snapshot.children {
+                           let snap = child as! DataSnapshot
+                           let value = snap.value as? NSDictionary
+   
+                           if snap.key == "userProfile" {
+                               for (key, content) in value! {
+                                   if key as! String == "nickname" {
+                                       mnickname = content as! String
+                                       print(mnickname + "dkdkdkdkdkdk")
+                                   }
+                                   if key as! String == "part" {
+                                       mpart = content as! String
+                                   }
+                                   if key as! String == "partDetail" {
+                                       partDetail = content as! String
+                                   }
+                               }
+                           }
+                       }
+                       if mpart == "개발자" {
+                           mpart = partDetail + mpart
+                       }
+                       var member = MyTeam(uid: muid, part: mpart, name: mnickname, profileImg: "")
+                       teamMembers.append(member)
+                       memberColl.reloadData()
+                   }
+               }
+           }
+           memberColl.reloadData()
+       }
+   }
 
     extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         
@@ -345,19 +423,16 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
             }
             
             let nickname: String = userList[indexPath.row].userProfile.nickname
-            print(nickname)
+//            print(nickname)
             
             var userUID2 :String = ""
             let userdb = Database.database().reference().child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
             userdb.observeSingleEvent(of: .value) { [self] snapshot in
                 
                 for child in snapshot.children {
-                    
                     let snap = child as! DataSnapshot
                     let value = snap.value as? NSDictionary
-                    
                     userUID2 = snap.key
-                    
                 }
                 let uid: String = userUID2
 //                print(fetchNickNameToUID(nickname:"우다다"))
@@ -382,7 +457,7 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
-            print("You selected cell #\(indexPath.row)!")
+//            print("You selected cell #\(indexPath.row)!")
             //상세페이지 이동
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             guard let detailViewController = storyboard.instantiateViewController(identifier: "UserProfileController") as? UserProfileController else { return }
@@ -394,6 +469,37 @@ memberStackVIew.insertArrangedSubview(newEntryView, at: nextEntryIndex)
         }
     }
 
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        collectionViewWidth.constant = CGFloat(teamMembers.count * 90)
+        return teamMembers.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeTeamCollectionViewCell", for: indexPath) as! HomeTeamCollectionViewCell
+
+        let uid: String = teamMembers[indexPath.row].uid
+        let hi:String = teamMembers[indexPath.row].name
+//        print("!!!!!!\(hi)!!!!!!!!")
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+          if let error = error {
+              print("에러 \(error.localizedDescription)")
+          } else {
+              cell.userImg.kf.setImage(with: url)
+              cell.userImg.layer.cornerRadius = cell.userImg.frame.height/2
+          }
+        }
+        
+        cell.memberNickname.text = teamMembers[indexPath.row].name
+        cell.memberPart.text = teamMembers[indexPath.row].part
+//        cell.userImg.image = UIImage(named: "\(teamMembers[indexPath.row].profileImg)")
+        return cell
+        
+    }
+}
 
     @IBDesignable class PaddingLabel: UILabel {
 

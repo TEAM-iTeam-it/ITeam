@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
+import Kingfisher
 
 class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -31,31 +33,59 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        notiContent.append(Noti(content: "이성책임 팀과의 통화가 곧 시작됩니다.", date: "04/20 14:30", profileImg: "imgUser8"))
-        notiContent.append(Noti(content: "레인 님과의 통화가 곧 시작됩니다.", date: "04/17 15:04", profileImg: "imgUser5"))
         
-        
-//        fetchChangedData()
+        fetchMemberData()
+        fetchChangedData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchData()
-        fetchMemberData()
+//        fetchData()
+//        fetchMemberData()
 //        notifyTableView.reloadData()
     }
     
+    func removeArr() {
+        
+        friendList.removeAll()
+        requestNum.removeAll()
+        memberUid.removeAll()
+        friendUid.removeAll()
+//        Index.removeAll()
+    }
+    
+    func fetchChangedData() {
+//        friendList.removeAll()
+        removeArr()
+        db.child("user").child(Auth.auth().currentUser!.uid).child("friendRequest").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.fetchMemberData()
+            }
+        })
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").observe(.childChanged, with:{ (snapshot) -> Void in
+            print("DB 수정됨")
+            DispatchQueue.main.async {
+                self.fetchMemberData()
+            }
+        })
+    }
+    
     //팀원 수락 요청 가져오기
+    var requestNum = ""
     func fetchMemberData() {
+//        friendList.removeAll()
+        removeArr()
+        
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         let userUID = Auth.auth().currentUser!.uid
             
             let memberRequestList = db.child("user").child(userUID).child("memberRequest")
             //queryEqual(toValue: myNickname)
         memberRequestList.observeSingleEvent(of: .value) { [self] snapshot in
-                
-                // 나와 관련된 call 가져오기
+            
                 for child in snapshot.children {
                     let snap = child as! DataSnapshot
+                    requestNum = snap.key
                     let value = snap.value as? NSDictionary
 //                    print (value)
                     
@@ -66,7 +96,9 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print(requestStmt)
                     print(requestUID)
                     memberInfo = (requestUID+","+requestStmt+","+requestTime)
-                    memberUid.append(memberInfo)
+//                    if memberInfo.contains("요청"){
+                        memberUid.append(memberInfo)
+//                    }
                 }
                 
                 for uid in self.memberUid{
@@ -94,19 +126,15 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         print(charindex[0])
                         print(charindex[1])
                         print(charindex[2])
-                        var friend = Friend(uid: charindex[0], nickname: nickname + " 님이 팀원 추가를 요청했습니다.", position: charindex[2], profileImg: "")
+                        var friend = Friend(uid: charindex[0], nickname: nickname + " 님이 팀원 추가를 요청했습니다.", position: charindex[2], profileImg: "",stmt: charindex[1])
                         friendList.append(friend)
                         notifyTableView.reloadData()
                     }
                 }
             }
-        notifyTableView.reloadData()
-    }
-    
-    //친구 수락 요청 가져오기
-    func fetchData() {
-        let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
-        let userUID = Auth.auth().currentUser!.uid
+        
+//        let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
+//        let userUID = Auth.auth().currentUser!.uid
             // 팀 알림 가져오기
             let favorTeamList = db.child("user").child(userUID).child("friendRequest")
             //queryEqual(toValue: myNickname)
@@ -125,7 +153,10 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print(requestStmt)
                     print(requestUID)
                     allInfo = (requestUID+","+requestStmt+","+requestTime)
-                    friendUid.append(allInfo)
+//                    if allInfo.contains("요청"){
+                        friendUid.append(allInfo)
+//                    }
+                    
                 }
                 
                 for uid in self.friendUid{
@@ -152,7 +183,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         print(charindex[0])
                         print(charindex[1])
                         print(charindex[2])
-                        var friend = Friend(uid: charindex[0], nickname: nickname + " 님이 친구를 요청했습니다.", position: charindex[2], profileImg: "")
+                        let friend = Friend(uid: charindex[0], nickname: nickname + " 님이 친구를 요청했습니다.", position: charindex[2], profileImg: "",stmt : charindex[1])
                         friendList.append(friend)
                         notifyTableView.reloadData()
                     }
@@ -160,16 +191,13 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         notifyTableView.reloadData()
     }
+    
+    //친구 수락 요청 가져오기
+//    func fetchData() {
+//
+//        notifyTableView.reloadData()
+//    }
     // 바뀐 데이터 불러오기
-    func fetchChangedData() {
-//        giverList.removeAll()
-        db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
-            DispatchQueue.main.async {
-                self.fetchData()
-            }
-        })
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return RequestContent.count
@@ -183,59 +211,63 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //수락 버튼
         cell.accept = { [unowned self] in
             let userUID = Auth.auth().currentUser!.uid
-            let fuid = friendList[indexPath.row].uid
-            let fnickname = friendList[indexPath.row].nickname
+            let uid = friendList[indexPath.row].uid
+            let nickname = friendList[indexPath.row].nickname
             
         //친구 리스트에 추가 진행중
             var Index: String = ""
             
 //          Database.database().reference().child("user").child(userUID).child("friendsList").updateChildValues(fUid)
-            if(fnickname.contains("친구")){
+            if(nickname.contains("친구")){
+                print("여기는 오류가 ㅇ나ㅣ야!!!\(nickname)")
                 db.child("user").child(userUID).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
+                    print("\(userUID)이건아니다ㅏㅏㅏㅏㅏㅏㅏ")
                     if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                         print(snapshots.count)
                         Index = "\(snapshots.count)"
-                        let fUid: [String: String] = [Index : fuid]
+                        let fUid: [String: String] = [Index : uid]
                         db.child("user").child(userUID).child("friendsList").updateChildValues(fUid)
                     }
                 }
                 
-                db.child("user").child(fuid).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
+                db.child("user").child(uid).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
                     if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                         print(snapshots.count)
                         Index = "\(snapshots.count)"
                         let myUid: [String: String] = [Index : userUID]
-                        db.child("user").child(fuid).child("friendsList").updateChildValues(myUid)
+                        db.child("user").child(uid).child("friendsList").updateChildValues(myUid)
                     }
                 }
-                
-                self.friendList.remove(at: indexPath.row)
+//                self.friendList.remove(at: indexPath.row)
                 notifyTableView.reloadData()
+                db.child("user").child(userUID).child("friendRequest").child(requestNum).child("requestStmt").setValue("수락")
             }
    
             
-            if(fnickname.contains("팀원")){
-                db.child("user").child(fuid).child("userTeam").observeSingleEvent(of: .value) {snapshot in
+            if(nickname.contains("팀원")){
+                db.child("user").child(uid).child("userTeam").observeSingleEvent(of: .value) {snapshot in
                   let value = snapshot.value as? String ?? ""
                     if value.isEmpty{
-                      db.child("user").child(fuid).child("userTeam").setValue(userUID)
+                      db.child("user").child(uid).child("userTeam").setValue(userUID)
                     }
                     else{
-                     db.child("user").child(fuid).child("userTeam").setValue(value + ", " + userUID)
+                     db.child("user").child(uid).child("userTeam").setValue(value + ", " + userUID)
                     }
                    
                 }
                 db.child("user").child(userUID).child("userTeam").observeSingleEvent(of: .value) {snapshot in
                   let value = snapshot.value as? String ?? ""
                     if value.isEmpty{
-                        db.child("user").child(userUID).child("userTeam").setValue(fuid)
+                        db.child("user").child(userUID).child("userTeam").setValue(uid)
                     }
                     else{
-                        db.child("user").child(userUID).child("userTeam").setValue(value + ", " + fuid )
+                        db.child("user").child(userUID).child("userTeam").setValue(value + ", " + uid )
                     }
                    
                 }
-                self.friendList.remove(at: indexPath.row)
+//                self.friendList.remove(at: indexPath.row)
+                
+                db.child("user").child(userUID).child("memberRequest").child(requestNum).child("requestStmt").setValue("수락")
                 notifyTableView.reloadData()
             }
 
@@ -243,17 +275,39 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //거절하기 버튼 눌렀을 때 실행할 함수 선언
            cell.refuse = { [unowned self] in
            // 1. DB 에서 요청 데이터 삭제하기
-            let userUID = Auth.auth().currentUser!.uid
+//            let userUID = Auth.auth().currentUser!.uid
 //               Database.database().reference().child("user").child(userUID).child("friendRequest").removeValue()
            self.friendList.remove(at: indexPath.row)
                notifyTableView.reloadData()
 //           self.requestCV.reloadData()
         }
         
+        if friendList[indexPath.row].stmt == "수락"{
+            cell.refuseBtn.layer.isHidden = true
+            cell.AcceptedBtn.setTitle("추가됨", for: .normal)
+            cell.AcceptedBtn.backgroundColor = .white
+            cell.AcceptedBtn.layer.borderWidth = 0.5
+        }
+        if friendList[indexPath.row].stmt == "요청"{
+            cell.refuseBtn.layer.isHidden = false
+            cell.AcceptedBtn.setTitle("수락", for: .normal)
+        }
+        
+        let notiImg = friendList[indexPath.row].uid
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(notiImg).jpg")
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+            if let error = error {
+            } else {
+                cell.profileImg.kf.setImage(with: url)
+                cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
+            }
+        }
+        
             // Set up cell.button
             cell.ContentLabel.text = friendList[indexPath.row].nickname
             cell.DateLabel.text = friendList[indexPath.row].position
-            cell.profileImg.image = UIImage(named: "\(friendList[indexPath.row].profileImg)")
+//            cell.profileImg.image = UIImage(named: "\(friendList[indexPath.row].profileImg)")
             return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
