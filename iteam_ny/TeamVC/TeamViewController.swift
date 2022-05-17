@@ -83,6 +83,10 @@ class TeamViewController: UIViewController {
         let popupVC = teamCallStoryboard.instantiateViewController(withIdentifier: "endPopUpVC") as! TeamCallRequestPopupViewController
         popupVC.delegate = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkMyTeamMember()
+    }
     
     func setUI() {
         myteamBtn.backgroundColor = .white
@@ -161,7 +165,7 @@ class TeamViewController: UIViewController {
                 let snap = child as! DataSnapshot
                 let value = snap.value as? String
                 
-
+                
                 if snap.key == "userTeam" {
                     userTeamExist = true
                     // 꾸린 팀원이 없을 때
@@ -179,7 +183,7 @@ class TeamViewController: UIViewController {
                         // 같으면 이미 프로필 만든 것, 다르면 프로필 안만든 것
                         memberList.diffIndicesNotConsideringOrder(from: userTeamUIDList).forEach {_ in
                             count += 1
-                             // print("diff value: \(memberList![$0])")
+                            // print("diff value: \(memberList![$0])")
                         }
                         if count == 0 {
                             haveTeamProfile = false
@@ -190,13 +194,22 @@ class TeamViewController: UIViewController {
             if userTeamExist == false {
                 haveMember = false
             }
-        
+            
         })
+    }
+    func removeData() {
+        hasFavorTeam = false
+        haveTeamProfile = false
+        haveMember = true
+        userTeamUIDList.removeAll()
+        memberList.removeAll()
+        teamName = ""
     }
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
         db.child("Team").observe(.childChanged, with:{ [self] (snapshot) -> Void in
             print("DB 수정됨")
+            removeData()
             self.fetchMyTeamname()
             self.checkMyTeamProfile()
             self.checkMyTeamMember()
@@ -204,6 +217,7 @@ class TeamViewController: UIViewController {
         })
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ [self] (snapshot) -> Void in
             print("DB 수정됨")
+            removeData()
             self.fetchMyTeamname()
             self.checkMyTeamProfile()
             self.checkMyTeamMember()
@@ -211,6 +225,7 @@ class TeamViewController: UIViewController {
         })
         db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ [self] (snapshot) -> Void in
             print("DB 수정됨")
+            
             self.fetchFavorTeam()
             
         })
@@ -218,7 +233,8 @@ class TeamViewController: UIViewController {
     
     // [Button Action] 나의 팀 생성 버튼
     @IBAction func createMyTeam(_ sender: UIButton) {
-        
+        print("haveMember \(haveMember)")
+        print("haveTeamProfile \(haveTeamProfile)")
         // 1. 팀원, 프로필 없을 때 팀원 추가 alert
         // 2. 팀원이 있고 프로필은 없을 때 팀 프로필 생성
         // 3. 팀원, 프로필이 모두 있을 때 업데이트 페이지로
