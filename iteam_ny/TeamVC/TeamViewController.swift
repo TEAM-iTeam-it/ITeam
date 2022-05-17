@@ -95,7 +95,7 @@ class TeamViewController: UIViewController {
         myteamBtn.layer.borderWidth = 0
         myteamBtn.layer.shadowColor = UIColor.black.cgColor
         myteamBtn.layer.shadowOffset = CGSize(width: 0, height: 0)
-        myteamBtn.layer.shadowOpacity = 0.2
+        myteamBtn.layer.shadowOpacity = 0.15
         myteamBtn.layer.shadowRadius = 10
         self.navigationController?.isNavigationBarHidden = true
         

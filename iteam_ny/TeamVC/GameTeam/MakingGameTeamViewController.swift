@@ -290,7 +290,7 @@ extension MakingGameTeamViewController: UICollectionViewDelegate, UICollectionVi
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 0)
-        cell.layer.shadowOpacity = 0.2
+        cell.layer.shadowOpacity = 0.15
         cell.layer.shadowRadius = 10
         cell.contentView.layer.masksToBounds = true
         cell.layer.masksToBounds = false
