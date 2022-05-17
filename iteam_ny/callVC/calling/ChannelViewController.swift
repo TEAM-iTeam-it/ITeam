@@ -153,7 +153,7 @@ class ChannelViewController: UIViewController {
     
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IADtMJ/xodnk78xiE3THG6zkDgFhlvXwe8YNRJ1CiWatmzfvbuoAAAAAEAASVDxDvJmCYgEAAQC8mYJi", channelId: "testToken11", info: nil, uid: userID,
+        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IADIU3Vf9JAbwXD8VYAAY2uYridTl8X/pgkDaRPX0fkJiTfvbuoAAAAAEACXaa56o/6EYgEAAQCj/oRi", channelId: "testToken11", info: nil, uid: userID,
                            joinSuccess: {(_, uid, elapsed) in
             self.userID = uid
             if self.role == .audience {
