@@ -1599,7 +1599,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = iTeam;
+				INFOPLIST_KEY_CFBundleDisplayName = iteam;
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1659,7 +1659,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = iTeam;
+				INFOPLIST_KEY_CFBundleDisplayName = iteam;
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1684,7 +1684,7 @@
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = iTeam;
+				INFOPLIST_KEY_CFBundleDisplayName = iteam;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1715,6 +1715,7 @@
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iteam_ny/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = iteam;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 사용을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
