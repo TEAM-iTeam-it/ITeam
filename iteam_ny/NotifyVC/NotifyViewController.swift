@@ -34,6 +34,11 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestStmt").setValue("수락")
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestTime").setValue("483:94")
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestUID").setValue(Auth.auth().currentUser!.uid)
+        
+        
         fetchMemberData()
         fetchChangedData()
     }
@@ -192,13 +197,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         notifyTableView.reloadData()
     }
     
-    //친구 수락 요청 가져오기
-//    func fetchData() {
-//
-//        notifyTableView.reloadData()
-//    }
-    // 바뀐 데이터 불러오기
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return RequestContent.count
         return friendList.count
@@ -219,8 +217,8 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
 //          Database.database().reference().child("user").child(userUID).child("friendsList").updateChildValues(fUid)
             if(nickname.contains("친구")){
-                print("여기는 오류가 ㅇ나ㅣ야!!!\(nickname)")
-                db.child("user").child(userUID).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
+                print("여기는 오류가 ㅇ나ㅣ야!!!\(userUID)")
+                db.child("user").child(Auth.auth().currentUser!.uid).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
                     print("\(userUID)이건아니다ㅏㅏㅏㅏㅏㅏㅏ")
                     if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                         print(snapshots.count)
