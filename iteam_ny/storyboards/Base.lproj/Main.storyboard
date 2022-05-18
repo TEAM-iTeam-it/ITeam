@@ -318,11 +318,9 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ive-bA-vrX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="115"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ive-bA-vrX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="364" height="115"/>
                                                         <color key="tintColor" systemColor="labelColor"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                                         <state key="normal" image="chevron.right" catalog="system">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -334,8 +332,12 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="qRi-Na-hHv" firstAttribute="centerY" secondItem="Rsi-K9-RA1" secondAttribute="centerY" id="2uM-hy-Prv"/>
+                                                    <constraint firstItem="Ive-bA-vrX" firstAttribute="leading" secondItem="Rsi-K9-RA1" secondAttribute="leading" id="3dW-j8-e5C"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ive-bA-vrX" secondAttribute="trailing" constant="20" id="84N-no-vpz"/>
                                                     <constraint firstAttribute="height" constant="115" id="91q-n9-hZa"/>
                                                     <constraint firstItem="qRi-Na-hHv" firstAttribute="leading" secondItem="Rsi-K9-RA1" secondAttribute="leading" constant="20" id="Knj-lg-nEG"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ive-bA-vrX" secondAttribute="bottom" id="lLJ-xX-74s"/>
+                                                    <constraint firstItem="Ive-bA-vrX" firstAttribute="top" secondItem="Rsi-K9-RA1" secondAttribute="top" id="qZz-F6-joE"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어떤 팀을 만들고 싶으신가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYe-PS-mIa">
