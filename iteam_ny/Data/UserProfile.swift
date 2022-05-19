@@ -17,7 +17,7 @@ struct Uid: Codable {
     
     let email : String
     let password: String
-    let likeTeam: String?
+    let likeTeam: String = ""
     
     let userProfile: UserProfile
     let userProfileDetail: UserProfileDetail
