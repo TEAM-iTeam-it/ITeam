@@ -202,6 +202,14 @@ class SettingPurposeViewController: UIViewController {
         // [ 목적 데이터 추가 ]
         ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
         
+        let personCountValue: [String: Int] = [ "personCount": 1]
+        let scoreValue: [String: Double] = [ "score": 3.5]
+        ref.child("user").child(user.uid).child("evaluation")
+            .updateChildValues(personCountValue)
+        ref.child("user").child(user.uid).child("evaluation")
+            .updateChildValues(scoreValue)
+        
+        
         let passionVC = self.storyboard?.instantiateViewController(withIdentifier: "passionVC")
         self.navigationController?.pushViewController(passionVC!, animated: true)
     }

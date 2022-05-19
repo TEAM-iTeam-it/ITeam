@@ -145,7 +145,6 @@ class DetailProfileViewController: UIViewController  {
         let contactLink: [String: String] = [ "contactLink": callLinkTF.text ?? ""]
         let currentTeam: [String: String] = [ "currentTeam": ""]
         
-        let likeTeam: [String: String] = [ "teamName": ""]
         
         ref = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).child("userProfile")
         // 데이터 추가
@@ -158,24 +157,7 @@ class DetailProfileViewController: UIViewController  {
         
         let refMAin = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid)
         refMAin.updateChildValues(currentTeam)
-        
-        refMAin.child("likeTeam").updateChildValues(likeTeam)
-        
-      
-        if projects.isEmpty {
-            let exDetail: [String: String] = [ "exDetail": ""]
-            let date: [String: String] = [ "date": "" ]
-            ref.child("portfolio").child("ex0").updateChildValues(exDetail)
-            ref.child("portfolio").child("ex0").updateChildValues(date)
-        }
-        for i in 0..<projects.count {
-                let exDetail: [String: String] = [ "exDetail": projects[i].details]
-                let date: [String: String] = [ "date": projects[i].date]
-                ref.child("portfolio").child("ex\(i)").updateChildValues(exDetail)
-                ref.child("portfolio").child("ex\(i)").updateChildValues(date)
-        }
-            
-        
+    
     }
     // 프로젝트 추가 버튼
     @IBAction func addProjectExAction(_ sender: Any) {
