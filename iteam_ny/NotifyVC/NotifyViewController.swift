@@ -293,15 +293,22 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         if friendList[indexPath.row].stmt == "수락"{
             cell.refuseBtn.layer.isHidden = true
-            cell.AcceptedBtn.backgroundColor = UIColor.white
             cell.AcceptedBtn.setTitle("추가됨", for: .normal)
+            cell.AcceptedBtn.backgroundColor = UIColor.white
+            cell.AcceptedBtn.setTitleColor(.black, for: .normal)
             cell.AcceptedBtn.layer.borderWidth = 0.5
             cell.AcceptedBtn.layer.cornerRadius = 10
+            cell.AcceptedBtn.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1.0).cgColor
             cell.AcceptedBtn.isEnabled = true
         }
         if friendList[indexPath.row].stmt == "요청"{
             cell.refuseBtn.layer.isHidden = false
             cell.AcceptedBtn.setTitle("수락", for: .normal)
+            cell.AcceptedBtn.backgroundColor = UIColor(named: "purple_184")
+            cell.AcceptedBtn.setTitleColor(.white, for: .normal)
+            cell.AcceptedBtn.layer.borderWidth = 0
+            cell.AcceptedBtn.layer.cornerRadius = 10
+            cell.AcceptedBtn.isEnabled = false
         }
         
         let notiImg = friendList[indexPath.row].uid
