@@ -84,13 +84,17 @@ class UserProfileController: UIViewController{
         characterLabel.text = charindex[0]
         characterLabel2.text = charindex[1]
         characterLabel3.text = charindex[2]
-        toolNlanguage.text = basicinfo.portfolio.toolNLanguage
-        Interest.text = basicinfo.portfolio.interest
-        date.text = basicinfo.portfolio.ex0.date
-        projectDetail.text = basicinfo.portfolio.ex0.exDetail
-        callTime.text = basicinfo.portfolio.calltime
-        portfolioLabel.text = basicinfo.portfolio.portfolioLink
-        contactLink.text = basicinfo.portfolio.contactLink
+        if let portfolio = basicinfo.portfolio {
+            toolNlanguage.text = portfolio.toolNLanguage
+            Interest.text = portfolio.interest
+            if let ex0 = portfolio.ex0 {
+                date.text = ex0.date
+                projectDetail.text = ex0.exDetail
+            }
+            callTime.text = portfolio.calltime
+            portfolioLabel.text = portfolio.portfolioLink
+            contactLink.text = portfolio.contactLink
+        }
         
         
         let nickname: String = basicinfo.nickname
