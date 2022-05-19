@@ -78,15 +78,15 @@ class SetATimeViewController: UIViewController{
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                 print(snapshots.count)
                 Index = "\(snapshots.count)"
-                self.ref.child("Call").child(Index).updateChildValues(callTime)
-                self.ref.child("Call").child(Index).updateChildValues(callerUid)
-                self.ref.child("Call").child(Index).updateChildValues(receiverNickname)
             }
             guard let vc = self.storyboard?.instantiateViewController(identifier: "QuestionViewController") as? QuestionViewController else {
                         return
                     }
                     vc.IndexN = Index
             vc.Reciver = self.senderid
+            vc.receiverNickname = receiverNickname
+            vc.callTime = callTime
+            vc.callerUid = callerUid
                     self.navigationController?.pushViewController(vc, animated: true)
         }
     }

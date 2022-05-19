@@ -15,6 +15,10 @@ class QuestionViewController: UIViewController{
     @IBOutlet weak var textTitleLabel: UILabel!
     var IndexN : String = ""
     var Reciver : String = ""
+    var receiverNickname: [String: String] = [:]
+    var callerUid: [String: String] = [:]
+    var callTime: [String: String] = [:]
+    
     var ref: DatabaseReference!
     
     @IBAction func ClickfinishBtn(_ sender: Any) {
@@ -48,6 +52,9 @@ class QuestionViewController: UIViewController{
         ref.child("Call").child(IndexN).updateChildValues(Question)
         ref.child("Call").child(IndexN).updateChildValues(stmt)
         ref.child("Call").child(IndexN).updateChildValues(receiverType1)
+        self.ref.child("Call").child(IndexN).updateChildValues(callTime)
+        self.ref.child("Call").child(IndexN).updateChildValues(callerUid)
+        self.ref.child("Call").child(IndexN).updateChildValues(receiverNickname)
     }
     @IBOutlet weak var tableView: UITableView!
     
