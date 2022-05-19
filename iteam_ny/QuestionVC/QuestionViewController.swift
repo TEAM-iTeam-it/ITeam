@@ -68,6 +68,18 @@ class QuestionViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.topItem?.title = ""
+//        self.navigationController?.navigationBar.topItem?.image = UIImage(systemName:"arrow.left")
+//        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")
+        
+        let fancyImage = UIImage(systemName:"arrow.left")
+
+        var fancyAppearance = UINavigationBarAppearance()
+        fancyAppearance.configureWithDefaultBackground()
+        fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
+
+        navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
+        
         textTitleLabel.text = "\(Reciver)님께\n무엇이 궁금한가요?"
         tableView.delegate = self
         tableView.dataSource = self

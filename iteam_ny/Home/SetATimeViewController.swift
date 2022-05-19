@@ -28,6 +28,17 @@ class SetATimeViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = .black
+        
+        let fancyImage = UIImage(named: "btnClose.png")
+
+        var fancyAppearance = UINavigationBarAppearance()
+        fancyAppearance.configureWithDefaultBackground()
+        fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
+
+        navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
+        
         candidateBtn_1.isHidden = true
         candidateLabel_2.isHidden = true
         candidateLabel_3.isHidden = true

@@ -22,6 +22,18 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = .black
+        
+        let fancyImage = UIImage(systemName:"arrow.left")
+
+        var fancyAppearance = UINavigationBarAppearance()
+        fancyAppearance.configureWithDefaultBackground()
+        fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
+
+        navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
+        
         fetchFreind()
         fetchChangedData()
 //        friendContent.append(myFriend(content: "ios개발, 공모전", name: "에일리", profileImg: "imgUser5"))
