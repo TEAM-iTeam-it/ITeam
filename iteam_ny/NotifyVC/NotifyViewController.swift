@@ -16,7 +16,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var notifyTableView: UITableView!
     var ref: DatabaseReference!
     let db = Database.database().reference()
-    var notiContent: [Noti] = []
     var giverList: [String] = []
     var friendList: [Friend] = []
     var friendUid:[String] = []
@@ -33,14 +32,19 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //현재 시간
+        var formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm"
+        var currentDateString = formatter.string(from: Date())
+
         db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestStmt").setValue("수락")
-        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestTime").setValue("483:94")
-        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestUID").setValue(Auth.auth().currentUser!.uid)
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestTime").setValue(currentDateString)
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestUID").setValue("기본")
         
         fetchMemberData()
         fetchChangedData()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
 //        fetchData()
@@ -137,18 +141,14 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         
-//        let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
-//        let userUID = Auth.auth().currentUser!.uid
             // 친구요청 가져오기
             let friendAlarmList = db.child("user").child(userUID).child("friendRequest")
             //queryEqual(toValue: myNickname)
         friendAlarmList.observeSingleEvent(of: .value) { [self] snapshot in
                 
-                // 나와 관련된 call 가져오기
                 for child in snapshot.children {
                     let snap = child as! DataSnapshot
                     let value = snap.value as? NSDictionary
-//                    print (value)
                     
                     requestTime = value?["requestTime"] as? String ?? ""
                     requestStmt = value?["requestStmt"] as? String ?? ""
@@ -157,9 +157,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print(requestStmt)
                     print(requestUID)
                     allInfo = (requestUID+","+requestStmt+","+requestTime)
-//                    if allInfo.contains("요청"){
                         friendUid.append(allInfo)
-//                    }
                     
                 }
                 
@@ -183,7 +181,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                 }
                             }
                         }
-                        print("b")
                         print(charindex[0])
                         print(charindex[1])
                         print(charindex[2])
@@ -205,7 +202,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as! FriendRequestCell
         
-        //수락 버튼
+        //수락 버튼을 눌렀을때
         cell.accept = { [unowned self] in
             let userUID = Auth.auth().currentUser!.uid
             let uid = friendList[indexPath.row].uid
@@ -214,9 +211,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
 //          Database.database().reference().child("user").child(userUID).child("friendsList").updateChildValues(fUid)
             if(nickname.contains("친구")){
-                print("여기는 오류가 ㅇ나ㅣ야!!!\(userUID)")
                 db.child("user").child(Auth.auth().currentUser!.uid).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
-                    print("\(userUID)이건아니다ㅏㅏㅏㅏㅏㅏㅏ")
                     if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                         print(snapshots.count)
                         Index = "\(snapshots.count)"
@@ -260,7 +255,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                    
                 }
-//                self.friendList.remove(at: indexPath.row)
                 
                 db.child("user").child(userUID).child("memberRequest").child(requestNum).child("requestStmt").setValue("수락")
                 notifyTableView.reloadData()
@@ -274,7 +268,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //               Database.database().reference().child("user").child(userUID).child("friendRequest").removeValue()
            self.friendList.remove(at: indexPath.row)
                notifyTableView.reloadData()
-//           self.requestCV.reloadData()
         }
         
         //알림 default 셀
@@ -284,13 +277,13 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.refuseBtn.isEnabled = true
             cell.AcceptedBtn.isEnabled = true
             
-            let currentUser = Auth.auth().currentUser
-            db.child((currentUser?.uid)!).child("userProfile").observeSingleEvent(of: .value, with: { snapshot in
+//            let currentUser = Auth.auth().currentUser
+            db.child("user").child(Auth.auth().currentUser!.uid).child("userProfile").observeSingleEvent(of: .value, with: { snapshot in
               // Get user value
               let value = snapshot.value as? NSDictionary
-              let partDetail = value?["partDetail"] as? String ?? ""
             let nickname = value?["nickname"] as? String ?? ""
                 cell.ContentLabel.text = "\(nickname) 님 iteam에 오신 걸 환영합니다!"
+                print(nickname)
             })
             cell.profileImg.image = UIImage(named: "AppIcon60@3x")
             
@@ -334,18 +327,3 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 }
 
-class Noti {
-    var content: String
-    var date: String
-    var profileImg: String
-    
-    //var profileImg: UIImage
-    
-    init(content: String, date: String, profileImg: String ) {
-        self.content = content
-        self.date = date
-        self.profileImg = profileImg
-    }
-    
-    
-}
