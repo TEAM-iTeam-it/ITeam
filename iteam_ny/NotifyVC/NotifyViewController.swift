@@ -32,6 +32,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        notifyTableView.separatorStyle = .none
         //현재 시간
         var formatter = DateFormatter()
         formatter.dateFormat = "MM/dd HH:mm"
