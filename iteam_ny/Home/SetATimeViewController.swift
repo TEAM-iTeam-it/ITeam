@@ -86,6 +86,7 @@ class SetATimeViewController: UIViewController{
                         return
                     }
                     vc.IndexN = Index
+            vc.Reciver = self.senderid
                     self.navigationController?.pushViewController(vc, animated: true)
         }
     }
