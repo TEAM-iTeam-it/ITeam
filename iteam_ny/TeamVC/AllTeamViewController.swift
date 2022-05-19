@@ -71,7 +71,6 @@ class AllTeamViewController: UIViewController {
         }
         
         navigationController?.navigationBar.backgroundColor = .white
-      //'  navigationController?.navigationBar.shadowImage = UIImage()
     }
     @IBAction func backBtn(_ sender: UIBarButtonItem) {
 //        let transition = CATransition()
