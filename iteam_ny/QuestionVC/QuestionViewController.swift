@@ -12,7 +12,9 @@ import FirebaseDatabase
 
 class QuestionViewController: UIViewController{
     
+    @IBOutlet weak var textTitleLabel: UILabel!
     var IndexN : String = ""
+    var Reciver : String = ""
     var ref: DatabaseReference!
     
     @IBAction func ClickfinishBtn(_ sender: Any) {
@@ -59,10 +61,10 @@ class QuestionViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        textTitleLabel.text = "\(Reciver)님께\n무엇이 궁금한가요?"
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsMultipleSelection = true
-        
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
@@ -81,7 +83,8 @@ extension QuestionViewController: UITableViewDataSource,UITableViewDelegate{
         
         let index = asklist[indexPath.row]
         cell.questionLable.text = index.title
-        cell.checkButton.image = index.isMarked == true ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle")
+        cell.checkButton.image = index.isMarked == true ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "checkmark.circle")
+        cell.checkButton.tintColor = index.isMarked == true ? UIColor(named: "purple_184") : UIColor(named: "gray_196")
 //        cell.delegate = self
         return cell
     }
@@ -95,7 +98,8 @@ extension QuestionViewController: UITableViewDataSource,UITableViewDelegate{
         asklist.remove(at: indexPath.row)
         asklist.insert(index, at:indexPath.row)
         
-        cell.checkButton.image = index.isMarked == true ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle")
+        cell.checkButton.image = index.isMarked == true ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "checkmark.circle")
+        cell.checkButton.tintColor = index.isMarked == true ? UIColor(named: "purple_184") : UIColor(named: "gray_196")
         
     }
 }
