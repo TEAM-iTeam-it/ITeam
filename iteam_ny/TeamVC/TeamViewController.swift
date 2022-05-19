@@ -177,13 +177,8 @@ class TeamViewController: UIViewController {
                         haveMember = true
                         memberList = (value?.components(separatedBy: ", "))!
                         var count = 0
-                        
-                        // 수정해야함 - 안돌음
-                        // 팀프로필에 있는 팀원과 현재 꾸리고 있는 내 팀이 같은지 비교
-                        // 같으면 이미 프로필 만든 것, 다르면 프로필 안만든 것
                         memberList.diffIndicesNotConsideringOrder(from: userTeamUIDList).forEach {_ in
                             count += 1
-                            // print("diff value: \(memberList![$0])")
                         }
                         if count == 0 {
                             haveTeamProfile = false
