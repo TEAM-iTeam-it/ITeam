@@ -37,7 +37,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         formatter.dateFormat = "MM/dd HH:mm"
         var currentDateString = formatter.string(from: Date())
 
-        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestStmt").setValue("수락")
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestStmt").setValue("기본")
         db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestTime").setValue(currentDateString)
         db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestUID").setValue("기본")
         
@@ -186,22 +186,24 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         print(charindex[2])
                         let friend = Friend(uid: charindex[0], nickname: nickname + " 님이 친구를 요청했습니다.", position: charindex[2], profileImg: "",stmt : charindex[1])
                         friendList.append(friend)
+                        
                         notifyTableView.reloadData()
                     }
                 }
             }
+       
         notifyTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return RequestContent.count
+        friendList = friendList.sorted(by: {$0.position > $1.position})
         return friendList.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as! FriendRequestCell
-        
         //수락 버튼을 눌렀을때
         cell.accept = { [unowned self] in
             let userUID = Auth.auth().currentUser!.uid
@@ -271,7 +273,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         //알림 default 셀
-        if indexPath.row == 0{
+        if friendList[indexPath.row].stmt == "기본"{
             cell.refuseBtn.layer.isHidden = true
             cell.AcceptedBtn.layer.isHidden = true
             cell.refuseBtn.isEnabled = true
@@ -288,11 +290,10 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.profileImg.image = UIImage(named: "AppIcon60@3x")
             
         }
-             
-    
             
         if friendList[indexPath.row].stmt == "수락"{
             cell.refuseBtn.layer.isHidden = true
+            cell.AcceptedBtn.layer.isHidden = false
             cell.AcceptedBtn.setTitle("추가됨", for: .normal)
             cell.AcceptedBtn.backgroundColor = UIColor.white
             cell.AcceptedBtn.setTitleColor(.black, for: .normal)
@@ -303,6 +304,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         if friendList[indexPath.row].stmt == "요청"{
             cell.refuseBtn.layer.isHidden = false
+            cell.AcceptedBtn.layer.isHidden = false
             cell.AcceptedBtn.setTitle("수락", for: .normal)
             cell.AcceptedBtn.backgroundColor = UIColor(named: "purple_184")
             cell.AcceptedBtn.setTitleColor(.white, for: .normal)

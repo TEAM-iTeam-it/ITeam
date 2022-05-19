@@ -60,7 +60,6 @@
                                                         <constraint firstAttribute="width" constant="73" id="6OP-FU-LRm"/>
                                                         <constraint firstAttribute="height" constant="28" id="DwG-hQ-54r"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="수락">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
