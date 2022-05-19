@@ -11,12 +11,26 @@ struct user: Codable{
     let uid : Uid
 }
 struct Uid: Codable {
+    let currentTeam: String?
+    let evaluation: Evaluation
     let rank : Int
+    
     let email : String
     let password: String
+    let likeTeam: String?
+    
     let userProfile: UserProfile
     let userProfileDetail: UserProfileDetail
+    
+    let favorTeamList: String?
+    let userTeam: String?
+    
     let isSelected:Bool?
+    
+}
+struct Evaluation: Codable {
+    let personCount: Int
+    let score: Double
 }
 
 struct UserProfile: Codable{
@@ -24,7 +38,7 @@ struct UserProfile: Codable{
     let part: String
     let partDetail: String
     let schoolName: String
-    let portfolio : Portfolio
+    let portfolio : Portfolio?
 }
 
 struct UserProfileDetail : Codable{
@@ -37,9 +51,9 @@ struct UserProfileDetail : Codable{
 struct Portfolio: Codable {
     let calltime: String
     let contactLink : String
-    let ex0 : EX0
+    let ex0 : EX0?
     let interest : String
-    let portfolioLink : String
+    let portfolioLink : String?
     let toolNLanguage : String
 }
 struct EX0: Codable {
@@ -48,24 +62,3 @@ struct EX0: Codable {
     
 }
 
-//struct UserProfile: Codable{
-//    let id : Int
-//    let rank : Int
-//    let userprofileDetail: UserProfileDetail
-//    let isSelected: Bool? // 사용자 클릭시 생성
-//}
-//
-//struct UserProfileDetail: Codable{
-//    let name : String
-////    let userImageURL : String
-//    let part : String
-//    let purpose : String
-//    let character: String
-//    let language: String
-//    let interest: String
-//    let date : String
-//    let exDetail : String
-//    let calltime : String
-//    let portfolio : String
-//    let contactLink : String
-//}
