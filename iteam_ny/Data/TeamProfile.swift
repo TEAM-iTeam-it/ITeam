@@ -12,7 +12,7 @@ struct TeamProfile: Codable {
     let serviceType: String
     let part: String
     let detailPart: String
-    let introduce: String
+    let introduce: String?
     let contactLink: String
     let callTime: String
     let activeZone: String

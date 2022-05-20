@@ -33,7 +33,8 @@ class TeamProfileViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var favorButton: UIButton!
     
-    
+    @IBOutlet weak var profileViewHeight: NSLayoutConstraint!
+
     
     // 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아옴
     var teamName: String = ""
@@ -99,7 +100,13 @@ class TeamProfileViewController: UIViewController {
         teamPartLabel.text = "\(teamPartString) 구인 중"
         detailPartLabel.text = teamProfile.detailPart
         let introduceString = teamProfile.introduce
-        teamIntroduceLabel.text = " \"\(introduceString)\""
+        if teamProfile.introduce == nil || teamProfile.introduce == "" {
+            teamIntroduceLabel.isHidden = true
+            profileViewHeight.constant = 219
+        }
+        else {
+            teamIntroduceLabel.text = " \"\(introduceString)\""
+        }
         serviceTypeLabel.text = teamProfile.serviceType
         regionLabel.text = teamProfile.activeZone
         callTimeLabel.text = teamProfile.callTime
