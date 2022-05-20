@@ -278,7 +278,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.refuseBtn.layer.isHidden = true
             cell.AcceptedBtn.layer.isHidden = true
             cell.refuseBtn.isEnabled = true
-            cell.AcceptedBtn.isEnabled = true
+            cell.AcceptedBtn.isEnabled = false
             
 //            let currentUser = Auth.auth().currentUser
             db.child("user").child(Auth.auth().currentUser!.uid).child("userProfile").observeSingleEvent(of: .value, with: { snapshot in
@@ -293,6 +293,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
             
         if friendList[indexPath.row].stmt == "수락"{
+            cell.AcceptedBtn.isEnabled = false
             cell.refuseBtn.layer.isHidden = true
             cell.AcceptedBtn.layer.isHidden = false
             cell.AcceptedBtn.setTitle("추가됨", for: .normal)
@@ -311,7 +312,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.AcceptedBtn.setTitleColor(.white, for: .normal)
             cell.AcceptedBtn.layer.borderWidth = 0
             cell.AcceptedBtn.layer.cornerRadius = 10
-            cell.AcceptedBtn.isEnabled = false
+            cell.AcceptedBtn.isEnabled = true
         }
         
         let notiImg = friendList[indexPath.row].uid

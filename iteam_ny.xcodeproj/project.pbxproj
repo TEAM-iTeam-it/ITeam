@@ -261,6 +261,7 @@
 		1F95AE7427FD061400AB1377 /* btn_pin2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F95AE7127FD061400AB1377 /* btn_pin2@2x.png */; };
 		1FAD4D662821DFC700707E30 /* CompletedTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD4D652821DFC700707E30 /* CompletedTeamCell.swift */; };
 		1FB9A54428363425004A1B8B /* AppIcon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FB9A54328363425004A1B8B /* AppIcon60@3x.png */; };
+		1FB9A546283751BB004A1B8B /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A545283751BB004A1B8B /* GradientButton.swift */; };
 		1FFD2E2C27FBEA070068520D /* img_logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E2B27FBEA060068520D /* img_logo2.png */; };
 		1FFD2E3027FBEA9C0068520D /* btn_pin1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E2D27FBEA9B0068520D /* btn_pin1@2x.png */; };
 		1FFD2E3127FBEA9C0068520D /* btn_pin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E2E27FBEA9B0068520D /* btn_pin1.png */; };
@@ -544,6 +545,7 @@
 		1F95AE7727FD08C300AB1377 /* btn_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close.png; sourceTree = "<group>"; };
 		1FAD4D652821DFC700707E30 /* CompletedTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTeamCell.swift; sourceTree = "<group>"; };
 		1FB9A54328363425004A1B8B /* AppIcon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60@3x.png"; sourceTree = "<group>"; };
+		1FB9A545283751BB004A1B8B /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		1FFD2E2B27FBEA060068520D /* img_logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_logo2.png; sourceTree = "<group>"; };
 		1FFD2E2D27FBEA9B0068520D /* btn_pin1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pin1@2x.png"; sourceTree = "<group>"; };
 		1FFD2E2E27FBEA9B0068520D /* btn_pin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_pin1.png; sourceTree = "<group>"; };
@@ -1059,6 +1061,7 @@
 				1F64AF5B281401C600D7B2BD /* SendTimePickerView.swift */,
 				1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */,
 				1F76E52E2833041B0055DAFD /* HomeTeamCollectionViewCell.swift */,
+				1FB9A545283751BB004A1B8B /* GradientButton.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1412,6 +1415,7 @@
 				1F875FFB2818E8870051E89A /* MyPageModifyViewController.swift in Sources */,
 				1F54282A2805B9FE00F5179B /* AddFasTeam.swift in Sources */,
 				08AFB34D281E78C0006D90B5 /* CallAgreeViewController.swift in Sources */,
+				1FB9A546283751BB004A1B8B /* GradientButton.swift in Sources */,
 				081F267027F3960300F17332 /* MakingGameTeamViewController.swift in Sources */,
 				08922A76282455BD002F24D1 /* ArrayExtention.swift in Sources */,
 				081F265427F3903D00F17332 /* MakingWebTeamViewController.swift in Sources */,
