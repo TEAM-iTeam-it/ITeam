@@ -28,12 +28,16 @@ class MakingWebTeamViewController: UIViewController {
     }
     var didMyProfileFetched: Int = 0 {
         willSet(newValue) {
-            print("newValue \(newValue)")
             if newValue >= 2 {
                 teamSorting()
             }
         }
     }
+    var didUserFetched: Bool = false
+    var didAddedFetched: Bool = false
+    var didAddedFinished: Bool = false
+    var nowViewDidLoad: Bool = false
+    
     
     var userProfileDetail: UserProfileDetail = UserProfileDetail(activeZone: "", character: "", purpose: "", wantGrade: "")
     var userProfile: UserProfile = UserProfile(nickname: "", part: "", partDetail: "", schoolName: "", portfolio: Portfolio(calltime: "", contactLink: "", ex0: EX0(date: "", exDetail: ""), interest: "", portfolioLink: "", toolNLanguage: ""))
@@ -155,9 +159,6 @@ class MakingWebTeamViewController: UIViewController {
         resultTeamList += oneTypeTrue
         resultTeamList += allFalse
         
-        print("teamNames[0] \(teamNameList[0])")
-        print("newTeamNames[0] \(newTeamNames[0])")
-        
         teamList = resultTeamList
         teamNameList = newTeamNames
         memberListArr = newUserUID
@@ -176,7 +177,6 @@ class MakingWebTeamViewController: UIViewController {
                     let decoder = JSONDecoder()
                     let profile = try decoder.decode(UserProfileDetail.self, from: data)
                     userProfileDetail = profile
-                    print("abcabc")
                     didMyProfileFetched += 1
                 } catch let error {
                     print("\(error.localizedDescription)")
@@ -191,10 +191,9 @@ class MakingWebTeamViewController: UIViewController {
                     let decoder = JSONDecoder()
                     let profile = try decoder.decode(UserProfile.self, from: data)
                     userProfile = profile
-                    print("cbacba")
                     didMyProfileFetched += 1
                 } catch let error {
-                    print("\(error.localizedDescription)")
+                    print("오류다 오류 1\(error.localizedDescription)")
                 }
             }
     }
@@ -211,6 +210,7 @@ class MakingWebTeamViewController: UIViewController {
             guard let value = snapshot.value as? [String: Any] else { return }
             
             do {
+                print("value \(value)")
                 let jsonData = try JSONSerialization.data(withJSONObject: Array(value.values), options: [])
                 let teamData = try JSONDecoder().decode([TeamProfile].self, from: jsonData)
                 self.teamList = teamData
@@ -224,9 +224,26 @@ class MakingWebTeamViewController: UIViewController {
                     self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
                 }
                 
-            } catch let error {
-                print(error.localizedDescription)
+            } catch let DecodingError.dataCorrupted(context) {
+                print(context)
+            } catch let DecodingError.keyNotFound(key, context) {
+                print("Key '\(key)' not found:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch let DecodingError.valueNotFound(value, context) {
+                print("Value '\(value)' not found:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch let DecodingError.typeMismatch(type, context)  {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                print("error: ", error)
             }
+            
+            
+            /*catch let error {
+                print("오류다 오류 2\(error.localizedDescription)")
+            }
+             */
             
             didTeamListFetched = true
         }
@@ -252,15 +269,20 @@ class MakingWebTeamViewController: UIViewController {
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
         db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
-            DispatchQueue.main.async {
-                self.fetchData()
-            }
             
+            if !self.didUserFetched {
+                self.didUserFetched = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    self.fetchData()
+                })
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    self.didUserFetched = false
+                })
+            }
         })
         db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ (snapshot) -> Void in
-            DispatchQueue.main.async {
                 self.doesContainFavorTeam()
-            }
         })
     }
     
@@ -302,6 +324,7 @@ extension MakingWebTeamViewController: UICollectionViewDelegate, UICollectionVie
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
         cell.userUID = memberListArr[indexPath.row]
+        cell.imageCollView.reloadData()
         
         if lastDatas.contains(cell.teamName.text!) {
             cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)

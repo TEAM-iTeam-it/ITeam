@@ -6,14 +6,16 @@
 //
 
 import UIKit
+
 import FirebaseAuth
-import Kingfisher
 import FirebaseDatabase
 import FirebaseStorage
 
+import Kingfisher
+
 class CallAnswerViewController: UIViewController {
     @IBOutlet weak var answerListTableView: UITableView!
-    var updateFetchData: Bool = false
+    var updateFetchData: Int = 0
     var personList: [Person] = []
     var whenIReceivedOtherPerson: [Person] = []
     var whenISendOtherPerson: [Person] = []
@@ -35,31 +37,74 @@ class CallAnswerViewController: UIViewController {
         willSet(newValue) {            callingOtherUid = newValue
         }
     }
+    var addedFetchData: Int = 0
+    var didAddedData: Bool = true
     var callingOtherUid: String = ""
     var url = "gs://iteam-test.appspot.com/user_profile_image/"
-   
-    
-    
-    
+    var checkLoadNow: Bool = false
+    var didUserUpdate: Bool = false
+    private var refreshControl = UIRefreshControl()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         answerListTableView.delegate = self
         answerListTableView.dataSource = self
         
+        fetchData()
+        
         setUI()
         
         // 바뀐 데이터 불러오기
         fetchChangedData()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        fetchData()
-        //answerListTableView.reloadData()
+    
+    // MARK: - @IBAction Properties
+    // 삭제할 코드 - 유닛 테스트
+    @IBAction func testSignout(_ sender: UIButton) {
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            print("로그아웃됨. 앱이 종료됩니다")
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+        
+        sleep(2)
+        exit(0)
     }
     
+    @IBAction func testChangeCall(_ sender: UIButton) {
+        for i in 0..<personList.count {
+            if personList[i].callStm == "대기 중" {
+                print("박박")
+                var indexCount = -1
+                
+                for j in 0..<personList.count {
+                    if personList[j].callStm == "대기 중" {
+                        indexCount += 1
+                    }
+                }
+                let teamIndex = teamIndex[indexCount]
+                
+                let stmt: [String: String] = [ "stmt": "통화"]
+                let ref = Database.database().reference()
+                    .child("Call").child(teamIndex)
+                ref.updateChildValues(stmt)
+                
+                break
+            }
+        }
+    }
+    
+    // MARK: - Functions
     func setUI() {
         name = "speaker"
+        
+        answerListTableView.refreshControl = refreshControl
+
         
         /*
         let requestList = UIAction(title: "요청됨", handler: { _ in print("요청내역") })
@@ -83,12 +128,11 @@ class CallAnswerViewController: UIViewController {
         teamIndex.removeAll()
         teamIndexForSend.removeAll()
     }
+
     
     func fetchData() {
         
         removeArr()
-        
-        
         let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
         
         // 내 닉네임 받아오기
@@ -413,64 +457,61 @@ class CallAnswerViewController: UIViewController {
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
 
-        db.child("Call").observe(.childChanged, with:{ [self] (snapshot) -> Void in
-            print("DB 수정됨 Call")
-            if !updateFetchData {
-                updateFetchData = true
-                self.fetchData()
+        db.child("Call").observe(.childAdded, with: { [self] snapshot -> Void in
+            if addedFetchData == 0 {
+                checkLoadNow = true
+                addedFetchData += 2
+                print("checkLoadNow 1 \(checkLoadNow)")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
-                    print("personList.count \(personList.count)")
-                    print("updateFetchData \(updateFetchData)")
-                    self.updateFetchData = false
+                    self.didAddedData = true
+                    self.addedFetchData = 1
+                    self.checkLoadNow = false
+                    print("checkLoadNow 2 \(checkLoadNow)")
                 })
             }
-        })
-        db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨 user")
-            
-            self.fetchData()
-            
-        })
-    }
-    
-    // 삭제할 코드 - 유닛 테스트
-    @IBAction func testSignout(_ sender: UIButton) {
+            else if addedFetchData == 1 {
+                didAddedData = true
+                print("아아아아아")
+                self.fetchData()
+                addedFetchData += 1
+                print("addedFetchData \(addedFetchData)")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                    self.addedFetchData = 1
+                    print("addedFetchData \(addedFetchData)")
+                    
+                    self.didAddedData = false
+                })} })
         
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            print("로그아웃됨. 앱이 종료됩니다")
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
-        
-        sleep(2)
-        exit(0)
-    }
-    
-    @IBAction func testChangeCall(_ sender: UIButton) {
-        for i in 0..<personList.count {
-            if personList[i].callStm == "대기 중" {
-                print("박박")
-                var indexCount = -1
-                
-                for j in 0..<personList.count {
-                    if personList[j].callStm == "대기 중" {
-                        indexCount += 1
-                    }
+        db.child("Call").observe(.childChanged, with: { [self] (snapshot) -> Void in
+            if !checkLoadNow && !didAddedData {
+                print("checkLoadNow 3 \(checkLoadNow)")
+                if updateFetchData == 0 {
+                    updateFetchData += 1
+                    self.fetchData()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                        self.updateFetchData = 0
+                    })
                 }
-                let teamIndex = teamIndex[indexCount]
-                
-                let stmt: [String: String] = [ "stmt": "통화"]
-                let ref = Database.database().reference()
-                    .child("Call").child(teamIndex)
-                ref.updateChildValues(stmt)
-                
-                break
             }
-        }
+            else {
+                
+            }
+        })
+        
+         
+        db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ [self] (snapshot) -> Void in
+            print("DB 수정됨 user")
+            if !didUserUpdate {
+                didUserUpdate = true
+                self.fetchData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                    self.didUserUpdate = false
+                })
+            }
+            
+        })
     }
-    
+     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "waitingVC" {
@@ -503,6 +544,14 @@ class CallAnswerViewController: UIViewController {
 
 }
 extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if refreshControl.isRefreshing {
+            self.refreshControl.endRefreshing()
+            fetchData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return personList.count
     }
@@ -699,12 +748,14 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             let callingVC = storyboard?.instantiateViewController(withIdentifier: "callingVC") as! ChannelViewController
             
             callingVC.nickname = personList[indexPath.row].nickname
+            callingVC.otherPersonUID = personList[indexPath.row].profileImg
             let position = personList[indexPath.row].position
             callingVC.position = String(position)
            
         
             callingVC.name = name
             callingVC.profile = personList[indexPath.row].profileImg
+            print(personList[indexPath.row].profileImg)
             callingVC.modalPresentationStyle = .fullScreen
             present(callingVC, animated: true, completion: nil)
             

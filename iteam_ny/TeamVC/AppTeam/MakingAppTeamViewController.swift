@@ -28,12 +28,12 @@ class MakingAppTeamViewController: UIViewController {
     }
     var didMyProfileFetched: Int = 0 {
         willSet(newValue) {
-            print("newValue \(newValue)")
             if newValue >= 2 {
                 teamSorting()
             }
         }
     }
+    var didUserFetched: Bool = false
     
     var userProfileDetail: UserProfileDetail = UserProfileDetail(activeZone: "", character: "", purpose: "", wantGrade: "")
     var userProfile: UserProfile = UserProfile(nickname: "", part: "", partDetail: "", schoolName: "", portfolio: Portfolio(calltime: "", contactLink: "", ex0: EX0(date: "", exDetail: ""), interest: "", portfolioLink: "", toolNLanguage: ""))
@@ -156,13 +156,10 @@ class MakingAppTeamViewController: UIViewController {
         resultTeamList += oneTypeTrue
         resultTeamList += allFalse
         
-        print("teamNames[0] \(teamNameList[0])")
-        print("newTeamNames[0] \(newTeamNames[0])")
         
         teamList = resultTeamList
         teamNameList = newTeamNames
         memberListArr = newUserUID
-        
         
         collectionView.reloadData()
     }
@@ -172,12 +169,10 @@ class MakingAppTeamViewController: UIViewController {
             .observeSingleEvent(of: .value) { [self] snapshot in
                 guard let snapData = snapshot.value as? [String : Any] else { return }
                 let data = try! JSONSerialization.data(withJSONObject: snapData, options: .prettyPrinted )
-                print("data \(data)")
                 do {
                     let decoder = JSONDecoder()
                     let profile = try decoder.decode(UserProfileDetail.self, from: data)
                     userProfileDetail = profile
-                    print("abcabc")
                     didMyProfileFetched += 1
                 } catch let error {
                     print("\(error.localizedDescription)")
@@ -192,7 +187,6 @@ class MakingAppTeamViewController: UIViewController {
                     let decoder = JSONDecoder()
                     let profile = try decoder.decode(UserProfile.self, from: data)
                     userProfile = profile
-                    print("cbacba")
                     didMyProfileFetched += 1
                 } catch let error {
                     print("\(error.localizedDescription)")
@@ -252,14 +246,18 @@ class MakingAppTeamViewController: UIViewController {
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
         db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
-            DispatchQueue.main.async {
-                self.fetchData()
+            if !self.didUserFetched {
+                self.didUserFetched = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    self.fetchData()
+                })
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    self.didUserFetched = false
+                })
             }
         })
         db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ (snapshot) -> Void in
-            DispatchQueue.main.async {
-                self.doesContainFavorTeam()
-            }
+            self.doesContainFavorTeam()
         })
     }
 
@@ -302,6 +300,7 @@ extension MakingAppTeamViewController: UICollectionViewDelegate, UICollectionVie
         cell.purpose.text = teamList[indexPath.row].purpose
         cell.part.text = teamList[indexPath.row].part
         cell.userUID = memberListArr[indexPath.row]
+        cell.imageCollView.reloadData()
 
         if lastDatas.contains(cell.teamName.text!) {
             cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)

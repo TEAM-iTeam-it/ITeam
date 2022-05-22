@@ -33,7 +33,6 @@ class FavorTeamViewController: UIViewController {
     }
     var didMyProfileFetched: Int = 0 {
         willSet(newValue) {
-            print("newValue \(newValue)")
             if newValue >= 2 {
                 teamSorting()
             }
@@ -45,7 +44,7 @@ class FavorTeamViewController: UIViewController {
     var userUID: [[String]] = []
     var userProfileDetail: UserProfileDetail = UserProfileDetail(activeZone: "", character: "", purpose: "", wantGrade: "")
     var userProfile: UserProfile = UserProfile(nickname: "", part: "", partDetail: "", schoolName: "", portfolio: Portfolio(calltime: "", contactLink: "", ex0: EX0(date: "", exDetail: ""), interest: "", portfolioLink: "", toolNLanguage: ""))
-    
+    var didTeamUpdate: Bool = false
     
     // 팀 더보기
     @IBAction func moreTeamBtn(_ sender: UIButton) {
@@ -187,12 +186,10 @@ class FavorTeamViewController: UIViewController {
             .observeSingleEvent(of: .value) { [self] snapshot in
                 guard let snapData = snapshot.value as? [String : Any] else { return }
                 let data = try! JSONSerialization.data(withJSONObject: snapData, options: .prettyPrinted )
-                print("data \(data)")
                 do {
                     let decoder = JSONDecoder()
                     let profile = try decoder.decode(UserProfileDetail.self, from: data)
                     userProfileDetail = profile
-                    print("abcabc")
                     didMyProfileFetched += 1
                 } catch let error {
                     print("\(error.localizedDescription)")
@@ -207,7 +204,6 @@ class FavorTeamViewController: UIViewController {
                     let decoder = JSONDecoder()
                     let profile = try decoder.decode(UserProfile.self, from: data)
                     userProfile = profile
-                    print("cbacba")
                     didMyProfileFetched += 1
                 } catch let error {
                     print("\(error.localizedDescription)")
@@ -297,6 +293,7 @@ class FavorTeamViewController: UIViewController {
     // member uid 받아오기 만들기
     func update(teamList: [TeamProfile], teamNames: [String]) {
         // 오류-> 데이터 업데이트되면 이 부분 실행 안됨
+        
         self.teamList = teamList
         self.teamNames = teamNames
         DispatchQueue.main.async {
@@ -305,6 +302,7 @@ class FavorTeamViewController: UIViewController {
         // 한 팀의 멤버들 UID배열
         for i in 0..<self.teamList.count {
             self.memberListArr.append([])
+            self.memberListArr[i].removeAll()
             self.memberListArr[i].append(contentsOf: self.teamList[i].memberList.components(separatedBy: ", "))
             self.fetchMemberUID(teamIndex: i)
         }
@@ -314,11 +312,15 @@ class FavorTeamViewController: UIViewController {
         
         // 미리 방 반들어줌
         self.userUID.append(Array(repeating: "",count: memberListArr[teamIndex].count))
+        
         // 한 팀의 UID 받기
         for memberIndex in 0..<memberListArr[teamIndex].count {
             userUID[teamIndex][memberIndex] = memberListArr[teamIndex][memberIndex]
+            
+            if memberIndex == memberListArr[teamIndex].count {
+                collView.reloadData()
+            }
         }
-        
     }
     
     // 바뀐 데이터 불러오기
@@ -326,18 +328,23 @@ class FavorTeamViewController: UIViewController {
         // 이게 문제
         
         db.child("Team").observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
-            DispatchQueue.main.async {
+            if !self.didTeamListFetched {
+                self.didTeamListFetched = true
                 self.fetchData()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    self.didTeamListFetched = false
+                })
             }
         })
         
-        db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨")
-            DispatchQueue.main.async {
+        if !didTeamListFetched {
+            db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
                 self.fetchData()
-            }
-        })
+                
+            })
+            
+        }
     }
     
     

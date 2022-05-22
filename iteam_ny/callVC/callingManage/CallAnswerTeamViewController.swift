@@ -39,10 +39,12 @@ class CallAnswerTeamViewController: UIViewController {
             callingOtherUid = newValue
         }
     }
+    var checkDidload: Bool = false
     var callingOtherUid: String = ""
     var amiLeader: Bool = false
     var leader: Person = Person(nickname: "", position: "", callStm: "", profileImg: "")
-    
+    private var refreshControl = UIRefreshControl()
+    var didUserUpdate: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +102,7 @@ class CallAnswerTeamViewController: UIViewController {
     func setUI() {
         name = "speaker"
         
+        answerListTableView.refreshControl = refreshControl
         /*
          let requestList = UIAction(title: "요청됨", handler: { _ in print("요청내역") })
          let denied = UIAction(title: "요청수락", handler: { _ in print("거절함") })
@@ -367,7 +370,6 @@ class CallAnswerTeamViewController: UIViewController {
             personList.append(person)
             whenISendOtherTeam.append(person)
             answerListTableView.reloadData()
-            
         }
     }
     
@@ -447,24 +449,37 @@ class CallAnswerTeamViewController: UIViewController {
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
         
-        
-        // 아님
         db.child("Call").observe(.childChanged, with:{ [self] (snapshot) -> Void in
-            print("snapshot.childrenCount \(snapshot.childrenCount)")
+            print("updateFetchData \(updateFetchData)")
             
-            if !updateFetchData {
-                updateFetchData = true
-                self.fetchData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
-                    self.updateFetchData = false
-                })
+            if !checkDidload {
+                checkDidload = true
+            }
+            if checkDidload {
+                if !updateFetchData {
+                    print("패치됨")
+                    updateFetchData = true
+                    self.fetchData()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                        self.updateFetchData = false
+                    })
+                }
             }
             
         })
-        // 아님
-        db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
+        db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ [self] (snapshot) -> Void in
             
-            self.fetchData()
+            if didUserUpdate {
+                print("didUserUpdate 1 \(didUserUpdate)")
+                didUserUpdate = true
+                print("didUserUpdate 2 \(didUserUpdate)")
+                self.fetchData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                    self.didUserUpdate = false
+                    print("didUserUpdate 3 \(didUserUpdate)")
+                })
+                
+            }
             
             
         })
@@ -581,7 +596,19 @@ class CallAnswerTeamViewController: UIViewController {
 }
 
 extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if (refreshControl.isRefreshing) {
+            self.refreshControl.endRefreshing()
+            fetchData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("여기여기")
+        if !personList.isEmpty {
+            print(personList[0].callStm)
+        }
         return personList.count
     }
     
