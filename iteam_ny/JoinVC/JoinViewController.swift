@@ -166,6 +166,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             let partTitleMenu = UIAction(title: "파트",attributes: .hidden, state: .off, handler: {_ in })
             let organizerMenu = UIAction(title: "기획자", handler: { _ in
                 print("기획자")
+                let detailDefault = UIAction(title:"세부 포지션", attributes: .hidden, state: .off, handler: { _ in })
                 let app = UIAction(title:"앱 기획자", handler: { _ in
                     self.detailPartPullDownBtnSetting()
                 })
@@ -175,13 +176,15 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 let game = UIAction(title:"게임 기획자", handler: { _ in
                     self.detailPartPullDownBtnSetting()
                 })
-                detailPartMenu = UIMenu(title: "기획자", children: [app, web, game])
+                detailPartMenu = UIMenu(title: "기획자", children: [detailDefault, app, web, game])
                 self.partPullDownBtnSetting()
                 self.detailPartBtn.menu = detailPartMenu
                 
             })
             let designerMenu = UIAction(title: "디자이너", handler: { _ in
                 print("디자이너")
+                let detailDefault = UIAction(title:"세부 포지션", attributes: .hidden, state: .off, handler: { _ in })
+                
                 let uiux = UIAction(title:"UI/UX 디자이너", handler: { _ in
                     self.detailPartPullDownBtnSetting()
                 })
@@ -191,13 +194,15 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 let modeler = UIAction(title:"모델러", handler: { _ in
                     self.detailPartPullDownBtnSetting()
                 })
-                detailPartMenu = UIMenu(title: "디자이너", children: [uiux, illust, modeler])
+                detailPartMenu = UIMenu(title: "디자이너", children: [detailDefault, uiux, illust, modeler])
                 
                 self.partPullDownBtnSetting()
                 self.detailPartBtn.menu = detailPartMenu
             })
             let developerMenu = UIAction(title: "개발자", handler: { _ in
                 print("개발자")
+                let detailDefault = UIAction(title:"세부 포지션", attributes: .hidden, state: .off, handler: { _ in })
+                
                 let android = UIAction(title:"Android", handler: { _ in
                     self.detailPartPullDownBtnSetting()
                 })
@@ -213,7 +218,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 let game = UIAction(title:"게임", handler: { _ in
                     self.detailPartPullDownBtnSetting()
                 })
-                detailPartMenu = UIMenu(title: "개발자", children: [android, ios, web, backend, game])
+                detailPartMenu = UIMenu(title: "개발자", children: [detailDefault, android, ios, web, backend, game])
                 
                 self.partPullDownBtnSetting()
                 self.detailPartBtn.menu = detailPartMenu
@@ -323,7 +328,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                     
                     
                     // [이메일 인증]
-                    self.emailVFLabel.text = "인증 메일이 발송되었습니다. 메일함을 확인해 주세요!"
+                    self.emailVFLabel.text = "인증 메일이 발송되었습니다."
                     self.emailVFLabel.textColor = UIColor(named: "purple_184")
                     self.emailVFLabel.isHidden = false
                     self.emailVFAfter.isHidden = false

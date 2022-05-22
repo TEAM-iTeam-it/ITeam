@@ -153,7 +153,6 @@ extension DetailProfileToolNLanguageViewController: UITextFieldDelegate {
 //            }
             
             toolNLangsIteams = oldValuetoolNLangsIteams
-            print(oldValuetoolNLangsIteams)
             
             searchResultCollectionView.reloadData()
         }
@@ -171,7 +170,12 @@ extension DetailProfileToolNLanguageViewController: UITextFieldDelegate {
 extension DetailProfileToolNLanguageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == searchResultCollectionView {
-            return toolNLangsIteams.count
+            if searchTextField.hasText {
+                return toolNLangsIteams.count
+            }
+            else {
+                return 0
+            }
         }
         else {
             return toolNLangsIteamsAdded.count
@@ -224,7 +228,6 @@ extension DetailProfileToolNLanguageViewController: UICollectionViewDelegate, UI
                 
               
                 toolNLangsIteams.remove(at: indexPath.row)
-                print("yeyyeyeey \(oldValuetoolNLangsIteams.count)")
 //                for i in 0..<oldValuetoolNLangsIteams.count {
 //                    if oldValuetoolNLangsIteams[i] == cell.toolNLangBtn.titleLabel?.text?.lowercased() {
 //                        print("nono \(i)")
@@ -236,8 +239,6 @@ extension DetailProfileToolNLanguageViewController: UICollectionViewDelegate, UI
                  // oldValuetoolNLangsIteams = toolNLangsIteams
                 
                 
-                print("toolNLangsIteams : \(toolNLangsIteams)")
-                
                 addedCollectionView.reloadData()
                 searchResultCollectionView.reloadData()
             }
@@ -246,7 +247,6 @@ extension DetailProfileToolNLanguageViewController: UICollectionViewDelegate, UI
             toolNLangsIteamsAdded.remove(at: indexPath.row)
             toolNLangsIteams.append((cell.toolNLangBtn.titleLabel?.text)!)
             oldValuetoolNLangsIteams = toolNLangsIteams
-            print("oldValuetoolNLangsIteams : \(oldValuetoolNLangsIteams)")
             
             
             addedCollectionView.reloadData()
