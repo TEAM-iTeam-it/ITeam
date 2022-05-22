@@ -23,11 +23,19 @@ class SetATimeViewController: UIViewController{
     @IBOutlet weak var selectTime_3: UIButton!
     @IBOutlet weak var selectTime_2: UIButton!
     @IBOutlet weak var selectTime_1: UIButton!
+    @IBOutlet weak var nextBtn: UIButton!
     var selectTime: Date?
+    var count: Int = 0 {
+        willSet(newValue) {
+            if newValue >= 3 {
+                nextBtn.isEnabled = true
+                nextBtn.backgroundColor = UIColor(named: "purple_184")
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .black
         
@@ -45,6 +53,7 @@ class SetATimeViewController: UIViewController{
         selectTime_3.layer.cornerRadius = 8
         selectTime_2.layer.cornerRadius = 8
         selectTime_1.layer.cornerRadius = 8
+        nextBtn.layer.cornerRadius = 8
         
     }
     @IBOutlet var Buttons: Array<UIButton>!
@@ -115,7 +124,7 @@ extension SetATimeViewController: SendTimeDataDelegate {
             self.selectTime_1.setTitleColor(UIColor.black, for: .normal)
             
             candidateBtn_1.isHidden = false
-            candidateBtn_1.layer.cornerRadius = 10
+            candidateBtn_1.layer.cornerRadius = candidateBtn_1.frame.height/2
             
             selectTime_1.backgroundColor = .white
             selectTime_1.layer.borderWidth = 0
@@ -125,13 +134,15 @@ extension SetATimeViewController: SendTimeDataDelegate {
             selectTime_1.layer.shadowOpacity = 0.2
             selectTime_1.layer.shadowRadius = 10
             selectTime_1.layer.masksToBounds = false
+            selectTime_1.layer.cornerRadius = 8
+            count += 1
         }
         if dhdh.contains("두번째"){
             self.selectTime_2.setTitle(result, for: .normal)
             self.selectTime_2.setTitleColor(UIColor.black, for: .normal)
             
             candidateLabel_2.isHidden = false
-            candidateLabel_2.layer.cornerRadius = 10
+            candidateLabel_2.layer.cornerRadius = candidateLabel_2.frame.height/2
             
             
             selectTime_2.backgroundColor = .white
@@ -142,13 +153,15 @@ extension SetATimeViewController: SendTimeDataDelegate {
             selectTime_2.layer.shadowOpacity = 0.2
             selectTime_2.layer.shadowRadius = 10
             selectTime_2.layer.masksToBounds = false
+            selectTime_2.layer.cornerRadius = 8
+            count += 1
         }
         if dhdh.contains("세번째"){
             self.selectTime_3.setTitle(result, for: .normal)
             self.selectTime_3.setTitleColor(UIColor.black, for: .normal)
             
             candidateLabel_3.isHidden = false
-            candidateLabel_3.layer.cornerRadius = 10
+            candidateLabel_3.layer.cornerRadius = candidateLabel_3.frame.height/2
             
             selectTime_3.backgroundColor = .white
             selectTime_3.layer.borderWidth = 0
@@ -158,6 +171,8 @@ extension SetATimeViewController: SendTimeDataDelegate {
             selectTime_3.layer.shadowOpacity = 0.2
             selectTime_3.layer.shadowRadius = 10
             selectTime_3.layer.masksToBounds = false
+            selectTime_3.layer.cornerRadius = 8
+            count += 1
         }
     
     }

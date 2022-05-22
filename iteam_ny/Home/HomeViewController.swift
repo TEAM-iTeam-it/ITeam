@@ -506,7 +506,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        collectionViewWidth.constant = CGFloat(teamMembers.count * 90)
+        collectionViewWidth.constant = CGFloat(teamMembers.count * 90 + 15)
         return teamMembers.count
     }
     

@@ -19,6 +19,7 @@ class QuestionViewController: UIViewController{
     var callerUid: [String: String] = [:]
     var callTime: [String: String] = [:]
     
+    @IBOutlet weak var saveBtn: UIButton!
     var ref: DatabaseReference!
     
     @IBAction func ClickfinishBtn(_ sender: Any) {
@@ -67,7 +68,7 @@ class QuestionViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        saveBtn.layer.cornerRadius = 8
         self.navigationController?.navigationBar.topItem?.title = ""
 //        self.navigationController?.navigationBar.topItem?.image = UIImage(systemName:"arrow.left")
 //        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")
@@ -114,6 +115,10 @@ extension QuestionViewController: UITableViewDataSource,UITableViewDelegate{
         
         var index = asklist[indexPath.row]
         index.isMarked = !index.isMarked
+        if index.isMarked {
+            saveBtn.isEnabled = true
+            saveBtn.backgroundColor = UIColor(named: "purple_184")
+        }
         asklist.remove(at: indexPath.row)
         asklist.insert(index, at:indexPath.row)
         

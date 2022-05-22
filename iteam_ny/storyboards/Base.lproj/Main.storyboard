@@ -744,7 +744,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="212"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Z8w-yO-Wu1">
-                                                                <rect key="frame" x="0.0" y="0.0" width="176.5" height="70"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="180.5" height="70"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser5.png" translatesAutoresizingMaskIntoConstraints="NO" id="MGO-u0-1Yv">
                                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -754,10 +754,10 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="1WG-ol-06m">
-                                                                        <rect key="frame" x="85" y="0.0" width="91.5" height="70"/>
+                                                                        <rect key="frame" x="85" y="0.0" width="95.5" height="70"/>
                                                                         <subviews>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="c00-or-Ykp">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="91.5" height="39.5"/>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="c00-or-Ykp">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="95.5" height="39.5"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62n-N5-fzB">
                                                                                         <rect key="frame" x="0.0" y="19" width="44.5" height="20.5"/>
@@ -765,11 +765,11 @@
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="학교" borderStyle="roundedRect" textAlignment="center" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="SLr-JV-ei1">
-                                                                                        <rect key="frame" x="49.5" y="21.5" width="42" height="18"/>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="같은 학교" borderStyle="roundedRect" textAlignment="center" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="SLr-JV-ei1">
+                                                                                        <rect key="frame" x="50.5" y="21.5" width="45" height="18"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="18" id="7uZ-FZ-8Ov"/>
-                                                                                            <constraint firstAttribute="width" constant="42" id="DER-bX-oIT"/>
+                                                                                            <constraint firstAttribute="width" constant="45" id="DER-bX-oIT"/>
                                                                                         </constraints>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                                         <textInputTraits key="textInputTraits"/>
@@ -1174,18 +1174,17 @@
                                     <action selector="btnClicked:" destination="sYu-cz-XiC" eventType="touchUpInside" id="z2A-iP-CZD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CL0-ed-oLu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CL0-ed-oLu">
                                 <rect key="frame" x="20" y="811" width="374" height="45"/>
+                                <color key="backgroundColor" name="gray_196"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="5D2-Vq-XHM"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="다음">
-                                    <backgroundConfiguration key="background" cornerRadius="10"/>
-                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" name="gray_light"/>
-                                </buttonConfiguration>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="다음">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="TimeNextBtn:" destination="sYu-cz-XiC" eventType="touchUpInside" id="lzm-mb-fkB"/>
                                 </connections>
@@ -1260,6 +1259,7 @@
                         <outlet property="candidateBtn_1" destination="c0Y-QP-b5t" id="h4w-FE-NlJ"/>
                         <outlet property="candidateLabel_2" destination="9GX-IV-d91" id="b4S-3z-Ldj"/>
                         <outlet property="candidateLabel_3" destination="4aK-xG-Xuy" id="ZtK-HP-ueT"/>
+                        <outlet property="nextBtn" destination="CL0-ed-oLu" id="vOn-7q-KW7"/>
                         <outlet property="selectTime_1" destination="H1S-WF-zjv" id="JGg-AK-Na7"/>
                         <outlet property="selectTime_2" destination="KvL-bD-BnE" id="oTM-mb-PUb"/>
                         <outlet property="selectTime_3" destination="LAp-kp-oS1" id="5dc-aM-X0o"/>
@@ -1349,13 +1349,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCF-2T-uXX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCF-2T-uXX">
                                 <rect key="frame" x="20" y="810" width="374" height="46"/>
+                                <color key="backgroundColor" name="gray_196"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="H4r-9c-87g"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="완료"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="완료">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="ClickfinishBtn:" destination="xRL-tX-b9q" eventType="touchUpInside" id="xun-fr-nGe"/>
                                 </connections>
@@ -1421,6 +1424,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KFP-fE-AuJ"/>
                     <connections>
+                        <outlet property="saveBtn" destination="rCF-2T-uXX" id="YLi-h7-kmo"/>
                         <outlet property="tableView" destination="dLk-0c-cRb" id="eB7-1A-uIq"/>
                         <outlet property="textTitleLabel" destination="POe-kR-4j8" id="dXJ-iF-gFx"/>
                     </connections>
