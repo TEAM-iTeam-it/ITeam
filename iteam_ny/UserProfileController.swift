@@ -40,6 +40,17 @@ class UserProfileController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = .black
+        
+        let fancyImage = UIImage(systemName:"arrow.left")
+
+        var fancyAppearance = UINavigationBarAppearance()
+        fancyAppearance.configureWithDefaultBackground()
+        fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
+
+        navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
+        
         backStack.layoutMargins = UIEdgeInsets(top: 15, left: 20, bottom: 30, right: 0)
         backStack.isLayoutMarginsRelativeArrangement = true
         backStack.layer.cornerRadius = 10

@@ -16,7 +16,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var notifyTableView: UITableView!
     var ref: DatabaseReference!
     let db = Database.database().reference()
-    var notiContent: [Noti] = []
     var giverList: [String] = []
     var friendList: [Friend] = []
     var friendUid:[String] = []
@@ -33,14 +32,21 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestStmt").setValue("수락")
-        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestTime").setValue("483:94")
-        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestUID").setValue(Auth.auth().currentUser!.uid)
+        notifyTableView.separatorStyle = .none
+        //현재 시간
+        var formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm"
+        var currentDateString = formatter.string(from: Date())
+
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestStmt").setValue("기본")
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestTime").setValue(currentDateString)
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestUID").setValue("기본")
         
         fetchMemberData()
         fetchChangedData()
+        fetchChangedData2()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
 //        fetchData()
@@ -66,6 +72,10 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.fetchMemberData()
             }
         })
+
+    }
+    func fetchChangedData2(){
+        removeArr()
         db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {
@@ -137,18 +147,14 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         
-//        let userdb = db.child("user").child(Auth.auth().currentUser!.uid)
-//        let userUID = Auth.auth().currentUser!.uid
             // 친구요청 가져오기
             let friendAlarmList = db.child("user").child(userUID).child("friendRequest")
             //queryEqual(toValue: myNickname)
         friendAlarmList.observeSingleEvent(of: .value) { [self] snapshot in
                 
-                // 나와 관련된 call 가져오기
                 for child in snapshot.children {
                     let snap = child as! DataSnapshot
                     let value = snap.value as? NSDictionary
-//                    print (value)
                     
                     requestTime = value?["requestTime"] as? String ?? ""
                     requestStmt = value?["requestStmt"] as? String ?? ""
@@ -157,9 +163,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print(requestStmt)
                     print(requestUID)
                     allInfo = (requestUID+","+requestStmt+","+requestTime)
-//                    if allInfo.contains("요청"){
                         friendUid.append(allInfo)
-//                    }
                     
                 }
                 
@@ -183,29 +187,30 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                 }
                             }
                         }
-                        print("b")
                         print(charindex[0])
                         print(charindex[1])
                         print(charindex[2])
                         let friend = Friend(uid: charindex[0], nickname: nickname + " 님이 친구를 요청했습니다.", position: charindex[2], profileImg: "",stmt : charindex[1])
                         friendList.append(friend)
+                        
                         notifyTableView.reloadData()
                     }
                 }
             }
+       
         notifyTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return RequestContent.count
+        friendList = friendList.sorted(by: {$0.position > $1.position})
         return friendList.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as! FriendRequestCell
-        
-        //수락 버튼
+        //수락 버튼을 눌렀을때
         cell.accept = { [unowned self] in
             let userUID = Auth.auth().currentUser!.uid
             let uid = friendList[indexPath.row].uid
@@ -214,9 +219,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
 //          Database.database().reference().child("user").child(userUID).child("friendsList").updateChildValues(fUid)
             if(nickname.contains("친구")){
-                print("여기는 오류가 ㅇ나ㅣ야!!!\(userUID)")
                 db.child("user").child(Auth.auth().currentUser!.uid).child("friendsList").observeSingleEvent(of: .value) { (snapshot) in
-                    print("\(userUID)이건아니다ㅏㅏㅏㅏㅏㅏㅏ")
                     if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                         print(snapshots.count)
                         Index = "\(snapshots.count)"
@@ -260,7 +263,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                    
                 }
-//                self.friendList.remove(at: indexPath.row)
                 
                 db.child("user").child(userUID).child("memberRequest").child(requestNum).child("requestStmt").setValue("수락")
                 notifyTableView.reloadData()
@@ -274,41 +276,48 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //               Database.database().reference().child("user").child(userUID).child("friendRequest").removeValue()
            self.friendList.remove(at: indexPath.row)
                notifyTableView.reloadData()
-//           self.requestCV.reloadData()
         }
         
         //알림 default 셀
-        if indexPath.row == 0{
+        if friendList[indexPath.row].stmt == "기본"{
             cell.refuseBtn.layer.isHidden = true
             cell.AcceptedBtn.layer.isHidden = true
             cell.refuseBtn.isEnabled = true
-            cell.AcceptedBtn.isEnabled = true
+            cell.AcceptedBtn.isEnabled = false
             
-            let currentUser = Auth.auth().currentUser
-            db.child((currentUser?.uid)!).child("userProfile").observeSingleEvent(of: .value, with: { snapshot in
+//            let currentUser = Auth.auth().currentUser
+            db.child("user").child(Auth.auth().currentUser!.uid).child("userProfile").observeSingleEvent(of: .value, with: { snapshot in
               // Get user value
               let value = snapshot.value as? NSDictionary
-              let partDetail = value?["partDetail"] as? String ?? ""
             let nickname = value?["nickname"] as? String ?? ""
                 cell.ContentLabel.text = "\(nickname) 님 iteam에 오신 걸 환영합니다!"
+                print(nickname)
             })
             cell.profileImg.image = UIImage(named: "AppIcon60@3x")
             
         }
-             
-    
             
         if friendList[indexPath.row].stmt == "수락"{
+            cell.AcceptedBtn.isEnabled = false
             cell.refuseBtn.layer.isHidden = true
-            cell.AcceptedBtn.backgroundColor = UIColor.white
+            cell.AcceptedBtn.layer.isHidden = false
             cell.AcceptedBtn.setTitle("추가됨", for: .normal)
+            cell.AcceptedBtn.backgroundColor = UIColor.white
+            cell.AcceptedBtn.setTitleColor(.black, for: .normal)
             cell.AcceptedBtn.layer.borderWidth = 0.5
             cell.AcceptedBtn.layer.cornerRadius = 10
+            cell.AcceptedBtn.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1.0).cgColor
             cell.AcceptedBtn.isEnabled = true
         }
         if friendList[indexPath.row].stmt == "요청"{
             cell.refuseBtn.layer.isHidden = false
+            cell.AcceptedBtn.layer.isHidden = false
             cell.AcceptedBtn.setTitle("수락", for: .normal)
+            cell.AcceptedBtn.backgroundColor = UIColor(named: "purple_184")
+            cell.AcceptedBtn.setTitleColor(.white, for: .normal)
+            cell.AcceptedBtn.layer.borderWidth = 0
+            cell.AcceptedBtn.layer.cornerRadius = 10
+            cell.AcceptedBtn.isEnabled = true
         }
         
         let notiImg = friendList[indexPath.row].uid
@@ -334,18 +343,3 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 }
 
-class Noti {
-    var content: String
-    var date: String
-    var profileImg: String
-    
-    //var profileImg: UIImage
-    
-    init(content: String, date: String, profileImg: String ) {
-        self.content = content
-        self.date = date
-        self.profileImg = profileImg
-    }
-    
-    
-}
