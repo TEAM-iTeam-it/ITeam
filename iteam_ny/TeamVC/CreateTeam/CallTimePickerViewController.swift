@@ -52,7 +52,7 @@ class CallTimePickerViewController: UIViewController {
             fullTime[2] = "1시"
         }
         if fullTime[3].isEmpty {
-            fullTime[3] = "0분"
+            fullTime[3] = "00분"
         }
         callTime += "\(fullTime[0]) "
         callTime += "\(fullTime[1]) "

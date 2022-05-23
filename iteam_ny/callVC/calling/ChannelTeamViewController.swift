@@ -19,6 +19,7 @@ class ChannelTeamViewController: UIViewController {
     @IBOutlet weak var timeExplainLabel: UILabel!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     
+    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABNYZSLQREe3x1CLUFUY1hRSFLqWUwd4yt0TplV2CYXnzfvbuoAAAAAEABCwUE+aQKJYgEAAQBoAoli"
     // 입장할 때 speaker로 받기
     var name: String = ""
     
@@ -374,7 +375,7 @@ class ChannelTeamViewController: UIViewController {
     }
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IADIU3Vf9JAbwXD8VYAAY2uYridTl8X/pgkDaRPX0fkJiTfvbuoAAAAAEACXaa56o/6EYgEAAQCj/oRi",
+        agkit?.joinChannel(byToken: channelToken,
                            channelId: "testToken11",
                            info: nil,
                            uid: userID,

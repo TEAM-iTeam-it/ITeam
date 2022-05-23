@@ -3986,6 +3986,7 @@
                         <outlet property="infoLabel" destination="0jI-Lu-Mic" id="jEa-pj-5s3"/>
                         <outlet property="leaveButton" destination="hYV-Cg-sgF" id="ovH-gp-X94"/>
                         <outlet property="nicknameLabel" destination="pcD-6B-xFN" id="ZGO-sS-CwB"/>
+                        <outlet property="otherImageView" destination="hX1-5a-L4I" id="EZk-AL-ay3"/>
                         <outlet property="sameSchoolLabel" destination="0O6-Qg-tUP" id="6SW-Wm-Ffh"/>
                         <outlet property="timeExplainLabel" destination="1Ld-vf-0F8" id="pq4-7u-Cc0"/>
                         <outlet property="timerLabel" destination="lSw-I8-B4c" id="MjV-gy-Tri"/>

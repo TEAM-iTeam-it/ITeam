@@ -6,10 +6,11 @@
 //
 
 import UIKit
+
 import AgoraRtcKit
 import FirebaseAuth
 import FirebaseDatabase
-import SwiftUI
+import FirebaseStorage
 
 class ChannelViewController: UIViewController {
     
@@ -19,8 +20,11 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var sameSchoolLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var otherImageView: UIImageView!
+    
+    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABNYZSLQREe3x1CLUFUY1hRSFLqWUwd4yt0TplV2CYXnzfvbuoAAAAAEABCwUE+aQKJYgEAAQBoAoli"
+    
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     
     // 입장할 때 입력한 이름 받을 변수
@@ -93,6 +97,21 @@ class ChannelViewController: UIViewController {
         
         timerButtonClicked()
         
+        otherImageView.layer.cornerRadius = otherImageView.frame.height/2
+        otherImageView.layer.masksToBounds = true
+        
+        // kingfisher 사용하기 위한 url
+        let uid: String = otherPersonUID
+        
+        let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
+        
+        // Fetch the download URL
+        starsRef.downloadURL { [self] url, error in
+            if let error = error {
+            } else {
+                otherImageView.kf.setImage(with: url)
+            }
+        }
     }
     func updateTimerLabel() {
         var minutes = self.secondsLeft / 60
@@ -153,7 +172,7 @@ class ChannelViewController: UIViewController {
     
     // 채널 입장
     func joinChannel() {
-        agkit?.joinChannel(byToken: "0061bc8bc4e2bff4c63a191db9a6fc44cd8IADIU3Vf9JAbwXD8VYAAY2uYridTl8X/pgkDaRPX0fkJiTfvbuoAAAAAEACXaa56o/6EYgEAAQCj/oRi", channelId: "testToken11", info: nil, uid: userID,
+        agkit?.joinChannel(byToken: channelToken, channelId: "testToken11", info: nil, uid: userID,
                            joinSuccess: {(_, uid, elapsed) in
             self.userID = uid
             if self.role == .audience {

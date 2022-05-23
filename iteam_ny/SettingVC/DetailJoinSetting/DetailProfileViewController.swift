@@ -137,10 +137,14 @@ class DetailProfileViewController: UIViewController  {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
+        var calltimeString: String = ""
         let toolNLanguage: [String: String] = [ "toolNLanguage": toolNLangLabel.text ?? ""]
         let interest: [String: String] = [ "interest": interestLabel.text ?? ""]
-        let calltime: [String: String] = [ "calltime": callTimeBtn.titleLabel?.text ?? ""]
+        calltimeString = callTimeBtn.titleLabel?.text ?? ""
+        if !calltimeString.contains("분") {
+            calltimeString += " 00분"
+        }
+        let calltime: [String: String] = [ "calltime": calltimeString]
         let portfolioLink: [String: String] = [ "portfolioLink": portfoliolinkTF.text ?? ""]
         let contactLink: [String: String] = [ "contactLink": callLinkTF.text ?? ""]
         let currentTeam: [String: String] = [ "currentTeam": ""]
@@ -321,7 +325,8 @@ extension DetailProfileViewController: SendProjectExDelegate {
 // 통화 시간 받아오기
 extension DetailProfileViewController: SendCallTimeDataDelegate {
     func sendCallTimeData(data: String) {
-        self.callTimeBtn.setTitle(data, for: .normal)
+        let selectedTime = data.replacingOccurrences(of: "00분", with: "")
+        self.callTimeBtn.setTitle(selectedTime, for: .normal)
         self.callTimeBtn.setTitleColor(UIColor.black, for: .normal)
     }
     

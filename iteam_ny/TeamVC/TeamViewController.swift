@@ -85,6 +85,7 @@ class TeamViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchMyTeamname()
         checkMyTeamMember()
     }
     
@@ -203,24 +204,24 @@ class TeamViewController: UIViewController {
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
         db.child("Team").observe(.childChanged, with:{ [self] (snapshot) -> Void in
-            print("DB 수정됨")
             removeData()
             self.fetchMyTeamname()
             self.checkMyTeamProfile()
             self.checkMyTeamMember()
+            self.fetchFavorTeam()
             
         })
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ [self] (snapshot) -> Void in
-            print("DB 수정됨")
+    
             removeData()
             self.fetchMyTeamname()
             self.checkMyTeamProfile()
             self.checkMyTeamMember()
+            self.fetchFavorTeam()
             
         })
         db.child("user").child(Auth.auth().currentUser!.uid).child("likeTeam").observe(.childChanged, with:{ [self] (snapshot) -> Void in
-            print("DB 수정됨")
-            
+         
             self.fetchFavorTeam()
             
         })
