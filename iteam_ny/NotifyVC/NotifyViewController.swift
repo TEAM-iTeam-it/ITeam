@@ -44,6 +44,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         fetchMemberData()
         fetchChangedData()
+        fetchChangedData2()
     }
     
     
@@ -71,6 +72,10 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.fetchMemberData()
             }
         })
+
+    }
+    func fetchChangedData2(){
+        removeArr()
         db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨")
             DispatchQueue.main.async {

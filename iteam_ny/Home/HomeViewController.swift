@@ -24,6 +24,8 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     var pickpart:[String] = []
     var teamMembers: [MyTeam] = []
     var updateFetchData = 0
+    var othercharacter = ""
+    var myRank = 0
     
     @IBOutlet weak var addFriendView: UIView!
     @IBOutlet weak var memberColl: UICollectionView!
@@ -223,31 +225,190 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     var userprofileDetail: UserProfileDetail?
     
     //알고리즘 - 진행중
-    func sortList(a:Int, b:Int) -> Bool {
+    func sortList(){
+        var characterRank: [Int : Int] = [:]
         let celebrity1: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는" ]
         let celebrity2: [String] = ["외향적인", "열정적인", "사교성이 있는" ]
         let celebrity3: [String] = ["자신감 있는", "의사 결정을 잘하는", "목표 지향적인"]
         let celebrity4: [String] = ["문제를 극복하는", "도전적인", "추진력있는"]
         let celebrity5: [String] = ["전략적인", "신중한", "정확히 판단하는"]
+        let celebrity6: [String] = ["경청하는","협력적인","온화한"]
+        let celebrity7: [String] = ["능률적인","엄격한","실행력있는"]
+        let celebrity8: [String] = ["근면 성실한","완벽추구","꼼꼼한"]
+        let celebrity9: [String] = ["헌신적인","전문적인","몰두하는"]
         let detail = userprofileDetail
         let char = detail?.character
         
         let charindex: [String] = (char?.components(separatedBy: ", "))!
-        let f = charindex[0]
-        let s = charindex[1]
-        let l = charindex[2]
         
-        //나의 성향 출력
-        if let firstIndex = celebrity1.firstIndex(of: f) {
-            print("창의적인")
-        }
-        for mych in charindex {
-            if let firstIndex = celebrity1.firstIndex(of: mych) {
-                print("창의적인")
+        var mych = ""
+        var userch = ""
+        
+        for i in 0...2{
+            if celebrity1.contains("\(charindex[i])"){
+                if mych.isEmpty{
+                    mych = "창조적인"
+                }
+                else{
+                   mych = mych + "창조적인"
+                }
+            }
+            if celebrity2.contains("\(charindex[i])"){
+                if mych.isEmpty{
+                    mych = "탐색적인"
+                }
+                else{
+                   mych = mych + "탐색적인"
+                }
+            }
+            if celebrity3.contains("\(charindex[i])"){
+                if mych.isEmpty{
+                    mych = "리더쉽있는"
+                }
+                else{
+                   mych = mych + "리더쉽있는"
+                }
+            }
+            if celebrity4.contains("\(charindex[i])"){
+                if mych.isEmpty{
+                    mych = "추진적인"
+                }
+                else{
+                   mych = mych + "추진적인"
+                }
+            }
+            if celebrity5.contains("\(charindex[i])"){
+                if mych.isEmpty{
+                    mych = "전략적인"
+                }
+                else{
+                   mych = mych + "전략적인"
+                }
+            }
+            if celebrity6.contains("\(charindex[i])"){
+                if mych.isEmpty{
+                    mych = "분위기가 좋은"
+                }
+                else{
+                   mych = mych + "분위기가 좋은"
+                }
+            }
+            if celebrity7.contains("\(charindex[i])"){
+                if mych.isEmpty{
+                    mych = "실행력있는"
+                }
+                else{
+                   mych = mych + "실행력있는"
+                }
+            }
+            if celebrity8.contains("\(charindex[i])"){
+                if mych.isEmpty{
+                    mych = "뒷심이있는"
+                }
+                else{
+                   mych = mych + "뒷심이있는"
+                }
+            }
+            if celebrity9.contains("\(charindex[i])"){
+                if mych.isEmpty{
+                    mych = "기술적인"
+                }
+                else{
+                   mych = mych + "기술적인"
+                }
             }
         }
-        
-        return a>b
+        for j in 0..<userList.count{
+            let userCharacter = userList[j].userProfileDetail.character.components(separatedBy: ", ")
+            for k in 0...2{
+                if celebrity1.contains("\(userCharacter[k])"){
+                    if userch.isEmpty{
+                        userch = "창조적인"
+                    }
+                    else{
+                        userch = userch + ",창조적인"
+                    }
+                }
+                if celebrity2.contains("\(userCharacter[k])"){
+                    if userch.isEmpty{
+                        userch = "탐색적인"
+                    }
+                    else{
+                        userch = userch + ",탐색적인"
+                    }
+                }
+                if celebrity3.contains("\(userCharacter[k])"){
+                    if userch.isEmpty{
+                        userch = "리더쉽있는"
+                    }
+                    else{
+                        userch = userch + ",리더쉽있는"
+                    }
+                }
+                if celebrity4.contains("\(userCharacter[k])"){
+                    if userch.isEmpty{
+                        userch = "추진적인"
+                    }
+                    else{
+                        userch = userch + ",추진적인"
+                    }
+                }
+                if celebrity5.contains("\(userCharacter[k])"){
+                    if userch.isEmpty{
+                        userch = "전략적인"
+                    }
+                    else{
+                        userch = userch + ",전략적인"
+                    }
+                }
+                if celebrity6.contains("\(userCharacter[k])"){
+                    if userch.isEmpty{
+                        userch = "분위기가 좋은"
+                    }
+                    else{
+                        userch = userch + ",분위기가 좋은"
+                    }
+                }
+                if celebrity7.contains("\(userCharacter[k])"){
+                    if userch.isEmpty{
+                        userch = "실행력있는"
+                    }
+                    else{
+                        userch = userch + ",실행력있는"
+                    }
+                }
+                if celebrity8.contains("\(userCharacter[k])"){
+                    if userch.isEmpty{
+                        userch = "뒷심이있는"
+                    }
+                    else{
+                        userch = userch + ",뒷심이있는"
+                    }
+                }
+                if celebrity9.contains("\(userCharacter[k])"){
+                    if userch.isEmpty{
+                        userch = "기술적인"
+                    }
+                    else{
+                        userch = userch + ",기술적인"
+                    }
+                }
+            }
+            let userIndex = userch.components(separatedBy: ",")
+            if (mych.contains("\(userIndex[0])")&&mych.contains("\(userIndex[1])")) || (mych.contains("\(userIndex[0])")&&mych.contains("\(userIndex[2])")) || (mych.contains("\(userIndex[1])")&&mych.contains("\(userIndex[2])")){
+                characterRank[j] = 2
+            }
+            if mych.contains("\(userIndex[0])") || mych.contains("\(userIndex[1])") || mych.contains("\(userIndex[2])"){
+                characterRank[j] = 3
+            }
+            if mych.contains("\(userIndex[0])") && mych.contains("\(userIndex[1])") && mych.contains("\(userIndex[2])"){
+                characterRank[j] = 0
+            }
+            else{
+                characterRank[j] = 5
+            }
+        }
+        characterRank.sorted { $0.1 > $1.1 }
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -506,7 +667,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        collectionViewWidth.constant = CGFloat(teamMembers.count * 90 + 15)
+        collectionViewWidth.constant = CGFloat(teamMembers.count * 90)
         return teamMembers.count
     }
     
