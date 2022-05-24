@@ -19,7 +19,7 @@ class ChannelTeamViewController: UIViewController {
     @IBOutlet weak var timeExplainLabel: UILabel!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     
-    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IADDu+XuR7ZTXcVmD6XP7okRTwsjLkBQfURuXXy9t5gtsDfvbuoAAAAAEAB9OJJ5WnqMYgEAAQBaeoxi"
+    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IACsabbfj+i2SCjXLTFoBgofx3ezLSJ9jyha3LEyiNFt0zfvbuoAAAAAEAB9OJJ5bI+OYgEAAQBrj45i"
     // 입장할 때 speaker로 받기
     var name: String = ""
     
