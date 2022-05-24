@@ -105,7 +105,7 @@ class TeamProfileViewController: UIViewController {
             profileViewHeight.constant = 219
         }
         else {
-            teamIntroduceLabel.text = " \"\(introduceString)\""
+            teamIntroduceLabel.text = " \"\(introduceString!)\""
         }
         serviceTypeLabel.text = teamProfile.serviceType
         regionLabel.text = teamProfile.activeZone

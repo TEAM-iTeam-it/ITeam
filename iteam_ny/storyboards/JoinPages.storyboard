@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -4013,13 +4013,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-vk-S3t">
-                                <rect key="frame" x="0.0" y="161.5" width="414" height="2"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="Lok-EK-quU"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hy-68-K4p">
                                 <rect key="frame" x="0.0" y="113" width="414" height="48"/>
                                 <color key="tintColor" name="purple_184"/>
@@ -4027,11 +4020,18 @@
                                     <constraint firstAttribute="height" constant="48" id="e2U-q7-QNK"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-vk-S3t">
+                                <rect key="frame" x="0.0" y="161" width="414" height="0.5"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="Lok-EK-quU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AAI-KM-RKc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OfD-vk-S3t" firstAttribute="top" secondItem="8hy-68-K4p" secondAttribute="bottom" constant="0.5" id="4iW-GT-gk6"/>
+                            <constraint firstItem="OfD-vk-S3t" firstAttribute="top" secondItem="8hy-68-K4p" secondAttribute="bottom" id="4iW-GT-gk6"/>
                             <constraint firstItem="TxB-0h-AbH" firstAttribute="top" secondItem="AAI-KM-RKc" secondAttribute="top" constant="29" id="Fag-FD-dge"/>
                             <constraint firstItem="8hy-68-K4p" firstAttribute="leading" secondItem="AAI-KM-RKc" secondAttribute="leading" id="HQn-DS-WFu"/>
                             <constraint firstItem="AAI-KM-RKc" firstAttribute="trailing" secondItem="OfD-vk-S3t" secondAttribute="trailing" id="UMQ-WZ-Xly"/>
