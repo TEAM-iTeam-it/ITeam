@@ -161,7 +161,14 @@ class DetailProfileViewController: UIViewController  {
         
         let refMAin = Database.database().reference().child("user").child(Auth.auth().currentUser!.uid)
         refMAin.updateChildValues(currentTeam)
-    
+        
+        for i in 0..<projects.count {
+            let exDetail: [String: String] = [ "exDetail": projects[i].details]
+            let date: [String: String] = [ "date": projects[i].date]
+            ref.child("portfolio").child("ex\(i)").updateChildValues(exDetail)
+            ref.child("portfolio").child("ex\(i)").updateChildValues(date)
+        }
+        
     }
     // 프로젝트 추가 버튼
     @IBAction func addProjectExAction(_ sender: Any) {

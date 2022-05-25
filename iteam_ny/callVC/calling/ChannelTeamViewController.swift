@@ -19,7 +19,7 @@ class ChannelTeamViewController: UIViewController {
     @IBOutlet weak var timeExplainLabel: UILabel!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     
-    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABNYZSLQREe3x1CLUFUY1hRSFLqWUwd4yt0TplV2CYXnzfvbuoAAAAAEABCwUE+aQKJYgEAAQBoAoli"
+    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IACsabbfj+i2SCjXLTFoBgofx3ezLSJ9jyha3LEyiNFt0zfvbuoAAAAAEAB9OJJ5bI+OYgEAAQBrj45i"
     // 입장할 때 speaker로 받기
     var name: String = ""
     
@@ -498,13 +498,13 @@ extension ChannelTeamViewController: AgoraRtcEngineDelegate {
                 self.activeSpeakers.append(uid)
             }
             //멈췄을때
-        case .stopped, .failed:
+       // case .stopped, .failed:
             // 말하는 사람에서 삭제한다.
-            for i in 0..<activeSpeakers.count {
-                if activeSpeakers[i] == uid {
-                    activeSpeakers.remove(at: i)
-                }
-            }
+//            for i in 0..<activeSpeakers.count {
+//                if activeSpeakers[i] == uid {
+//                    activeSpeakers.remove(at: i)
+//                }
+//            }
         default:
             return
         }
