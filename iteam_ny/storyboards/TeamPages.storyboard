@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -1217,7 +1217,9 @@
                         <outlet property="regionLabelHeight" destination="eqm-GC-hlW" id="fZ4-mm-nKc"/>
                         <outlet property="saveBtn" destination="0nX-f1-M1k" id="pRE-F5-bfD"/>
                         <outlet property="scrollView" destination="a8c-mY-tSI" id="QSI-QC-llb"/>
+                        <outlet property="teamExplainLabel" destination="UXH-uA-koB" id="r21-tE-R7b"/>
                         <outlet property="teamNameTF" destination="17k-yB-uxS" id="Kzt-qe-mmQ"/>
+                        <outlet property="teamTitleLabel" destination="ut6-1u-dJl" id="90c-l1-nIW"/>
                         <outletCollection property="serviceTypeBtns" destination="sC9-Yu-jmU" collectionClass="NSMutableArray" id="rvs-Nb-Yk0"/>
                         <outletCollection property="serviceTypeBtns" destination="08A-Wo-xnz" collectionClass="NSMutableArray" id="ufM-94-LeJ"/>
                         <outletCollection property="serviceTypeBtns" destination="Pwf-G6-eVi" collectionClass="NSMutableArray" id="btF-fw-o0g"/>

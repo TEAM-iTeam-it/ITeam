@@ -271,10 +271,19 @@ class SettingViewController: UIViewController {
         ref = Database.database().reference()
         // [ 수식어 데이터 추가 ]
         ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
-        
+        addAlertData()
         
         let popupVC = thisStoryboard.instantiateViewController(withIdentifier: "SettingSuccessVC")
         popupVC.modalPresentationStyle = .overFullScreen
         present(popupVC, animated: false, completion: nil)
+    }
+    func addAlertData() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm"
+        let currentDateString = formatter.string(from: Date())
+
+        ref.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestStmt").setValue("기본")
+        ref.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestTime").setValue(currentDateString)
+        ref.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestUID").setValue("기본")
     }
 }

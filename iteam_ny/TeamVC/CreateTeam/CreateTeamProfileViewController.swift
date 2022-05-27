@@ -12,8 +12,10 @@ import FirebaseDatabase
 import MaterialComponents.MaterialBottomSheet
 
 class CreateTeamProfileViewController: UIViewController {
-    
 
+    // MARK: - @IBOutlet Properties
+    @IBOutlet weak var teamTitleLabel: UILabel!
+    @IBOutlet weak var teamExplainLabel: UILabel!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var leaderLabel: UILabel!
     @IBOutlet weak var profileImageColl: UICollectionView!
@@ -32,8 +34,8 @@ class CreateTeamProfileViewController: UIViewController {
     @IBOutlet weak var regionLabelHeight: NSLayoutConstraint!
     @IBOutlet var serviceTypeBtns: [UIButton]!
     
+    // MARK: - Properties
     let db = Database.database().reference()
-    
     var didTeamNameWrote: Int = 0
     var didContactLinkWrote: Int = 0
     var didPurpleWrote: Int = 0
@@ -91,12 +93,45 @@ class CreateTeamProfileViewController: UIViewController {
     var designerDetailPart: [String] = ["UI/UX 디자이너", "일러스트레이터", "모델러"]
     
     
+    var creativeProperty: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는"]
+    var exploratoryProperty: [String] = ["외향적인", "열정적인", "사교성 있는"]
+    var leadershipProperty: [String] = ["자신감 있는", "의사 결정을 잘하는", "목표 지향적인"]
+    var propulsiveProperty: [String] = ["문제를 극복하는", "도전적인", "추진력있는"]
+    var strategicProperty: [String] = ["전략적인", "신중한", "정확히 판단하는"]
+    var goodMoodProperty: [String] = ["경청하는", "협력적인", "온화한"]
+    var actionableProperty: [String] = ["능률적인", "엄격한", "실행력있는"]
+    var persistenceProperty: [String] = ["근면 성실한", "완벽추구", "꼼꼼한"]
+    var wellSkilledProperty: [String] = ["헌신적인", "전문적인", "몰두하는"]
+    
+    var teamTypeArr: [String] = ["창조적인", "탐색적인", "리더쉽 있는", "추진적인", "전략적인", "분위기 좋은", "실행력있는", "뒷심이 있는" ,"기술적인"]
+
+    var teamTypeCount: [Int] = Array(repeating: 0, count: 9)
+    var userPurpose: [String] = []
+    var fetchCharatorCount: Int = 0 {
+        
+        willSet {
+            if newValue == memberList?.count {
+                configTeamTypeLoad()
+            }
+        }
+    }
+    
+    
+    // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
        setLayout()
 
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUI()
+     
+    }
+    
+    // MARK: - Functions
     func setLayout() {
         // 데이터 기입 여부에 따라 constraint 변경
         // 라벨 세팅
@@ -120,14 +155,6 @@ class CreateTeamProfileViewController: UIViewController {
             regionLabelConstraintTop.constant = 15
             regionLabelHeight.constant = 25
         }
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setUI()
-     
     }
     
     func setUI() {
@@ -243,6 +270,159 @@ class CreateTeamProfileViewController: UIViewController {
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressCalled(gestureRecognizer:)))
         profileImageColl.addGestureRecognizer(longPressGesture)
+        
+        configTeamType()
+        // 팀 알고리즘 적용
+    }
+    // 팀 알고리즘
+    func configTeamType() {
+        var userPurposeCopy: [String] = []
+
+        for i in 0..<memberList!.count {
+            db.child("user").child(memberList![i]).child("userProfileDetail").child("character").observeSingleEvent(of: .value) { [self] snapshot in
+                let value = snapshot.value as! String
+                
+                let charaterArr: [String] = value.components(separatedBy: ", ")
+                for string in charaterArr {
+                    self.userPurpose.append(string)
+                }
+                userPurposeCopy = userPurpose
+                var onePersonPurposeCount: [Int] = Array(repeating: 0, count: 9)
+                let bounds = 3*i..<3*i+3
+                for i in bounds {
+                    if creativeProperty.contains(userPurpose[i]) {
+                        if onePersonPurposeCount[0] != 0 {
+                            userPurposeCopy[i] = ""
+                        }
+                        else {
+                            onePersonPurposeCount[0] += 1
+                        }
+                    }
+                    else if exploratoryProperty.contains(userPurpose[i]) {
+                        if onePersonPurposeCount[1] != 0 {
+                            userPurposeCopy[i] = ""
+                        }
+                        else {
+                            onePersonPurposeCount[1] += 1
+                        }
+                    }
+                    else if leadershipProperty.contains(userPurpose[i]) {
+                        if onePersonPurposeCount[2] != 0 {
+                            userPurposeCopy[i] = ""
+                        }
+                        else {
+                            onePersonPurposeCount[2] += 1
+                        }
+                    }
+                    else if propulsiveProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[3] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[3] += 1
+                            }
+                    }
+                    else if strategicProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[4] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[4] += 1
+                            }
+                    }
+                    else if goodMoodProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[5] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[5] += 1
+                            }
+                    }
+                    else if actionableProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[6] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[6] += 1
+                            }
+                    }
+                    else if persistenceProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[7] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[7] += 1
+                            }
+                    }
+                    else if wellSkilledProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[8] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[8] += 1
+                            }
+                    }
+                    print("userPurposeCopy \(userPurposeCopy)")
+                }
+                fetchCharatorCount += 1
+                userPurpose = userPurposeCopy
+            }
+        }
+    }
+    func configTeamTypeLoad() {
+        print(userPurpose)
+        for i in 0..<userPurpose.count{
+            if creativeProperty.contains(userPurpose[i]) {
+                teamTypeCount[0] += 1
+            }
+            else if exploratoryProperty.contains(userPurpose[i]) {
+                teamTypeCount[1] += 1
+            }
+            else if leadershipProperty.contains(userPurpose[i]) {
+                teamTypeCount[2] += 1
+            }
+            else if propulsiveProperty.contains(userPurpose[i]) {
+                teamTypeCount[3] += 1
+            }
+            else if strategicProperty.contains(userPurpose[i]) {
+                teamTypeCount[4] += 1
+            }
+            else if goodMoodProperty.contains(userPurpose[i]) {
+                teamTypeCount[5] += 1
+            }
+            else if actionableProperty.contains(userPurpose[i]) {
+                teamTypeCount[6] += 1
+            }
+            else if persistenceProperty.contains(userPurpose[i]) {
+                teamTypeCount[7] += 1
+            }
+            else if wellSkilledProperty.contains(userPurpose[i]) {
+                teamTypeCount[8] += 1
+            }
+        }
+        
+        var maxCountIndex: [Int] = []
+        print("젤 많이 선택된 횟수 \(teamTypeCount.max())")
+        for i in 0..<teamTypeCount.count {
+            if teamTypeCount[i] == teamTypeCount.max() {
+                print("\(i)번째")
+                maxCountIndex.append(i)
+            }
+        }
+        var teamTitle: String = ""
+        // 1순위 유형이 여러 개일 때
+        if maxCountIndex.count != 1 {
+            let random = maxCountIndex.randomElement()!
+            print(random)
+            teamTitle = teamTypeArr[random]
+            
+        }
+        // 유형이 하나일 때
+        else {
+            teamTitle = teamTypeArr[maxCountIndex[0]]
+        }
+        teamTitleLabel.text = teamTitle + " 팀"
+        
     }
     
     // 팀프로필 있을 때 가져오기
