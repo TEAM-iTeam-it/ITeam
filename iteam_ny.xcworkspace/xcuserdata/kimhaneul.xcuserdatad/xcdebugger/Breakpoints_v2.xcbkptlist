@@ -17,53 +17,5 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "649C8E34-2442-42B4-A318-C70FC5FB8736"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iteam_ny/callVC/callingManage/CallAnswerTeamViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "499"
-            endingLineNumber = "499"
-            landmarkName = "checkIamLeader()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "649C8E34-2442-42B4-A318-C70FC5FB8736 - 5928950a31e257df"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in iteam_ny.CallAnswerTeamViewController.checkIamLeader() -&gt; ()"
-                  moduleName = "iteam_ny"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kimhaneul/Documents/GitHub/ITeam/iteam_ny/callVC/callingManage/CallAnswerTeamViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "499"
-                  endingLineNumber = "499"
-                  offsetFromSymbolStart = "97">
-               </Location>
-               <Location
-                  uuid = "649C8E34-2442-42B4-A318-C70FC5FB8736 - 5928950a31e257df"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in iteam_ny.CallAnswerTeamViewController.checkIamLeader() -&gt; ()"
-                  moduleName = "iteam_ny"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kimhaneul/Documents/GitHub/ITeam/iteam_ny/callVC/callingManage/CallAnswerTeamViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "499"
-                  endingLineNumber = "499"
-                  offsetFromSymbolStart = "282">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
