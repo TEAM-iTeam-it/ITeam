@@ -29,13 +29,13 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDy-0P-LYA" userLabel="contentView">
-                                <rect key="frame" x="46" y="318.5" width="322" height="259"/>
+                                <rect key="frame" x="46" y="328.5" width="322" height="239"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziB-QG-X2d">
                                         <rect key="frame" x="123" y="81" width="76" height="32"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="기획자">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="15"/>
                                             <color key="baseForegroundColor" name="gray_121"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -43,10 +43,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONv-c9-VTD">
-                                        <rect key="frame" x="123" y="138" width="76" height="32"/>
+                                        <rect key="frame" x="123" y="130" width="76" height="32"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="디자이너">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="15"/>
                                             <color key="baseForegroundColor" name="gray_121"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -54,10 +54,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqr-D2-JhR">
-                                        <rect key="frame" x="123" y="195" width="76" height="32"/>
+                                        <rect key="frame" x="123" y="179" width="76" height="32"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="개발자">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="15"/>
                                             <color key="baseForegroundColor" name="gray_121"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -78,15 +78,14 @@
                                 <constraints>
                                     <constraint firstItem="ONv-c9-VTD" firstAttribute="leading" secondItem="hqr-D2-JhR" secondAttribute="leading" id="Br7-Ra-oqj"/>
                                     <constraint firstItem="ONv-c9-VTD" firstAttribute="centerX" secondItem="eDy-0P-LYA" secondAttribute="centerX" id="Cfh-I1-EWR"/>
-                                    <constraint firstAttribute="bottom" secondItem="hqr-D2-JhR" secondAttribute="bottom" constant="32" id="ENt-Sw-9Da"/>
                                     <constraint firstItem="ONv-c9-VTD" firstAttribute="leading" secondItem="ziB-QG-X2d" secondAttribute="leading" id="Eht-8j-yBb"/>
                                     <constraint firstAttribute="width" constant="322" id="Mzu-l6-vDy"/>
                                     <constraint firstItem="ziB-QG-X2d" firstAttribute="centerX" secondItem="eDy-0P-LYA" secondAttribute="centerX" id="VVC-sZ-rtB"/>
-                                    <constraint firstAttribute="height" constant="259" id="Y9O-qg-c89"/>
-                                    <constraint firstItem="hqr-D2-JhR" firstAttribute="top" secondItem="ONv-c9-VTD" secondAttribute="bottom" constant="25" id="ZFj-V8-sOL"/>
+                                    <constraint firstAttribute="height" constant="239" id="Y9O-qg-c89"/>
+                                    <constraint firstItem="hqr-D2-JhR" firstAttribute="top" secondItem="ONv-c9-VTD" secondAttribute="bottom" constant="17" id="ZFj-V8-sOL"/>
                                     <constraint firstItem="rjm-pP-c2C" firstAttribute="top" secondItem="eDy-0P-LYA" secondAttribute="top" constant="35" id="agy-UK-QP7"/>
                                     <constraint firstItem="hqr-D2-JhR" firstAttribute="centerX" secondItem="eDy-0P-LYA" secondAttribute="centerX" id="fYX-YE-EIs"/>
-                                    <constraint firstItem="ONv-c9-VTD" firstAttribute="top" secondItem="ziB-QG-X2d" secondAttribute="bottom" constant="25" id="t0y-Vr-tkI"/>
+                                    <constraint firstItem="ONv-c9-VTD" firstAttribute="top" secondItem="ziB-QG-X2d" secondAttribute="bottom" constant="17" id="t0y-Vr-tkI"/>
                                     <constraint firstItem="ziB-QG-X2d" firstAttribute="top" secondItem="rjm-pP-c2C" secondAttribute="bottom" constant="25" id="yFe-eV-prF"/>
                                     <constraint firstItem="rjm-pP-c2C" firstAttribute="centerX" secondItem="eDy-0P-LYA" secondAttribute="centerX" id="yVw-Vr-aQC"/>
                                 </constraints>

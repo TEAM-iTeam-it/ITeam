@@ -21,7 +21,7 @@ class PopupViewController: UIViewController {
     var partCategory : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 16
         
         print("PopupViewController - viewDidLoad() called")
     }

@@ -1063,7 +1063,6 @@
 				1F55CF142751F19100CD35EC /* AppDelegate.swift */,
 				0868B01427CB5ED20018464B /* Join2ViewController.swift */,
 				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
-				1F55CF552754B46B00CD35EC /* UserProfileController.swift */,
 				1F55CF162751F19100CD35EC /* SceneDelegate.swift */,
 				08B83199280955FA00135893 /* FirstEntryViewController.swift */,
 				1F55CF1D2751F19200CD35EC /* Assets.xcassets */,
@@ -1076,15 +1075,13 @@
 		1F55CF5B2755E2B400CD35EC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1FB9A54B2843448B004A1B8B /* FriendToTeamVC */,
+				1FB9A54A28434405004A1B8B /* sendVC */,
+				1FB9A549284343F4004A1B8B /* popVC */,
 				1F55CF282751F71A00CD35EC /* HomeViewController.swift */,
-				1F5428222805336100F5179B /* PopupViewController.swift */,
-				1F5428292805B9FE00F5179B /* AddFasTeam.swift */,
-				1F64AF592813FA7F00D7B2BD /* SetATimeViewController.swift */,
-				1F64AF5B281401C600D7B2BD /* SendTimePickerView.swift */,
-				1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */,
+				1F55CF552754B46B00CD35EC /* UserProfileController.swift */,
 				1F76E52E2833041B0055DAFD /* HomeTeamCollectionViewCell.swift */,
 				1FB9A545283751BB004A1B8B /* GradientButton.swift */,
-				1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1163,6 +1160,33 @@
 				1F4ABF92282924A80003A024 /* FriendRequestCell.swift */,
 			);
 			path = NotifyVC;
+			sourceTree = "<group>";
+		};
+		1FB9A549284343F4004A1B8B /* popVC */ = {
+			isa = PBXGroup;
+			children = (
+				1F5428222805336100F5179B /* PopupViewController.swift */,
+				1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */,
+			);
+			path = popVC;
+			sourceTree = "<group>";
+		};
+		1FB9A54A28434405004A1B8B /* sendVC */ = {
+			isa = PBXGroup;
+			children = (
+				1F64AF5B281401C600D7B2BD /* SendTimePickerView.swift */,
+				1F64AF592813FA7F00D7B2BD /* SetATimeViewController.swift */,
+			);
+			path = sendVC;
+			sourceTree = "<group>";
+		};
+		1FB9A54B2843448B004A1B8B /* FriendToTeamVC */ = {
+			isa = PBXGroup;
+			children = (
+				1F5428292805B9FE00F5179B /* AddFasTeam.swift */,
+				1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */,
+			);
+			path = FriendToTeamVC;
 			sourceTree = "<group>";
 		};
 		31B0739A0D86B84446828D2C /* Pods */ = {
