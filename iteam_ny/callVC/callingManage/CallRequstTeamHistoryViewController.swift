@@ -155,7 +155,7 @@ class CallRequstTeamHistoryViewController: UIViewController {
         
         for i in 0..<callTime.count {
             if callTime[i].contains("00분") {
-                callTimeLabels[i].text = callTime[i].replacingOccurrences(of: "00분", with: "")
+                callTimeLabels[i].text = callTime[i].replacingOccurrences(of: " 00분", with: "")
             }
             else {
                 callTimeLabels[i].text = callTime[i]

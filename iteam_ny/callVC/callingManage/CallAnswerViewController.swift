@@ -420,7 +420,6 @@ class CallAnswerViewController: UIViewController {
         }
         
     }
-    // uid로 user 닉네임 반환
     func fetchNickname(userUID: String)  {
         let userdb = db.child("user").child(userUID)
      
@@ -441,6 +440,7 @@ class CallAnswerViewController: UIViewController {
             }
         }
     }
+  
 
     // 바뀐 데이터 불러오기
     func fetchChangedData() {
@@ -674,6 +674,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             
             // 1. 내가 보낸 경우
             for i in 0..<whenISendOtherPerson.count {
+                
                 if whenISendOtherPerson[i].nickname == personList[indexPath.row].nickname {
                     // 받는 사람
                     waitingRoomVC.nickname = personList[indexPath.row].nickname
@@ -734,16 +735,6 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         }
         else if personList[indexPath.row].callStm == "통화" {
             let callingVC = storyboard?.instantiateViewController(withIdentifier: "callingVC") as! ChannelViewController
-            
-            callingVC.nickname = personList[indexPath.row].nickname
-            callingVC.otherPersonUID = personList[indexPath.row].profileImg
-            let position = personList[indexPath.row].position
-            callingVC.position = String(position)
-           
-        
-            callingVC.name = name
-            callingVC.profile = personList[indexPath.row].profileImg
-            print(personList[indexPath.row].profileImg)
             callingVC.modalPresentationStyle = .fullScreen
             present(callingVC, animated: true, completion: nil)
             
@@ -755,15 +746,18 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                let nextViewChild = nextView.viewControllers.first as? CallAgreeViewController {
                 var indexCount = -1
                 
-                for i in 0...indexPath.row {
-                    if personList[i].callStm == "요청옴" {
-                        indexCount += 1
+                for i in 0..<whenIReceivedOtherPerson.count {
+                    if whenIReceivedOtherPerson[i].nickname == personList[indexPath.row].nickname {
+                        indexCount = i
                     }
                 }
+               
                 nextViewChild.times = callTimeArr[indexCount]
                 nextViewChild.questionArr = questionArr[indexPath.row]
                 nextViewChild.teamName = teamIndex[indexCount]
-                nextViewChild.callerNickname = fetchedInputUIDToNickName
+                nextViewChild.callerNickname = personList[indexCount].nickname
+                
+                print(callTimeArr)
                 
                 nextView.modalPresentationStyle = .fullScreen
                 self.present(nextView, animated: true, completion: nil)

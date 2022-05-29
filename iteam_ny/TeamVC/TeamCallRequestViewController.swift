@@ -21,7 +21,7 @@ class TeamCallRequestViewController: UIViewController{
     @IBOutlet weak var selectTime_3: UIButton!
     @IBOutlet weak var selectTime_2: UIButton!
     @IBOutlet weak var selectTime_1: UIButton!
-    @IBOutlet var Buttons: Array<UIButton>!
+    @IBOutlet var buttons: Array<UIButton>!
     @IBOutlet var selectNumLabel: [UILabel]!
     @IBOutlet var dateLabel: [UILabel]!
     @IBOutlet weak var nextButton: UIButton!
@@ -42,14 +42,17 @@ class TeamCallRequestViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for i in 0..<Buttons.count {
-            Buttons[i].layer.cornerRadius = 16
+        
+        for i in 0..<buttons.count {
+            buttons[i].layer.cornerRadius = 16
             selectNumLabel[i].layer.cornerRadius = selectNumLabel[i].frame.height/2
             selectNumLabel[i].clipsToBounds = true
             selectNumLabel[i].textColor = UIColor(named: "purple_184")
             selectNumLabel[i].backgroundColor = UIColor(named: "purple_247")
             selectNumLabel[i].isHidden = true
-            
+        }
+        for i in 0..<dateLabel.count {
+            dateLabel[i].sizeToFit()
         }
         nextButton.layer.cornerRadius = 8
         nextButton.isEnabled = false
@@ -64,7 +67,7 @@ class TeamCallRequestViewController: UIViewController{
     //첫번째, 두번째 세번째버튼을 선택했을 때
     @IBAction func btnClicked(_ sender: UIButton) {
         
-        let btnNumber = Buttons.firstIndex(of: sender)
+        let btnNumber = buttons.firstIndex(of: sender)
         var buttonTitle: String = ""
         
         switch btnNumber {
@@ -111,10 +114,12 @@ class TeamCallRequestViewController: UIViewController{
 extension TeamCallRequestViewController: SendCallTimeNDateDataDelegate {
     func sendCallTimeNDateData(data: String) {
         let dateNTimeString = data
-        
         let index = dateNTimeString.index(dateNTimeString.startIndex, offsetBy: 3)
         var result = dateNTimeString.substring(from: index)
-        
+        if result.last == " " {
+            result = String(result.dropLast())
+        }
+        print(result)
         
         if dateNTimeString.contains("첫번째") {
             
@@ -124,14 +129,14 @@ extension TeamCallRequestViewController: SendCallTimeNDateDataDelegate {
             
             dateLabel[1].text = result
             
-            Buttons[0].backgroundColor = .white
-            Buttons[0].layer.borderWidth = 0
-            Buttons[0].layer.borderColor = UIColor.black.cgColor
-            Buttons[0].layer.shadowColor = UIColor.black.cgColor
-            Buttons[0].layer.shadowOffset = CGSize(width: 0, height: 0)
-            Buttons[0].layer.shadowOpacity = 0.2
-            Buttons[0].layer.shadowRadius = 10
-            Buttons[0].layer.masksToBounds = false
+            buttons[0].backgroundColor = .white
+            buttons[0].layer.borderWidth = 0
+            buttons[0].layer.borderColor = UIColor.black.cgColor
+            buttons[0].layer.shadowColor = UIColor.black.cgColor
+            buttons[0].layer.shadowOffset = CGSize(width: 0, height: 0)
+            buttons[0].layer.shadowOpacity = 0.2
+            buttons[0].layer.shadowRadius = 10
+            buttons[0].layer.masksToBounds = false
             
             dateTimes[0] = result
             count += 1
@@ -144,14 +149,14 @@ extension TeamCallRequestViewController: SendCallTimeNDateDataDelegate {
             
             dateLabel[3].text = result
             
-            Buttons[1].backgroundColor = .white
-            Buttons[1].layer.borderWidth = 0
-            Buttons[1].layer.borderColor = UIColor.black.cgColor
-            Buttons[1].layer.shadowColor = UIColor.black.cgColor
-            Buttons[1].layer.shadowOffset = CGSize(width: 0, height: 0)
-            Buttons[1].layer.shadowOpacity = 0.2
-            Buttons[1].layer.shadowRadius = 10
-            Buttons[1].layer.masksToBounds = false
+            buttons[1].backgroundColor = .white
+            buttons[1].layer.borderWidth = 0
+            buttons[1].layer.borderColor = UIColor.black.cgColor
+            buttons[1].layer.shadowColor = UIColor.black.cgColor
+            buttons[1].layer.shadowOffset = CGSize(width: 0, height: 0)
+            buttons[1].layer.shadowOpacity = 0.2
+            buttons[1].layer.shadowRadius = 10
+            buttons[1].layer.masksToBounds = false
             
             dateTimes[1] = result
             count += 1
@@ -163,14 +168,14 @@ extension TeamCallRequestViewController: SendCallTimeNDateDataDelegate {
             
             dateLabel[5].text = result
             
-            Buttons[2].backgroundColor = .white
-            Buttons[2].layer.borderWidth = 0
-            Buttons[2].layer.borderColor = UIColor.black.cgColor
-            Buttons[2].layer.shadowColor = UIColor.black.cgColor
-            Buttons[2].layer.shadowOffset = CGSize(width: 0, height: 0)
-            Buttons[2].layer.shadowOpacity = 0.2
-            Buttons[2].layer.shadowRadius = 10
-            Buttons[2].layer.masksToBounds = false
+            buttons[2].backgroundColor = .white
+            buttons[2].layer.borderWidth = 0
+            buttons[2].layer.borderColor = UIColor.black.cgColor
+            buttons[2].layer.shadowColor = UIColor.black.cgColor
+            buttons[2].layer.shadowOffset = CGSize(width: 0, height: 0)
+            buttons[2].layer.shadowOpacity = 0.2
+            buttons[2].layer.shadowRadius = 10
+            buttons[2].layer.masksToBounds = false
             
             dateTimes[2] = result
             count += 1

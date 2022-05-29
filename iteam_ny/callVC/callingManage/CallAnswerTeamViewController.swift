@@ -53,15 +53,15 @@ class CallAnswerTeamViewController: UIViewController {
         answerListTableView.dataSource = self
         
         setUI()
-        // 이 문제도x
-        // fetchData()
         
         fetchChangedData()
         
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        fetchData()
+        if !updateFetchData {
+            fetchData()            
+        }
         //setUI()
     }
     @IBAction func testChangeCall(_ sender: UIButton) {
@@ -553,22 +553,6 @@ class CallAnswerTeamViewController: UIViewController {
         }
     }
     
-    
-    // 삭제할 코드 - 유닛 테스트
-    @IBAction func testSignout(_ sender: UIButton) {
-        
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            print("로그아웃됨. 앱이 종료됩니다")
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
-        
-        sleep(2)
-        exit(0)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "waitingVC" {
             if let destination = segue.destination as? ChannelWaitingViewController {
@@ -870,7 +854,6 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     waitingRoomVC.questionArr = questionArrSend[i]
                     waitingRoomVC.callTime = callTimeArrSend[i][0]
                     waitingRoomVC.profile = personList[indexPath.row].profileImg
-                    
                 }
             }
             // 2. 내가 승인한 경우
@@ -882,15 +865,12 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     let position = personList[indexPath.row].position
                     waitingRoomVC.position = position
                     
-                    //personList[indexPath.row].
-                    
                     waitingRoomVC.fromPerson = personList[indexPath.row].nickname
                     waitingRoomVC.toPerson = myNickname
                     
                     waitingRoomVC.questionArr = questionArr[i]
                     waitingRoomVC.callTime = callTimeArr[i][0]
                     waitingRoomVC.profile = personList[indexPath.row].profileImg
-                    
                 }
             }
             present(waitingRoomVC, animated: true, completion: nil)
@@ -960,7 +940,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                             nextViewChild.times = callTimeArr[j]
                             nextViewChild.questionArr = questionArr[j]
                             nextViewChild.teamName = teamIndex[j]
-                            nextViewChild.callerNickname = fetchedInputUIDToNickName
+                            nextViewChild.callerNickname = personList[j].nickname
                         }
                     }
                     
@@ -988,3 +968,4 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
         return indexPath
     }
 }
+

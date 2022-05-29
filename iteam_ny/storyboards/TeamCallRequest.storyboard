@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mYE-zI-BTY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mYE-zI-BTY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -218,9 +218,6 @@
                         <outlet property="selectTime_1" destination="JQJ-fX-sgz" id="yJe-7l-3Wz"/>
                         <outlet property="selectTime_2" destination="vc2-xI-a04" id="RH6-Kp-B1a"/>
                         <outlet property="selectTime_3" destination="Wgv-ut-Xey" id="Hcn-wJ-1aQ"/>
-                        <outletCollection property="Buttons" destination="JQJ-fX-sgz" collectionClass="NSMutableArray" id="ftm-0r-5Mz"/>
-                        <outletCollection property="Buttons" destination="vc2-xI-a04" collectionClass="NSMutableArray" id="Am1-89-Bfq"/>
-                        <outletCollection property="Buttons" destination="Wgv-ut-Xey" collectionClass="NSMutableArray" id="Jua-S9-Eyc"/>
                         <outletCollection property="selectNumLabel" destination="EDE-8K-Znu" collectionClass="NSMutableArray" id="Se7-8W-oo6"/>
                         <outletCollection property="selectNumLabel" destination="hJc-fc-M57" collectionClass="NSMutableArray" id="Ffz-Xp-vvq"/>
                         <outletCollection property="selectNumLabel" destination="NCy-zc-LI1" collectionClass="NSMutableArray" id="LdA-WE-vof"/>
@@ -230,6 +227,9 @@
                         <outletCollection property="dateLabel" destination="eV1-63-lnv" collectionClass="NSMutableArray" id="xpM-o9-bh9"/>
                         <outletCollection property="dateLabel" destination="duA-9B-XgV" collectionClass="NSMutableArray" id="p9U-kf-sgl"/>
                         <outletCollection property="dateLabel" destination="26O-0w-27l" collectionClass="NSMutableArray" id="0pY-tI-D0C"/>
+                        <outletCollection property="buttons" destination="JQJ-fX-sgz" collectionClass="NSMutableArray" id="Dk8-4v-oJY"/>
+                        <outletCollection property="buttons" destination="vc2-xI-a04" collectionClass="NSMutableArray" id="J32-cg-yrJ"/>
+                        <outletCollection property="buttons" destination="Wgv-ut-Xey" collectionClass="NSMutableArray" id="6NC-Wg-nDG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vqv-V2-ghz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
