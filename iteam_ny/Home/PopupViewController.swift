@@ -12,6 +12,7 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var designerBtn: UIButton!
     @IBOutlet weak var developerBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var contentView: UIView!
     
     var subscribeBtnCompletionClosure: (()-> Void)?
     var subscribeBtnCompletionClosure2: (()-> Void)?
@@ -20,6 +21,7 @@ class PopupViewController: UIViewController {
     var partCategory : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        contentView.layer.cornerRadius = 8
         
         print("PopupViewController - viewDidLoad() called")
     }
