@@ -105,6 +105,7 @@
                     </view>
                     <connections>
                         <outlet property="backBtn" destination="N7g-tz-70d" id="VNN-im-YCl"/>
+                        <outlet property="contentView" destination="eDy-0P-LYA" id="am1-2w-htG"/>
                         <outlet property="designerBtn" destination="ONv-c9-VTD" id="Glh-G6-rjE"/>
                         <outlet property="developerBtn" destination="hqr-D2-JhR" id="4Rh-oP-SuG"/>
                         <outlet property="plannerBtn" destination="ziB-QG-X2d" id="i9p-8I-FP5"/>
@@ -363,20 +364,21 @@
                                                 <color key="textColor" systemColor="systemBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGI-ja-2Ap">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGI-ja-2Ap">
                                                 <rect key="frame" x="329" y="117" width="65" height="28"/>
+                                                <color key="backgroundColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="65" id="Rej-HZ-UyM"/>
                                                     <constraint firstAttribute="height" constant="28" id="nrh-AG-Wwz"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="팀 확정">
-                                                    <backgroundConfiguration key="background" cornerRadius="20"/>
-                                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="14"/>
-                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
-                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="baseBackgroundColor" name="gray_196"/>
-                                                </buttonConfiguration>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="팀 확정">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="clickedFinishedTeam:" destination="dtO-Eu-nIi" eventType="touchUpInside" id="SpT-c5-kGx"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -453,6 +455,7 @@
                         <outlet property="addFriendButton" destination="Ive-bA-vrX" id="SWe-9d-Cw6"/>
                         <outlet property="addFriendView" destination="Rsi-K9-RA1" id="y88-o2-Jph"/>
                         <outlet property="collectionViewWidth" destination="fZg-0S-gdv" id="Ikx-8r-gKg"/>
+                        <outlet property="decidedTeamBtn" destination="MGI-ja-2Ap" id="EXs-3I-dUS"/>
                         <outlet property="homeTableView" destination="hhM-Yb-vnB" id="q1R-Ka-1dc"/>
                         <outlet property="memberColl" destination="FNS-lQ-xom" id="fWw-BJ-LH2"/>
                         <outlet property="memberStackVIew" destination="1G5-5s-GLF" id="Qj3-HH-YZU"/>
@@ -3019,6 +3022,111 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bf-SA-kqS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1154" y="-1134"/>
+        </scene>
+        <!--Finished Team Popup View Controller-->
+        <scene sceneID="WcM-UH-BLO">
+            <objects>
+                <viewController storyboardIdentifier="FinishedTeamPopupViewController" id="D62-aj-UHj" customClass="FinishedTeamPopupViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a5c-ae-DvQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pT-EO-kZj">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eg7-G5-hTH" userLabel="contentView">
+                                <rect key="frame" x="46" y="361" width="322" height="174"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lki-Ms-63b">
+                                        <rect key="frame" x="28" y="71" width="266.5" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="팀빌딩이 완료되면 새로운 팀빌딩을 시작합니다.">
+                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="13"/>
+                                            <color key="baseForegroundColor" name="gray_121"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀빌딩을 완료하시겠습니까?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwS-z9-tM9">
+                                        <rect key="frame" x="66" y="35" width="190" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="n6T-BE-BQG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dc-AS-CX5">
+                                        <rect key="frame" x="15" y="113" width="141" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="141" id="1T6-fF-PMc"/>
+                                            <constraint firstAttribute="height" constant="46" id="msR-9H-D0t"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="취소">
+                                            <backgroundConfiguration key="background" cornerRadius="8">
+                                                <color key="backgroundColor" name="gray_245"/>
+                                            </backgroundConfiguration>
+                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <color key="baseForegroundColor" name="gray_121"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="onClickedBack:" destination="D62-aj-UHj" eventType="touchUpInside" id="1qA-qU-z9t"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QB-HA-2Cy">
+                                        <rect key="frame" x="166" y="113" width="141" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="141" id="SQc-iT-kaS"/>
+                                            <constraint firstAttribute="height" constant="46" id="fq3-VP-dao"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="확인">
+                                            <backgroundConfiguration key="background" cornerRadius="8">
+                                                <color key="backgroundColor" name="purple_184"/>
+                                            </backgroundConfiguration>
+                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="onClickedYes:" destination="D62-aj-UHj" eventType="touchUpInside" id="0JE-Zk-9bQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="1QB-HA-2Cy" secondAttribute="bottom" constant="15" id="44F-g9-SAf"/>
+                                    <constraint firstItem="Lki-Ms-63b" firstAttribute="centerX" secondItem="Eg7-G5-hTH" secondAttribute="centerX" id="Ka9-7S-wVU"/>
+                                    <constraint firstAttribute="trailing" secondItem="1QB-HA-2Cy" secondAttribute="trailing" constant="15" id="XhR-eN-2l2"/>
+                                    <constraint firstAttribute="height" constant="174" id="bir-5y-B5q"/>
+                                    <constraint firstItem="Lki-Ms-63b" firstAttribute="top" secondItem="uwS-z9-tM9" secondAttribute="bottom" constant="15" id="cuv-ac-6z3"/>
+                                    <constraint firstAttribute="bottom" secondItem="4dc-AS-CX5" secondAttribute="bottom" constant="15" id="deC-Xr-M7v"/>
+                                    <constraint firstItem="uwS-z9-tM9" firstAttribute="top" secondItem="Eg7-G5-hTH" secondAttribute="top" constant="35" id="her-Pr-JJl"/>
+                                    <constraint firstAttribute="width" constant="322" id="ieR-HY-01q"/>
+                                    <constraint firstItem="uwS-z9-tM9" firstAttribute="centerX" secondItem="Eg7-G5-hTH" secondAttribute="centerX" id="jek-Tr-9rM"/>
+                                    <constraint firstItem="4dc-AS-CX5" firstAttribute="leading" secondItem="Eg7-G5-hTH" secondAttribute="leading" constant="15" id="rLA-6K-qRf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="S09-FS-0XE"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.59807015730000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Eg7-G5-hTH" firstAttribute="centerX" secondItem="a5c-ae-DvQ" secondAttribute="centerX" id="Aea-Mt-gqH"/>
+                            <constraint firstItem="Eg7-G5-hTH" firstAttribute="centerY" secondItem="a5c-ae-DvQ" secondAttribute="centerY" id="O2k-hJ-ypD"/>
+                            <constraint firstItem="5pT-EO-kZj" firstAttribute="top" secondItem="S09-FS-0XE" secondAttribute="top" id="UB5-Of-hTh"/>
+                            <constraint firstItem="5pT-EO-kZj" firstAttribute="trailing" secondItem="S09-FS-0XE" secondAttribute="trailing" id="bvM-a1-3Sh"/>
+                            <constraint firstItem="5pT-EO-kZj" firstAttribute="leading" secondItem="S09-FS-0XE" secondAttribute="leading" id="krm-gb-uTM"/>
+                            <constraint firstItem="S09-FS-0XE" firstAttribute="bottom" secondItem="5pT-EO-kZj" secondAttribute="bottom" id="pYn-W9-gm8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="Eg7-G5-hTH" id="rQx-5T-KVX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lMa-Gk-nNA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-249" y="601"/>
         </scene>
     </scenes>
     <resources>
