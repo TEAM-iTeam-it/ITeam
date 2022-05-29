@@ -606,12 +606,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U64-xK-dan">
-                                <rect key="frame" x="20" y="74" width="374" height="215"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="215" id="W7G-ZE-iiZ"/>
-                                </constraints>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="통화 가능 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0E-hm-3zH">
                                 <rect key="frame" x="20" y="30" width="115" height="24"/>
                                 <constraints>
@@ -632,27 +626,34 @@
                                     <action selector="saveBtn:" destination="pAI-dW-USY" eventType="touchUpInside" id="Zo5-5p-tAt"/>
                                 </connections>
                             </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="gLA-uO-JRQ">
+                                <rect key="frame" x="20" y="74" width="374" height="215"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="215" id="aM1-8A-PbJ"/>
+                                </constraints>
+                                <locale key="locale" localeIdentifier="ko_KR"/>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MRY-6g-FdT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="gLA-uO-JRQ" firstAttribute="top" secondItem="l0E-hm-3zH" secondAttribute="bottom" constant="20" id="3rf-fg-HU1"/>
                             <constraint firstItem="l0E-hm-3zH" firstAttribute="leading" secondItem="MRY-6g-FdT" secondAttribute="leading" constant="20" id="4yZ-7L-MGq"/>
-                            <constraint firstItem="U64-xK-dan" firstAttribute="top" secondItem="l0E-hm-3zH" secondAttribute="bottom" constant="20" id="FiP-oV-WdV"/>
                             <constraint firstItem="MRY-6g-FdT" firstAttribute="trailing" secondItem="rXE-SY-Dff" secondAttribute="trailing" constant="20" id="LT5-Vw-9dA"/>
-                            <constraint firstItem="MRY-6g-FdT" firstAttribute="trailing" secondItem="U64-xK-dan" secondAttribute="trailing" constant="20" id="Phc-nB-yqt"/>
-                            <constraint firstItem="U64-xK-dan" firstAttribute="leading" secondItem="MRY-6g-FdT" secondAttribute="leading" constant="20" id="RQe-BR-Cc5"/>
+                            <constraint firstItem="gLA-uO-JRQ" firstAttribute="leading" secondItem="MRY-6g-FdT" secondAttribute="leading" constant="20" id="XTE-Pk-57x"/>
+                            <constraint firstItem="MRY-6g-FdT" firstAttribute="trailing" secondItem="gLA-uO-JRQ" secondAttribute="trailing" constant="20" id="dVM-v9-4QE"/>
                             <constraint firstItem="l0E-hm-3zH" firstAttribute="top" secondItem="MRY-6g-FdT" secondAttribute="top" constant="-14" id="jBP-qp-Jq3"/>
                             <constraint firstItem="rXE-SY-Dff" firstAttribute="centerY" secondItem="l0E-hm-3zH" secondAttribute="centerY" id="ue6-07-pKe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nWD-AC-gxM"/>
                     <connections>
-                        <outlet property="picker" destination="U64-xK-dan" id="aYY-MC-hsO"/>
+                        <outlet property="datePicker" destination="gLA-uO-JRQ" id="6cG-mS-Uz3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RfK-YR-sPd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="1705"/>
+            <point key="canvasLocation" x="763.768115942029" y="1704.9107142857142"/>
         </scene>
         <!--Team Call Request Popup View Controller-->
         <scene sceneID="Xlt-83-dfn">

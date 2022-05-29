@@ -688,7 +688,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     waitingRoomVC.questionArr = questionArrSend[i]
                     waitingRoomVC.callTime = callTimeArrSend[i][0]
                     waitingRoomVC.profile = personList[indexPath.row].profileImg
-                    waitingRoomVC.teamIndex = teamIndex[i]
+                    waitingRoomVC.teamIndex = teamIndexForSend[i]
                     
                 }
             }
@@ -738,6 +738,16 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         else if personList[indexPath.row].callStm == "통화" {
             let callingVC = storyboard?.instantiateViewController(withIdentifier: "callingVC") as! ChannelViewController
             callingVC.modalPresentationStyle = .fullScreen
+            callingVC.nickname = personList[indexPath.row].nickname
+            callingVC.otherPersonUID = personList[indexPath.row].profileImg
+            let position = personList[indexPath.row].position
+            callingVC.position = String(position)
+           
+        
+            callingVC.name = name
+            callingVC.profile = personList[indexPath.row].profileImg
+            print(personList[indexPath.row].profileImg)
+            
             present(callingVC, animated: true, completion: nil)
             
         }

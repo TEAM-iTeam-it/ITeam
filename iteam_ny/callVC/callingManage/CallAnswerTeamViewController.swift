@@ -854,8 +854,7 @@ extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSour
                     waitingRoomVC.questionArr = questionArrSend[i]
                     waitingRoomVC.callTime = callTimeArrSend[i][0]
                     waitingRoomVC.profile = personList[indexPath.row].profileImg
-                    waitingRoomVC.teamIndex = teamIndex[i]
-                    print("teamIndex[i] \(teamIndex[i])")
+                    waitingRoomVC.teamIndex = teamIndexForSend[i]
                 }
             }
             // 2. 내가 승인한 경우

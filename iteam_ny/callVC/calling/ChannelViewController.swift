@@ -104,7 +104,7 @@ class ChannelViewController: UIViewController {
         let uid: String = otherPersonUID
         
         let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
-        
+        print("uid \(uid)")
         // Fetch the download URL
         starsRef.downloadURL { [self] url, error in
             if let error = error {
@@ -184,6 +184,7 @@ class ChannelViewController: UIViewController {
         })
     }
     func fetchNickNameToUID(nickname: String)  {
+        print("fetchNickNameToUID")
         let userdb = db.child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
         userdb.observeSingleEvent(of: .value) { [self] snapshot in
             var userUID: String = ""
