@@ -143,6 +143,7 @@ class TeamViewController: UIViewController {
                     return
                 }
                 var memberListArr = memberlistString.components(separatedBy: ", ")
+                print("teamName \(teamName)")
                 if index.key == teamName {
                     userTeamUIDList = memberlistString.replacingOccurrences(of: Auth.auth().currentUser!.uid, with: "").components(separatedBy: ", ").filter({ $0 != "" })
                     haveTeamProfile = true

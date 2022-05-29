@@ -28,6 +28,8 @@ class ChannelWaitingViewController: UIViewController {
         }
     }
     let db = Database.database().reference()
+    var didQuestionConfig: Bool = false
+    var teamIndex: String = ""
     
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var positionLabel: UILabel!
@@ -108,11 +110,17 @@ class ChannelWaitingViewController: UIViewController {
         }
     }
     @IBAction func backBtn(_ sender: UIButton) {
+        
+        if didQuestionConfig {
+            let values: [String: String] = [ "stmt": "통화" ]
+            db.child("Call").child(teamIndex).updateChildValues(values)
+        }
+         
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func showQuestionAction(_ sender: UIButton) {
         let waitingRoomQuestionVC = storyboard?.instantiateViewController(withIdentifier: "waitingRoomQuestionVC") as! CallWaitingRoomQuestionViewController
-        
+        didQuestionConfig = true
         waitingRoomQuestionVC.question = questionArr
         waitingRoomQuestionVC.fromPerson = fromPerson
         waitingRoomQuestionVC.toPerson = toPerson
@@ -232,3 +240,4 @@ extension ChannelWaitingViewController: UICollectionViewDelegateFlowLayout {
         return insets
     }
 }
+
