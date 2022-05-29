@@ -688,6 +688,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     waitingRoomVC.questionArr = questionArrSend[i]
                     waitingRoomVC.callTime = callTimeArrSend[i][0]
                     waitingRoomVC.profile = personList[indexPath.row].profileImg
+                    waitingRoomVC.teamIndex = teamIndex[i]
                     
                 }
             }
@@ -708,6 +709,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
                     waitingRoomVC.questionArr = questionArr[i]
                     waitingRoomVC.callTime = callTimeArr[i][0]
                     waitingRoomVC.profile = personList[indexPath.row].profileImg
+                    waitingRoomVC.teamIndex = teamIndex[i]
                     
                 }
             }
