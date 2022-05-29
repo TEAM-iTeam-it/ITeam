@@ -680,15 +680,17 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     // [image picker setting] firebase storage에 추가
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! URL
-        let data=NSData(contentsOf: imageURL as! URL)!
         
+        let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! URL
+        guard let editedImage: UIImage = info[.editedImage] as? UIImage else { return }
+        guard let imageData: Data = editedImage.jpegData(compressionQuality: 0.0) else {return }
+    
         let imageName = Auth.auth().currentUser!.uid + ".jpg"
         let metaData = StorageMetadata()
         metaData.contentType = "image/png"
         
         let ref = Storage.storage().reference().child("user_profile_image").child(imageName)
-        ref.putData(data as Data, metadata: metaData) { (metaData,error) in
+        ref.putData(imageData as Data, metadata: metaData) { (metaData,error) in
             if let error = error {
                 //실패
                 print(error)
@@ -701,8 +703,10 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
                 DispatchQueue.global().async {
                     let data = try? Data(contentsOf: imageURL)
                     DispatchQueue.main.async {
-                        let resizedImage = self.resizeImage(image: UIImage(data: data!)!, width: 150, height: 150)
+                        
+                        let resizedImage = self.resizeImage(image: editedImage, width: 150, height: 150)
                         self.profileImageButton.setImage(resizedImage, for: .normal)
+                       // self.profileImageButton.setImage(UIImage(data: data!), for: .normal)
                         self.profileImageButton.clipsToBounds = true
                         self.profileImageButton.layer.borderWidth = 0.0
                         self.imageNextBtn.backgroundColor = UIColor(named: "purple_184")

@@ -14,6 +14,8 @@ import FirebaseStorage
 import Kingfisher
 
 class CallAnswerViewController: UIViewController {
+    
+    // MARK: - @IBOutlet Properties
     @IBOutlet weak var answerListTableView: UITableView!
     var updateFetchData: Int = 0
     var personList: [Person] = []
@@ -45,7 +47,7 @@ class CallAnswerViewController: UIViewController {
     var didUserUpdate: Bool = false
     private var refreshControl = UIRefreshControl()
 
-    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -61,21 +63,7 @@ class CallAnswerViewController: UIViewController {
     }
     
     // MARK: - @IBAction Properties
-    // 삭제할 코드 - 유닛 테스트
-    @IBAction func testSignout(_ sender: UIButton) {
-        
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            print("로그아웃됨. 앱이 종료됩니다")
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
-        
-        sleep(2)
-        exit(0)
-    }
-    
+    // 테스트 대기중 버튼
     @IBAction func testChangeCall(_ sender: UIButton) {
         for i in 0..<personList.count {
             if personList[i].callStm == "대기 중" {
