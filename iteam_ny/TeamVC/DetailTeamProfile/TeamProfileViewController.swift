@@ -42,8 +42,6 @@ class TeamProfileViewController: UIViewController {
     
     var team: Team = Team(teamName: "", purpose: "", part: "", images: [])
     
-    // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
-    let teamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
     // 서버에서 받아 올 사용자 이미지 데이터
     var teamImageData: [Data] = []
     var resizedImage: UIImage = UIImage()
@@ -241,12 +239,19 @@ class TeamProfileViewController: UIViewController {
         
         // MDC 바텀 시트로 설정
         let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: teamListVC!)
-        
-        // bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 320
-        
-        
-        // 보여주기
-        present(bottomSheet, animated: true, completion: nil)
+        let memberCount = teamProfile.memberList.components(separatedBy: ", ").count
+        var bottomSheetHeight: Int = 0
+        if memberCount < 7 {
+            bottomSheetHeight = memberCount*70 + 64 + 30
+            bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = CGFloat(bottomSheetHeight)
+            
+            // 보여주기
+            present(bottomSheet, animated: true, completion: nil)
+        }
+        else {
+            teamListVC?.memberCountSeven = true
+            present(teamListVC!, animated: true)
+        }
     }
     
     @IBAction func backBtn(_ sender: UIBarButtonItem) {

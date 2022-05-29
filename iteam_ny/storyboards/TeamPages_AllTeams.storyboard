@@ -573,7 +573,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="347" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0Ov-7w-eW6" customClass="DetailProfileExTableView" customModule="iteam_ny" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="347" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0Ov-7w-eW6" customClass="DetailProfileExTableView" customModule="iteam_ny" customModuleProvider="target">
                                 <rect key="frame" x="20" y="75" width="374" height="347"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -631,7 +631,7 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsB-ff-b8n">
                                 <rect key="frame" x="189" y="17" width="36" height="4"/>
-                                <color key="backgroundColor" name="gray_229"/>
+                                <color key="backgroundColor" name="gray_219"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="Jro-sL-yf6"/>
                                     <constraint firstAttribute="width" constant="36" id="z5y-kP-6f9"/>
@@ -645,15 +645,16 @@
                             <constraint firstItem="0Ov-7w-eW6" firstAttribute="top" secondItem="ohK-ph-dRj" secondAttribute="bottom" constant="20" id="DCr-ql-RDV"/>
                             <constraint firstItem="SsB-ff-b8n" firstAttribute="centerX" secondItem="L8a-0O-1O2" secondAttribute="centerX" id="GiN-qE-N8q"/>
                             <constraint firstItem="0Ov-7w-eW6" firstAttribute="leading" secondItem="L8a-0O-1O2" secondAttribute="leading" constant="20" id="YwW-9h-ySx"/>
+                            <constraint firstItem="L8a-0O-1O2" firstAttribute="top" secondItem="SsB-ff-b8n" secondAttribute="top" constant="27" id="by0-ad-vXG"/>
                             <constraint firstItem="ohK-ph-dRj" firstAttribute="top" secondItem="L8a-0O-1O2" secondAttribute="top" constant="-13" id="gYj-Xx-B1j"/>
                             <constraint firstItem="L8a-0O-1O2" firstAttribute="trailing" secondItem="0Ov-7w-eW6" secondAttribute="trailing" constant="20" id="i5e-Tu-YR2"/>
-                            <constraint firstItem="SsB-ff-b8n" firstAttribute="top" secondItem="ohK-ph-dRj" secondAttribute="top" constant="-14" id="lC0-Nt-vx4"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="indicatorBar" destination="SsB-ff-b8n" id="c4H-Ik-aKT"/>
                         <outlet property="memberTableview" destination="0Ov-7w-eW6" id="lzk-CZ-zIh"/>
                         <outlet property="tableviewHeight" destination="OMh-xe-dnR" id="bfS-Kk-4Ur"/>
+                        <outlet property="titleLabelConstraint" destination="gYj-Xx-B1j" id="yS9-Ts-DWv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyJ-dk-fDB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -694,6 +695,9 @@
         </namedColor>
         <namedColor name="gray_196">
             <color red="0.7686274509803922" green="0.7686274509803922" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray_219">
+            <color red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray_229">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
