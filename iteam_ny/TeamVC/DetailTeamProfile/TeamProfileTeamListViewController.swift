@@ -10,9 +10,12 @@ import FirebaseDatabase
 import Firebase
 
 class TeamProfileTeamListViewController: UIViewController {
+    
+    // MARK: - @IBOutlet Properties
     @IBOutlet weak var memberTableview: UITableView!
     @IBOutlet weak var tableviewHeight: NSLayoutConstraint!
     @IBOutlet weak var indicatorBar: UIView!
+    @IBOutlet weak var titleLabelConstraint: NSLayoutConstraint!
     
     var personList: [Person] = []
     var personProfileList: [UserProfileSimple] = []
@@ -25,11 +28,12 @@ class TeamProfileTeamListViewController: UIViewController {
     var teamMemberUID: String = ""
     var memberUID: [String] = []
     let db = Database.database().reference()
+    var memberCountSeven: Bool = false
     
-    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // setData()
         setUI()
         fetchMember()
@@ -39,24 +43,41 @@ class TeamProfileTeamListViewController: UIViewController {
         //tableviewHeight.constant = memberTableview.intrinsicContentSize.height
     }
     
+    // MARK: - Functions
     func setUI() {
         indicatorBar.layer.cornerRadius = indicatorBar.frame.height/2
         view.layer.cornerRadius = 30
-        view.layer.masksToBounds = true
         
         memberUID = teamMemberUID.components(separatedBy: ", ")
         
+        if let presentationController = presentationController as? UISheetPresentationController {
+            presentationController.detents = [
+                .medium(),
+                .large()
+            ]
+            presentationController.prefersGrabberVisible = true
+            
+        }
         
-//        if let presentationController = presentationController as? UISheetPresentationController {
-//            presentationController.detents = [
-//                .medium()
-//                .large()
-//            ]
-//            // grabber 속성 추가
-//            presentationController.prefersGrabberVisible = true
-//        }
+        if memberCountSeven {
+            titleLabelConstraint.constant = 30
+            
+            if let presentationController = presentationController as? UISheetPresentationController {
+                presentationController.detents = [
+                    .medium(),
+                    .large()
+                ]
+                presentationController.prefersGrabberVisible = true
+                
+            }
+        }
+        else {
+            titleLabelConstraint.constant = -13
+        }
+        
     }
-    
+
+
     func fetchMember() {
         
         print(memberUID.count)
@@ -120,7 +141,7 @@ class TeamProfileTeamListViewController: UIViewController {
         
     }
     
-
+    
 }
 extension TeamProfileTeamListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
