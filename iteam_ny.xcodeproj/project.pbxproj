@@ -262,6 +262,7 @@
 		1FAD4D662821DFC700707E30 /* CompletedTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD4D652821DFC700707E30 /* CompletedTeamCell.swift */; };
 		1FB9A54428363425004A1B8B /* AppIcon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FB9A54328363425004A1B8B /* AppIcon60@3x.png */; };
 		1FB9A546283751BB004A1B8B /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A545283751BB004A1B8B /* GradientButton.swift */; };
+		1FB9A54828433015004A1B8B /* FinishedTeamPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */; };
 		1FFD2E2C27FBEA070068520D /* img_logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E2B27FBEA060068520D /* img_logo2.png */; };
 		1FFD2E3027FBEA9C0068520D /* btn_pin1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E2D27FBEA9B0068520D /* btn_pin1@2x.png */; };
 		1FFD2E3127FBEA9C0068520D /* btn_pin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E2E27FBEA9B0068520D /* btn_pin1.png */; };
@@ -546,6 +547,7 @@
 		1FAD4D652821DFC700707E30 /* CompletedTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTeamCell.swift; sourceTree = "<group>"; };
 		1FB9A54328363425004A1B8B /* AppIcon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60@3x.png"; sourceTree = "<group>"; };
 		1FB9A545283751BB004A1B8B /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedTeamPopupViewController.swift; sourceTree = "<group>"; };
 		1FFD2E2B27FBEA060068520D /* img_logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_logo2.png; sourceTree = "<group>"; };
 		1FFD2E2D27FBEA9B0068520D /* btn_pin1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pin1@2x.png"; sourceTree = "<group>"; };
 		1FFD2E2E27FBEA9B0068520D /* btn_pin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_pin1.png; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 				1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */,
 				1F76E52E2833041B0055DAFD /* HomeTeamCollectionViewCell.swift */,
 				1FB9A545283751BB004A1B8B /* GradientButton.swift */,
+				1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1456,6 +1459,7 @@
 				1F76E52D2832FC3A0055DAFD /* MyTeam.swift in Sources */,
 				1F8760002821C9FE0051E89A /* NotifyTableViewCell.swift in Sources */,
 				08AE418D28057C0E007CBE5F /* DetailProfileProjectExViewController.swift in Sources */,
+				1FB9A54828433015004A1B8B /* FinishedTeamPopupViewController.swift in Sources */,
 				0868B04727CB6D930018464B /* CallManageViewController.swift in Sources */,
 				1F64AF5A2813FA7F00D7B2BD /* SetATimeViewController.swift in Sources */,
 				0868B03A27CB6D830018464B /* ChannelSectionHeader.swift in Sources */,

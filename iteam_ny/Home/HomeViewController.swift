@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     @IBOutlet weak var myPart: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memberStackVIew: UIStackView!
+    @IBOutlet weak var decidedTeamBtn: UIButton!
     var text:String = ""
     var pickpart:[String] = []
     var teamMembers: [MyTeam] = []
@@ -101,6 +102,8 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
 //        stack.addArrangedSubview(hereBtn)
         return stack
     }
+    
+    
     //파트별로 리스트 띄우기 진행중
     @objc func tapped(sender: UIButton) {
         
@@ -119,7 +122,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                 pickpart.append(userUID)
                 
             }
-            //                print(pickpart)
         }
         // 특정 목록만 띄우기
         ref.observe(.value) { snapshot in
@@ -181,6 +183,17 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
             makeButton()
         }
     }
+    //팀빌딩 완료 버튼
+    @IBAction func clickedFinishedTeam(_ sender: Any) {
+        let stroyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let finishedPopupVC = stroyboard.instantiateViewController(withIdentifier: "FinishedTeamPopupViewController") as!FinishedTeamPopupViewController
+        
+        finishedPopupVC.modalPresentationStyle = .overCurrentContext
+        finishedPopupVC.modalTransitionStyle = .crossDissolve
+        //finishedPopupVC.delegate = self
+        self.present(finishedPopupVC, animated: true, completion: nil)
+    }
+    
     
     var ref: DatabaseReference! //Firebase Realtime Database
     
@@ -189,6 +202,15 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         teamMembers.removeAll()
         updateFetchData = 0
         //        myMemberList.removeAll()
+    }
+    
+    func fetchDeleteData(){
+        Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).observe(.childRemoved, with:{ [self] (snapshot) -> Void in
+              print("DB 수정됨 삭제")
+            DispatchQueue.main.async {
+                self.fetchMemberList()
+            }
+          })
     }
     
     func fetchChangedData() {
@@ -203,7 +225,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
 //            }
 //        })
         Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ [self] (snapshot) -> Void in
-              print("DB 수정됨 Call")
               if updateFetchData == 0 {
                   updateFetchData += 1
               }
@@ -221,7 +242,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     //
     var fillteredData = [String]()
     var userList: [Uid] = []
-    //알고리즘 - 진행중
     var userprofileDetail: UserProfileDetail?
     
     //알고리즘 - 진행중
@@ -419,10 +439,11 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference().child("user")
-        ref.child(Auth.auth().currentUser!.uid).child("userTeam").setValue("")
+        //ref.child(Auth.auth().currentUser!.uid).child("userTeam").setValue("")
     
         fetchMemberList()
         fetchChangedData()
+        fetchDeleteData()
        
         // 내정보 가져오기
         let currentUser = Auth.auth().currentUser
@@ -447,6 +468,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
             }
         }
         
+        decidedTeamBtn.layer.cornerRadius = 12
         //UITableView Cell Register
         let nibName = UINib(nibName: "UserListCell", bundle: nil)
         homeTableView.register(nibName, forCellReuseIdentifier: "UserListCell")
@@ -539,13 +561,12 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
             let value = snapshot.value as? String ?? ""
             if value.isEmpty == false{
                 memberColl.isHidden = false
+                decidedTeamBtn.isEnabled = true
+                decidedTeamBtn.backgroundColor = UIColor(named: "purple_184")
                 myMemberList = value
                 let memberindex = myMemberList.components(separatedBy: ", ")
                 //uid 닉네임 가져오기
                 for muid in memberindex{
-                    //                self.myFriendUid.append(uid)
-                    print(muid + "!!!!!!!!!!!")
-                    //friendList.append(contentsOf: <#T##Sequence#>)
                     Database.database().reference().child("user").child(muid).observeSingleEvent(of: .value) { [self] snapshot in
                         var mnickname: String = ""
                         var mpart: String = ""
@@ -580,6 +601,8 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                 }
             }else{
                 memberColl.isHidden = true
+                decidedTeamBtn.backgroundColor = UIColor(named: "gray_196")
+                decidedTeamBtn.isEnabled = false
             }
             memberColl.reloadData()
         }
@@ -618,7 +641,6 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         }
         
         let nickname: String = userList[indexPath.row].userProfile.nickname
-        //            print(nickname)
         
         var userUID2 :String = ""
         let userdb = Database.database().reference().child("user").queryOrdered(byChild: "userProfile/nickname").queryEqual(toValue: nickname)
@@ -630,8 +652,6 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
                 userUID2 = snap.key
             }
             let uid: String = userUID2
-            //                print(fetchNickNameToUID(nickname:"우다다"))
-            //                print(uid)
             let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
             // Fetch the download URL
             starsRef.downloadURL { [self] url, error in
@@ -652,7 +672,6 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //            print("You selected cell #\(indexPath.row)!")
         //상세페이지 이동
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let detailViewController = storyboard.instantiateViewController(identifier: "UserProfileController") as? UserProfileController else { return }
@@ -676,7 +695,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let uid: String = teamMembers[indexPath.row].uid
         let hi:String = teamMembers[indexPath.row].name
-        //        print("!!!!!!\(hi)!!!!!!!!")
         let starsRef = Storage.storage().reference().child("user_profile_image/\(uid).jpg")
         
         // Fetch the download URL
