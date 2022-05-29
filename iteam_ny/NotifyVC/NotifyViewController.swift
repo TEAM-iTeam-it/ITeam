@@ -33,25 +33,8 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         notifyTableView.separatorStyle = .none
-//        //현재 시간
-//        var formatter = DateFormatter()
-//        formatter.dateFormat = "MM/dd HH:mm"
-//        var currentDateString = formatter.string(from: Date())
-//
-//        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestStmt").setValue("기본")
-//        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestTime").setValue(currentDateString)
-//        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestUID").setValue("기본")
-        
         fetchMemberData()
         fetchChangedData()
-//        fetchChangedData2()
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-//        fetchData()
-//        fetchMemberData()
-//        notifyTableView.reloadData()
     }
     
     func removeArr() {
@@ -61,6 +44,9 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         memberUid.removeAll()
         memberUid2.removeAll()
         friendUid.removeAll()
+        friendUid2.removeAll()
+        memberInfo.removeAll()
+        allInfo.removeAll()
 //        Index.removeAll()
     }
     
