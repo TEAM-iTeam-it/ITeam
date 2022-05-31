@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     @IBOutlet weak var myPart: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memberStackVIew: UIStackView!
+    @IBOutlet weak var teamTitleLabel: UILabel!
     @IBOutlet weak var decidedTeamBtn: UIButton!
     var text:String = ""
     var pickpart:[String] = []
@@ -27,6 +28,32 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     var updateFetchData = 0
     var othercharacter = ""
     var myRank = 0
+    
+    var teamname: String?
+    var memberList: [String] = []
+    
+    var creativeProperty: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는"]
+    var exploratoryProperty: [String] = ["외향적인", "열정적인", "사교성 있는"]
+    var leadershipProperty: [String] = ["자신감 있는", "의사 결정을 잘하는", "목표 지향적인"]
+    var propulsiveProperty: [String] = ["문제를 극복하는", "도전적인", "추진력있는"]
+    var strategicProperty: [String] = ["전략적인", "신중한", "정확히 판단하는"]
+    var goodMoodProperty: [String] = ["경청하는", "협력적인", "온화한"]
+    var actionableProperty: [String] = ["능률적인", "엄격한", "실행력있는"]
+    var persistenceProperty: [String] = ["근면 성실한", "완벽추구", "꼼꼼한"]
+    var wellSkilledProperty: [String] = ["헌신적인", "전문적인", "몰두하는"]
+    
+    var teamTypeArr: [String] = ["창조적인", "탐색적인", "리더쉽 있는", "추진적인", "전략적인", "분위기 좋은", "실행력있는", "뒷심이 있는" ,"기술적인"]
+
+    var teamTypeCount: [Int] = Array(repeating: 0, count: 9)
+    var userPurpose: [String] = []
+    var fetchCharatorCount: Int = 0 {
+        
+        willSet {
+            if newValue == memberList.count {
+                configTeamTypeLoad()
+            }
+        }
+    }
     
     @IBOutlet weak var addFriendView: UIView!
     @IBOutlet weak var memberColl: UICollectionView!
@@ -216,14 +243,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     func fetchChangedData() {
         //        teamMembers.removeAll()
         removeArr()
-        
-//        Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
-//            print("DB 수정됨")
-//            DispatchQueue.main.async {
-//                self.fetchMemberList()
-//                //                self.fetchMemberData()
-//            }
-//        })
         Database.database().reference().child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ [self] (snapshot) -> Void in
               if updateFetchData == 0 {
                   updateFetchData += 1
@@ -239,6 +258,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
           })
         
     }
+    
     //
     var fillteredData = [String]()
     var userList: [Uid] = []
@@ -247,15 +267,15 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     //알고리즘 - 진행중
     func sortList(){
         var characterRank: [Int : Int] = [:]
-        let celebrity1: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는" ]
-        let celebrity2: [String] = ["외향적인", "열정적인", "사교성이 있는" ]
-        let celebrity3: [String] = ["자신감 있는", "의사 결정을 잘하는", "목표 지향적인"]
-        let celebrity4: [String] = ["문제를 극복하는", "도전적인", "추진력있는"]
-        let celebrity5: [String] = ["전략적인", "신중한", "정확히 판단하는"]
-        let celebrity6: [String] = ["경청하는","협력적인","온화한"]
-        let celebrity7: [String] = ["능률적인","엄격한","실행력있는"]
-        let celebrity8: [String] = ["근면 성실한","완벽추구","꼼꼼한"]
-        let celebrity9: [String] = ["헌신적인","전문적인","몰두하는"]
+//        let creativeProperty: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는" ]
+//        let exploratoryProperty: [String] = ["외향적인", "열정적인", "사교성이 있는" ]
+//        let leadershipProperty: [String] = ["자신감 있는", "의사 결정을 잘하는", "목표 지향적인"]
+//        let propulsiveProperty: [String] = ["문제를 극복하는", "도전적인", "추진력있는"]
+//        let strategicProperty: [String] = ["전략적인", "신중한", "정확히 판단하는"]
+//        let goodMoodProperty: [String] = ["경청하는","협력적인","온화한"]
+//        let actionableProperty: [String] = ["능률적인","엄격한","실행력있는"]
+//        let persistenceProperty: [String] = ["근면 성실한","완벽추구","꼼꼼한"]
+//        let wellSkilledProperty: [String] = ["헌신적인","전문적인","몰두하는"]
         let detail = userprofileDetail
         let char = detail?.character
         
@@ -265,7 +285,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         var userch = ""
         
         for i in 0...2{
-            if celebrity1.contains("\(charindex[i])"){
+            if creativeProperty.contains("\(charindex[i])"){
                 if mych.isEmpty{
                     mych = "창조적인"
                 }
@@ -273,7 +293,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                    mych = mych + "창조적인"
                 }
             }
-            if celebrity2.contains("\(charindex[i])"){
+            if exploratoryProperty.contains("\(charindex[i])"){
                 if mych.isEmpty{
                     mych = "탐색적인"
                 }
@@ -281,7 +301,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                    mych = mych + "탐색적인"
                 }
             }
-            if celebrity3.contains("\(charindex[i])"){
+            if leadershipProperty.contains("\(charindex[i])"){
                 if mych.isEmpty{
                     mych = "리더쉽있는"
                 }
@@ -289,7 +309,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                    mych = mych + "리더쉽있는"
                 }
             }
-            if celebrity4.contains("\(charindex[i])"){
+            if propulsiveProperty.contains("\(charindex[i])"){
                 if mych.isEmpty{
                     mych = "추진적인"
                 }
@@ -297,7 +317,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                    mych = mych + "추진적인"
                 }
             }
-            if celebrity5.contains("\(charindex[i])"){
+            if strategicProperty.contains("\(charindex[i])"){
                 if mych.isEmpty{
                     mych = "전략적인"
                 }
@@ -305,7 +325,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                    mych = mych + "전략적인"
                 }
             }
-            if celebrity6.contains("\(charindex[i])"){
+            if goodMoodProperty.contains("\(charindex[i])"){
                 if mych.isEmpty{
                     mych = "분위기가 좋은"
                 }
@@ -313,7 +333,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                    mych = mych + "분위기가 좋은"
                 }
             }
-            if celebrity7.contains("\(charindex[i])"){
+            if actionableProperty.contains("\(charindex[i])"){
                 if mych.isEmpty{
                     mych = "실행력있는"
                 }
@@ -321,7 +341,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                    mych = mych + "실행력있는"
                 }
             }
-            if celebrity8.contains("\(charindex[i])"){
+            if persistenceProperty.contains("\(charindex[i])"){
                 if mych.isEmpty{
                     mych = "뒷심이있는"
                 }
@@ -329,7 +349,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                    mych = mych + "뒷심이있는"
                 }
             }
-            if celebrity9.contains("\(charindex[i])"){
+            if wellSkilledProperty.contains("\(charindex[i])"){
                 if mych.isEmpty{
                     mych = "기술적인"
                 }
@@ -341,7 +361,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         for j in 0..<userList.count{
             let userCharacter = userList[j].userProfileDetail.character.components(separatedBy: ", ")
             for k in 0...2{
-                if celebrity1.contains("\(userCharacter[k])"){
+                if creativeProperty.contains("\(userCharacter[k])"){
                     if userch.isEmpty{
                         userch = "창조적인"
                     }
@@ -349,7 +369,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         userch = userch + ",창조적인"
                     }
                 }
-                if celebrity2.contains("\(userCharacter[k])"){
+                if exploratoryProperty.contains("\(userCharacter[k])"){
                     if userch.isEmpty{
                         userch = "탐색적인"
                     }
@@ -357,7 +377,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         userch = userch + ",탐색적인"
                     }
                 }
-                if celebrity3.contains("\(userCharacter[k])"){
+                if leadershipProperty.contains("\(userCharacter[k])"){
                     if userch.isEmpty{
                         userch = "리더쉽있는"
                     }
@@ -365,7 +385,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         userch = userch + ",리더쉽있는"
                     }
                 }
-                if celebrity4.contains("\(userCharacter[k])"){
+                if propulsiveProperty.contains("\(userCharacter[k])"){
                     if userch.isEmpty{
                         userch = "추진적인"
                     }
@@ -373,7 +393,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         userch = userch + ",추진적인"
                     }
                 }
-                if celebrity5.contains("\(userCharacter[k])"){
+                if strategicProperty.contains("\(userCharacter[k])"){
                     if userch.isEmpty{
                         userch = "전략적인"
                     }
@@ -381,7 +401,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         userch = userch + ",전략적인"
                     }
                 }
-                if celebrity6.contains("\(userCharacter[k])"){
+                if goodMoodProperty.contains("\(userCharacter[k])"){
                     if userch.isEmpty{
                         userch = "분위기가 좋은"
                     }
@@ -389,7 +409,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         userch = userch + ",분위기가 좋은"
                     }
                 }
-                if celebrity7.contains("\(userCharacter[k])"){
+                if actionableProperty.contains("\(userCharacter[k])"){
                     if userch.isEmpty{
                         userch = "실행력있는"
                     }
@@ -397,7 +417,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         userch = userch + ",실행력있는"
                     }
                 }
-                if celebrity8.contains("\(userCharacter[k])"){
+                if persistenceProperty.contains("\(userCharacter[k])"){
                     if userch.isEmpty{
                         userch = "뒷심이있는"
                     }
@@ -405,7 +425,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         userch = userch + ",뒷심이있는"
                     }
                 }
-                if celebrity9.contains("\(userCharacter[k])"){
+                if wellSkilledProperty.contains("\(userCharacter[k])"){
                     if userch.isEmpty{
                         userch = "기술적인"
                     }
@@ -439,7 +459,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference().child("user")
-        //ref.child(Auth.auth().currentUser!.uid).child("userTeam").setValue("")
+        ref.child(Auth.auth().currentUser!.uid).child("userTeam").setValue("")
     
         fetchMemberList()
         fetchChangedData()
@@ -546,6 +566,159 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    //팀 조합 알고리즘
+    func configTeamType() {
+        var userPurposeCopy: [String] = []
+        if !(memberList.contains(Auth.auth().currentUser!.uid)) {
+            memberList.insert(Auth.auth().currentUser!.uid, at: 0)
+        }
+        for i in 0..<memberList.count {
+            Database.database().reference().child("user").child(memberList[i]).child("userProfileDetail").child("character").observeSingleEvent(of: .value) { [self] snapshot in
+                let value = snapshot.value as! String
+                
+                let charaterArr: [String] = value.components(separatedBy: ", ")
+                for string in charaterArr {
+                    self.userPurpose.append(string)
+                }
+                userPurposeCopy = userPurpose
+                var onePersonPurposeCount: [Int] = Array(repeating: 0, count: 9)
+                let bounds = 3*i..<3*i+3
+                for i in bounds {
+                    if creativeProperty.contains(userPurpose[i]) {
+                        if onePersonPurposeCount[0] != 0 {
+                            userPurposeCopy[i] = ""
+                        }
+                        else {
+                            onePersonPurposeCount[0] += 1
+                        }
+                    }
+                    else if exploratoryProperty.contains(userPurpose[i]) {
+                        if onePersonPurposeCount[1] != 0 {
+                            userPurposeCopy[i] = ""
+                        }
+                        else {
+                            onePersonPurposeCount[1] += 1
+                        }
+                    }
+                    else if leadershipProperty.contains(userPurpose[i]) {
+                        if onePersonPurposeCount[2] != 0 {
+                            userPurposeCopy[i] = ""
+                        }
+                        else {
+                            onePersonPurposeCount[2] += 1
+                        }
+                    }
+                    else if propulsiveProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[3] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[3] += 1
+                            }
+                    }
+                    else if strategicProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[4] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[4] += 1
+                            }
+                    }
+                    else if goodMoodProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[5] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[5] += 1
+                            }
+                    }
+                    else if actionableProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[6] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[6] += 1
+                            }
+                    }
+                    else if persistenceProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[7] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[7] += 1
+                            }
+                    }
+                    else if wellSkilledProperty.contains(userPurpose[i]) {
+                            if onePersonPurposeCount[8] != 0 {
+                                userPurposeCopy[i] = ""
+                            }
+                            else {
+                                onePersonPurposeCount[8] += 1
+                            }
+                    }
+                    print("userPurposeCopy \(userPurposeCopy)")
+                }
+                fetchCharatorCount += 1
+                userPurpose = userPurposeCopy
+            }
+        }
+    }
+    
+    func configTeamTypeLoad() {
+        print(userPurpose)
+        for i in 0..<userPurpose.count{
+            if creativeProperty.contains(userPurpose[i]) {
+                teamTypeCount[0] += 1
+            }
+            else if exploratoryProperty.contains(userPurpose[i]) {
+                teamTypeCount[1] += 1
+            }
+            else if leadershipProperty.contains(userPurpose[i]) {
+                teamTypeCount[2] += 1
+            }
+            else if propulsiveProperty.contains(userPurpose[i]) {
+                teamTypeCount[3] += 1
+            }
+            else if strategicProperty.contains(userPurpose[i]) {
+                teamTypeCount[4] += 1
+            }
+            else if goodMoodProperty.contains(userPurpose[i]) {
+                teamTypeCount[5] += 1
+            }
+            else if actionableProperty.contains(userPurpose[i]) {
+                teamTypeCount[6] += 1
+            }
+            else if persistenceProperty.contains(userPurpose[i]) {
+                teamTypeCount[7] += 1
+            }
+            else if wellSkilledProperty.contains(userPurpose[i]) {
+                teamTypeCount[8] += 1
+            }
+        }
+        
+        var maxCountIndex: [Int] = []
+        print("젤 많이 선택된 횟수 \(teamTypeCount.max())")
+        for i in 0..<teamTypeCount.count {
+            if teamTypeCount[i] == teamTypeCount.max() {
+                print("\(i)번째")
+                maxCountIndex.append(i)
+            }
+        }
+        var teamTitle: String = ""
+        // 1순위 유형이 여러 개일 때
+        if maxCountIndex.count != 1 {
+            let random = maxCountIndex.randomElement()!
+            print(random)
+            teamTitle = teamTypeArr[random]
+            
+        }
+        // 유형이 하나일 때
+        else {
+            teamTitle = teamTypeArr[maxCountIndex[0]]
+        }
+        teamTitleLabel.text = "우리는 " + teamTitle + " 팀"
+        
+    }
     
 
     //나의 팀원 상단에 띄우기
@@ -555,9 +728,9 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         var myMemberList = ""
         
         let userUID = Auth.auth().currentUser!.uid
-        let memberRequestList =  Database.database().reference().child("user").child(userUID).child("userTeam")
+        let teamMemberList =  Database.database().reference().child("user").child(userUID).child("userTeam")
         //queryEqual(toValue: myNickname)
-        memberRequestList.observeSingleEvent(of: .value) { [self] snapshot in
+        teamMemberList.observeSingleEvent(of: .value) { [self] snapshot in
             let value = snapshot.value as? String ?? ""
             if value.isEmpty == false{
                 memberColl.isHidden = false
@@ -567,6 +740,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                 let memberindex = myMemberList.components(separatedBy: ", ")
                 //uid 닉네임 가져오기
                 for muid in memberindex{
+                    memberList.append(muid)
                     Database.database().reference().child("user").child(muid).observeSingleEvent(of: .value) { [self] snapshot in
                         var mnickname: String = ""
                         var mpart: String = ""
@@ -596,6 +770,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         }
                         var member = MyTeam(uid: muid, part: mpart, name: mnickname, profileImg: "")
                         teamMembers.append(member)
+                        configTeamType()
                         memberColl.reloadData()
                     }
                 }
@@ -603,6 +778,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                 memberColl.isHidden = true
                 decidedTeamBtn.backgroundColor = UIColor(named: "gray_196")
                 decidedTeamBtn.isEnabled = false
+                teamTitleLabel.text = "어떤 팀을 만들고 싶으신가요?"
             }
             memberColl.reloadData()
         }

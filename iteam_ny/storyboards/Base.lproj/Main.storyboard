@@ -462,6 +462,7 @@
                         <outlet property="myPart" destination="iwQ-EJ-csS" id="xh7-WE-R2y"/>
                         <outlet property="scrollView" destination="DMA-xW-UIK" id="Ejp-Ay-6qM"/>
                         <outlet property="tableviewHeight" destination="3r4-Gy-mRp" id="yhR-16-cMI"/>
+                        <outlet property="teamTitleLabel" destination="ZYe-PS-mIa" id="s3J-hM-0U2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFr-iP-3hR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
