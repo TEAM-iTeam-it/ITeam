@@ -49,7 +49,6 @@ class CreateTeamProfileViewController: UIViewController {
     
     var didWroteAllAnswer: Int = 0 {
         willSet(newValue) {
-            print("newValue \(newValue)")
             if newValue >= 7
                 && !serviceType.isEmpty
                 && !serviceType.contains("")
@@ -362,7 +361,6 @@ class CreateTeamProfileViewController: UIViewController {
                                 onePersonPurposeCount[8] += 1
                             }
                     }
-                    print("userPurposeCopy \(userPurposeCopy)")
                 }
                 fetchCharatorCount += 1
                 userPurpose = userPurposeCopy
@@ -370,7 +368,6 @@ class CreateTeamProfileViewController: UIViewController {
         }
     }
     func configTeamTypeLoad() {
-        print(userPurpose)
         for i in 0..<userPurpose.count{
             if creativeProperty.contains(userPurpose[i]) {
                 teamTypeCount[0] += 1
@@ -404,7 +401,6 @@ class CreateTeamProfileViewController: UIViewController {
         var maxCountIndex: [Int] = []
         for i in 0..<teamTypeCount.count {
             if teamTypeCount[i] == teamTypeCount.max() {
-                print("\(i)번째")
                 maxCountIndex.append(i)
             }
         }
@@ -412,7 +408,6 @@ class CreateTeamProfileViewController: UIViewController {
         // 1순위 유형이 여러 개일 때
         if maxCountIndex.count != 1 {
             let random = maxCountIndex.randomElement()!
-            print(random)
             teamTitle = teamTypeArr[random]
             
         }
@@ -582,6 +577,7 @@ class CreateTeamProfileViewController: UIViewController {
                     let teamItemRef = ref.child("Team")
                     // let query2 = teamItemRef..queryEqual(toValue: teamNameText)
                     self.saveDataAction()
+                    print("teamNameText \(teamNameText)")
 //                    teamItemRef.observe(.value) { snapshot in
 //                        for childSnapshot in snapshot.children {
 //                            print(childSnapshot)
