@@ -663,6 +663,9 @@ class CreateTeamProfileViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        let currentDateString = formatter.string(from: Date())
         
         let currentTeam: [String: Any] = [ "currentTeam": teamNameTF.text]
         let purpose: [String: Any] = [ "purpose": purposeBtn.titleLabel?.text]
@@ -675,6 +678,7 @@ class CreateTeamProfileViewController: UIViewController {
         let contactLink: [String: Any] = [ "contactLink": contactLinkTF.text]
         let memberListValue: [String: Any] = [ "memberList": memberListString]
         let detailPart: [String: Any] = ["detailPart": partLabel.text]
+        let currentDate: [String: String] = ["createDate": currentDateString]
         
         ref = Database.database().reference()
         // 데이터 추가
@@ -691,6 +695,7 @@ class CreateTeamProfileViewController: UIViewController {
             ref.child("Team").child(teamNameTF).updateChildValues(callTime)
             ref.child("Team").child(teamNameTF).updateChildValues(contactLink)
             ref.child("Team").child(teamNameTF).updateChildValues(memberListValue)
+            ref.child("Team").child(teamNameTF).updateChildValues(currentDate)
         }
         // 현재 팀 이름은 각 팀원에게 전부 추가해줘야함
         for i in 0..<memberList.count {

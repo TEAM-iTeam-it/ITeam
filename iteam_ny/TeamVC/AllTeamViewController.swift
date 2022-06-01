@@ -66,7 +66,7 @@ class AllTeamViewController: UIViewController {
         let lastest = UIAction(title: "최신 등록순", handler: { _ in
             print("최신 등록순")
             self.filteringButton.setTitle("최신 등록순", for: .normal)
-            let teamListSortedByCurrent = self.teamList.sorted(by: { Int($0.createDate) ?? 0 < Int($1.createDate) ?? 0  })
+            let teamListSortedByCurrent = self.teamList.sorted(by: { Int($0.createDate) ?? 0 > Int($1.createDate) ?? 0  })
             self.teamList = teamListSortedByCurrent
             self.tableView.reloadData()
             
@@ -74,7 +74,7 @@ class AllTeamViewController: UIViewController {
         let oldest = UIAction(title: "오래된 등록순", handler: { _ in
             print("오래된 등록순")
             self.filteringButton.setTitle("오래된 등록순", for: .normal)
-            let teamListSortedByLast = self.teamList.sorted(by: { Int($0.createDate) ?? 0 > Int($1.createDate) ?? 0  })
+            let teamListSortedByLast = self.teamList.sorted(by: { Int($0.createDate) ?? 0 < Int($1.createDate) ?? 0  })
             self.teamList = teamListSortedByLast
             self.tableView.reloadData()
         })
