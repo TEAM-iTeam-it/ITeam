@@ -56,7 +56,7 @@ class ChannelViewController: UIViewController {
     lazy var role:AgoraClientRole = name == "speaker" || name == "speaker2" ? .broadcaster : .audience
     
     let db = Database.database().reference()
-    
+    var teamIndex: String = ""
     
     // 타이머
     var secondsLeft: Int = 180
@@ -200,6 +200,10 @@ class ChannelViewController: UIViewController {
     }
     
     @IBAction func leaveChannel(_ sender: UIButton) {
+        
+        let values: [String: String] = [ "stmt": "통화종료됨" ]
+        db.child("Call").child(teamIndex).updateChildValues(values)
+        
         self.agkit?.createRtcChannel("testToken11")?.leave()
         self.agkit?.leaveChannel()
         AgoraRtcEngineKit.destroy()

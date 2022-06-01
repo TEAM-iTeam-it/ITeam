@@ -226,7 +226,8 @@ class CallAnswerViewController: UIViewController {
                                 if myCallTime[i]["stmt"] == "통화"
                                     || myCallTime[i]["stmt"] == "대기 중"
                                     || myCallTime[i]["stmt"] == "요청취소됨"
-                                    || myCallTime[i]["stmt"] == "요청거절됨" {
+                                    || myCallTime[i]["stmt"] == "요청거절됨"
+                                    || myCallTime[i]["stmt"] == "통화종료됨"{
                                     
                                     fetchUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
                                     fetchIReceivedOtherUser(userUID: myCallTime[i]["callerUid"]!, stmt: myCallTime[i]["stmt"]!)
@@ -251,7 +252,8 @@ class CallAnswerViewController: UIViewController {
                                 if myCallTime[i]["stmt"] == "통화"
                                     || myCallTime[i]["stmt"] == "대기 중"
                                     || myCallTime[i]["stmt"] == "요청취소됨"
-                                    || myCallTime[i]["stmt"] == "요청거절됨" {
+                                    || myCallTime[i]["stmt"] == "요청거절됨"
+                                    || myCallTime[i]["stmt"] == "통화종료됨"{
                                     
                                     fetchUID(nickname: myCallTime[i]["receiverNickname"]!, stmt: myCallTime[i]["stmt"]!)
                                 }
@@ -683,8 +685,6 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.callStateBtn.setTitleColor(UIColor(named: "gray_51"), for: .normal)
             cell.callStateBtn.backgroundColor = nil
         }
-    
-        
         else if personList[indexPath.row].callStm == "통화" {
             cell.callingStateBtn.setTitleColor(.white, for: .normal)
             cell.callingStateBtn.layer.cornerRadius = cell.callingStateBtn.frame.height/2
@@ -692,6 +692,13 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.callingStateBtn.backgroundColor = UIColor(named: "purple_184")
             cell.callStateBtn.isHidden = true
             cell.callingStateBtn.isHidden = false
+        }
+        else if personList[indexPath.row].callStm == "통화종료됨" {
+            cell.callStateBtn.isHidden = true
+            cell.callingStateBtn.isHidden = true
+            
+            cell.cancelLabel.isHidden = false
+            cell.cancelLabel.text = "통화 종료됨"
         }
         return cell
     }
@@ -778,8 +785,19 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
             callingVC.otherPersonUID = personList[indexPath.row].profileImg
             let position = personList[indexPath.row].position
             callingVC.position = String(position)
-           
-        
+            
+            // 보낸 경우
+            for i in 0..<whenISendOtherPerson.count {
+                if whenISendOtherPerson[i].nickname == personList[indexPath.row].nickname {
+                    callingVC.teamIndex = teamIndexForSend[i]
+                }
+            }
+            // 받은 경우
+            for i in 0..<whenIReceivedOtherPerson.count {
+                if whenIReceivedOtherPerson[i].nickname == personList[indexPath.row].nickname {
+                    callingVC.teamIndex = teamIndex[i]
+                }
+            }
             callingVC.name = name
             callingVC.profile = personList[indexPath.row].profileImg
             print(personList[indexPath.row].profileImg)
