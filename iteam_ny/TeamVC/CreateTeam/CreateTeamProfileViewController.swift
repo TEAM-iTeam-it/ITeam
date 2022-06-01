@@ -89,7 +89,7 @@ class CreateTeamProfileViewController: UIViewController {
         }
     }
     var teamname: String?
-    var teamProfile: TeamProfile = TeamProfile(purpose: "", serviceType: "", part: "", detailPart: "", introduce: "", contactLink: "", callTime: "", activeZone: "", memberList: "")
+    var teamProfile: TeamProfile = TeamProfile(purpose: "", serviceType: "", part: "", detailPart: "", introduce: "", contactLink: "", callTime: "", activeZone: "", memberList: "", createDate: nil)
     var designerDetailPart: [String] = ["UI/UX 디자이너", "일러스트레이터", "모델러"]
     
     
@@ -402,7 +402,6 @@ class CreateTeamProfileViewController: UIViewController {
         }
         
         var maxCountIndex: [Int] = []
-        print("젤 많이 선택된 횟수 \(teamTypeCount.max())")
         for i in 0..<teamTypeCount.count {
             if teamTypeCount[i] == teamTypeCount.max() {
                 print("\(i)번째")
@@ -432,17 +431,18 @@ class CreateTeamProfileViewController: UIViewController {
         }
         db.child("Team").child(teamname).observeSingleEvent(of: .value) { [self] snapshot in
             
-            let value = snapshot.value as! [String : String]
+            let value = snapshot.value as? [String : String]
             teamProfile = TeamProfile(
-                purpose: value["purpose"] ?? "",
-                serviceType: value["serviceType"] ?? "",
-                part: value["part"] ?? "",
-                detailPart: value["detailPart"] ?? "",
-                introduce: value["introduce"] ?? "",
-                contactLink: value["contactLink"] ?? "",
-                callTime: value["callTime"] ?? "",
-                activeZone: value["activeZone"] ?? "",
-                memberList: value["memberList"] ?? ""
+                purpose: value?["purpose"] ?? "",
+                serviceType: value?["serviceType"] ?? "",
+                part: value?["part"] ?? "",
+                detailPart: value?["detailPart"] ?? "",
+                introduce: value?["introduce"] ?? "",
+                contactLink: value?["contactLink"] ?? "",
+                callTime: value?["callTime"] ?? "",
+                activeZone: value?["activeZone"] ?? "",
+                memberList: value?["memberList"] ?? "",
+                createDate: value?["createDate"] ?? ""
             )
             
             // 뷰 세팅
@@ -503,7 +503,7 @@ class CreateTeamProfileViewController: UIViewController {
                 var leaderUserInfo = CustomUser(userName: "", imageName: "", uid: "")
                 // 팀장 맨 앞에 배치
                 for i in 0..<teamMembers.count {
-                    if self.teamMembers[i].uid == value["leader"] {
+                    if self.teamMembers[i].uid == value?["leader"] {
                         leaderUserInfo = self.teamMembers[i]
                         teamMembers.remove(at: i)
                         break

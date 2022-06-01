@@ -4200,26 +4200,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hG4-oN-htX">
-                                <rect key="frame" x="20" y="670" width="374" height="119"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="119" id="FMR-Bi-mIo"/>
-                                    <constraint firstAttribute="width" constant="374" id="RlA-Vj-wU8"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
-                                <connections>
-                                    <action selector="testChangeCall:" destination="qBx-g4-IQq" eventType="touchUpInside" id="3Wj-sA-yVM"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1Ph-dL-QLN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1Ph-dL-QLN" firstAttribute="bottom" secondItem="hG4-oN-htX" secondAttribute="bottom" constant="73" id="2W8-xc-TrC"/>
                             <constraint firstItem="cD5-Q0-oup" firstAttribute="leading" secondItem="1Ph-dL-QLN" secondAttribute="leading" id="Ceh-bf-5b3"/>
                             <constraint firstItem="1Ph-dL-QLN" firstAttribute="trailing" secondItem="cD5-Q0-oup" secondAttribute="trailing" id="DPA-m6-Q0u"/>
-                            <constraint firstItem="hG4-oN-htX" firstAttribute="centerX" secondItem="1Ph-dL-QLN" secondAttribute="centerX" id="JXs-TQ-JYQ"/>
                             <constraint firstItem="1Ph-dL-QLN" firstAttribute="bottom" secondItem="cD5-Q0-oup" secondAttribute="bottom" constant="55" id="Y5l-gG-OF2"/>
                             <constraint firstItem="cD5-Q0-oup" firstAttribute="top" secondItem="1Ph-dL-QLN" secondAttribute="top" constant="138" id="u1w-R0-CNf"/>
                         </constraints>
@@ -4364,16 +4350,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPa-Xa-9iP">
-                                <rect key="frame" x="20" y="654" width="374" height="119"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7P-im-qav">
+                                <rect key="frame" x="20" y="454" width="374" height="339"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="NX7-kT-Xfj"/>
-                                    <constraint firstAttribute="height" constant="119" id="XpY-qt-uTl"/>
+                                    <constraint firstAttribute="height" constant="339" id="vC7-4w-7tt"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <action selector="testChangeCall:" destination="5yl-MN-8V6" eventType="touchUpInside" id="YU8-L9-K1r"/>
+                                    <action selector="removeCurrentUserData:" destination="5yl-MN-8V6" eventType="touchUpInside" id="z4H-qD-ey3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -4383,9 +4368,10 @@
                             <constraint firstItem="O31-Nz-GkJ" firstAttribute="trailing" secondItem="qmK-O0-NI8" secondAttribute="trailing" id="560-C6-Hby"/>
                             <constraint firstItem="O31-Nz-GkJ" firstAttribute="leading" secondItem="qmK-O0-NI8" secondAttribute="leading" id="6kO-z2-VxX"/>
                             <constraint firstItem="qmK-O0-NI8" firstAttribute="bottom" secondItem="O31-Nz-GkJ" secondAttribute="bottom" constant="50" id="ID2-vR-eSh"/>
-                            <constraint firstItem="kPa-Xa-9iP" firstAttribute="centerX" secondItem="qmK-O0-NI8" secondAttribute="centerX" id="NVq-cn-Zas"/>
-                            <constraint firstItem="qmK-O0-NI8" firstAttribute="bottom" secondItem="kPa-Xa-9iP" secondAttribute="bottom" constant="89" id="X2R-Cg-j7f"/>
+                            <constraint firstItem="E7P-im-qav" firstAttribute="leading" secondItem="qmK-O0-NI8" secondAttribute="leading" constant="20" id="hU3-LX-aK3"/>
+                            <constraint firstItem="qmK-O0-NI8" firstAttribute="trailing" secondItem="E7P-im-qav" secondAttribute="trailing" constant="20" id="kbi-gh-IbD"/>
                             <constraint firstItem="O31-Nz-GkJ" firstAttribute="top" secondItem="qmK-O0-NI8" secondAttribute="top" constant="138" id="q0d-86-hbt"/>
+                            <constraint firstItem="qmK-O0-NI8" firstAttribute="bottom" secondItem="E7P-im-qav" secondAttribute="bottom" constant="69" id="v7e-6u-L8J"/>
                         </constraints>
                     </view>
                     <connections>

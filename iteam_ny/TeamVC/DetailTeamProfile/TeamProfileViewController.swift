@@ -38,9 +38,8 @@ class TeamProfileViewController: UIViewController {
     
     // 테이블뷰에서 셀 선택시 팀 이름을 넘겨주기 때문에 서버에서 팀 이름을 검색해서 팀 데이터를 받아옴
     var teamName: String = ""
-    var teamProfile: TeamProfile = TeamProfile(purpose: "", serviceType: "", part: "", detailPart: "", introduce: "", contactLink: "", callTime: "", activeZone: "", memberList: "")
-    
-    var team: Team = Team(teamName: "", purpose: "", part: "", images: [])
+    var teamProfile: TeamProfile = TeamProfile(purpose: "", serviceType: "", part: "", detailPart: "", introduce: "", contactLink: "", callTime: "", activeZone: "", memberList: "", createDate: "")
+    var team: TeamPlusDate = TeamPlusDate(teamName: "", purpose: "", part: "", images: [], createDate: "")
     
     // 서버에서 받아 올 사용자 이미지 데이터
     var teamImageData: [Data] = []

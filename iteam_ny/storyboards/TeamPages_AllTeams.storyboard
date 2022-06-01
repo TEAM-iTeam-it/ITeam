@@ -27,7 +27,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4L0-YR-05Z">
-                                <rect key="frame" x="0.0" y="174" width="414" height="688"/>
+                                <rect key="frame" x="0.0" y="152" width="414" height="710"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="teamListCell" rowHeight="70" id="CZS-42-pf7" customClass="AllTeamListTableViewCell" customModule="iteam_ny" customModuleProvider="target">
@@ -113,9 +113,16 @@
                                     <outlet property="delegate" destination="I3K-hb-i1i" id="to0-3b-7I9"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2X8-Af-HQE">
-                                <rect key="frame" x="335" y="148" width="59" height="31"/>
-                                <color key="tintColor" name="gray_121"/>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2X8-Af-HQE">
+                                <rect key="frame" x="302" y="111" width="92" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="25O-Of-3Q5"/>
+                                    <constraint firstAttribute="height" constant="18" id="PfI-jo-2wK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="15"/>
+                                <color key="tintColor" name="gray_79"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <menu key="menu" id="0Hl-b4-9VF">
                                     <children>
                                         <command title="Item 1" id="yb1-tQ-cPz"/>
@@ -123,31 +130,21 @@
                                     </children>
                                 </menu>
                                 <state key="normal" title="전체 ">
+                                    <color key="titleColor" name="gray_121"/>
                                     <imageReference key="image" image="chevron.down" catalog="system" symbolScale="small"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="10" scale="small"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing">
-                                    <imageReference key="image" image="chevron.down" catalog="system" symbolScale="small"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="small"/>
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="전체 ">
-                                            <attributes>
-                                                <font key="NSFont" size="11" name="AppleSDGothicNeo-Medium"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </buttonConfiguration>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UxP-cE-1NI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="UxP-cE-1NI" firstAttribute="trailing" secondItem="4L0-YR-05Z" secondAttribute="trailing" id="1Z0-cv-nXu"/>
-                            <constraint firstItem="2X8-Af-HQE" firstAttribute="top" secondItem="MRt-nJ-hNo" secondAttribute="bottom" constant="11" id="68Q-gu-plf"/>
                             <constraint firstItem="UxP-cE-1NI" firstAttribute="bottom" secondItem="4L0-YR-05Z" secondAttribute="bottom" id="6Vg-9o-05P"/>
                             <constraint firstItem="MRt-nJ-hNo" firstAttribute="leading" secondItem="UxP-cE-1NI" secondAttribute="leading" constant="20" id="EDi-27-SOQ"/>
+                            <constraint firstItem="2X8-Af-HQE" firstAttribute="centerY" secondItem="MRt-nJ-hNo" secondAttribute="centerY" id="Ksh-5G-qvn"/>
                             <constraint firstItem="MRt-nJ-hNo" firstAttribute="top" secondItem="UxP-cE-1NI" secondAttribute="top" constant="15" id="Vfp-cu-WQe"/>
-                            <constraint firstItem="4L0-YR-05Z" firstAttribute="top" secondItem="MRt-nJ-hNo" secondAttribute="bottom" constant="37" id="tfv-kS-ifl"/>
+                            <constraint firstItem="4L0-YR-05Z" firstAttribute="top" secondItem="MRt-nJ-hNo" secondAttribute="bottom" constant="15" id="tfv-kS-ifl"/>
                             <constraint firstItem="UxP-cE-1NI" firstAttribute="trailing" secondItem="2X8-Af-HQE" secondAttribute="trailing" constant="20" id="uNj-3v-5iw"/>
                             <constraint firstItem="4L0-YR-05Z" firstAttribute="leading" secondItem="UxP-cE-1NI" secondAttribute="leading" id="xEP-cU-4it"/>
                         </constraints>
@@ -162,6 +159,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="filteringButton" destination="2X8-Af-HQE" id="8Ik-V1-EpW"/>
                         <outlet property="tableView" destination="4L0-YR-05Z" id="Jba-uk-eX6"/>
                         <outlet property="titleLabel" destination="MRt-nJ-hNo" id="EXI-Dv-9bP"/>
                     </connections>
@@ -704,6 +702,9 @@
         </namedColor>
         <namedColor name="gray_51">
             <color red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray_79">
+            <color red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="purple_175">
             <color red="0.68627450980392157" green="0.4823529411764706" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

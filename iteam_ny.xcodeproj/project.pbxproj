@@ -135,6 +135,7 @@
 		08657BE027F4874B00FDEACD /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BDF27F4874B00FDEACD /* QuestionViewController.swift */; };
 		08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE127F487DA00FDEACD /* QuestionCell.swift */; };
 		08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE527F4887100FDEACD /* SearchViewController.swift */; };
+		0865E54D2845E6EC0091E2EE /* TeamPlustDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */; };
 		0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01427CB5ED20018464B /* Join2ViewController.swift */; };
 		0868B01E27CB6A6C0018464B /* JoinSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */; };
 		0868B01F27CB6A6C0018464B /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01D27CB6A6C0018464B /* JoinViewController.swift */; };
@@ -405,6 +406,7 @@
 		08657BDF27F4874B00FDEACD /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		08657BE127F487DA00FDEACD /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		08657BE527F4887100FDEACD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPlustDate.swift; sourceTree = "<group>"; };
 		0868B01427CB5ED20018464B /* Join2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Join2ViewController.swift; sourceTree = "<group>"; };
 		0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinSuccessViewController.swift; path = iteam_ny/JoinVC/JoinSuccessViewController.swift; sourceTree = SOURCE_ROOT; };
 		0868B01D27CB6A6C0018464B /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinViewController.swift; path = iteam_ny/JoinVC/JoinViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -1078,6 +1080,7 @@
 				0833417727F3437D005B4F31 /* Team.swift */,
 				1F4ABF96282CB4820003A024 /* Friend.swift */,
 				1F76E52C2832FC3A0055DAFD /* MyTeam.swift */,
+				0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1450,6 +1453,7 @@
 				1F8760022821DBD90051E89A /* CompletedTeamViewController.swift in Sources */,
 				0833418F27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift in Sources */,
 				081F265027F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift in Sources */,
+				0865E54D2845E6EC0091E2EE /* TeamPlustDate.swift in Sources */,
 				1F55CF2D2751FCA800CD35EC /* TabbarController.swift in Sources */,
 				087A23EA27FAF23800E76893 /* CreateTeamPartTableViewCell.swift in Sources */,
 				1F5428282805A16E00F5179B /* resetViewController.swift in Sources */,
