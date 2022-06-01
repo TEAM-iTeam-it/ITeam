@@ -12,9 +12,10 @@ import FirebaseStorage
 
 class AllTeamViewController: UIViewController {
 
+    @IBOutlet weak var filteringButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
-    var teamList: [Team] = []
+    var teamList: [TeamPlusDate] = []
     enum TeamKind {
         case favor
         case app
@@ -27,6 +28,7 @@ class AllTeamViewController: UIViewController {
     let db = Database.database().reference()
     var imageData: [[Data]] = [[]]
     var favorTeamList: [String] = []
+    var recommendedList: [TeamPlusDate] = []
     
     
     // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
@@ -48,9 +50,39 @@ class AllTeamViewController: UIViewController {
         }
         fetchChangedData()
         tableView.reloadData()
+        setMenu()
+        
     }
     
-    
+    func setMenu() {
+        
+        let recommended = UIAction(title: "추천순", handler: { _ in
+            print("추천순")
+            self.filteringButton.setTitle("추천순", for: .normal)
+            self.teamList = self.recommendedList
+            self.tableView.reloadData()
+            
+        })
+        let lastest = UIAction(title: "최신 등록순", handler: { _ in
+            print("최신 등록순")
+            self.filteringButton.setTitle("최신 등록순", for: .normal)
+            let teamListSortedByCurrent = self.teamList.sorted(by: { Int($0.createDate) ?? 0 < Int($1.createDate) ?? 0  })
+            self.teamList = teamListSortedByCurrent
+            self.tableView.reloadData()
+            
+        })
+        let oldest = UIAction(title: "오래된 등록순", handler: { _ in
+            print("오래된 등록순")
+            self.filteringButton.setTitle("오래된 등록순", for: .normal)
+            let teamListSortedByLast = self.teamList.sorted(by: { Int($0.createDate) ?? 0 > Int($1.createDate) ?? 0  })
+            self.teamList = teamListSortedByLast
+            self.tableView.reloadData()
+        })
+
+
+        filteringButton.menu = UIMenu(title: "상태를 선택해주세요", image: UIImage(systemName: "heart.fill"), identifier: nil, options: .displayInline, children: [recommended, lastest, oldest])
+         
+    }
     
     func setUI () {
         
@@ -109,11 +141,14 @@ class AllTeamViewController: UIViewController {
             let callTime = value["callTime"]!
             let activeZone = value["activeZone"]!
             let memberList = value["memberList"]!
+            let createDate = value["createDate"] ?? ""
             
-            let team = Team(teamName: teamNameList[index], purpose: purpose, part: part, images: firstTeamImages)
-            teamList.append(team)
+            let teamPlusDate = TeamPlusDate(teamName: teamNameList[index], purpose: purpose, part: part, images: firstTeamImages, createDate: createDate)
+            // let team = Team(teamName: teamNameList[index], purpose: purpose, part: part, images: firstTeamImages)
+            teamList.append(teamPlusDate)
+            recommendedList.append(teamPlusDate)
             
-            let teamprofile = TeamProfile(purpose: purpose, serviceType: serviceType, part: part, detailPart: detailPart, introduce: introduce, contactLink: contactLink, callTime: callTime, activeZone: activeZone, memberList: memberList)
+            let teamprofile = TeamProfile(purpose: purpose, serviceType: serviceType, part: part, detailPart: detailPart, introduce: introduce, contactLink: contactLink, callTime: callTime, activeZone: activeZone, memberList: memberList, createDate: nil)
             teamProfileList.append(teamprofile)
            // fetchImages(teamIndex: index)
             

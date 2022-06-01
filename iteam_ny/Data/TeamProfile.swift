@@ -17,6 +17,7 @@ struct TeamProfile: Codable {
     let callTime: String
     let activeZone: String
     let memberList: String
+    let createDate: String?
 }
 
 struct UserProfileSimple {

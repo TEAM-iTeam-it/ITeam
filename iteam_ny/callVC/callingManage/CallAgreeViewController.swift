@@ -66,7 +66,12 @@ class CallAgreeViewController: UIViewController {
         nextButton.setTitleColor(.white, for: .normal)
         print(times.count)
         for i in 0..<times.count {
-            timeLabel[i].text = times[i]
+            
+            var time = times[i].replacingOccurrences(of: " 0", with: " ")
+            if time.first == "0" {
+                time.removeFirst()
+            }
+            timeLabel[i].text = time
         }
         
     }

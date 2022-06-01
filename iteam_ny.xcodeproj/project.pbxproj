@@ -135,6 +135,7 @@
 		08657BE027F4874B00FDEACD /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BDF27F4874B00FDEACD /* QuestionViewController.swift */; };
 		08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE127F487DA00FDEACD /* QuestionCell.swift */; };
 		08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE527F4887100FDEACD /* SearchViewController.swift */; };
+		0865E54D2845E6EC0091E2EE /* TeamPlustDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */; };
 		0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01427CB5ED20018464B /* Join2ViewController.swift */; };
 		0868B01E27CB6A6C0018464B /* JoinSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */; };
 		0868B01F27CB6A6C0018464B /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01D27CB6A6C0018464B /* JoinViewController.swift */; };
@@ -194,6 +195,12 @@
 		087FA8C027E9B942000E741B /* rectangleEditImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BD27E9B941000E741B /* rectangleEditImage.png */; };
 		087FA8C127E9B942000E741B /* rectangleEditImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */; };
 		087FA8C227E9B942000E741B /* rectangleEditImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */; };
+		08918416284746F7001E8A32 /* btnCheckBoxPurple@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08918410284746F7001E8A32 /* btnCheckBoxPurple@3x.png */; };
+		08918417284746F7001E8A32 /* btnCheckBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08918411284746F7001E8A32 /* btnCheckBox@2x.png */; };
+		08918418284746F7001E8A32 /* btnCheckBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08918412284746F7001E8A32 /* btnCheckBox@3x.png */; };
+		08918419284746F7001E8A32 /* btnCheckBoxPurple.png in Resources */ = {isa = PBXBuildFile; fileRef = 08918413284746F7001E8A32 /* btnCheckBoxPurple.png */; };
+		0891841A284746F7001E8A32 /* btnCheckBoxPurple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08918414284746F7001E8A32 /* btnCheckBoxPurple@2x.png */; };
+		0891841B284746F7001E8A32 /* btnCheckBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 08918415284746F7001E8A32 /* btnCheckBox.png */; };
 		08922A75282455BD002F24D1 /* ActualGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08922A73282455BD002F24D1 /* ActualGradientButton.swift */; };
 		08922A76282455BD002F24D1 /* ArrayExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08922A74282455BD002F24D1 /* ArrayExtention.swift */; };
 		08AE418D28057C0E007CBE5F /* DetailProfileProjectExViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */; };
@@ -405,6 +412,7 @@
 		08657BDF27F4874B00FDEACD /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		08657BE127F487DA00FDEACD /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		08657BE527F4887100FDEACD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPlustDate.swift; sourceTree = "<group>"; };
 		0868B01427CB5ED20018464B /* Join2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Join2ViewController.swift; sourceTree = "<group>"; };
 		0868B01C27CB6A6C0018464B /* JoinSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinSuccessViewController.swift; path = iteam_ny/JoinVC/JoinSuccessViewController.swift; sourceTree = SOURCE_ROOT; };
 		0868B01D27CB6A6C0018464B /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinViewController.swift; path = iteam_ny/JoinVC/JoinViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -473,6 +481,12 @@
 		087FA8BD27E9B941000E741B /* rectangleEditImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rectangleEditImage.png; sourceTree = "<group>"; };
 		087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@2x.png"; sourceTree = "<group>"; };
 		087FA8BF27E9B942000E741B /* rectangleEditImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rectangleEditImage@3x.png"; sourceTree = "<group>"; };
+		08918410284746F7001E8A32 /* btnCheckBoxPurple@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCheckBoxPurple@3x.png"; sourceTree = "<group>"; };
+		08918411284746F7001E8A32 /* btnCheckBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCheckBox@2x.png"; sourceTree = "<group>"; };
+		08918412284746F7001E8A32 /* btnCheckBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCheckBox@3x.png"; sourceTree = "<group>"; };
+		08918413284746F7001E8A32 /* btnCheckBoxPurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCheckBoxPurple.png; sourceTree = "<group>"; };
+		08918414284746F7001E8A32 /* btnCheckBoxPurple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCheckBoxPurple@2x.png"; sourceTree = "<group>"; };
+		08918415284746F7001E8A32 /* btnCheckBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCheckBox.png; sourceTree = "<group>"; };
 		08922A73282455BD002F24D1 /* ActualGradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActualGradientButton.swift; sourceTree = "<group>"; };
 		08922A74282455BD002F24D1 /* ArrayExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtention.swift; sourceTree = "<group>"; };
 		08AE418C28057C0E007CBE5F /* DetailProfileProjectExViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileProjectExViewController.swift; sourceTree = "<group>"; };
@@ -833,6 +847,12 @@
 		0868B05B27CB6E9E0018464B /* button_source */ = {
 			isa = PBXGroup;
 			children = (
+				08918415284746F7001E8A32 /* btnCheckBox.png */,
+				08918411284746F7001E8A32 /* btnCheckBox@2x.png */,
+				08918412284746F7001E8A32 /* btnCheckBox@3x.png */,
+				08918413284746F7001E8A32 /* btnCheckBoxPurple.png */,
+				08918414284746F7001E8A32 /* btnCheckBoxPurple@2x.png */,
+				08918410284746F7001E8A32 /* btnCheckBoxPurple@3x.png */,
 				0851CBF1283420CD006E745D /* TabBar */,
 				1F64AF51280EE83000D7B2BD /* ic_team.png */,
 				1F64AF55280EE84200D7B2BD /* ic_resume.png */,
@@ -1078,6 +1098,7 @@
 				0833417727F3437D005B4F31 /* Team.swift */,
 				1F4ABF96282CB4820003A024 /* Friend.swift */,
 				1F76E52C2832FC3A0055DAFD /* MyTeam.swift */,
+				0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1259,6 +1280,7 @@
 				083AFB2C2821EEE700B2AF00 /* group216.png in Resources */,
 				0851CC5C2834217A006E745D /* icTbHouseFill@3x.png in Resources */,
 				1F55CF212751F19200CD35EC /* LaunchScreen.storyboard in Resources */,
+				08918417284746F7001E8A32 /* btnCheckBox@2x.png in Resources */,
 				080F9C3227EA17470055FAF8 /* btnAdd1@3x.png in Resources */,
 				0841523027FD71C400ADA61F /* btnClose@3x.png in Resources */,
 				0851CC602834217A006E745D /* icTbBellFill.png in Resources */,
@@ -1285,9 +1307,11 @@
 				0863BCFF280C059B00AFB2B9 /* btnDeleteSmall@2x.png in Resources */,
 				0851CC5D2834217A006E745D /* icTbMypageFill@3x.png in Resources */,
 				08113082280E78A7003B6D43 /* imgLogo@2x.png in Resources */,
+				08918419284746F7001E8A32 /* btnCheckBoxPurple.png in Resources */,
 				08113081280E78A7003B6D43 /* imgLogo.png in Resources */,
 				081F266927F393C100F17332 /* imgUser2.png in Resources */,
 				081F266727F393C100F17332 /* imgUser8@3x.png in Resources */,
+				0891841B284746F7001E8A32 /* btnCheckBox.png in Resources */,
 				0851CC642834217A006E745D /* icTbHouseFill@2x.png in Resources */,
 				0832B262280186CF00DED89B /* btnEdit@3x.png in Resources */,
 				0851CC562834217A006E745D /* icTbPhone@3x.png in Resources */,
@@ -1296,6 +1320,7 @@
 				0851CC5F2834217A006E745D /* icTbPhoneFill@2x.png in Resources */,
 				0851CC682834217A006E745D /* icTbTeam@3x.png in Resources */,
 				08113089280E899C003B6D43 /* searchIconBlack@3x.png in Resources */,
+				08918416284746F7001E8A32 /* btnCheckBoxPurple@3x.png in Resources */,
 				0851CC4E2834217A006E745D /* icTbMypageFill.png in Resources */,
 				1F55CF1E2751F19200CD35EC /* Assets.xcassets in Resources */,
 				083AFB322821F05100B2AF00 /* ic_check@2x.png in Resources */,
@@ -1305,6 +1330,7 @@
 				1FFD2E4427FC02650068520D /* ic_rate@3x.png in Resources */,
 				1FFD2E3627FBEE420068520D /* btn_option@3x.png in Resources */,
 				0851CC572834217A006E745D /* icTbPhoneFill.png in Resources */,
+				08918418284746F7001E8A32 /* btnCheckBox@3x.png in Resources */,
 				086E4B5A2827E46F005933CB /* profileGradientBorder.png in Resources */,
 				1FFD2E3727FBEE420068520D /* btn_option.png in Resources */,
 				0863BCFD280C059B00AFB2B9 /* btnAddSmall@2x.png in Resources */,
@@ -1314,6 +1340,7 @@
 				1FFD2E3027FBEA9C0068520D /* btn_pin1@2x.png in Resources */,
 				1FFD2E3127FBEA9C0068520D /* btn_pin1.png in Resources */,
 				1FFD2E2C27FBEA070068520D /* img_logo2.png in Resources */,
+				0891841A284746F7001E8A32 /* btnCheckBoxPurple@2x.png in Resources */,
 				080F9C3027EA17470055FAF8 /* btnAdd1@2x.png in Resources */,
 				083AFB2B2821EEE700B2AF00 /* group216@3x.png in Resources */,
 				081F266827F393C100F17332 /* imgUser3@2x.png in Resources */,
@@ -1450,6 +1477,7 @@
 				1F8760022821DBD90051E89A /* CompletedTeamViewController.swift in Sources */,
 				0833418F27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift in Sources */,
 				081F265027F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift in Sources */,
+				0865E54D2845E6EC0091E2EE /* TeamPlustDate.swift in Sources */,
 				1F55CF2D2751FCA800CD35EC /* TabbarController.swift in Sources */,
 				087A23EA27FAF23800E76893 /* CreateTeamPartTableViewCell.swift in Sources */,
 				1F5428282805A16E00F5179B /* resetViewController.swift in Sources */,
@@ -1705,7 +1733,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Leesungchoikim.iteam-ny-neul";
+				PRODUCT_BUNDLE_IDENTIFIER = "Leesungchoikim.iteam-ny";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1738,7 +1766,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Leesungchoikim.iteam-ny-neul";
+				PRODUCT_BUNDLE_IDENTIFIER = "Leesungchoikim.iteam-ny";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -11,9 +11,20 @@ class CreateTeamRegionViewController: UIViewController {
 
     var delegate: SendRegionDataDelegate?
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var navigationBar: UINavigationBar!
     // 지역 클릭 제어를 위한 변수
-    var checkedBtn_region: [String] = []
+    var checkedBtn_region: [String] = [] {
+        didSet {
+            if !checkedBtn_region.isEmpty {
+                saveButton.tintColor = UIColor(named: "purple_184")
+                saveButton.isEnabled = true
+            } else {
+                saveButton.tintColor = UIColor(named: "gray_196")
+                saveButton.isEnabled = false
+            }
+        }
+    }
     // 지역 버튼 일괄 관리
     @IBOutlet var regionBtns: [UIButton]!
     // 지역 상관없이 버튼
@@ -27,6 +38,10 @@ class CreateTeamRegionViewController: UIViewController {
         
         regionBtnInit()
         navigationBar.shadowImage = UIImage()
+        saveButton.tintColor = UIColor(named: "gray_196")
+        
+        regionCheckedBtn.setImage(UIImage(named: "btnCheckBox.png")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        
     }
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -65,7 +80,8 @@ class CreateTeamRegionViewController: UIViewController {
     
     // 지역 상관없이 버튼 제어
     @IBAction func noRegion(_ sender: UIButton) {
-        sender.setImage(UIImage(systemName: "checkmark.square.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        // btnCheckBox.png
+  
         if isRegionON {
             sender.tintColor = UIColor(named: "purple_184")
             isRegionON = false
@@ -77,7 +93,6 @@ class CreateTeamRegionViewController: UIViewController {
             }
         }
         else {
-            sender.setImage(UIImage(systemName: "checkmark.square.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
             sender.tintColor = UIColor(named: "gray_229")
             isRegionON = true
             // 버튼 활성화

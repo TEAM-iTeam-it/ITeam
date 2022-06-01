@@ -274,7 +274,8 @@ class FavorTeamViewController: UIViewController {
                             contactLink: index.value["contactLink"] as! String,
                             callTime: index.value["callTime"]  as! String,
                             activeZone: index.value["activeZone"] as! String,
-                            memberList: index.value["memberList"] as! String)
+                            memberList: index.value["memberList"] as! String,
+                            createDate: index.value["createDate"] as? String ?? "")
                         
                         // part 바꾸면 아래 세개 실행되지 않음. 값이 없음..
                         teamListNew.append(teamProfile)
@@ -416,7 +417,7 @@ extension FavorTeamViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = 261
-        let height = 198
+        let height = 204
         
         let size = CGSize(width: width, height: height)
         return size

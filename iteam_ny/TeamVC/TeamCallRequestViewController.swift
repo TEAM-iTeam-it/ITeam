@@ -117,7 +117,7 @@ extension TeamCallRequestViewController: SendCallTimeNDateDataDelegate {
         let index = dateNTimeString.index(dateNTimeString.startIndex, offsetBy: 3)
         var result = dateNTimeString.substring(from: index)
         if result.last == " " {
-            result = String(result.dropLast())
+            result = String(result.dropLast()).replacingOccurrences(of: " 0", with: " ")
         }
         print(result)
         
