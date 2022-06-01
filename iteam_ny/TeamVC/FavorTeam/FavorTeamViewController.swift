@@ -417,7 +417,7 @@ extension FavorTeamViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = 261
-        let height = 198
+        let height = 204
         
         let size = CGSize(width: width, height: height)
         return size

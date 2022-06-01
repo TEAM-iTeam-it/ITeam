@@ -12,6 +12,7 @@ class CreateTeamPartViewController: UIViewController {
     @IBOutlet weak var detailPartTableView: UITableView!
     @IBOutlet weak var chipCollectionView: UICollectionView!
     
+    @IBOutlet weak var partEmtpyLabel: UILabel!
     @IBOutlet weak var partNavigationBar: UINavigationBar!
     
     var delegate: SendPartDataDelegate?
@@ -70,7 +71,18 @@ class CreateTeamPartViewController: UIViewController {
     }
     
     // 칩을 위한 변수
-    var parts: [String] = []
+    var parts: [String] = [] {
+        didSet {
+            if !parts.isEmpty {
+                partEmtpyLabel.isHidden = true
+                chipCollectionView.isHidden = false
+            }
+            else {
+                partEmtpyLabel.isHidden = false
+                chipCollectionView.isHidden = true
+            }
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -86,6 +98,7 @@ class CreateTeamPartViewController: UIViewController {
         self.chipCollectionView.delegate = self
         self.chipCollectionView.dataSource = self
         
+        chipCollectionView.isHidden = true
     }
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -224,11 +237,13 @@ extension CreateTeamPartViewController: UITableViewDelegate, UITableViewDataSour
                     detailPartDidClicked[indexPath.row] = false
                     detai2Cell.checkImageView.isHidden = true
                     detai2Cell.partLabel.textColor = UIColor.black
-                    for i in 0...clckedDetailPart.count-1 {
-                        if clckedDetailPart[i] == detai2Cell.partLabel.text {
-                            clckedDetailPart.remove(at: i)
-                            break
-                        }
+                    if !clckedDetailPart.isEmpty {
+                        for i in 0...clckedDetailPart.count-1 {
+                            if clckedDetailPart[i] == detai2Cell.partLabel.text {
+                                clckedDetailPart.remove(at: i)
+                                break
+                            }
+                        }                        
                     }
                 }
                 

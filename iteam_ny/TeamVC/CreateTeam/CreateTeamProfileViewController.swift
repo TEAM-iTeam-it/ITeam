@@ -439,7 +439,7 @@ class CreateTeamProfileViewController: UIViewController {
                 detailPart: value?["detailPart"] ?? "",
                 introduce: value?["introduce"] ?? "",
                 contactLink: value?["contactLink"] ?? "",
-                callTime: value?["callTime"] ?? "",
+                callTime: value?["callTime"]?.replacingOccurrences(of: " 00분", with: "") ?? "",
                 activeZone: value?["activeZone"] ?? "",
                 memberList: value?["memberList"] ?? "",
                 createDate: value?["createDate"] ?? ""
@@ -1004,7 +1004,8 @@ extension CreateTeamProfileViewController: SendPartDataDelegate, SendRegionDataD
         }
     }
     func sendCallTimeData(data: String) {
-        self.callTimeBtn.setTitle(data, for: .normal)
+        var resultData = data.replacingOccurrences(of: " 00분", with: "")
+        self.callTimeBtn.setTitle(resultData, for: .normal)
         self.callTimeBtn.setTitleColor(UIColor.black, for: .normal)
         
         // 지역이 채워지면 카운트를 올려줌

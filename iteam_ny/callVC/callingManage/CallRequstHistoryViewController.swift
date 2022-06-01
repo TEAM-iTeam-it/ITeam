@@ -103,11 +103,17 @@ class CallRequstHistoryViewController: UIViewController {
             callTimeLabels[i].sizeToFit()
             if callTime[i].contains("00분") {
                 callTimeLabels[i].text = callTime[i].replacingOccurrences(of: " 00분", with: "")
+                
             }
             else {
                 callTimeLabels[i].text = callTime[i]
                 print(callTime[i])
             }
+            var time = callTime[i].replacingOccurrences(of: " 0", with: " ")
+            if time.first == "0" {
+                time.removeFirst()
+            }
+            callTimeLabels[i].text = time
         }
         
     }

@@ -67,7 +67,8 @@ class CallAnswerViewController: UIViewController {
     // MARK: - @IBAction Properties
     @IBAction func removeCurrentUserData(_ sender: UIButton) {
         
-        var emptyCurrentTeam: [String:String] = ["currentTeam":""]
+        /*
+        let emptyCurrentTeam: [String:String] = ["currentTeam":""]
         db.child("user").child(Auth.auth().currentUser!.uid).updateChildValues(emptyCurrentTeam)
         db.child("user").child(Auth.auth().currentUser!.uid)
             .child("friendsList").removeValue()
@@ -90,7 +91,7 @@ class CallAnswerViewController: UIViewController {
         db.child("user").child(Auth.auth().currentUser!.uid).child("userTeam")
             .removeValue()
    
-        
+        */
         // call에서 본인 기록 있으면 찾아서 삭제
         
         
@@ -101,7 +102,8 @@ class CallAnswerViewController: UIViewController {
                 
                 if snap.key == "currentTeam" {
                     let teamname: String = snap.value as? String ?? ""
-                    if teamname != nil && teamname == "" {
+                    print("teamname 여기여 \(teamname)")
+                    if teamname != nil && teamname != "" {
                         self.db.child("Team").child(teamname).observeSingleEvent(of: .value) { snapshot in
                             
                             for child in snapshot.children {
@@ -110,8 +112,12 @@ class CallAnswerViewController: UIViewController {
                                 // 내가 리더일 때 팀 삭제
                                 if snap.key == "leader" {
                                     if value == Auth.auth().currentUser!.uid {
-                                        self.db.child("Team").child(teamname).removeValue()
+                                        print("리더다 리더")
+                                        //self.db.child("Team").child(teamname).removeValue()
                                         break
+                                    }
+                                    else {
+                                        print("아니다 아니야")
                                     }
                                 }
                             }
