@@ -418,7 +418,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hF-aN-4JA">
-                                        <rect key="frame" x="315" y="57" width="32" height="32"/>
+                                        <rect key="frame" x="315" y="60" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="XOx-LZ-9Rf"/>
                                             <constraint firstAttribute="width" constant="32" id="zeo-tv-dBS"/>
@@ -427,14 +427,14 @@
                                         <buttonConfiguration key="configuration" style="plain" image="sliderIcon.png"/>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="LrE-2f-Etc">
-                                        <rect key="frame" x="20" y="60" width="107" height="26"/>
+                                        <rect key="frame" x="25" y="62" width="107" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="107" id="6oo-la-vby"/>
                                             <constraint firstAttribute="height" constant="26" id="zfF-SJ-KwZ"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFW-tq-Zwa">
-                                        <rect key="frame" x="362" y="57" width="32" height="32"/>
+                                        <rect key="frame" x="362" y="60" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="6lZ-4f-obz"/>
                                             <constraint firstAttribute="width" constant="32" id="ekf-s2-WaY"/>
@@ -445,13 +445,13 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="LrE-2f-Etc" firstAttribute="top" secondItem="mdn-R8-cIs" secondAttribute="top" constant="60" id="9Ko-Hr-h6b"/>
+                                    <constraint firstItem="LrE-2f-Etc" firstAttribute="top" secondItem="mdn-R8-cIs" secondAttribute="top" constant="62" id="9Ko-Hr-h6b"/>
                                     <constraint firstAttribute="height" constant="100" id="EPX-LP-xZq"/>
-                                    <constraint firstItem="LrE-2f-Etc" firstAttribute="leading" secondItem="mdn-R8-cIs" secondAttribute="leading" constant="20" id="bum-v3-fnP"/>
+                                    <constraint firstItem="LrE-2f-Etc" firstAttribute="leading" secondItem="mdn-R8-cIs" secondAttribute="leading" constant="25" id="bum-v3-fnP"/>
                                     <constraint firstItem="DFW-tq-Zwa" firstAttribute="leading" secondItem="9hF-aN-4JA" secondAttribute="trailing" constant="15" id="c9C-oK-rzY"/>
-                                    <constraint firstItem="DFW-tq-Zwa" firstAttribute="top" secondItem="mdn-R8-cIs" secondAttribute="top" constant="57" id="ivD-iP-9AX"/>
+                                    <constraint firstItem="DFW-tq-Zwa" firstAttribute="top" secondItem="mdn-R8-cIs" secondAttribute="top" constant="60" id="ivD-iP-9AX"/>
                                     <constraint firstAttribute="trailing" secondItem="DFW-tq-Zwa" secondAttribute="trailing" constant="20" id="pl2-Pb-Vez"/>
-                                    <constraint firstItem="9hF-aN-4JA" firstAttribute="top" secondItem="mdn-R8-cIs" secondAttribute="top" constant="57" id="x5h-33-2eF"/>
+                                    <constraint firstItem="9hF-aN-4JA" firstAttribute="top" secondItem="mdn-R8-cIs" secondAttribute="top" constant="60" id="x5h-33-2eF"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -505,7 +505,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFr-iP-3hR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2036.2318840579712" y="601.33928571428567"/>
+            <point key="canvasLocation" x="-1951" y="623"/>
         </scene>
         <!--Team Result View Controller-->
         <scene sceneID="2zN-jb-mZd">

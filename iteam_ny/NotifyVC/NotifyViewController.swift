@@ -236,27 +236,34 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
    
             
             if(nickname.contains("팀원")){
+                
                 db.child("user").child(uid).child("userTeam").observeSingleEvent(of: .value) {snapshot in
                   let value = snapshot.value as? String ?? ""
                     if value.isEmpty{
                       db.child("user").child(uid).child("userTeam").setValue(userUID)
                     }
                     else{
-                     db.child("user").child(uid).child("userTeam").setValue(value + ", " + userUID)
+                        db.child("user").child(value).child("userTeam").observeSingleEvent(of: .value) {snapshot in
+                            let value2 = snapshot.value as? String ?? ""
+                            db.child("user").child(value).child("userTeam").setValue(value2 + ", " + userUID)
+                        }
+                        db.child("user").child(userUID).child("userTeam").setValue(value)
+                        db.child("user").child(uid).child("userTeam").setValue(value + ", " + userUID)
                     }
                    
                 }
-                db.child("user").child(userUID).child("userTeam").observeSingleEvent(of: .value) {snapshot in
-                  let value = snapshot.value as? String ?? ""
-                    if value.isEmpty{
-                        db.child("user").child(userUID).child("userTeam").setValue(uid)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                    db.child("user").child(userUID).child("userTeam").observeSingleEvent(of: .value) {snapshot in
+                      let value = snapshot.value as? String ?? ""
+                        if value.isEmpty{
+                            db.child("user").child(userUID).child("userTeam").setValue(uid)
+                        }
+                        else{
+                            db.child("user").child(userUID).child("userTeam").setValue(value + ", " + uid)
+                        }
+                       
                     }
-                    else{
-                        db.child("user").child(userUID).child("userTeam").setValue(value + ", " + uid )
-                    }
-                   
-                }
-                
+                })
                 db.child("user").child(userUID).child("memberRequest").child(requestNum).child("requestStmt").setValue("수락")
                 notifyTableView.reloadData()
             }
