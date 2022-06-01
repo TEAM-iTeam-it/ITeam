@@ -28,8 +28,14 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var nickname: String = ""
     var allInfo = ""
     var memberInfo = ""
+    var hi = 0
 
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").updateChildValues(["requestUID":"기본\(hi)"])
+        hi+=1
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         notifyTableView.separatorStyle = .none
@@ -55,6 +61,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         removeArr()
         db.child("user").child(Auth.auth().currentUser!.uid).child("friendRequest").observe(.childChanged, with:{ (snapshot) -> Void in
             print("DB 수정됨 친구")
+            
             DispatchQueue.main.async {
                 self.fetchMemberData()
             }
@@ -179,7 +186,6 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         print(charindex[2])
                         let friend = Friend(uid: charindex[0], nickname: nickname + " 님이 친구를 요청했습니다.", position: charindex[2], profileImg: "",stmt : charindex[1])
                         friendList.append(friend)
-                        
                         notifyTableView.reloadData()
                     }
                 }
