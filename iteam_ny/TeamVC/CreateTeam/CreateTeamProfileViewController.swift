@@ -33,6 +33,8 @@ class CreateTeamProfileViewController: UIViewController {
     @IBOutlet weak var regionLabelConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var regionLabelHeight: NSLayoutConstraint!
     @IBOutlet var serviceTypeBtns: [UIButton]!
+    @IBOutlet weak var alreadyExistTeamNameLabel: UILabel!
+    @IBOutlet weak var teamNameBottomConst: NSLayoutConstraint!
     
     // MARK: - Properties
     let db = Database.database().reference()
@@ -49,12 +51,14 @@ class CreateTeamProfileViewController: UIViewController {
     
     var didWroteAllAnswer: Int = 0 {
         willSet(newValue) {
+            print(newValue)
             if newValue >= 7
                 && !serviceType.isEmpty
                 && !serviceType.contains("")
                 && partLabel.text != ""
                 && regionLabel.text != ""
-                && contactLinkTF.hasText  {
+                && contactLinkTF.hasText
+                && !didTeamNameExist {
                 saveBtn.backgroundColor = UIColor(named: "purple_184")
                 saveBtn.setTitleColor(UIColor.white, for: .normal)
                 saveBtn.isEnabled = true
@@ -69,8 +73,7 @@ class CreateTeamProfileViewController: UIViewController {
   
     // Firebase Realtime Database 루트
     var ref: DatabaseReference!
-    
-    var didSameTeamNameExist: Bool = false
+
 
     // 서비스 유형
     var serviceType: [String] = []
@@ -114,7 +117,22 @@ class CreateTeamProfileViewController: UIViewController {
             }
         }
     }
-    
+    var didTeamNameExist: Bool = false {
+        didSet {
+            addFillCount()
+            if didTeamNameExist {
+                alreadyExistTeamNameLabel.isHidden = false
+                teamNameTF.layer.borderColor = UIColor(named: "red_254")?.cgColor
+                teamNameBottomConst.constant = 41
+            }
+            else {
+                alreadyExistTeamNameLabel.isHidden = true
+                teamNameTF.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+                teamNameBottomConst.constant = 25
+                
+            }
+        }
+    }
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -158,6 +176,7 @@ class CreateTeamProfileViewController: UIViewController {
     
     func setUI() {
         navigationBar.shadowImage = UIImage()
+        alreadyExistTeamNameLabel.isHidden = true
         
         if !(memberList?.contains(Auth.auth().currentUser!.uid))! {
             memberList?.insert(Auth.auth().currentUser!.uid, at: 0)
@@ -569,32 +588,7 @@ class CreateTeamProfileViewController: UIViewController {
             // 팀 이름 중복 검사
             saveBtn.backgroundColor = UIColor(named: "purple_184")
             saveBtn.isEnabled = true
-            if let teamName = self.teamNameTF {
-                if let teamNameText = teamName.text {
-                    
-                    // 팀 이름이 이미 있는지 확인 (오류)
-                    ref = Database.database().reference()
-                    let teamItemRef = ref.child("Team")
-                    // let query2 = teamItemRef..queryEqual(toValue: teamNameText)
-                    self.saveDataAction()
-                    print("teamNameText \(teamNameText)")
-//                    teamItemRef.observe(.value) { snapshot in
-//                        for childSnapshot in snapshot.children {
-//                            print(childSnapshot)
-//                            print("same teamname boolean =" + "\(self.didSameTeamNameExist)")
-//                            self.didSameTeamNameExist = true
-//                            if self.didSameTeamNameExist {
-//                                self.showAlertAction()
-//                                break
-//                            }
-//                        }
-//                        if !self.didSameTeamNameExist {
-//                            self.saveDataAction()
-//                        }
-//
-//                    }
-                }
-            }
+            saveDataAction()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -789,8 +783,27 @@ extension CreateTeamProfileViewController: UITextFieldDelegate, UIScrollViewDele
         if textField == contactLinkTF {
             scrollView.scroll(to: .bottom)
         }
+        if textField == teamNameTF {
+          
+            if let teamNameText = textField.text {
+                db.child("Team").observeSingleEvent(of: .value) { snapshot in
+                    
+                    let value = snapshot.value as? [String : Any]
+                    guard let value = value else { return }
+                    if value.keys.contains(teamNameText) {
+                        self.didTeamNameExist = true
+                        
+                    }
+                    else {
+                        self.didTeamNameExist = false
+                    }
+                }
+            }
+        }
+        
         addFillCount()
         addFillCountContactLink()
+        
         textField.resignFirstResponder()
         return true
     }
@@ -820,7 +833,7 @@ extension CreateTeamProfileViewController: UITextFieldDelegate, UIScrollViewDele
     
     // 완료 버튼을 제어하기 위해 텍스트 필드 입력을 감지하는 함수
     func addFillCount() {
-        if teamNameTF.hasText {
+        if teamNameTF.hasText && !didTeamNameExist {
             if didTeamNameWrote == 1 {
             }
             else {
