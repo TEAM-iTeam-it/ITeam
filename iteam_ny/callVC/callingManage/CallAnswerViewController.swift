@@ -67,11 +67,12 @@ class CallAnswerViewController: UIViewController {
     // MARK: - @IBAction Properties
     @IBAction func removeCurrentUserData(_ sender: UIButton) {
         
-        /*
+        
         let emptyCurrentTeam: [String:String] = ["currentTeam":""]
-        db.child("user").child(Auth.auth().currentUser!.uid).updateChildValues(emptyCurrentTeam)
         db.child("user").child(Auth.auth().currentUser!.uid)
             .child("friendsList").removeValue()
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("friendRequest").removeValue()
         db.child("user").child(Auth.auth().currentUser!.uid)
             .child("likeTeam").removeValue()
         db.child("user").child(Auth.auth().currentUser!.uid)
@@ -91,9 +92,19 @@ class CallAnswerViewController: UIViewController {
         db.child("user").child(Auth.auth().currentUser!.uid).child("userTeam")
             .removeValue()
    
-        */
-        // call에서 본인 기록 있으면 찾아서 삭제
         
+        // call에서 본인 기록 있으면 찾아서 삭제
+        var callIndex: String = ""
+        db.child("Call").observeSingleEvent(of: .value) { [self] (snapshot) in
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                print(snapshots.count)
+                callIndex = "\(snapshots.count)"
+                for i in 9...(Int(callIndex) ?? 9) {
+                    db.child("Call").child(String(i)).removeValue()
+                }
+                
+            }
+        }
         
         // 리더일 때 팀 삭제
         db.child("user").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { snapshot in
@@ -113,7 +124,7 @@ class CallAnswerViewController: UIViewController {
                                 if snap.key == "leader" {
                                     if value == Auth.auth().currentUser!.uid {
                                         print("리더다 리더")
-                                        //self.db.child("Team").child(teamname).removeValue()
+                                        self.db.child("Team").child(teamname).removeValue()
                                         break
                                     }
                                     else {
@@ -127,6 +138,7 @@ class CallAnswerViewController: UIViewController {
                 }
             }
         }
+        db.child("user").child(Auth.auth().currentUser!.uid).updateChildValues(emptyCurrentTeam)
         
     }
     
