@@ -740,7 +740,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q35-bZ-uJx">
-                                <rect key="frame" x="0.0" y="88" width="414" height="719"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="650"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YtW-NB-ULI">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="915.5"/>
@@ -865,11 +865,11 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="uUa-it-g6G">
-                                                                        <rect key="frame" x="0.0" y="43" width="234" height="28"/>
+                                                                        <rect key="frame" x="0.0" y="43" width="207" height="28"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 프로필을 작성하지 않았습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VoJ-jh-ksJ">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="234" height="28"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="207" height="28"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -898,11 +898,11 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xnq-KW-ZZy">
-                                                                        <rect key="frame" x="0.0" y="35.5" width="234" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="35.5" width="207" height="20.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 프로필을 작성하지 않았습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztj-b7-kil">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="234" height="20.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="207" height="20.5"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -964,11 +964,11 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQq-0D-VVl">
-                                                                        <rect key="frame" x="0.0" y="35.5" width="234" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="35.5" width="207" height="20.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 프로필을 작성하지 않았습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3q-jM-WIt">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="234" height="20.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="207" height="20.5"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -994,8 +994,8 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 프로필을 작성하지 않았습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ig-CI-M7m">
-                                                                        <rect key="frame" x="0.0" y="35.5" width="234" height="20.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <rect key="frame" x="0.0" y="35.5" width="207" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1019,8 +1019,8 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 프로필을 작성하지 않았습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zo3-7Z-vvV">
-                                                                        <rect key="frame" x="0.0" y="35.5" width="234" height="20.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <rect key="frame" x="0.0" y="35.5" width="207" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1064,6 +1064,14 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="hLL-J5-Y9M"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Wgx-xp-vRV"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlw-yp-NcI">
+                                <rect key="frame" x="0.0" y="815" width="414" height="81"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="81" id="8Es-2E-0D8"/>
+                                    <constraint firstAttribute="width" constant="414" id="jb0-YZ-Bgr"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DF-7p-91J" customClass="ActualGradientButton2" customModule="iteam_ny" customModuleProvider="target">
                                 <rect key="frame" x="20" y="810" width="374" height="46"/>
                                 <constraints>
@@ -1092,10 +1100,13 @@
                             <constraint firstItem="q35-bZ-uJx" firstAttribute="top" secondItem="lZ5-0D-YXs" secondAttribute="top" id="I9w-zk-IzN"/>
                             <constraint firstItem="q35-bZ-uJx" firstAttribute="leading" secondItem="lZ5-0D-YXs" secondAttribute="leading" id="LLC-QI-P9P"/>
                             <constraint firstItem="lZ5-0D-YXs" firstAttribute="trailing" secondItem="3DF-7p-91J" secondAttribute="trailing" constant="20" id="NiT-T3-mid"/>
-                            <constraint firstItem="lZ5-0D-YXs" firstAttribute="top" secondItem="q35-bZ-uJx" secondAttribute="bottom" constant="-719" id="OvL-UN-fhJ"/>
+                            <constraint firstItem="lZ5-0D-YXs" firstAttribute="top" secondItem="q35-bZ-uJx" secondAttribute="bottom" constant="-650" id="OvL-UN-fhJ"/>
                             <constraint firstItem="lZ5-0D-YXs" firstAttribute="bottom" secondItem="3DF-7p-91J" secondAttribute="bottom" constant="6" id="UhK-oV-Du2"/>
                             <constraint firstItem="lZ5-0D-YXs" firstAttribute="trailing" secondItem="3DF-7p-91J" secondAttribute="trailing" constant="20" id="bE5-GC-Rz2"/>
+                            <constraint firstItem="qlw-yp-NcI" firstAttribute="trailing" secondItem="lZ5-0D-YXs" secondAttribute="trailing" id="hOy-ko-iXr"/>
+                            <constraint firstItem="qlw-yp-NcI" firstAttribute="leading" secondItem="lZ5-0D-YXs" secondAttribute="leading" id="ifo-jO-Met"/>
                             <constraint firstItem="3DF-7p-91J" firstAttribute="leading" secondItem="lZ5-0D-YXs" secondAttribute="leading" constant="20" id="v5g-i7-xub"/>
+                            <constraint firstAttribute="bottom" secondItem="qlw-yp-NcI" secondAttribute="bottom" id="xA9-sj-8Vy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="프로필" id="SYG-PO-8vX"/>
