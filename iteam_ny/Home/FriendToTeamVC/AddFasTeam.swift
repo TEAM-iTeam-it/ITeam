@@ -173,7 +173,6 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
             }
         myFriendTableView.reloadData()
             cell.addBtn.backgroundColor = UIColor.white
-            //cell.addBtn.layer.cornerRadius = 5
             cell.addBtn.setTitleColor(.black, for: .normal)
             cell.addBtn.setTitle("요청됨", for: .normal)
             cell.addBtn.layer.borderWidth = 0.5
