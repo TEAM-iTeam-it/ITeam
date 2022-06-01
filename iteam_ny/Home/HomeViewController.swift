@@ -454,6 +454,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //        fetchMemberList()
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {

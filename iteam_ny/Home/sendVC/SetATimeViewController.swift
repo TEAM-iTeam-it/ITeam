@@ -37,14 +37,17 @@ class SetATimeViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .black
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
         
         let fancyImage = UIImage(named: "btnClose.png")
 
         var fancyAppearance = UINavigationBarAppearance()
-        fancyAppearance.configureWithDefaultBackground()
+        fancyAppearance.backgroundColor = UIColor.white
         fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
 
         navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
@@ -60,9 +63,9 @@ class SetATimeViewController: UIViewController{
         candidateLabel_2.isHidden = true
         candidateLabel_3.isHidden = true
         
-        selectTime_3.layer.cornerRadius = 8
-        selectTime_2.layer.cornerRadius = 8
-        selectTime_1.layer.cornerRadius = 8
+        selectTime_3.layer.cornerRadius = 16
+        selectTime_2.layer.cornerRadius = 16
+        selectTime_1.layer.cornerRadius = 16
         nextBtn.layer.cornerRadius = 8
         
     }

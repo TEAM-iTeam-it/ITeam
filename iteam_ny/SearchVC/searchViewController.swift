@@ -29,6 +29,8 @@ class searchViewController: TabmanViewController, PageboyViewControllerDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.isHidden = false
         var bounds = UIScreen.main.bounds
                 var width = bounds.size.width //화면 너비
                 let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: width - 28, height: 0))
