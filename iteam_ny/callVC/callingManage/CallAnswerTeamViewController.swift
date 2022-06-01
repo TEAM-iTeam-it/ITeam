@@ -13,7 +13,11 @@ import FirebaseStorage
 import Kingfisher
 
 class CallAnswerTeamViewController: UIViewController {
+    
+    // MARK: - @IBOutlet Properties
     @IBOutlet weak var answerListTableView: UITableView!
+    
+    // MARK: - Properties
     var updateFetchData: Bool = false
     var personList: [Person] = []
     var whenIReceivedOtherPerson: [Person] = []
@@ -46,6 +50,7 @@ class CallAnswerTeamViewController: UIViewController {
     private var refreshControl = UIRefreshControl()
     var didUserUpdate: Bool = false
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,8 +60,7 @@ class CallAnswerTeamViewController: UIViewController {
         setUI()
         
         fetchChangedData()
-        
-        
+
     }
     override func viewWillAppear(_ animated: Bool) {
         if !updateFetchData {
@@ -64,6 +68,7 @@ class CallAnswerTeamViewController: UIViewController {
         }
         //setUI()
     }
+    /*
     @IBAction func testChangeCall(_ sender: UIButton) {
         
         let stmt: [String: String] = [ "stmt": "통화"]
@@ -99,6 +104,9 @@ class CallAnswerTeamViewController: UIViewController {
             }
         }
     }
+     */
+    
+    // MARK: - Functions
     func setUI() {
         name = "speaker"
         
@@ -579,6 +587,7 @@ class CallAnswerTeamViewController: UIViewController {
     
 }
 
+// MARK: - Extensions
 extension CallAnswerTeamViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
