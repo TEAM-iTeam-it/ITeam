@@ -2,7 +2,7 @@
 //  HomeViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2021/11/27.
+//  Created by 성나연 on 2021/11/27.
 //
 
 import UIKit
@@ -22,6 +22,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     @IBOutlet weak var memberStackVIew: UIStackView!
     @IBOutlet weak var teamTitleLabel: UILabel!
     @IBOutlet weak var decidedTeamBtn: UIButton!
+    @IBOutlet weak var teamExplainLabel: UILabel!
     var text:String = ""
     var pickpart:[String] = []
     var teamMembers: [MyTeam] = []
@@ -225,8 +226,12 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     var ref: DatabaseReference! //Firebase Realtime Database
     
     func removeArr() {
-        
+        for i in 0...8{
+            teamTypeCount[i] = 0
+        }
+        memberList.removeAll()
         teamMembers.removeAll()
+        userPurpose.removeAll()
         updateFetchData = 0
         //        myMemberList.removeAll()
     }
@@ -236,6 +241,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
               print("DB 수정됨 삭제")
             DispatchQueue.main.async {
                 self.fetchMemberList()
+               
             }
           })
     }
@@ -267,15 +273,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     //알고리즘 - 진행중
     func sortList(){
         var characterRank: [Int : Int] = [:]
-//        let creativeProperty: [String] = ["창의적인", "상상력이 풍부한", "전통에 얽매이지 않는" ]
-//        let exploratoryProperty: [String] = ["외향적인", "열정적인", "사교성이 있는" ]
-//        let leadershipProperty: [String] = ["자신감 있는", "의사 결정을 잘하는", "목표 지향적인"]
-//        let propulsiveProperty: [String] = ["문제를 극복하는", "도전적인", "추진력있는"]
-//        let strategicProperty: [String] = ["전략적인", "신중한", "정확히 판단하는"]
-//        let goodMoodProperty: [String] = ["경청하는","협력적인","온화한"]
-//        let actionableProperty: [String] = ["능률적인","엄격한","실행력있는"]
-//        let persistenceProperty: [String] = ["근면 성실한","완벽추구","꼼꼼한"]
-//        let wellSkilledProperty: [String] = ["헌신적인","전문적인","몰두하는"]
         let detail = userprofileDetail
         let char = detail?.character
         
@@ -660,6 +657,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                     print("userPurposeCopy \(userPurposeCopy)")
                 }
                 fetchCharatorCount += 1
+                print("^^^^^^^\(fetchCharatorCount)^^^^^^^^^^^^^^")
                 userPurpose = userPurposeCopy
             }
         }
@@ -667,6 +665,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     
     func configTeamTypeLoad() {
         print(userPurpose)
+        print("******************************")
         for i in 0..<userPurpose.count{
             if creativeProperty.contains(userPurpose[i]) {
                 teamTypeCount[0] += 1
@@ -718,9 +717,35 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
             teamTitle = teamTypeArr[maxCountIndex[0]]
         }
         teamTitleLabel.text = "우리는 " + teamTitle + " 팀"
+        if teamTitle.contains("창조"){
+            teamExplainLabel.text = "창조적이고 상상력이 풍부해서\n어려운 문제를 잘 해결할 수 있습니다.\n작은 일을 쉽게 지나칠 수 있으니 주의하세요"
+        }
+        if teamTitle.contains("탐색"){
+            teamExplainLabel.text = "외향적이고 열정적이며 언제나 기회를 발굴하고 탐색하는 편입니다.\n초기 열정이 사라지면 관심이 떨어질 수 있습니다."
+        }
+        if teamTitle.contains("리더쉽"){
+            teamExplainLabel.text = "의사결정과 위임을 잘하기 때문에\n목표 설정이 명확하면 일이 수월하게 진행됩니다.\n개인의 일을 다른 사람에게 미루지 않으면 좋습니다."
+        }
+        if teamTitle.contains("추진"){
+            teamExplainLabel.text = "어려운 일이 생겼을 경우 극복하는 추진력과 용기를 가지고 있습니다.\n다른 사람의 감정을 상하게 할 수 있으니\n서로 조심하는 게 좋습니다."
+        }
+        if teamTitle.contains("전략"){
+            teamExplainLabel.text = "문제에 있어 모든 방안을 살피고 정확히 판단할 수 있습니다.\n너무 비판적일 수 있기 때문에 다양한 시각을 가지면 좋습니다."
+        }
+        if teamTitle.contains("분위기"){
+            teamExplainLabel.text = "협력적이고 남을 잘 이해할 수 있어\n평온한 조직을 만들 수 있습니다.\n남의 영향을 쉽게 받을 수 있기 때문에 결단력이 필요합니다."
+        }
+        if teamTitle.contains("실행력"){
+            teamExplainLabel.text = "능률적이고 아이디어를 실행에 잘 옮기는 팀입니다.\n유연성이 부족하여 새로운 가능성에 대해\n열린 사고를 가지면 좋습니다."
+        }
+        if teamTitle.contains("뒷심"){
+            teamExplainLabel.text = "열정적이고 실수나 빠진 것을 잘 찾아내며\n제 시간에 과업을 완수할 수 있는 팀입니다.\n사소한 것에 서로 간섭할 수 있습니다."
+        }
+        if teamTitle.contains("기술"){
+            teamExplainLabel.text = "전문 분야의 지식과 기능을 제공할 수 있는 팀입니다.\n전문 분야의 기술적 내용에 치중하여 큰 그림을 놓칠 수 있습니다."
+        }
         
     }
-    
 
     //나의 팀원 상단에 띄우기
     func fetchMemberList() {
@@ -780,6 +805,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                 decidedTeamBtn.backgroundColor = UIColor(named: "gray_196")
                 decidedTeamBtn.isEnabled = false
                 teamTitleLabel.text = "어떤 팀을 만들고 싶으신가요?"
+                teamExplainLabel.text = "음성통화를 통해 친구를 만들어\n마음이 잘 맞는 팀원을 찾아보세요"
             }
             memberColl.reloadData()
         }

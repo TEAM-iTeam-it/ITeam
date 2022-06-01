@@ -500,6 +500,7 @@
                         <outlet property="myPart" destination="iwQ-EJ-csS" id="xh7-WE-R2y"/>
                         <outlet property="scrollView" destination="DMA-xW-UIK" id="Ejp-Ay-6qM"/>
                         <outlet property="tableviewHeight" destination="3r4-Gy-mRp" id="yhR-16-cMI"/>
+                        <outlet property="teamExplainLabel" destination="g70-D1-xfj" id="Qch-BY-EN8"/>
                         <outlet property="teamTitleLabel" destination="ZYe-PS-mIa" id="s3J-hM-0U2"/>
                     </connections>
                 </viewController>
