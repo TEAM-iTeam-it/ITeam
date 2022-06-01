@@ -17,6 +17,8 @@ class CallAnswerViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
     @IBOutlet weak var answerListTableView: UITableView!
+    
+    // MARK: - Properties
     var updateFetchData: Int = 0
     var personList: [Person] = []
     var whenIReceivedOtherPerson: [Person] = []
@@ -63,28 +65,63 @@ class CallAnswerViewController: UIViewController {
     }
     
     // MARK: - @IBAction Properties
-    // 테스트 대기중 버튼
-    @IBAction func testChangeCall(_ sender: UIButton) {
-        for i in 0..<personList.count {
-            if personList[i].callStm == "대기 중" {
-                print("박박")
-                var indexCount = -1
+    @IBAction func removeCurrentUserData(_ sender: UIButton) {
+        
+        var emptyCurrentTeam: [String:String] = ["currentTeam":""]
+        db.child("user").child(Auth.auth().currentUser!.uid).updateChildValues(emptyCurrentTeam)
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("friendsList").removeValue()
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("likeTeam").removeValue()
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("memberRequest").removeValue()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm"
+        let currentDateString = formatter.string(from: Date())
+        
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("memberRequest").child("0").child("requestStmt").setValue("기본")
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("memberRequest").child("0").child("requestTime").setValue(currentDateString)
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("memberRequest").child("0").child("requestUID").setValue("기본")
+        
+        db.child("user").child(Auth.auth().currentUser!.uid).child("userTeam")
+            .removeValue()
+   
+        
+        // call에서 본인 기록 있으면 찾아서 삭제
+        
+        
+        // 리더일 때 팀 삭제
+        db.child("user").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { snapshot in
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
                 
-                for j in 0..<personList.count {
-                    if personList[j].callStm == "대기 중" {
-                        indexCount += 1
+                if snap.key == "currentTeam" {
+                    let teamname: String = snap.value as? String ?? ""
+                    if teamname != nil && teamname == "" {
+                        self.db.child("Team").child(teamname).observeSingleEvent(of: .value) { snapshot in
+                            
+                            for child in snapshot.children {
+                                let snap = child as! DataSnapshot
+                                let value = snap.value as? String
+                                // 내가 리더일 때 팀 삭제
+                                if snap.key == "leader" {
+                                    if value == Auth.auth().currentUser!.uid {
+                                        self.db.child("Team").child(teamname).removeValue()
+                                        break
+                                    }
+                                }
+                            }
+                        }
                     }
+        
                 }
-                let teamIndex = teamIndex[indexCount]
-                
-                let stmt: [String: String] = [ "stmt": "통화"]
-                let ref = Database.database().reference()
-                    .child("Call").child(teamIndex)
-                ref.updateChildValues(stmt)
-                
-                break
             }
         }
+        
     }
     
     // MARK: - Functions
@@ -92,16 +129,6 @@ class CallAnswerViewController: UIViewController {
         name = "speaker"
         
         answerListTableView.refreshControl = refreshControl
-
-        
-        /*
-        let requestList = UIAction(title: "요청됨", handler: { _ in print("요청내역") })
-        let denied = UIAction(title: "요청수락", handler: { _ in print("거절함") })
-        let canceled = UIAction(title: "통화", handler: { _ in print("취소됨") })
-        let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in print("취소") })
-
-        conditionChangeBtn.menu = UIMenu(title: "상태를 선택해주세요", image: UIImage(systemName: "heart.fill"), identifier: nil, options: .displayInline, children: [requestList, denied, canceled, cancel])
-         */
     }
     
     func removeArr() {
@@ -161,7 +188,7 @@ class CallAnswerViewController: UIViewController {
                             break
                         }
                         // 내가 요청한 사람일 경우를 가져오기
-                        if key as! String == "callerUid" && content as! String == Auth.auth().currentUser?.uid {
+                        if key as! String == "callerUid" && content as? String == Auth.auth().currentUser?.uid {
                             var newValue = value as! [String : String]
                             newValue["teamName"] = snap.key
                             myCallTime.append(newValue)
@@ -449,30 +476,24 @@ class CallAnswerViewController: UIViewController {
             if addedFetchData == 0 {
                 checkLoadNow = true
                 addedFetchData += 2
-                print("checkLoadNow 1 \(checkLoadNow)")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
                     self.didAddedData = true
                     self.addedFetchData = 1
                     self.checkLoadNow = false
-                    print("checkLoadNow 2 \(checkLoadNow)")
                 })
             }
             else if addedFetchData == 1 {
                 didAddedData = true
-                print("아아아아아")
                 self.fetchData()
                 addedFetchData += 1
-                print("addedFetchData \(addedFetchData)")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
                     self.addedFetchData = 1
-                    print("addedFetchData \(addedFetchData)")
                     
                     self.didAddedData = false
                 })} })
         
         db.child("Call").observe(.childChanged, with: { [self] (snapshot) -> Void in
             if !checkLoadNow && !didAddedData {
-                print("checkLoadNow 3 \(checkLoadNow)")
                 if updateFetchData == 0 {
                     updateFetchData += 1
                     self.fetchData()
@@ -481,14 +502,10 @@ class CallAnswerViewController: UIViewController {
                     })
                 }
             }
-            else {
-                
-            }
         })
         
          
         db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ [self] (snapshot) -> Void in
-            print("DB 수정됨 user")
             if !didUserUpdate {
                 didUserUpdate = true
                 self.fetchData()
@@ -504,9 +521,7 @@ class CallAnswerViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "waitingVC" {
             if let destination = segue.destination as? ChannelWaitingViewController {
-               // let cell = sender as! AnswerTableViewCell
                 destination.nickname = personList[(sender as? Int)!].nickname
-                // var position = personList[(sender as? Int)!].position.split(separator: "•")
                 let position = personList[(sender as? Int)!].position
                 destination.position = String(position)
                 destination.profile = personList[(sender as? Int)!].profileImg
@@ -531,6 +546,8 @@ class CallAnswerViewController: UIViewController {
     }
 
 }
+
+// MARK: - Extensions
 extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -660,6 +677,7 @@ extension CallAnswerViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 회색에서 다시 하얗게 변하도록 설정
         tableView.deselectRow(at: indexPath, animated: true)
