@@ -20,7 +20,18 @@ class resetViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = .black
         
+        let fancyImage = UIImage(systemName:"arrow.left")
+
+        var fancyAppearance = UINavigationBarAppearance()
+        fancyAppearance.backgroundColor = UIColor.white
+        //fancyAppearance.configureWithDefaultBackground()
+        fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
+
+        navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
         dataBase = Database.database().reference().child("user")
         let userID = Auth.auth().currentUser?.uid
         dataBase.child(userID!).child("userProfileDetail").observeSingleEvent(of: .value, with: { snapshot in

@@ -21,6 +21,7 @@ class AddfriendCell: UITableViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
+        addBtn.layer.cornerRadius = 10
         // Initialization code
     }
 

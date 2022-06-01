@@ -14,7 +14,6 @@ class FinishedTeamPopupViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,17 +29,7 @@ class FinishedTeamPopupViewController: UIViewController {
     @IBAction func onClickedYes(_ sender: Any) {
         let userUID = Auth.auth().currentUser!.uid
         Database.database().reference().child("user").child(userUID).child("userTeam").removeValue()
+        
         self.dismiss(animated: true, completion: nil)
     }
-    
-//    @IBAction func onPlannerClicked(_ sender: Any) {
-////        if let subscribeBtnCompletionClosure = subscribeBtnCompletionClosure {
-////            subscribeBtnCompletionClosure()
-////        }
-//        partCategory = "기획자"
-//        self.delegate?.SendCategoryData(data: partCategory)
-//        self.dismiss(animated: true, completion: nil)
-//
-//
-//    }
 }

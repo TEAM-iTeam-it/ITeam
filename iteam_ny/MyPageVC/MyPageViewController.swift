@@ -19,9 +19,11 @@ class MyPageViewController: UIViewController{
     @IBOutlet weak var backgroundView: UIView!
     
     @IBOutlet weak var profileView: UIButton!
-    override func viewDidLoad() {
-            super.viewDidLoad()
-        
+    
+   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
         backgroundView.setGradient(color1: UIColor(displayP3Red: 184/255, green: 98/255, blue: 255/255, alpha: 1), color2: UIColor(displayP3Red: 144/255, green: 255/255, blue: 201/255, alpha: 1))
         
         profileView.layer.shadowColor = UIColor.black.cgColor // 색깔
@@ -58,10 +60,7 @@ class MyPageViewController: UIViewController{
           print(error.localizedDescription)
         }
         
-        
-        
         }
-            
     
 }
 

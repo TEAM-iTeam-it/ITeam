@@ -20,6 +20,7 @@ class SetATimeViewController: UIViewController{
     @IBOutlet weak var candidateLabel_3: UILabel!
     @IBOutlet weak var candidateLabel_2: UILabel!
     @IBOutlet weak var candidateBtn_1: UILabel!
+    
     @IBOutlet weak var selectTime_3: UIButton!
     @IBOutlet weak var selectTime_2: UIButton!
     @IBOutlet weak var selectTime_1: UIButton!
@@ -36,23 +37,35 @@ class SetATimeViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .black
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
         
         let fancyImage = UIImage(named: "btnClose.png")
 
         var fancyAppearance = UINavigationBarAppearance()
-        fancyAppearance.configureWithDefaultBackground()
+        fancyAppearance.backgroundColor = UIColor.white
         fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
 
         navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
         
+        candidateBtn_1.clipsToBounds = true
+        candidateLabel_2.clipsToBounds = true
+        candidateLabel_3.clipsToBounds = true
+        candidateBtn_1.layer.cornerRadius = candidateBtn_1.frame.height/2
+        candidateLabel_2.layer.cornerRadius = candidateLabel_2.frame.height/2
+        candidateLabel_3.layer.cornerRadius = candidateLabel_3.frame.height/2
+        
         candidateBtn_1.isHidden = true
         candidateLabel_2.isHidden = true
         candidateLabel_3.isHidden = true
-        selectTime_3.layer.cornerRadius = 8
-        selectTime_2.layer.cornerRadius = 8
-        selectTime_1.layer.cornerRadius = 8
+        
+        selectTime_3.layer.cornerRadius = 16
+        selectTime_2.layer.cornerRadius = 16
+        selectTime_1.layer.cornerRadius = 16
         nextBtn.layer.cornerRadius = 8
         
     }
@@ -120,7 +133,7 @@ extension SetATimeViewController: SendTimeDataDelegate {
         var result = dhdh.substring(from: index)
        
         if dhdh.contains("첫번째"){
-            self.selectTime_1.setTitle(result, for: .normal)
+            self.selectTime_1.setTitle("    \(result)", for: .normal)
             self.selectTime_1.setTitleColor(UIColor.black, for: .normal)
             
             candidateBtn_1.isHidden = false
@@ -138,7 +151,7 @@ extension SetATimeViewController: SendTimeDataDelegate {
             count += 1
         }
         if dhdh.contains("두번째"){
-            self.selectTime_2.setTitle(result, for: .normal)
+            self.selectTime_2.setTitle("    \(result)", for: .normal)
             self.selectTime_2.setTitleColor(UIColor.black, for: .normal)
             
             candidateLabel_2.isHidden = false
@@ -157,7 +170,7 @@ extension SetATimeViewController: SendTimeDataDelegate {
             count += 1
         }
         if dhdh.contains("세번째"){
-            self.selectTime_3.setTitle(result, for: .normal)
+            self.selectTime_3.setTitle("    \(result)", for: .normal)
             self.selectTime_3.setTitleColor(UIColor.black, for: .normal)
             
             candidateLabel_3.isHidden = false

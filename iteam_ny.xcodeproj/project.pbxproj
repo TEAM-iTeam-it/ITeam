@@ -270,6 +270,7 @@
 		1FB9A54428363425004A1B8B /* AppIcon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FB9A54328363425004A1B8B /* AppIcon60@3x.png */; };
 		1FB9A546283751BB004A1B8B /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A545283751BB004A1B8B /* GradientButton.swift */; };
 		1FB9A54828433015004A1B8B /* FinishedTeamPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */; };
+		1FB9A54D284353D7004A1B8B /* MyPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A54C284353D7004A1B8B /* MyPartViewController.swift */; };
 		1FFD2E2C27FBEA070068520D /* img_logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E2B27FBEA060068520D /* img_logo2.png */; };
 		1FFD2E3027FBEA9C0068520D /* btn_pin1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E2D27FBEA9B0068520D /* btn_pin1@2x.png */; };
 		1FFD2E3127FBEA9C0068520D /* btn_pin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FFD2E2E27FBEA9B0068520D /* btn_pin1.png */; };
@@ -562,6 +563,7 @@
 		1FB9A54328363425004A1B8B /* AppIcon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60@3x.png"; sourceTree = "<group>"; };
 		1FB9A545283751BB004A1B8B /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedTeamPopupViewController.swift; sourceTree = "<group>"; };
+		1FB9A54C284353D7004A1B8B /* MyPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPartViewController.swift; sourceTree = "<group>"; };
 		1FFD2E2B27FBEA060068520D /* img_logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_logo2.png; sourceTree = "<group>"; };
 		1FFD2E2D27FBEA9B0068520D /* btn_pin1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_pin1@2x.png"; sourceTree = "<group>"; };
 		1FFD2E2E27FBEA9B0068520D /* btn_pin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_pin1.png; sourceTree = "<group>"; };
@@ -1063,7 +1065,6 @@
 				1F55CF142751F19100CD35EC /* AppDelegate.swift */,
 				0868B01427CB5ED20018464B /* Join2ViewController.swift */,
 				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
-				1F55CF552754B46B00CD35EC /* UserProfileController.swift */,
 				1F55CF162751F19100CD35EC /* SceneDelegate.swift */,
 				08B83199280955FA00135893 /* FirstEntryViewController.swift */,
 				1F55CF1D2751F19200CD35EC /* Assets.xcassets */,
@@ -1076,15 +1077,13 @@
 		1F55CF5B2755E2B400CD35EC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1FB9A54B2843448B004A1B8B /* FriendToTeamVC */,
+				1FB9A54A28434405004A1B8B /* sendVC */,
+				1FB9A549284343F4004A1B8B /* popVC */,
 				1F55CF282751F71A00CD35EC /* HomeViewController.swift */,
-				1F5428222805336100F5179B /* PopupViewController.swift */,
-				1F5428292805B9FE00F5179B /* AddFasTeam.swift */,
-				1F64AF592813FA7F00D7B2BD /* SetATimeViewController.swift */,
-				1F64AF5B281401C600D7B2BD /* SendTimePickerView.swift */,
-				1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */,
+				1F55CF552754B46B00CD35EC /* UserProfileController.swift */,
 				1F76E52E2833041B0055DAFD /* HomeTeamCollectionViewCell.swift */,
 				1FB9A545283751BB004A1B8B /* GradientButton.swift */,
-				1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1151,6 +1150,7 @@
 				1F875FFA2818E8870051E89A /* MyPageModifyViewController.swift */,
 				1F8760012821DBD90051E89A /* CompletedTeamViewController.swift */,
 				1FAD4D652821DFC700707E30 /* CompletedTeamCell.swift */,
+				1FB9A54C284353D7004A1B8B /* MyPartViewController.swift */,
 			);
 			path = MyPageVC;
 			sourceTree = "<group>";
@@ -1163,6 +1163,33 @@
 				1F4ABF92282924A80003A024 /* FriendRequestCell.swift */,
 			);
 			path = NotifyVC;
+			sourceTree = "<group>";
+		};
+		1FB9A549284343F4004A1B8B /* popVC */ = {
+			isa = PBXGroup;
+			children = (
+				1F5428222805336100F5179B /* PopupViewController.swift */,
+				1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */,
+			);
+			path = popVC;
+			sourceTree = "<group>";
+		};
+		1FB9A54A28434405004A1B8B /* sendVC */ = {
+			isa = PBXGroup;
+			children = (
+				1F64AF5B281401C600D7B2BD /* SendTimePickerView.swift */,
+				1F64AF592813FA7F00D7B2BD /* SetATimeViewController.swift */,
+			);
+			path = sendVC;
+			sourceTree = "<group>";
+		};
+		1FB9A54B2843448B004A1B8B /* FriendToTeamVC */ = {
+			isa = PBXGroup;
+			children = (
+				1F5428292805B9FE00F5179B /* AddFasTeam.swift */,
+				1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */,
+			);
+			path = FriendToTeamVC;
 			sourceTree = "<group>";
 		};
 		31B0739A0D86B84446828D2C /* Pods */ = {
@@ -1439,6 +1466,7 @@
 				0868B05627CB6E080018464B /* DetailProfileViewController.swift in Sources */,
 				1F64AF49280ECD5B00D7B2BD /* TeamResultViewController.swift in Sources */,
 				08922A75282455BD002F24D1 /* ActualGradientButton.swift in Sources */,
+				1FB9A54D284353D7004A1B8B /* MyPartViewController.swift in Sources */,
 				08AE41952805AB87007CBE5F /* DetailProfileAllToolNLangCollectionViewCell.swift in Sources */,
 				1F64AF58280F85CC00D7B2BD /* MyRsumViewController.swift in Sources */,
 				081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */,

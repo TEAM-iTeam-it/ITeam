@@ -12,7 +12,6 @@ import FirebaseStorage
 import Kingfisher
 
 class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var memberAddBtn: UIButton!
     var friendContent: [myFriend] = []
     var ref: DatabaseReference!
     let db = Database.database().reference()
@@ -20,8 +19,16 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
     var friendList: [String] = []
     var myFriendUid:[String] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myFriendTableView.separatorStyle = .none
+        
+        self.navigationController?.navigationBar.isHidden = false
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
         
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .black
@@ -29,7 +36,8 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
         let fancyImage = UIImage(systemName:"arrow.left")
 
         var fancyAppearance = UINavigationBarAppearance()
-        fancyAppearance.configureWithDefaultBackground()
+        fancyAppearance.backgroundColor = UIColor.white
+        //fancyAppearance.configureWithDefaultBackground()
         fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
 
         navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
@@ -164,9 +172,13 @@ class AddFasTeam:  UIViewController, UITableViewDelegate, UITableViewDataSource 
                 }
             }
         myFriendTableView.reloadData()
-            cell.addBtn.backgroundColor = UIColor(named: "purple_184")
-            cell.addBtn.layer.cornerRadius = 5
-            cell.addBtn.titleLabel?.textColor = .white
+            cell.addBtn.backgroundColor = UIColor.white
+            //cell.addBtn.layer.cornerRadius = 5
+            cell.addBtn.setTitleColor(.black, for: .normal)
+            cell.addBtn.setTitle("요청됨", for: .normal)
+            cell.addBtn.layer.borderWidth = 0.5
+            cell.addBtn.layer.borderColor = UIColor.lightGray.cgColor
+            
     }
         let friendImg = friendContent[indexPath.row].uid
         let starsRef = Storage.storage().reference().child("user_profile_image/\(friendImg).jpg")
