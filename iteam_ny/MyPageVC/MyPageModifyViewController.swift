@@ -2,7 +2,7 @@
 //  MyPageModifyViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/04/27.
+//  Created by 성나연 on 2022/04/27.
 //
 
 import UIKit
@@ -26,10 +26,13 @@ class MyPageModifyViewController: UIViewController  {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .black
         
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
+        
         let fancyImage = UIImage(systemName:"arrow.left")
 
         var fancyAppearance = UINavigationBarAppearance()
-        fancyAppearance.configureWithDefaultBackground()
+        fancyAppearance.backgroundColor = UIColor.white
         fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
 
         navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance

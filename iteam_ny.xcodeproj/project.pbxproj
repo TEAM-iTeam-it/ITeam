@@ -230,6 +230,7 @@
 		1F4ABF95282B5AC80003A024 /* AddfriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */; };
 		1F4ABF97282CB4820003A024 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF96282CB4820003A024 /* Friend.swift */; };
 		1F4CF84A284844380018E5EB /* paddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CF849284844380018E5EB /* paddingLabel.swift */; };
+		1F4CF84C28486B520018E5EB /* btn_edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F4CF84B28486B520018E5EB /* btn_edit@3x.png */; };
 		1F5428232805336100F5179B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428222805336100F5179B /* PopupViewController.swift */; };
 		1F542826280598FA00F5179B /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F542825280598FA00F5179B /* searchViewController.swift */; };
 		1F5428282805A16E00F5179B /* resetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428272805A16E00F5179B /* resetViewController.swift */; };
@@ -518,6 +519,7 @@
 		1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddfriendCell.swift; sourceTree = "<group>"; };
 		1F4ABF96282CB4820003A024 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		1F4CF849284844380018E5EB /* paddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paddingLabel.swift; sourceTree = "<group>"; };
+		1F4CF84B28486B520018E5EB /* btn_edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_edit@3x.png"; sourceTree = "<group>"; };
 		1F5428222805336100F5179B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		1F542825280598FA00F5179B /* searchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
 		1F5428272805A16E00F5179B /* resetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetViewController.swift; sourceTree = "<group>"; };
@@ -851,6 +853,7 @@
 		0868B05B27CB6E9E0018464B /* button_source */ = {
 			isa = PBXGroup;
 			children = (
+				1F4CF84B28486B520018E5EB /* btn_edit@3x.png */,
 				08918415284746F7001E8A32 /* btnCheckBox.png */,
 				08918411284746F7001E8A32 /* btnCheckBox@2x.png */,
 				08918412284746F7001E8A32 /* btnCheckBox@3x.png */,
@@ -1363,6 +1366,7 @@
 				08918418284746F7001E8A32 /* btnCheckBox@3x.png in Resources */,
 				086E4B5A2827E46F005933CB /* profileGradientBorder.png in Resources */,
 				1FFD2E3727FBEE420068520D /* btn_option.png in Resources */,
+				1F4CF84C28486B520018E5EB /* btn_edit@3x.png in Resources */,
 				0863BCFD280C059B00AFB2B9 /* btnAddSmall@2x.png in Resources */,
 				0863BD02280C059B00AFB2B9 /* btnAddSmall.png in Resources */,
 				1FFD2E3C27FBF0BF0068520D /* img_user1@2x.png in Resources */,

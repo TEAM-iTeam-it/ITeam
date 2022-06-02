@@ -53,7 +53,6 @@ class UserProfileController: UIViewController{
 
         var fancyAppearance = UINavigationBarAppearance()
         fancyAppearance.backgroundColor = UIColor.white
-        //fancyAppearance.configureWithDefaultBackground()
         fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
 
         navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
