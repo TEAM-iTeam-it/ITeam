@@ -19,9 +19,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zh6-6z-Skz">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zh6-6z-Skz">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="202"/>
                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="202" id="fgF-26-4er"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8k-H4-mmG">
                                 <rect key="frame" x="20" y="74" width="108.5" height="30"/>
@@ -78,8 +81,12 @@
                                     <segue destination="JfN-uB-jVb" kind="show" id="WJR-YZ-QcI"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_user1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Z2S-Rv-aIW">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_user1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Z2S-Rv-aIW">
                                 <rect key="frame" x="45" y="164" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="66O-ju-yvy"/>
+                                    <constraint firstAttribute="height" constant="70" id="psr-WJ-GUe"/>
+                                </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ea5-Lj-OGt">
                                 <rect key="frame" x="130" y="204.5" width="45" height="18"/>
@@ -134,7 +141,6 @@
                             <constraint firstItem="c7d-vf-ZNg" firstAttribute="top" secondItem="tNX-4d-QhS" secondAttribute="bottom" constant="36" id="D4B-0g-zCA"/>
                             <constraint firstItem="H8k-H4-mmG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="EAG-gk-1Ib"/>
                             <constraint firstItem="zh6-6z-Skz" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="FFS-Ac-yaE"/>
-                            <constraint firstItem="YuT-aU-9l0" firstAttribute="leading" secondItem="Z2S-Rv-aIW" secondAttribute="trailing" constant="15" id="FoV-YT-b9u"/>
                             <constraint firstItem="YuT-aU-9l0" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="179" id="GUw-GV-faS"/>
                             <constraint firstItem="H8k-H4-mmG" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="74" id="Isx-uD-2X7"/>
                             <constraint firstItem="ea5-Lj-OGt" firstAttribute="leading" secondItem="Z2S-Rv-aIW" secondAttribute="trailing" constant="15" id="K0U-so-inn"/>
@@ -142,6 +148,7 @@
                             <constraint firstItem="zh6-6z-Skz" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="R1Y-oa-0EX"/>
                             <constraint firstItem="ZcP-fD-KUK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="SiI-bG-AqR"/>
                             <constraint firstItem="zh6-6z-Skz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="b2s-6z-pxD"/>
+                            <constraint firstItem="YuT-aU-9l0" firstAttribute="leading" secondItem="Z2S-Rv-aIW" secondAttribute="trailing" constant="15" id="bHg-Pg-EJP"/>
                             <constraint firstItem="gCS-b6-3Vu" firstAttribute="top" secondItem="Q5H-mI-AJQ" secondAttribute="bottom" constant="30" id="eWM-dd-YsC"/>
                             <constraint firstItem="8L4-0d-Hjc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="et5-Yz-JMB"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ZcP-fD-KUK" secondAttribute="trailing" constant="20" id="hAw-h5-HtX"/>
