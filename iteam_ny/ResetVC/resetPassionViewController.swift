@@ -20,8 +20,10 @@ class resetPassionViewController: UIViewController {
     var passions: [String] = []
     var passion: String?
     
+    @IBOutlet weak var saveBtn: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveBtn.isEnabled = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.clipsToBounds = true
     
@@ -36,6 +38,7 @@ class resetPassionViewController: UIViewController {
             sender.backgroundColor = UIColor(named: "gray_245")
             sender.layer.borderWidth = 0
             passion = nil
+            saveBtn.isEnabled = false
         }
         else if passion != nil {
             for i in 0...passionBtns.count-1 {
@@ -59,25 +62,25 @@ class resetPassionViewController: UIViewController {
             sender.setTitleColor(UIColor(named: "purple_184"), for: .normal)
             
             passion = sender.titleLabel?.text!
+            saveBtn.isEnabled = true
+            saveBtn.tintColor = UIColor(named: "purple_184")
         }
         print(passion)
     }
-    // [Button action] 성적 다음
-    @IBAction func passionNextBtn(_ sender: UIButton) {
+    // [Button action] 성적 저장
+    @IBAction func passionSaveBtn(_ sender: Any) {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
+
         let values: [String: Any] = [ "wantGrade": passion]
-        
+
         ref = Database.database().reference()
         // [ 지역 데이터 추가 ]
         ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
-        
-        let wordVC = self.storyboard?.instantiateViewController(withIdentifier: "wordVC")
-        self.navigationController?.pushViewController(wordVC!, animated: true)
-        
+
     }
+    
     @IBAction func goBackBtn(_ sender: UIBarButtonItem) {
         goBack()
     }

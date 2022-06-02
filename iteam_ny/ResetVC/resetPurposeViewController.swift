@@ -26,11 +26,12 @@ class resetPurposeViewController: UIViewController {
     @IBOutlet weak var startupImg: UIImageView!
     @IBOutlet weak var etcImg: UIImageView!
     @IBOutlet weak var nextBtn: UIButton!
-    
+    @IBOutlet weak var saveBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        saveBtn.isEnabled = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.clipsToBounds = true
         for i in 0...4{
@@ -160,6 +161,13 @@ class resetPurposeViewController: UIViewController {
                 purposes.append((sender.titleLabel?.text)!)
             }
         }
+        if purposes.count >= 1 {
+            saveBtn.tintColor = UIColor(named: "purple_184")
+            saveBtn.isEnabled = true
+        }
+        else {
+            saveBtn.isEnabled = false
+        }
 
         print(purposes)
         
@@ -170,5 +178,25 @@ class resetPurposeViewController: UIViewController {
     }
     @objc func goBack() {
            self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func savePurpose(_ sender: Any) {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        var purposeString: String = ""
+        for i in 0..<purposes.count {
+            if i == purposes.count-1 {
+                purposeString += purposes[i]
+            }
+            else {
+                purposeString += "\(purposes[i]), "
+            }
+        }
+        let values: [String: String] = [ "purpose": purposeString]
+        
+        ref = Database.database().reference()
+        // [ 목적 데이터 추가 ]
+        ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
     }
 }
