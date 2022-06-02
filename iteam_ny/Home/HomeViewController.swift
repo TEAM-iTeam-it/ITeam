@@ -47,14 +47,14 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
 
     var teamTypeCount: [Int] = Array(repeating: 0, count: 9)
     var userPurpose: [String] = []
-    var fetchCharatorCount: Int = 0 {
-        
-        willSet {
-            if newValue == memberList.count {
-                configTeamTypeLoad()
-            }
-        }
-    }
+//    var fetchCharatorCount: Int = 0 {
+//
+//        willSet {
+//            if newValue == memberList.count {
+//                configTeamTypeLoad()
+//            }
+//        }
+//    }
     
     @IBOutlet weak var addFriendView: UIView!
     @IBOutlet weak var memberColl: UICollectionView!
@@ -656,8 +656,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                     }
                     print("userPurposeCopy \(userPurposeCopy)")
                 }
-                fetchCharatorCount += 1
-                print("^^^^^^^\(fetchCharatorCount)^^^^^^^^^^^^^^")
+                //fetchCharatorCount += 1
                 userPurpose = userPurposeCopy
             }
         }
@@ -727,7 +726,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
             teamExplainLabel.text = "의사결정과 위임을 잘하기 때문에\n목표 설정이 명확하면 일이 수월하게 진행됩니다.\n개인의 일을 다른 사람에게 미루지 않으면 좋습니다."
         }
         if teamTitle.contains("추진"){
-            teamExplainLabel.text = "어려운 일이 생겼을 경우 극복하는 추진력과 용기를 가지고 있습니다.\n다른 사람의 감정을 상하게 할 수 있으니\n서로 조심하는 게 좋습니다."
+            teamExplainLabel.text = "어려운 일이 생겼을 경우\n극복하는 추진력과 용기를 가지고 있습니다.\n다른 사람의 감정을 상하게 할 수 있으니\n서로 조심하는 게 좋습니다."
         }
         if teamTitle.contains("전략"){
             teamExplainLabel.text = "문제에 있어 모든 방안을 살피고 정확히 판단할 수 있습니다.\n너무 비판적일 수 있기 때문에 다양한 시각을 가지면 좋습니다."
@@ -797,6 +796,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
                         var member = MyTeam(uid: muid, part: mpart, name: mnickname, profileImg: "")
                         teamMembers.append(member)
                         configTeamType()
+                        configTeamTypeLoad()
                         memberColl.reloadData()
                     }
                 }
