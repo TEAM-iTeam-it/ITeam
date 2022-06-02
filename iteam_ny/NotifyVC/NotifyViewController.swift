@@ -14,6 +14,8 @@ import Kingfisher
 class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var notifyTableView: UITableView!
+    
+    // MARK: - Properties
     var ref: DatabaseReference!
     let db = Database.database().reference()
     var giverList: [String] = []
@@ -29,6 +31,11 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var allInfo = ""
     var memberInfo = ""
     var hi = 0
+    var didFriendUpdate: Bool = false
+    var didFreindUpdateOnce: Bool = false
+    var didMemberUpdateOnce: Bool = false
+    private var refreshControl = UIRefreshControl()
+    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,10 +45,12 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        notifyTableView.refreshControl = refreshControl
         notifyTableView.separatorStyle = .none
         fetchMemberData()
         fetchChangedData()
-    
+        
     }
     
     func removeArr() {
@@ -58,25 +67,37 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func fetchChangedData() {
-//        friendList.removeAll()
+        //        friendList.removeAll()
         removeArr()
         db.child("user").child(Auth.auth().currentUser!.uid).child("friendRequest").observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨 친구")
             
-            DispatchQueue.main.async {
+            print("DB 수정됨 친구")
+            self.didFriendUpdate = true
+            if !self.didFreindUpdateOnce {
                 self.fetchMemberData()
             }
+            self.didFreindUpdateOnce = true
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                self.didFriendUpdate = false
+                self.didFreindUpdateOnce = false
+            })
+            
         })
         removeArr()
         db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").observe(.childChanged, with:{ (snapshot) -> Void in
-            print("DB 수정됨 멤버")
-            DispatchQueue.main.async {
+            
+            
+            if !self.didFriendUpdate && !self.didMemberUpdateOnce {
+                print("DB 수정됨 멤버")
                 self.fetchMemberData()
             }
+            self.didMemberUpdateOnce = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                self.didMemberUpdateOnce = false
+            })
+            
         })
-        
-        
-
     }
 //    func fetchChangedData2(){
 //        removeArr()
@@ -201,6 +222,12 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return friendList.count
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if refreshControl.isRefreshing {
+            self.refreshControl.endRefreshing()
+            fetchMemberData()
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as! FriendRequestCell
