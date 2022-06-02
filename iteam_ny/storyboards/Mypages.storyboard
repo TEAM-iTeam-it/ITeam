@@ -422,7 +422,7 @@
         <!--친구 목록-->
         <scene sceneID="cnf-hI-SeG">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="ScE-VV-tEL" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="ScE-VV-tEL" customClass="MyFriendListViewController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Za9-TT-z0h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

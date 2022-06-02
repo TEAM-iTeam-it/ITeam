@@ -13,7 +13,6 @@ class CompletedTeamCell: UICollectionViewCell {
     @IBOutlet weak var subContent: UILabel!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    // @나연 : 서버에서 받아 올 사용자 이미지 네임
     var images: [String] = []
     
         

@@ -14,7 +14,6 @@ class CompletedTeamViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        // @나연 : 삭제할 더미데이터 -> 추후 서버에서 받아와야함
         let firstTeamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
         let firstTeam = CTeam(teamName: "이성책임", subContent: "공모전•2022년 3월 30일 시작",images: firstTeamImages)
         let secondTeam = CTeam(teamName: "Ctrl+P", subContent: "공모전•2022년 3월 30일 시작",images: firstTeamImages)
@@ -27,6 +26,20 @@ class CompletedTeamViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = .black
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
+        
+        let fancyImage = UIImage(systemName:"arrow.left")
+
+        var fancyAppearance = UINavigationBarAppearance()
+        fancyAppearance.backgroundColor = UIColor.white
+        fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
+
+        navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
     }
 }
 
