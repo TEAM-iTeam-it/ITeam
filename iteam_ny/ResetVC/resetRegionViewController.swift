@@ -29,7 +29,8 @@ class resetRegionViewController: UIViewController {
     // 수식어 버튼 일괄 관리
     @IBOutlet weak var regionCheckedBtn: UIButton!
     // 지역탭 다음으로 넘어가기 위한 변수
-
+    @IBOutlet weak var saveBtn: UIBarButtonItem!
+    
     
     @IBAction func goBackBtn(_ sender: UIBarButtonItem) {
         goBack()
@@ -75,6 +76,13 @@ class resetRegionViewController: UIViewController {
         }
         
      print(checkedBtn_region)
+        if checkedBtn_region.isEmpty{
+            saveBtn.isEnabled = false
+        }
+        else{
+            saveBtn.isEnabled = true
+            saveBtn.tintColor = UIColor(named: "purple_184")
+        }
     }
     
     
@@ -105,6 +113,7 @@ class resetRegionViewController: UIViewController {
             self.regionBtn.isEnabled = false
         }
         print(isRegionON)
+       
     }
     
     @IBAction func regionSaveBtn(_ sender: Any) {
@@ -129,6 +138,7 @@ class resetRegionViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveBtn.isEnabled = false
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.clipsToBounds = true

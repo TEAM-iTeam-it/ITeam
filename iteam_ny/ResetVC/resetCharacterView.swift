@@ -52,6 +52,7 @@ class resetCharacterView: UIViewController {
             }
         
             propertyBtn.isEnabled = true
+            propertyBtn.tintColor = UIColor(named: "purple_184")
         }
         else {
             for i in 0...propertyBtns.count-1 {

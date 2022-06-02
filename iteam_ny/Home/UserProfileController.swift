@@ -67,9 +67,9 @@ class UserProfileController: UIViewController{
         backStack.layer.shadowOpacity = 0.15
         backStack.layer.shadowRadius = 10
         
-        characterLabel1.layer.cornerRadius = characterLabel1.frame.height/2 + 5
-        characterLabel2.layer.cornerRadius = characterLabel2.frame.height/2 + 5
-        characterLabel3.layer.cornerRadius = characterLabel3.frame.height/2 + 5
+        characterLabel1.layer.cornerRadius = characterLabel1.frame.height/2
+        characterLabel2.layer.cornerRadius = characterLabel2.frame.height/2
+        characterLabel3.layer.cornerRadius = characterLabel3.frame.height/2
         characterLabel1.layer.borderWidth = 0.5
         characterLabel1.layer.borderColor = UIColor.lightGray.cgColor
         characterLabel2.layer.borderWidth = 0.5
