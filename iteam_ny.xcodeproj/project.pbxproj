@@ -229,6 +229,7 @@
 		1F4ABF93282924A80003A024 /* FriendRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF92282924A80003A024 /* FriendRequestCell.swift */; };
 		1F4ABF95282B5AC80003A024 /* AddfriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */; };
 		1F4ABF97282CB4820003A024 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF96282CB4820003A024 /* Friend.swift */; };
+		1F4CF84A284844380018E5EB /* paddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CF849284844380018E5EB /* paddingLabel.swift */; };
 		1F5428232805336100F5179B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428222805336100F5179B /* PopupViewController.swift */; };
 		1F542826280598FA00F5179B /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F542825280598FA00F5179B /* searchViewController.swift */; };
 		1F5428282805A16E00F5179B /* resetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428272805A16E00F5179B /* resetViewController.swift */; };
@@ -516,6 +517,7 @@
 		1F4ABF92282924A80003A024 /* FriendRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestCell.swift; sourceTree = "<group>"; };
 		1F4ABF94282B5AC80003A024 /* AddfriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddfriendCell.swift; sourceTree = "<group>"; };
 		1F4ABF96282CB4820003A024 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		1F4CF849284844380018E5EB /* paddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paddingLabel.swift; sourceTree = "<group>"; };
 		1F5428222805336100F5179B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		1F542825280598FA00F5179B /* searchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
 		1F5428272805A16E00F5179B /* resetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetViewController.swift; sourceTree = "<group>"; };
@@ -1084,6 +1086,7 @@
 				1F55CF552754B46B00CD35EC /* UserProfileController.swift */,
 				1F76E52E2833041B0055DAFD /* HomeTeamCollectionViewCell.swift */,
 				1FB9A545283751BB004A1B8B /* GradientButton.swift */,
+				1F4CF849284844380018E5EB /* paddingLabel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1574,6 +1577,7 @@
 				1F875FF9281837940051E89A /* resetPurposeViewController.swift in Sources */,
 				08BFBE9A27F59A3900A6F6B0 /* TeamProfileViewController.swift in Sources */,
 				1F64AF4E280ED3E400D7B2BD /* MyPageViewController.swift in Sources */,
+				1F4CF84A284844380018E5EB /* paddingLabel.swift in Sources */,
 				1F4ABF93282924A80003A024 /* FriendRequestCell.swift in Sources */,
 				1F64AF5C281401C600D7B2BD /* SendTimePickerView.swift in Sources */,
 				0868B04927CB6D930018464B /* EvaluateViewController.swift in Sources */,
