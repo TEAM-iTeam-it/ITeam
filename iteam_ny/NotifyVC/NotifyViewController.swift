@@ -2,7 +2,7 @@
 //  NotifyViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/05/04.
+//  Created by 성나연 on 2022/05/04.
 //
 
 import UIKit
@@ -41,6 +41,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         notifyTableView.separatorStyle = .none
         fetchMemberData()
         fetchChangedData()
+    
     }
     
     func removeArr() {
@@ -293,7 +294,10 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.ContentLabel.text = "\(nickname) 님 iteam에 오신 걸 환영합니다!"
                 print(nickname + "여기 오류")
             })
-            cell.profileImg.image = UIImage(named: "AppIcon60@3x")
+            cell.profileImg.image = UIImage(named: "AppIcon60@2x")
+            cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
+            cell.profileImg.layer.borderColor = UIColor.lightGray.cgColor
+            cell.profileImg.layer.borderWidth = 0.5
             
         }
             
@@ -305,7 +309,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.AcceptedBtn.backgroundColor = UIColor.white
             cell.AcceptedBtn.setTitleColor(.black, for: .normal)
             cell.AcceptedBtn.layer.borderWidth = 0.5
-            cell.AcceptedBtn.layer.cornerRadius = 10
+            cell.AcceptedBtn.layer.cornerRadius = 14
             cell.AcceptedBtn.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1.0).cgColor
             cell.AcceptedBtn.isEnabled = true
         }
@@ -316,7 +320,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.AcceptedBtn.backgroundColor = UIColor(named: "purple_184")
             cell.AcceptedBtn.setTitleColor(.white, for: .normal)
             cell.AcceptedBtn.layer.borderWidth = 0
-            cell.AcceptedBtn.layer.cornerRadius = 10
+            cell.AcceptedBtn.layer.cornerRadius = 14
             cell.AcceptedBtn.isEnabled = true
         }
         
@@ -328,6 +332,8 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } else {
                 cell.profileImg.kf.setImage(with: url)
                 cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
+
+
             }
         }
         
