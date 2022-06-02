@@ -2,7 +2,7 @@
 //  resetViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/04/12.
+//  Created by 성나연 on 2022/04/12.
 //
 
 import UIKit
@@ -28,9 +28,11 @@ class resetViewController: UIViewController {
 
         var fancyAppearance = UINavigationBarAppearance()
         fancyAppearance.backgroundColor = UIColor.white
-        //fancyAppearance.configureWithDefaultBackground()
         fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
-
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
+        
         navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
         dataBase = Database.database().reference().child("user")
         let userID = Auth.auth().currentUser?.uid

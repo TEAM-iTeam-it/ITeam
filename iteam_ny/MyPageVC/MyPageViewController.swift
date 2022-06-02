@@ -2,7 +2,7 @@
 //  MyPageViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/04/19.
+//  Created by 성나연 on 2022/04/19.
 //
 
 import UIKit
@@ -27,10 +27,10 @@ class MyPageViewController: UIViewController{
         backgroundView.setGradient(color1: UIColor(displayP3Red: 184/255, green: 98/255, blue: 255/255, alpha: 1), color2: UIColor(displayP3Red: 144/255, green: 255/255, blue: 201/255, alpha: 1))
         
         profileView.layer.shadowColor = UIColor.black.cgColor // 색깔
-        profileView.layer.masksToBounds = false  // 내부에 속한 요소들이 UIView 밖을 벗어날 때, 잘라낼 것인지. 그림자는 밖에 그려지는 것이므로 false 로 설정
-        profileView.layer.shadowOffset = CGSize(width: 0, height: 4) // 위치조정
-        profileView.layer.shadowRadius = 15 // 반경
-        profileView.layer.shadowOpacity = 0.3 // alpha값
+        profileView.layer.borderWidth = 0
+        profileView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        profileView.layer.shadowOpacity = 0.15
+        profileView.layer.shadowRadius = 10
         
             ref = Database.database().reference().child("user")
             

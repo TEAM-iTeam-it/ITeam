@@ -2,7 +2,7 @@
 //  resetRegionViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/04/26.
+//  Created by 성나연 on 2022/04/26.
 //
 
 import UIKit
@@ -22,6 +22,7 @@ class resetRegionViewController: UIViewController {
     // 지역 선택 활성화를 위한 변수
     var isRegionON: Bool = true
     // 지역 다음 버튼
+    
     @IBOutlet weak var regionBtn: UIButton!
     // 지역 버튼 일괄 관리
     @IBOutlet var regionBtns: [UIButton]!
@@ -128,6 +129,10 @@ class resetRegionViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
+        self.navigationController?.navigationBar.topItem?.title = ""
 
 
         if let regionBtns = regionBtns {

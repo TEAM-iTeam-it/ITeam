@@ -60,7 +60,7 @@
                                                         <constraint firstAttribute="width" constant="73" id="6OP-FU-LRm"/>
                                                         <constraint firstAttribute="height" constant="28" id="DwG-hQ-54r"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="수락">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,7 +77,7 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="삭제">
-                                                        <backgroundConfiguration key="background" cornerRadius="10" strokeWidth="0.5">
+                                                        <backgroundConfiguration key="background" cornerRadius="14" strokeWidth="0.5">
                                                             <color key="strokeColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </backgroundConfiguration>
                                                         <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="14"/>

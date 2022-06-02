@@ -2,7 +2,7 @@
 //  resetPassionViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/04/26.
+//  Created by 성나연 on 2022/04/26.
 //
 
 import UIKit
@@ -22,8 +22,9 @@ class resetPassionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
+    
         for i in 0...passionBtns.count-1 {
             passionBtns[i].layer.cornerRadius = 16
         }

@@ -2,7 +2,7 @@
 //  FinishedTeamPopupViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/05/29.
+//  Created by 성나연 on 2022/05/29.
 //
 
 import UIKit
@@ -28,7 +28,7 @@ class FinishedTeamPopupViewController: UIViewController {
     
     @IBAction func onClickedYes(_ sender: Any) {
         let userUID = Auth.auth().currentUser!.uid
-        Database.database().reference().child("user").child(userUID).child("userTeam").removeValue()
+        Database.database().reference().child("user").child(userUID).child("userTeam").setValue("")
         
         self.dismiss(animated: true, completion: nil)
     }

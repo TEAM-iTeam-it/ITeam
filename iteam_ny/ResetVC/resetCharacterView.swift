@@ -2,7 +2,7 @@
 //  resetCharacterView.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/04/19.
+//  Created by 성나연 on 2022/04/19.
 //
 
 import UIKit
@@ -26,10 +26,10 @@ class resetCharacterView: UIViewController {
         if !checkedBtn_property.contains((sender.titleLabel?.text)!) {
             checkedBtn_property.append((sender.titleLabel?.text)!)
             
-            sender.configuration?.background.backgroundColor = UIColor(named: "purple_184")
+            sender.configuration?.background.backgroundColor = UIColor(named: "purple_247")
            
-            sender.layer.borderColor = UIColor(named: "purple_184")?.cgColor
-            sender.configuration?.baseForegroundColor = .white
+            sender.layer.borderColor = UIColor(named: "purple_247")?.cgColor
+            sender.configuration?.baseForegroundColor = UIColor(named: "purple_184")
         }
         else {
             if let firstIndex = checkedBtn_property.firstIndex(of: (sender.titleLabel?.text)!) {
@@ -65,6 +65,11 @@ class resetCharacterView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
+        self.navigationController?.navigationBar.topItem?.title = ""
+        
         if let propertyBtns = propertyBtns {
             propertyBtnInit()
         }

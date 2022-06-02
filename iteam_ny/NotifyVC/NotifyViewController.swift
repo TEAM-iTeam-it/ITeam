@@ -2,7 +2,7 @@
 //  NotifyViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/05/04.
+//  Created by 성나연 on 2022/05/04.
 //
 
 import UIKit
@@ -41,6 +41,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         notifyTableView.separatorStyle = .none
         fetchMemberData()
         fetchChangedData()
+    
     }
     
     func removeArr() {
@@ -236,27 +237,34 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
    
             
             if(nickname.contains("팀원")){
+                
                 db.child("user").child(uid).child("userTeam").observeSingleEvent(of: .value) {snapshot in
                   let value = snapshot.value as? String ?? ""
                     if value.isEmpty{
                       db.child("user").child(uid).child("userTeam").setValue(userUID)
                     }
                     else{
-                     db.child("user").child(uid).child("userTeam").setValue(value + ", " + userUID)
+                        db.child("user").child(value).child("userTeam").observeSingleEvent(of: .value) {snapshot in
+                            let value2 = snapshot.value as? String ?? ""
+                            db.child("user").child(value).child("userTeam").setValue(value2 + ", " + userUID)
+                        }
+                        db.child("user").child(userUID).child("userTeam").setValue(value)
+                        db.child("user").child(uid).child("userTeam").setValue(value + ", " + userUID)
                     }
                    
                 }
-                db.child("user").child(userUID).child("userTeam").observeSingleEvent(of: .value) {snapshot in
-                  let value = snapshot.value as? String ?? ""
-                    if value.isEmpty{
-                        db.child("user").child(userUID).child("userTeam").setValue(uid)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                    db.child("user").child(userUID).child("userTeam").observeSingleEvent(of: .value) {snapshot in
+                      let value = snapshot.value as? String ?? ""
+                        if value.isEmpty{
+                            db.child("user").child(userUID).child("userTeam").setValue(uid)
+                        }
+                        else{
+                            db.child("user").child(userUID).child("userTeam").setValue(value + ", " + uid)
+                        }
+                       
                     }
-                    else{
-                        db.child("user").child(userUID).child("userTeam").setValue(value + ", " + uid )
-                    }
-                   
-                }
-                
+                })
                 db.child("user").child(userUID).child("memberRequest").child(requestNum).child("requestStmt").setValue("수락")
                 notifyTableView.reloadData()
             }
@@ -286,7 +294,10 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.ContentLabel.text = "\(nickname) 님 iteam에 오신 걸 환영합니다!"
                 print(nickname + "여기 오류")
             })
-            cell.profileImg.image = UIImage(named: "AppIcon60@3x")
+            cell.profileImg.image = UIImage(named: "AppIcon60@2x")
+            cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
+            cell.profileImg.layer.borderColor = UIColor.lightGray.cgColor
+            cell.profileImg.layer.borderWidth = 0.5
             
         }
             
@@ -298,7 +309,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.AcceptedBtn.backgroundColor = UIColor.white
             cell.AcceptedBtn.setTitleColor(.black, for: .normal)
             cell.AcceptedBtn.layer.borderWidth = 0.5
-            cell.AcceptedBtn.layer.cornerRadius = 10
+            cell.AcceptedBtn.layer.cornerRadius = 14
             cell.AcceptedBtn.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1.0).cgColor
             cell.AcceptedBtn.isEnabled = true
         }
@@ -309,7 +320,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.AcceptedBtn.backgroundColor = UIColor(named: "purple_184")
             cell.AcceptedBtn.setTitleColor(.white, for: .normal)
             cell.AcceptedBtn.layer.borderWidth = 0
-            cell.AcceptedBtn.layer.cornerRadius = 10
+            cell.AcceptedBtn.layer.cornerRadius = 14
             cell.AcceptedBtn.isEnabled = true
         }
         
@@ -321,6 +332,8 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } else {
                 cell.profileImg.kf.setImage(with: url)
                 cell.profileImg.layer.cornerRadius = cell.profileImg.frame.height/2
+
+
             }
         }
         

@@ -2,7 +2,7 @@
 //  MyRsumViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/04/20.
+//  Created by 성나연 on 2022/04/20.
 //
 
 import UIKit
