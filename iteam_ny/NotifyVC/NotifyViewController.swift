@@ -84,6 +84,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
             
         })
+        
         removeArr()
         db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").observe(.childChanged, with:{ (snapshot) -> Void in
             
