@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
+import Kingfisher
 
 class MyPageViewController: UIViewController{
     var ref: DatabaseReference! //Firebase Realtime Database
@@ -48,6 +50,15 @@ class MyPageViewController: UIViewController{
             }) { error in
               print(error.localizedDescription)
             }
+        let img = Storage.storage().reference().child("user_profile_image/\(Auth.auth().currentUser!.uid).jpg")
+        // Fetch the download URL
+        img.downloadURL { [self] url, error in
+            if let error = error {
+            } else {
+                myImg.kf.setImage(with: url)
+                myImg.layer.cornerRadius = myImg.frame.height/2
+            }
+        }
         
         ref.child((currentUser?.uid)!).child("userProfileDetail").observeSingleEvent(of: .value, with: { snapshot in
           // Get user value
