@@ -1358,6 +1358,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Vb-Ys-a5S">
+                                <rect key="frame" x="-3" y="87.5" width="417" height="0.5"/>
+                                <color key="backgroundColor" name="gray_229"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="Kli-hQ-xLY"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6b-4o-JMU">
                                 <rect key="frame" x="153" y="88" width="0.5" height="686"/>
                                 <color key="backgroundColor" name="gray_229"/>
@@ -1433,6 +1440,7 @@
                             <constraint firstItem="d6b-4o-JMU" firstAttribute="centerY" secondItem="88a-XA-tvK" secondAttribute="centerY" id="6Kq-mk-Uqu"/>
                             <constraint firstItem="P4G-H0-SwO" firstAttribute="trailing" secondItem="8Tt-hn-jOu" secondAttribute="trailing" id="AWz-Nm-J6X"/>
                             <constraint firstItem="88a-XA-tvK" firstAttribute="leading" secondItem="P4G-H0-SwO" secondAttribute="leading" id="BkC-Fc-7Eq"/>
+                            <constraint firstItem="3Vb-Ys-a5S" firstAttribute="trailing" secondItem="g6U-44-eu3" secondAttribute="trailing" id="De3-Ah-BhP"/>
                             <constraint firstItem="8Tt-hn-jOu" firstAttribute="top" secondItem="cFS-nn-dxv" secondAttribute="bottom" id="HfS-iW-B35"/>
                             <constraint firstItem="cFS-nn-dxv" firstAttribute="leading" secondItem="P4G-H0-SwO" secondAttribute="leading" id="I7l-2o-cuR"/>
                             <constraint firstItem="RUb-2u-JuB" firstAttribute="top" secondItem="cFS-nn-dxv" secondAttribute="bottom" constant="25" id="K5U-sL-ktf"/>
@@ -1443,7 +1451,9 @@
                             <constraint firstItem="P4G-H0-SwO" firstAttribute="bottom" secondItem="8Tt-hn-jOu" secondAttribute="bottom" id="Vdx-RA-zEe"/>
                             <constraint firstItem="8Tt-hn-jOu" firstAttribute="leading" secondItem="P4G-H0-SwO" secondAttribute="leading" id="Wz9-T6-svd"/>
                             <constraint firstItem="P4G-H0-SwO" firstAttribute="bottom" secondItem="d6b-4o-JMU" secondAttribute="bottom" constant="88" id="X20-kY-p94"/>
+                            <constraint firstItem="3Vb-Ys-a5S" firstAttribute="leading" secondItem="g6U-44-eu3" secondAttribute="leading" id="ged-do-hhs"/>
                             <constraint firstItem="Yla-Oa-Iqu" firstAttribute="top" secondItem="g6U-44-eu3" secondAttribute="bottom" id="hdQ-tw-iqJ"/>
+                            <constraint firstItem="3Vb-Ys-a5S" firstAttribute="bottom" secondItem="g6U-44-eu3" secondAttribute="bottom" id="iYM-Ya-u7h"/>
                             <constraint firstItem="cFS-nn-dxv" firstAttribute="trailing" secondItem="P4G-H0-SwO" secondAttribute="trailing" id="oGF-A1-QJQ"/>
                             <constraint firstItem="Yla-Oa-Iqu" firstAttribute="leading" secondItem="88a-XA-tvK" secondAttribute="trailing" id="rdi-hv-eTo"/>
                             <constraint firstItem="RUb-2u-JuB" firstAttribute="leading" secondItem="P4G-H0-SwO" secondAttribute="leading" constant="20" id="zTo-d3-zDf"/>
