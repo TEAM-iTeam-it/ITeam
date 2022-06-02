@@ -33,6 +33,8 @@ class CreateTeamProfileViewController: UIViewController {
     @IBOutlet weak var regionLabelConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var regionLabelHeight: NSLayoutConstraint!
     @IBOutlet var serviceTypeBtns: [UIButton]!
+    @IBOutlet weak var alreadyExistTeamNameLabel: UILabel!
+    @IBOutlet weak var teamNameBottomConst: NSLayoutConstraint!
     
     // MARK: - Properties
     let db = Database.database().reference()
@@ -49,13 +51,14 @@ class CreateTeamProfileViewController: UIViewController {
     
     var didWroteAllAnswer: Int = 0 {
         willSet(newValue) {
-            print("newValue \(newValue)")
+            print(newValue)
             if newValue >= 7
                 && !serviceType.isEmpty
                 && !serviceType.contains("")
                 && partLabel.text != ""
                 && regionLabel.text != ""
-                && contactLinkTF.hasText  {
+                && contactLinkTF.hasText
+                && !didTeamNameExist {
                 saveBtn.backgroundColor = UIColor(named: "purple_184")
                 saveBtn.setTitleColor(UIColor.white, for: .normal)
                 saveBtn.isEnabled = true
@@ -70,8 +73,7 @@ class CreateTeamProfileViewController: UIViewController {
   
     // Firebase Realtime Database 루트
     var ref: DatabaseReference!
-    
-    var didSameTeamNameExist: Bool = false
+
 
     // 서비스 유형
     var serviceType: [String] = []
@@ -115,7 +117,22 @@ class CreateTeamProfileViewController: UIViewController {
             }
         }
     }
-    
+    var didTeamNameExist: Bool = false {
+        didSet {
+            addFillCount()
+            if didTeamNameExist {
+                alreadyExistTeamNameLabel.isHidden = false
+                teamNameTF.layer.borderColor = UIColor(named: "red_254")?.cgColor
+                teamNameBottomConst.constant = 41
+            }
+            else {
+                alreadyExistTeamNameLabel.isHidden = true
+                teamNameTF.layer.borderColor = UIColor(named: "gray_196")?.cgColor
+                teamNameBottomConst.constant = 25
+                
+            }
+        }
+    }
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -159,6 +176,7 @@ class CreateTeamProfileViewController: UIViewController {
     
     func setUI() {
         navigationBar.shadowImage = UIImage()
+        alreadyExistTeamNameLabel.isHidden = true
         
         if !(memberList?.contains(Auth.auth().currentUser!.uid))! {
             memberList?.insert(Auth.auth().currentUser!.uid, at: 0)
@@ -362,7 +380,6 @@ class CreateTeamProfileViewController: UIViewController {
                                 onePersonPurposeCount[8] += 1
                             }
                     }
-                    print("userPurposeCopy \(userPurposeCopy)")
                 }
                 fetchCharatorCount += 1
                 userPurpose = userPurposeCopy
@@ -370,7 +387,6 @@ class CreateTeamProfileViewController: UIViewController {
         }
     }
     func configTeamTypeLoad() {
-        print(userPurpose)
         for i in 0..<userPurpose.count{
             if creativeProperty.contains(userPurpose[i]) {
                 teamTypeCount[0] += 1
@@ -404,7 +420,6 @@ class CreateTeamProfileViewController: UIViewController {
         var maxCountIndex: [Int] = []
         for i in 0..<teamTypeCount.count {
             if teamTypeCount[i] == teamTypeCount.max() {
-                print("\(i)번째")
                 maxCountIndex.append(i)
             }
         }
@@ -412,7 +427,6 @@ class CreateTeamProfileViewController: UIViewController {
         // 1순위 유형이 여러 개일 때
         if maxCountIndex.count != 1 {
             let random = maxCountIndex.randomElement()!
-            print(random)
             teamTitle = teamTypeArr[random]
             
         }
@@ -574,31 +588,7 @@ class CreateTeamProfileViewController: UIViewController {
             // 팀 이름 중복 검사
             saveBtn.backgroundColor = UIColor(named: "purple_184")
             saveBtn.isEnabled = true
-            if let teamName = self.teamNameTF {
-                if let teamNameText = teamName.text {
-                    
-                    // 팀 이름이 이미 있는지 확인 (오류)
-                    ref = Database.database().reference()
-                    let teamItemRef = ref.child("Team")
-                    // let query2 = teamItemRef..queryEqual(toValue: teamNameText)
-                    self.saveDataAction()
-//                    teamItemRef.observe(.value) { snapshot in
-//                        for childSnapshot in snapshot.children {
-//                            print(childSnapshot)
-//                            print("same teamname boolean =" + "\(self.didSameTeamNameExist)")
-//                            self.didSameTeamNameExist = true
-//                            if self.didSameTeamNameExist {
-//                                self.showAlertAction()
-//                                break
-//                            }
-//                        }
-//                        if !self.didSameTeamNameExist {
-//                            self.saveDataAction()
-//                        }
-//
-//                    }
-                }
-            }
+            saveDataAction()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -663,6 +653,9 @@ class CreateTeamProfileViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        let currentDateString = formatter.string(from: Date())
         
         let currentTeam: [String: Any] = [ "currentTeam": teamNameTF.text]
         let purpose: [String: Any] = [ "purpose": purposeBtn.titleLabel?.text]
@@ -675,6 +668,7 @@ class CreateTeamProfileViewController: UIViewController {
         let contactLink: [String: Any] = [ "contactLink": contactLinkTF.text]
         let memberListValue: [String: Any] = [ "memberList": memberListString]
         let detailPart: [String: Any] = ["detailPart": partLabel.text]
+        let currentDate: [String: String] = ["createDate": currentDateString]
         
         ref = Database.database().reference()
         // 데이터 추가
@@ -691,6 +685,7 @@ class CreateTeamProfileViewController: UIViewController {
             ref.child("Team").child(teamNameTF).updateChildValues(callTime)
             ref.child("Team").child(teamNameTF).updateChildValues(contactLink)
             ref.child("Team").child(teamNameTF).updateChildValues(memberListValue)
+            ref.child("Team").child(teamNameTF).updateChildValues(currentDate)
         }
         // 현재 팀 이름은 각 팀원에게 전부 추가해줘야함
         for i in 0..<memberList.count {
@@ -788,8 +783,27 @@ extension CreateTeamProfileViewController: UITextFieldDelegate, UIScrollViewDele
         if textField == contactLinkTF {
             scrollView.scroll(to: .bottom)
         }
+        if textField == teamNameTF {
+          
+            if let teamNameText = textField.text {
+                db.child("Team").observeSingleEvent(of: .value) { snapshot in
+                    
+                    let value = snapshot.value as? [String : Any]
+                    guard let value = value else { return }
+                    if value.keys.contains(teamNameText) {
+                        self.didTeamNameExist = true
+                        
+                    }
+                    else {
+                        self.didTeamNameExist = false
+                    }
+                }
+            }
+        }
+        
         addFillCount()
         addFillCountContactLink()
+        
         textField.resignFirstResponder()
         return true
     }
@@ -819,7 +833,7 @@ extension CreateTeamProfileViewController: UITextFieldDelegate, UIScrollViewDele
     
     // 완료 버튼을 제어하기 위해 텍스트 필드 입력을 감지하는 함수
     func addFillCount() {
-        if teamNameTF.hasText {
+        if teamNameTF.hasText && !didTeamNameExist {
             if didTeamNameWrote == 1 {
             }
             else {

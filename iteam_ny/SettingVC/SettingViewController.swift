@@ -285,5 +285,6 @@ class SettingViewController: UIViewController {
         ref.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestStmt").setValue("기본")
         ref.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestTime").setValue(currentDateString)
         ref.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").child("0").child("requestUID").setValue("기본")
+        ref.child(Auth.auth().currentUser!.uid).child("userTeam").setValue("")
     }
 }

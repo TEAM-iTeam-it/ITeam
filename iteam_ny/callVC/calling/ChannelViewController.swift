@@ -23,7 +23,7 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var otherImageView: UIImageView!
     
-    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABAU2RNimi1bwrdgBSUioIckQpwEVg1Z6FbpBa2Fat6MTfvbuoAAAAAEABdi2YtKlSYYgEAAQApVJhi"
+    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABkVk1Y/c0SYSmJm3DpSePqGRPrbaQTmkGgOpwUB5zPxzfvbuoAAAAAEACXVkQuIp2ZYgEAAQAhnZli"
     
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     
@@ -56,7 +56,7 @@ class ChannelViewController: UIViewController {
     lazy var role:AgoraClientRole = name == "speaker" || name == "speaker2" ? .broadcaster : .audience
     
     let db = Database.database().reference()
-    
+    var teamIndex: String = ""
     
     // 타이머
     var secondsLeft: Int = 180
@@ -200,6 +200,10 @@ class ChannelViewController: UIViewController {
     }
     
     @IBAction func leaveChannel(_ sender: UIButton) {
+        
+        let values: [String: String] = [ "stmt": "통화종료됨" ]
+        db.child("Call").child(teamIndex).updateChildValues(values)
+        
         self.agkit?.createRtcChannel("testToken11")?.leave()
         self.agkit?.leaveChannel()
         AgoraRtcEngineKit.destroy()

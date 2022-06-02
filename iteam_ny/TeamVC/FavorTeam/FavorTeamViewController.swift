@@ -338,7 +338,6 @@ class FavorTeamViewController: UIViewController {
                 })
             }
         })
-        
         if !didTeamListFetched {
             db.child("user").child(Auth.auth().currentUser!.uid).observe(.childChanged, with:{ (snapshot) -> Void in
                 self.fetchData()
