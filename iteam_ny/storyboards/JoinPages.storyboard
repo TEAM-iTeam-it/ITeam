@@ -4350,17 +4350,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7P-im-qav">
-                                <rect key="frame" x="20" y="454" width="374" height="339"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="339" id="vC7-4w-7tt"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="removeCurrentUserData:" destination="5yl-MN-8V6" eventType="touchUpInside" id="z4H-qD-ey3"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qmK-O0-NI8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4368,10 +4357,7 @@
                             <constraint firstItem="O31-Nz-GkJ" firstAttribute="trailing" secondItem="qmK-O0-NI8" secondAttribute="trailing" id="560-C6-Hby"/>
                             <constraint firstItem="O31-Nz-GkJ" firstAttribute="leading" secondItem="qmK-O0-NI8" secondAttribute="leading" id="6kO-z2-VxX"/>
                             <constraint firstItem="qmK-O0-NI8" firstAttribute="bottom" secondItem="O31-Nz-GkJ" secondAttribute="bottom" constant="50" id="ID2-vR-eSh"/>
-                            <constraint firstItem="E7P-im-qav" firstAttribute="leading" secondItem="qmK-O0-NI8" secondAttribute="leading" constant="20" id="hU3-LX-aK3"/>
-                            <constraint firstItem="qmK-O0-NI8" firstAttribute="trailing" secondItem="E7P-im-qav" secondAttribute="trailing" constant="20" id="kbi-gh-IbD"/>
                             <constraint firstItem="O31-Nz-GkJ" firstAttribute="top" secondItem="qmK-O0-NI8" secondAttribute="top" constant="138" id="q0d-86-hbt"/>
-                            <constraint firstItem="qmK-O0-NI8" firstAttribute="bottom" secondItem="E7P-im-qav" secondAttribute="bottom" constant="69" id="v7e-6u-L8J"/>
                         </constraints>
                     </view>
                     <connections>
