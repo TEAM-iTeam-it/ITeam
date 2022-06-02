@@ -719,7 +719,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
             teamExplainLabel.text = "창조적이고 상상력이 풍부해서\n어려운 문제를 잘 해결할 수 있습니다.\n작은 일을 쉽게 지나칠 수 있으니 주의하세요"
         }
         if teamTitle.contains("탐색"){
-            teamExplainLabel.text = "외향적이고 열정적이며 언제나 기회를 발굴하고 탐색하는 편입니다.\n초기 열정이 사라지면 관심이 떨어질 수 있습니다."
+            teamExplainLabel.text = "외향적이고 열정적이며\n언제나 기회를 발굴하고 탐색하는 편입니다.\n초기 열정이 사라지면 관심이 떨어질 수 있습니다."
         }
         if teamTitle.contains("리더쉽"){
             teamExplainLabel.text = "의사결정과 위임을 잘하기 때문에\n목표 설정이 명확하면 일이 수월하게 진행됩니다.\n개인의 일을 다른 사람에게 미루지 않으면 좋습니다."
