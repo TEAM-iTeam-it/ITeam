@@ -19,9 +19,6 @@ class UserProfileController: UIViewController{
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var partLabel: UILabel!
-//    @IBOutlet weak var characterLabel: UITextField!
-//    @IBOutlet weak var characterLabel2: UITextField!
-//    @IBOutlet weak var characterLabel3: UITextField!
     @IBOutlet weak var characterLabel1: UILabel!
     @IBOutlet weak var characterLabel2: UILabel!
     @IBOutlet weak var characterLabel3: UILabel!

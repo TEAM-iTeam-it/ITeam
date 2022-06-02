@@ -457,7 +457,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference().child("user")
-        ref.child(Auth.auth().currentUser!.uid).child("userTeam").setValue("")
     
         fetchMemberList()
         fetchChangedData()

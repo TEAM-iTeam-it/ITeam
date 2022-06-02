@@ -2,7 +2,7 @@
 //  resetPurposeViewController.swift
 //  iteam_ny
 //
-//  Created by 성의연 on 2022/04/26.
+//  Created by 성나연 on 2022/04/26.
 //
 
 import UIKit
@@ -31,6 +31,11 @@ class resetPurposeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
+        for i in 0...4{
+            purposeBtns[i].layer.cornerRadius = 16
+        }
     }
     @IBAction func purposeBtn(_ sender: UIButton) {
         if purposes.contains((sender.titleLabel?.text)!) {
@@ -159,29 +164,6 @@ class resetPurposeViewController: UIViewController {
         print(purposes)
         
     }
-    
-//    @IBAction func purposeNextBtn(_ sender: UIButton) {
-//        guard let user = Auth.auth().currentUser else {
-//            return
-//        }
-//        var purposeString: String = ""
-//        for i in 0..<purposes.count {
-//            if i == purposes.count-1 {
-//                purposeString += purposes[i]
-//            }
-//            else {
-//                purposeString += "\(purposes[i]), "
-//            }
-//        }
-//        let values: [String: String] = [ "purpose": purposeString]
-//
-//        ref = Database.database().reference()
-//        // [ 목적 데이터 추가 ]
-//        ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
-//
-//        let passionVC = self.storyboard?.instantiateViewController(withIdentifier: "passionVC")
-//        self.navigationController?.pushViewController(passionVC!, animated: true)
-//    }
     
     @IBAction func goBackBtn(_ sender: UIBarButtonItem) {
         goBack()

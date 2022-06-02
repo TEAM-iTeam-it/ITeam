@@ -28,9 +28,11 @@ class resetViewController: UIViewController {
 
         var fancyAppearance = UINavigationBarAppearance()
         fancyAppearance.backgroundColor = UIColor.white
-        //fancyAppearance.configureWithDefaultBackground()
         fancyAppearance.setBackIndicatorImage(fancyImage, transitionMaskImage: fancyImage)
-
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.clipsToBounds = true
+        
         navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
         dataBase = Database.database().reference().child("user")
         let userID = Auth.auth().currentUser?.uid
