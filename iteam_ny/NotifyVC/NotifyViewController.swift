@@ -84,6 +84,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
             
         })
+        
         removeArr()
         db.child("user").child(Auth.auth().currentUser!.uid).child("memberRequest").observe(.childChanged, with:{ (snapshot) -> Void in
             
@@ -99,10 +100,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         })
     }
-//    func fetchChangedData2(){
-//        removeArr()
-//
-//    }
+
     
     //팀원 수락 요청 가져오기
     var requestNum = ""
@@ -276,6 +274,13 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             db.child("user").child(value).child("userTeam").setValue(value2 + ", " + userUID)
                         }
                         db.child("user").child(userUID).child("userTeam").setValue(value)
+                        db.child("user").child(value).observeSingleEvent(of: .value, with: { snapshot in
+                          // Get user value
+                          let value = snapshot.value as? NSDictionary
+                          let currentTeam = value?["currentTeam"] as? String ?? ""
+                            
+                            db.child("user").child(userUID).child("currentTeam").setValue(currentTeam)
+                        })
                         db.child("user").child(uid).child("userTeam").setValue(value + ", " + userUID)
                     }
                    
