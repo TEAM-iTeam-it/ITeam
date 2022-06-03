@@ -19,7 +19,9 @@ class ChannelTeamViewController: UIViewController {
     @IBOutlet weak var timeExplainLabel: UILabel!
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     
-    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABkVk1Y/c0SYSmJm3DpSePqGRPrbaQTmkGgOpwUB5zPxzfvbuoAAAAAEACXVkQuIp2ZYgEAAQAhnZli"
+    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABmAf6WX3rv/YxoWOypOWI8ZRQuTpyRbiCRLyzza5HKnzfvbuoAAAAAEABdi2YtG5ybYgEAAQAbnJti"
+    let channelId: String = "testToken11"
+    
     // 입장할 때 speaker로 받기
     var name: String = ""
     
@@ -131,7 +133,7 @@ class ChannelTeamViewController: UIViewController {
         
     }
     @IBAction func leaveChannel(_ sender: UIButton) {
-        self.agkit?.createRtcChannel("testToken11")?.leave()
+        self.agkit?.createRtcChannel(channelId)?.leave()
         self.agkit?.leaveChannel()
         AgoraRtcEngineKit.destroy()
         
@@ -376,7 +378,7 @@ class ChannelTeamViewController: UIViewController {
     // 채널 입장
     func joinChannel() {
         agkit?.joinChannel(byToken: channelToken,
-                           channelId: "testToken11",
+                           channelId: channelId,
                            info: nil,
                            uid: userID,
                            joinSuccess: {(_, uid, elapsed) in
