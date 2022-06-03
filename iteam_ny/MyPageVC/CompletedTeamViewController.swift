@@ -7,11 +7,20 @@
 
 import UIKit
 
+import FirebaseAuth
+import FirebaseDatabase
+
 class CompletedTeamViewController: UIViewController {
+    
+    // MARK: - Properties
     var teamList: [CTeam] = []
     var images: [String] = []
+    let db = Database.database().reference()
+    
+    // MARK: - @IBOutlet Properties
     @IBOutlet weak var collView: UICollectionView!
     
+    // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         
         let firstTeamImages: [String] = ["imgUser10.png", "imgUser5.png", "imgUser4.png"]
@@ -41,6 +50,83 @@ class CompletedTeamViewController: UIViewController {
 
         navigationController?.navigationBar.scrollEdgeAppearance = fancyAppearance
     }
+    
+    // MARK: - @IBAction Properties
+    @IBAction func resetButtonTapped(_ sender: UIButton) {
+        
+        let emptyCurrentTeam: [String:String] = ["currentTeam":""]
+        let emptyLikeTeam: [String:String] = ["teamName":""]
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("friendsList").removeValue()
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("friendRequest").removeValue()
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("likeTeam").setValue(emptyLikeTeam)
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("memberRequest").removeValue()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm"
+        let currentDateString = formatter.string(from: Date())
+        
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("memberRequest").child("0").child("requestStmt").setValue("기본")
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("memberRequest").child("0").child("requestTime").setValue(currentDateString)
+        db.child("user").child(Auth.auth().currentUser!.uid)
+            .child("memberRequest").child("0").child("requestUID").setValue("기본")
+        
+        let emptyUserTeam: [String:String] = ["userTeam":""]
+        
+        db.child("user").child(Auth.auth().currentUser!.uid).updateChildValues(emptyUserTeam)
+   
+        
+        // call에서 본인 기록 있으면 찾아서 삭제
+        var callIndex: String = ""
+        db.child("Call").observeSingleEvent(of: .value) { [self] (snapshot) in
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                callIndex = "\(snapshots.count)"
+                for i in 9...(Int(callIndex) ?? 9) {
+                    db.child("Call").child(String(i)).removeValue()
+                }
+                
+            }
+        }
+        
+        // 리더일 때 팀 삭제
+        db.child("user").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { snapshot in
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                
+                if snap.key == "currentTeam" {
+                    let teamname: String = snap.value as? String ?? ""
+                    if teamname != nil && teamname != "" {
+                        self.db.child("Team").child(teamname).observeSingleEvent(of: .value) { snapshot in
+                            
+                            for child in snapshot.children {
+                                let snap = child as! DataSnapshot
+                                let value = snap.value as? String
+                                // 내가 리더일 때 팀 삭제
+                                if snap.key == "leader" {
+                                    if value == Auth.auth().currentUser!.uid {
+                                        print("리더")
+                                        self.db.child("Team").child(teamname).removeValue()
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                    }
+        
+                }
+            }
+        }
+        db.child("user").child(Auth.auth().currentUser!.uid).updateChildValues(emptyCurrentTeam)
+        let sheet = UIAlertController(title: "데이터가 삭제되었습니다", message: "😊👍", preferredStyle: .alert)
+        sheet.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in print("확인") }))
+        present(sheet, animated: true)
+    }
+    
 }
 
 class CTeam {

@@ -30,12 +30,13 @@ class FinishedTeamPopupViewController: UIViewController {
     @IBAction func onClickedYes(_ sender: Any) {
         
         let emptyCurrentTeam: [String:String] = ["currentTeam":""]
+        let emptyLikeTeam: [String:String] = ["teamName":""]
         db.child("user").child(Auth.auth().currentUser!.uid)
             .child("friendsList").removeValue()
         db.child("user").child(Auth.auth().currentUser!.uid)
             .child("friendRequest").removeValue()
         db.child("user").child(Auth.auth().currentUser!.uid)
-            .child("likeTeam").removeValue()
+            .child("likeTeam").setValue(emptyLikeTeam)
         db.child("user").child(Auth.auth().currentUser!.uid)
             .child("memberRequest").removeValue()
         
