@@ -26,6 +26,9 @@
 		08113089280E899C003B6D43 /* searchIconBlack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08113086280E899B003B6D43 /* searchIconBlack@3x.png */; };
 		0811308B280E8C15003B6D43 /* TeamProfileTeamListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */; };
 		0811308D280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */; };
+		08177C17284A8C4A00904E41 /* img_default_130@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08177C14284A8C4A00904E41 /* img_default_130@3x.png */; };
+		08177C18284A8C4A00904E41 /* img_default_130.png in Resources */ = {isa = PBXBuildFile; fileRef = 08177C15284A8C4A00904E41 /* img_default_130.png */; };
+		08177C19284A8C4A00904E41 /* img_default_130@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08177C16284A8C4A00904E41 /* img_default_130@2x.png */; };
 		081F264C27F3878000F17332 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264B27F3878000F17332 /* TeamViewController.swift */; };
 		081F264E27F38ADB00F17332 /* MakingAppTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */; };
 		081F265027F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */; };
@@ -305,6 +308,9 @@
 		08113086280E899B003B6D43 /* searchIconBlack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchIconBlack@3x.png"; sourceTree = "<group>"; };
 		0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileTeamListViewController.swift; sourceTree = "<group>"; };
 		0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfileTeamMemberTableViewCell.swift; sourceTree = "<group>"; };
+		08177C14284A8C4A00904E41 /* img_default_130@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_default_130@3x.png"; sourceTree = "<group>"; };
+		08177C15284A8C4A00904E41 /* img_default_130.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_default_130.png; sourceTree = "<group>"; };
+		08177C16284A8C4A00904E41 /* img_default_130@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_default_130@2x.png"; sourceTree = "<group>"; };
 		081F264B27F3878000F17332 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingAppTeamViewController.swift; sourceTree = "<group>"; };
 		081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingAppTeamCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -920,6 +926,9 @@
 		0868B06927CB6EDA0018464B /* user */ = {
 			isa = PBXGroup;
 			children = (
+				08177C15284A8C4A00904E41 /* img_default_130.png */,
+				08177C16284A8C4A00904E41 /* img_default_130@2x.png */,
+				08177C14284A8C4A00904E41 /* img_default_130@3x.png */,
 				1FFD2E3B27FBF0BF0068520D /* img_user1.png */,
 				1FFD2E3927FBF0BF0068520D /* img_user1@2x.png */,
 				1FFD2E3A27FBF0BF0068520D /* img_user1@3x.png */,
@@ -1302,6 +1311,7 @@
 				087A23E527FACAB700E76893 /* icArrowDropDown@3x.png in Resources */,
 				0835C36F27EDBF5900968626 /* TeamPages.storyboard in Resources */,
 				0868B07527CB6F040018464B /* imgUser5.png in Resources */,
+				08177C17284A8C4A00904E41 /* img_default_130@3x.png in Resources */,
 				081F267F27F399C100F17332 /* imgUser7@3x.png in Resources */,
 				0851CC652834217A006E745D /* icTbTeamFill@3x.png in Resources */,
 				087A23E327FACAB700E76893 /* icArrowDropDown@2x.png in Resources */,
@@ -1348,10 +1358,12 @@
 				081F266927F393C100F17332 /* imgUser2.png in Resources */,
 				081F266727F393C100F17332 /* imgUser8@3x.png in Resources */,
 				0891841B284746F7001E8A32 /* btnCheckBox.png in Resources */,
+				08177C19284A8C4A00904E41 /* img_default_130@2x.png in Resources */,
 				0851CC642834217A006E745D /* icTbHouseFill@2x.png in Resources */,
 				0832B262280186CF00DED89B /* btnEdit@3x.png in Resources */,
 				0851CC562834217A006E745D /* icTbPhone@3x.png in Resources */,
 				0833416D27F3317F005B4F31 /* sliderIcon.png in Resources */,
+				08177C18284A8C4A00904E41 /* img_default_130.png in Resources */,
 				0868B07627CB6F040018464B /* imgUser4@2x.png in Resources */,
 				0851CC5F2834217A006E745D /* icTbPhoneFill@2x.png in Resources */,
 				0851CC682834217A006E745D /* icTbTeam@3x.png in Resources */,

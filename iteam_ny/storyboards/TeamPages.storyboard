@@ -313,7 +313,7 @@
                                                                             <constraint firstItem="zZX-Eb-7Ya" firstAttribute="centerY" secondItem="VfS-QY-TaM" secondAttribute="centerY" id="r48-uz-Rg2"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser4.png" translatesAutoresizingMaskIntoConstraints="NO" id="75J-Ro-BCW">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="75J-Ro-BCW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="54" id="b7l-Zg-66C"/>
@@ -501,7 +501,7 @@
                                                                             <constraint firstItem="1z5-A8-WO5" firstAttribute="centerY" secondItem="zH3-DO-cl8" secondAttribute="centerY" id="tLV-Sl-Qm5"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgUser4.png" translatesAutoresizingMaskIntoConstraints="NO" id="ouA-LB-4ni">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="ouA-LB-4ni">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
@@ -654,7 +654,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="111"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser4.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rd9-It-YtD">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rd9-It-YtD">
                                                                             <rect key="frame" x="10" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="70" id="78D-5q-IyC"/>
@@ -2025,7 +2025,7 @@
                                                                             <constraint firstItem="q0v-wR-FnU" firstAttribute="centerY" secondItem="mC4-ZU-oSQ" secondAttribute="centerY" id="Wu7-0c-Agf"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgUser10.png" translatesAutoresizingMaskIntoConstraints="NO" id="a28-3e-q13">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="a28-3e-q13">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
@@ -2214,7 +2214,7 @@
                                                                             <constraint firstItem="9yc-FE-YQD" firstAttribute="centerY" secondItem="ad7-bk-ztj" secondAttribute="centerY" id="ZwZ-fE-kZ3"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgUser8.png" translatesAutoresizingMaskIntoConstraints="NO" id="hk1-KD-cfH">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="hk1-KD-cfH">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
@@ -2411,9 +2411,7 @@
         <image name="icCheckPurple.png" width="20" height="20"/>
         <image name="icMoreRight.png" width="16" height="16"/>
         <image name="imgLogo.png" width="266" height="65"/>
-        <image name="imgUser10.png" width="50" height="50"/>
-        <image name="imgUser4.png" width="50" height="50"/>
-        <image name="imgUser8.png" width="50" height="50"/>
+        <image name="img_default_130.png" width="130" height="130"/>
         <image name="searchIconBlack.png" width="32" height="32"/>
         <image name="sliderIcon.png" width="32" height="32"/>
         <image name="xmark" catalog="system" width="128" height="113"/>

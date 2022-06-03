@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -585,11 +585,28 @@
                                     <outlet property="delegate" destination="Rv6-JT-GKk" id="lmt-aO-MUV"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcj-RL-f1R">
+                                <rect key="frame" x="155" y="761" width="104" height="47"/>
+                                <color key="backgroundColor" name="red_254"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="6S1-CE-hrQ"/>
+                                    <constraint firstAttribute="width" constant="104" id="zuo-aJ-rH8"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="RESET">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetButtonTapped:" destination="Rv6-JT-GKk" eventType="touchUpInside" id="27O-Zz-GpC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nDF-iD-bH9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sIr-6H-98b" firstAttribute="top" secondItem="nDF-iD-bH9" secondAttribute="top" id="Fh2-Hq-OPA"/>
+                            <constraint firstItem="Jcj-RL-f1R" firstAttribute="centerX" secondItem="nDF-iD-bH9" secondAttribute="centerX" id="Pvj-Ll-AtH"/>
+                            <constraint firstItem="nDF-iD-bH9" firstAttribute="bottom" secondItem="Jcj-RL-f1R" secondAttribute="bottom" constant="54" id="QUI-vB-hnG"/>
                             <constraint firstItem="sIr-6H-98b" firstAttribute="height" secondItem="0bT-6U-Q1c" secondAttribute="height" multiplier="0.7" id="fGV-0D-6dl"/>
                             <constraint firstItem="sIr-6H-98b" firstAttribute="leading" secondItem="nDF-iD-bH9" secondAttribute="leading" id="iNP-v0-fy4"/>
                         </constraints>
@@ -1295,6 +1312,9 @@
         </namedColor>
         <namedColor name="purple_184">
             <color red="0.72156862745098038" green="0.3843137254901961" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="red_254">
+            <color red="0.99607843137254903" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

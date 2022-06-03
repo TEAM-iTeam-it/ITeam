@@ -322,7 +322,7 @@
                                                                                 <constraint firstItem="Qt2-3Z-qX1" firstAttribute="centerY" secondItem="veL-xW-LpI" secondAttribute="centerY" id="pKI-tN-LIC"/>
                                                                             </constraints>
                                                                         </view>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgUser4.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZeV-Az-ClS">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZeV-Az-ClS">
                                                                             <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </imageView>
@@ -597,7 +597,7 @@
                                                     <color key="textColor" name="gray_79"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser10.png" translatesAutoresizingMaskIntoConstraints="NO" id="mum-tQ-SYY">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="mum-tQ-SYY">
                                                     <rect key="frame" x="0.0" y="10" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="fib-9d-x27"/>
@@ -684,8 +684,7 @@
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="chevron.down" catalog="system" width="128" height="72"/>
-        <image name="imgUser10.png" width="50" height="50"/>
-        <image name="imgUser4.png" width="50" height="50"/>
+        <image name="img_default_130.png" width="130" height="130"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
         <namedColor name="gray_121">
