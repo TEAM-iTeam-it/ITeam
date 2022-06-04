@@ -99,7 +99,6 @@ class FinishedTeamPopupViewController: UIViewController {
         db.child("user").child(Auth.auth().currentUser!.uid).updateChildValues(emptyCurrentTeam)
         
         
-        
         self.dismiss(animated: true, completion: nil)
     }
 }

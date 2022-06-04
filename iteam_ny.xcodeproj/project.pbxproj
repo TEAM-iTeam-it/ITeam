@@ -235,6 +235,7 @@
 		1F4CF84A284844380018E5EB /* paddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CF849284844380018E5EB /* paddingLabel.swift */; };
 		1F4CF84C28486B520018E5EB /* btn_edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F4CF84B28486B520018E5EB /* btn_edit@3x.png */; };
 		1F4CF84E28488B6A0018E5EB /* MyFriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CF84D28488B6A0018E5EB /* MyFriendListViewController.swift */; };
+		1F4CF850284BF7AD0018E5EB /* btn_minus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F4CF84F284BF7AC0018E5EB /* btn_minus@2x.png */; };
 		1F5428232805336100F5179B /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428222805336100F5179B /* PopupViewController.swift */; };
 		1F542826280598FA00F5179B /* searchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F542825280598FA00F5179B /* searchViewController.swift */; };
 		1F5428282805A16E00F5179B /* resetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5428272805A16E00F5179B /* resetViewController.swift */; };
@@ -528,6 +529,7 @@
 		1F4CF849284844380018E5EB /* paddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paddingLabel.swift; sourceTree = "<group>"; };
 		1F4CF84B28486B520018E5EB /* btn_edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_edit@3x.png"; sourceTree = "<group>"; };
 		1F4CF84D28488B6A0018E5EB /* MyFriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendListViewController.swift; sourceTree = "<group>"; };
+		1F4CF84F284BF7AC0018E5EB /* btn_minus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_minus@2x.png"; sourceTree = "<group>"; };
 		1F5428222805336100F5179B /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		1F542825280598FA00F5179B /* searchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchViewController.swift; sourceTree = "<group>"; };
 		1F5428272805A16E00F5179B /* resetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetViewController.swift; sourceTree = "<group>"; };
@@ -910,6 +912,7 @@
 				0832B260280186CE00DED89B /* btnEdit.png */,
 				0832B25E280186CD00DED89B /* btnEdit@2x.png */,
 				0832B25F280186CE00DED89B /* btnEdit@3x.png */,
+				1F4CF84F284BF7AC0018E5EB /* btn_minus@2x.png */,
 				080F9C1A27E9DC4B0055FAF8 /* icon */,
 				087FA8BD27E9B941000E741B /* rectangleEditImage.png */,
 				087FA8BE27E9B941000E741B /* rectangleEditImage@2x.png */,
@@ -1333,6 +1336,7 @@
 				087A23FA27FC3D7F00E76893 /* icMoreRight@3x.png in Resources */,
 				087A23FB27FC3D7F00E76893 /* icMoreRight.png in Resources */,
 				0851CC4C2834217A006E745D /* icTbTeamFill.png in Resources */,
+				1F4CF850284BF7AD0018E5EB /* btn_minus@2x.png in Resources */,
 				08B2F2EF27F75A05008F7085 /* teamPageLogo.png in Resources */,
 				08B2F2F127F77A0F008F7085 /* TeamPages_AllTeams.storyboard in Resources */,
 				0851CC552834217A006E745D /* icTbBell@2x.png in Resources */,
