@@ -822,6 +822,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserListCell",for: indexPath) as? UserListCell else {return UITableViewCell()}
         
+        cell.selectionStyle = .none
         cell.userName.text = "\(userList[indexPath.row].userProfile.nickname)"
         cell.school.text = "\(userList[indexPath.row].userProfile.schoolName)"
         cell.partLabel.text = "\(userList[indexPath.row].userProfile.partDetail) • "
