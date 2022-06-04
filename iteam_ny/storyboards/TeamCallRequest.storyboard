@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mYE-zI-BTY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mYE-zI-BTY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -258,173 +258,148 @@
                                 <color key="textColor" name="gray_121"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="3No-Jw-kDi">
-                                <rect key="frame" x="22" y="253.5" width="392" height="265"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="zce-by-PGF">
+                                <rect key="frame" x="54" y="266.5" width="329" height="268"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Pmb-oL-KtN">
-                                        <rect key="frame" x="0.0" y="0.0" width="392" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HX-KD-saW">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="MMf-wE-N5D"/>
-                                                    <constraint firstAttribute="width" constant="20" id="SIl-NN-rJb"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_light2"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="ai0-Zz-HAc"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하고 싶은 주제가 있으신가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VoM-6o-Lyv">
-                                                <rect key="frame" x="32" y="0.0" width="360" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="4Vz-BZ-hhM">
-                                        <rect key="frame" x="0.0" y="49" width="392" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qI-t3-DUE">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="1sz-qG-8RZ"/>
-                                                    <constraint firstAttribute="height" constant="20" id="pw2-rv-4Ah"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_light2"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="aDJ-is-G4P"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="회의는 어느 정도 빈도로 진행되나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3v-Ts-Lcg">
-                                                <rect key="frame" x="32" y="0.0" width="360" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="86N-Jr-RYS">
-                                        <rect key="frame" x="0.0" y="98" width="392" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPv-Ec-jb0">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="Id1-4P-C0T"/>
-                                                    <constraint firstAttribute="height" constant="20" id="dUJ-cR-iqV"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_light2"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="TfN-wp-G1S"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주로 작업하는 시간대가 어떻게 되시나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hy9-vf-u7x">
-                                                <rect key="frame" x="32" y="0.0" width="360" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="T38-U7-RQb">
-                                        <rect key="frame" x="0.0" y="147" width="392" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YC4-iy-3NT">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="Uj4-Fe-IbP"/>
-                                                    <constraint firstAttribute="height" constant="20" id="aDU-IA-F0I"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_light2"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="WzQ-MO-mSk"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀에서 주로 사용하는 툴 혹은 언어는 무엇인가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sz-MI-BXF">
-                                                <rect key="frame" x="32" y="0.0" width="360" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="FnY-Hu-vTx">
-                                        <rect key="frame" x="0.0" y="196" width="392" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9B-h8-dfR">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="3HL-ge-dFP"/>
-                                                    <constraint firstAttribute="height" constant="20" id="VuP-gj-B76"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_229"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="WbS-Vv-Vaw"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 팀의 강점이 무엇이라고 생각하시나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpe-wO-RNx">
-                                                <rect key="frame" x="32" y="0.0" width="360" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ePt-6Q-JAa">
-                                        <rect key="frame" x="0.0" y="245" width="392" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lx6-IO-kQD">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="gQL-2w-e0j"/>
-                                                    <constraint firstAttribute="height" constant="20" id="ylH-Oo-2zk"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_229"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="NUS-2A-ykC"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀 분위기는 어떤가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bf9-4a-b0Z">
-                                                <rect key="frame" x="32" y="0.0" width="360" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하고 싶은 주제가 있으신가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mr5-nR-Ld3">
+                                        <rect key="frame" x="0.0" y="0.0" width="329" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="회의는 어느 정도 빈도로 진행되나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eP4-2e-1g2">
+                                        <rect key="frame" x="0.0" y="49.5" width="329" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주로 작업하는 시간대가 어떻게 되시나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpl-jl-thv">
+                                        <rect key="frame" x="0.0" y="99" width="329" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀에서 주로 사용하는 툴 혹은 언어는 무엇인가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUH-P2-uWG">
+                                        <rect key="frame" x="0.0" y="148.5" width="329" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 팀의 강점이 무엇이라고 생각하시나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJA-Tw-cQg">
+                                        <rect key="frame" x="0.0" y="198" width="329" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀 분위기는 어떤가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJ6-rR-OYG">
+                                        <rect key="frame" x="0.0" y="247.5" width="329" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3No-Jw-kDi">
+                                <rect key="frame" x="22" y="253.5" width="350" height="294"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HX-KD-saW">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="MMf-wE-N5D"/>
+                                            <constraint firstAttribute="width" constant="350" id="SIl-NN-rJb"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_light2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="ai0-Zz-HAc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qI-t3-DUE">
+                                        <rect key="frame" x="0.0" y="49" width="350" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="350" id="1sz-qG-8RZ"/>
+                                            <constraint firstAttribute="height" constant="49" id="pw2-rv-4Ah"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_light2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="aDJ-is-G4P"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPv-Ec-jb0">
+                                        <rect key="frame" x="0.0" y="98" width="350" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="350" id="Id1-4P-C0T"/>
+                                            <constraint firstAttribute="height" constant="49" id="dUJ-cR-iqV"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_light2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="TfN-wp-G1S"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YC4-iy-3NT">
+                                        <rect key="frame" x="0.0" y="147" width="350" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="350" id="Uj4-Fe-IbP"/>
+                                            <constraint firstAttribute="height" constant="49" id="aDU-IA-F0I"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_light2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="WzQ-MO-mSk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9B-h8-dfR">
+                                        <rect key="frame" x="0.0" y="196" width="350" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="350" id="3HL-ge-dFP"/>
+                                            <constraint firstAttribute="height" constant="49" id="VuP-gj-B76"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_229"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="WbS-Vv-Vaw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lx6-IO-kQD">
+                                        <rect key="frame" x="0.0" y="245" width="350" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="350" id="gQL-2w-e0j"/>
+                                            <constraint firstAttribute="height" constant="49" id="ylH-Oo-2zk"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_229"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="selectQuestionBtnAction:" destination="Gfs-VW-6Hd" eventType="touchUpInside" id="NUS-2A-ykC"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="S92-bJ-7FJ">
-                                <rect key="frame" x="22" y="547.5" width="392" height="289"/>
+                                <rect key="frame" x="22" y="576.5" width="370" height="289"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="289" id="bJ5-Zr-rGt"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="questionCell" rowHeight="200" id="tch-tr-Ria" customClass="TeamQuestionTableViewCell" customModule="iteam_ny" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="392" height="200"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="370" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tch-tr-Ria" id="EEx-k2-P2V">
-                                            <rect key="frame" x="0.0" y="0.0" width="392" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="AMh-QY-yRF">
@@ -543,21 +518,22 @@
                         <viewLayoutGuide key="safeArea" id="WmW-4w-PVf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="WmW-4w-PVf" firstAttribute="trailing" secondItem="3No-Jw-kDi" secondAttribute="trailing" id="3hS-Dm-xwe"/>
                             <constraint firstItem="WmW-4w-PVf" firstAttribute="trailing" secondItem="Ewa-GH-CKS" secondAttribute="trailing" constant="20" id="55T-Cb-t8H"/>
                             <constraint firstItem="SPP-Jh-4l8" firstAttribute="leading" secondItem="nUe-KI-kg8" secondAttribute="leading" id="Aqa-YY-dnF"/>
                             <constraint firstItem="nUe-KI-kg8" firstAttribute="top" secondItem="4iA-7n-giy" secondAttribute="bottom" constant="20" id="DZx-N9-6vv"/>
                             <constraint firstItem="S92-bJ-7FJ" firstAttribute="leading" secondItem="WmW-4w-PVf" secondAttribute="leading" constant="22" id="HI1-lQ-mld"/>
                             <constraint firstItem="3No-Jw-kDi" firstAttribute="leading" secondItem="WmW-4w-PVf" secondAttribute="leading" constant="22" id="L2B-3x-DJK"/>
+                            <constraint firstItem="WmW-4w-PVf" firstAttribute="trailing" secondItem="S92-bJ-7FJ" secondAttribute="trailing" constant="22" id="NcV-6Q-wpL"/>
                             <constraint firstItem="WmW-4w-PVf" firstAttribute="bottom" secondItem="Ewa-GH-CKS" secondAttribute="bottom" id="P8b-7v-0gL"/>
                             <constraint firstItem="WmW-4w-PVf" firstAttribute="top" secondItem="4iA-7n-giy" secondAttribute="top" constant="-11" id="UbZ-Nv-jJv"/>
                             <constraint firstItem="nUe-KI-kg8" firstAttribute="leading" secondItem="WmW-4w-PVf" secondAttribute="leading" constant="20" id="VmA-v5-ZjY"/>
                             <constraint firstItem="4iA-7n-giy" firstAttribute="leading" secondItem="WmW-4w-PVf" secondAttribute="leading" constant="20" id="WXa-1a-UfI"/>
                             <constraint firstItem="3No-Jw-kDi" firstAttribute="top" secondItem="SPP-Jh-4l8" secondAttribute="bottom" constant="52" id="iiH-X8-07S"/>
                             <constraint firstItem="S92-bJ-7FJ" firstAttribute="top" secondItem="3No-Jw-kDi" secondAttribute="bottom" constant="29" id="jf0-xf-l3E"/>
+                            <constraint firstItem="zce-by-PGF" firstAttribute="leading" secondItem="WmW-4w-PVf" secondAttribute="leading" constant="54" id="nVz-mp-aA8"/>
                             <constraint firstItem="SPP-Jh-4l8" firstAttribute="top" secondItem="nUe-KI-kg8" secondAttribute="bottom" constant="15" id="ole-nW-XVC"/>
                             <constraint firstItem="Ewa-GH-CKS" firstAttribute="leading" secondItem="WmW-4w-PVf" secondAttribute="leading" constant="20" id="sZD-H2-hTb"/>
-                            <constraint firstItem="WmW-4w-PVf" firstAttribute="trailing" secondItem="S92-bJ-7FJ" secondAttribute="trailing" id="xds-tu-rtd"/>
+                            <constraint firstItem="zce-by-PGF" firstAttribute="centerY" secondItem="3No-Jw-kDi" secondAttribute="centerY" id="zmx-U6-R3W"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w0K-1t-Mbg">

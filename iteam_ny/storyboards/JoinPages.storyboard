@@ -3889,7 +3889,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Qe0-pw-EEV">
-                                <rect key="frame" x="138.5" y="359" width="137.5" height="24"/>
+                                <rect key="frame" x="138.5" y="367" width="137.5" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSw-I8-B4c">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="24"/>
@@ -3901,41 +3901,6 @@
                                         <rect key="frame" x="46" y="0.0" width="91.5" height="24"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
                                         <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="37S-z4-dFe">
-                                <rect key="frame" x="111.5" y="249" width="191.5" height="35"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="FZc-Wf-e3C">
-                                        <rect key="frame" x="58" y="0.0" width="75.5" height="16"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcD-6B-xFN">
-                                                <rect key="frame" x="0.0" y="0.0" width="29.5" height="16"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0O6-Qg-tUP">
-                                                <rect key="frame" x="33.5" y="0.0" width="42" height="16"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="YSb-8o-kL4"/>
-                                                    <constraint firstAttribute="width" constant="42" id="qtj-Xo-AYr"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="8"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="백엔드 개발•포트폴리오/해커톤/창업" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jI-Lu-Mic">
-                                        <rect key="frame" x="0.0" y="19" width="191.5" height="16"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="G6X-th-hb9"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Thin" family="Apple SD Gothic Neo" pointSize="13"/>
-                                        <color key="textColor" name="gray_79"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -3963,22 +3928,63 @@
                                     <constraint firstAttribute="width" constant="52" id="re8-17-Qdm"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="백엔드 개발•포트폴리오/해커톤/창업" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jI-Lu-Mic">
+                                <rect key="frame" x="111" y="272" width="192" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="G6X-th-hb9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="13"/>
+                                <color key="textColor" name="gray_79"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvB-yb-7kN">
+                                <rect key="frame" x="169.5" y="249" width="75" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcD-6B-xFN">
+                                        <rect key="frame" x="0.0" y="0.0" width="29.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0O6-Qg-tUP">
+                                        <rect key="frame" x="32.5" y="2" width="42" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="YSb-8o-kL4"/>
+                                            <constraint firstAttribute="width" constant="42" id="qtj-Xo-AYr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="8"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="CqP-K1-miV"/>
+                                    <constraint firstItem="0O6-Qg-tUP" firstAttribute="leading" secondItem="pcD-6B-xFN" secondAttribute="trailing" constant="3" id="W8W-Oq-hae"/>
+                                    <constraint firstItem="pcD-6B-xFN" firstAttribute="leading" secondItem="jvB-yb-7kN" secondAttribute="leading" id="YLm-xZ-eRQ"/>
+                                    <constraint firstItem="pcD-6B-xFN" firstAttribute="centerY" secondItem="jvB-yb-7kN" secondAttribute="centerY" id="aql-lG-JKU"/>
+                                    <constraint firstItem="0O6-Qg-tUP" firstAttribute="centerY" secondItem="pcD-6B-xFN" secondAttribute="centerY" id="pJ6-G5-aAL"/>
+                                    <constraint firstAttribute="width" constant="75" id="qjm-gR-eEb"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SKF-tz-fcB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Qe0-pw-EEV" firstAttribute="centerX" secondItem="37S-z4-dFe" secondAttribute="centerX" id="4gJ-Ml-yPT"/>
-                            <constraint firstItem="37S-z4-dFe" firstAttribute="centerX" secondItem="hX1-5a-L4I" secondAttribute="centerX" id="6LS-M4-Bwf"/>
                             <constraint firstItem="zyA-aT-AgD" firstAttribute="top" secondItem="q1d-RL-6y5" secondAttribute="bottom" id="7Uq-eX-gSE"/>
-                            <constraint firstItem="37S-z4-dFe" firstAttribute="top" secondItem="hX1-5a-L4I" secondAttribute="bottom" constant="20" id="Aol-qC-VhA"/>
+                            <constraint firstItem="jvB-yb-7kN" firstAttribute="centerX" secondItem="SKF-tz-fcB" secondAttribute="centerX" id="At9-Sn-u1h"/>
+                            <constraint firstItem="0jI-Lu-Mic" firstAttribute="top" secondItem="jvB-yb-7kN" secondAttribute="bottom" constant="3" id="FlD-bq-75h"/>
+                            <constraint firstItem="q1d-RL-6y5" firstAttribute="centerX" secondItem="SKF-tz-fcB" secondAttribute="centerX" id="I0K-Ge-fz8"/>
+                            <constraint firstItem="Qe0-pw-EEV" firstAttribute="top" secondItem="0jI-Lu-Mic" secondAttribute="bottom" constant="79" id="LQB-01-Ovl"/>
                             <constraint firstItem="zyA-aT-AgD" firstAttribute="centerX" secondItem="q1d-RL-6y5" secondAttribute="centerX" id="WfG-8j-aYB"/>
                             <constraint firstItem="hX1-5a-L4I" firstAttribute="centerX" secondItem="SKF-tz-fcB" secondAttribute="centerX" id="XQe-ET-aKK"/>
-                            <constraint firstItem="Qe0-pw-EEV" firstAttribute="top" secondItem="37S-z4-dFe" secondAttribute="bottom" constant="75" id="jRd-5j-hs1"/>
-                            <constraint firstItem="Qe0-pw-EEV" firstAttribute="centerX" secondItem="q1d-RL-6y5" secondAttribute="centerX" id="jwd-Qo-wfO"/>
+                            <constraint firstItem="0jI-Lu-Mic" firstAttribute="centerX" secondItem="jvB-yb-7kN" secondAttribute="centerX" id="b4w-Ym-CXY"/>
+                            <constraint firstItem="jvB-yb-7kN" firstAttribute="top" secondItem="hX1-5a-L4I" secondAttribute="bottom" constant="20" id="e6m-hB-MdV"/>
                             <constraint firstItem="Qam-Rd-nQi" firstAttribute="top" secondItem="q1d-RL-6y5" secondAttribute="bottom" constant="60" id="opO-J0-Lqo"/>
                             <constraint firstItem="hX1-5a-L4I" firstAttribute="top" secondItem="SKF-tz-fcB" secondAttribute="top" constant="85" id="rdx-0t-dmZ"/>
                             <constraint firstItem="SKF-tz-fcB" firstAttribute="bottom" secondItem="Qam-Rd-nQi" secondAttribute="bottom" constant="85" id="vzn-v7-ELh"/>
                             <constraint firstItem="Qam-Rd-nQi" firstAttribute="centerX" secondItem="SKF-tz-fcB" secondAttribute="centerX" id="wsW-Rs-6AI"/>
+                            <constraint firstItem="Qe0-pw-EEV" firstAttribute="centerX" secondItem="0jI-Lu-Mic" secondAttribute="centerX" id="xaR-4s-2jS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ijg-VQ-Rhz"/>
@@ -3997,7 +4003,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdR-JF-xuU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="651" y="2518"/>
+            <point key="canvasLocation" x="650.72463768115949" y="2517.8571428571427"/>
         </scene>
         <!--Call Manage View Controller-->
         <scene sceneID="buI-rK-kyy">
@@ -4936,134 +4942,114 @@
                                     <action selector="nextBtnClicked:" destination="7gV-Yt-bga" eventType="touchUpInside" id="2lV-FD-44l"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="g1g-6p-lqd">
-                                <rect key="frame" x="20" y="228" width="114" height="216"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="dyi-J9-Nde">
+                                <rect key="frame" x="54" y="241.5" width="82" height="218.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9JH-B0-jkX">
-                                        <rect key="frame" x="0.0" y="0.0" width="114" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fnm-fb-Zbj">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="8Mr-TC-lTC"/>
-                                                    <constraint firstAttribute="width" constant="20" id="Hjm-WA-Ubp"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_light2"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="ipx-F8-cL6"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="매우 좋았다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rd-RK-WYD">
-                                                <rect key="frame" x="32" y="0.0" width="82" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="eyK-Wb-nCp">
-                                        <rect key="frame" x="0.0" y="49" width="114" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3t-Bj-6ej">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="R4y-sN-aNk"/>
-                                                    <constraint firstAttribute="width" constant="20" id="k85-Qt-gat"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_light2"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="CUS-iR-l5Q"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="좋은 편이다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-U7-6AP">
-                                                <rect key="frame" x="32" y="0.0" width="82" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cD0-FI-E6F">
-                                        <rect key="frame" x="0.0" y="98" width="114" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrT-xB-RUz">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="10O-3H-0f3"/>
-                                                    <constraint firstAttribute="width" constant="20" id="rLg-9T-CX1"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_light2"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="zKq-hi-iUc"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보통이다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvU-yy-GEr">
-                                                <rect key="frame" x="32" y="0.0" width="82" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="h12-JQ-Ifr">
-                                        <rect key="frame" x="0.0" y="147" width="114" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaM-s6-HW6">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="BW1-0g-DDL"/>
-                                                    <constraint firstAttribute="height" constant="20" id="tyA-wY-kp7"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_light2"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="lIy-EH-7kF"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나쁜 편이다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Om-Nq-m9P">
-                                                <rect key="frame" x="32" y="0.0" width="82" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="06C-j1-QHU">
-                                        <rect key="frame" x="0.0" y="196" width="114" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrd-pz-KEO">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="09s-0l-hab"/>
-                                                    <constraint firstAttribute="height" constant="20" id="do3-YG-a0d"/>
-                                                </constraints>
-                                                <color key="tintColor" name="gray_229"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="checkmark.circle" catalog="system"/>
-                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="E2k-5A-0ao"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="매우 나빴다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKh-tb-vSG">
-                                                <rect key="frame" x="32" y="0.0" width="82" height="20"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="매우 좋았다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LmA-sB-g64">
+                                        <rect key="frame" x="0.0" y="0.0" width="82" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="좋은 편이다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw8-Tq-6F5">
+                                        <rect key="frame" x="0.0" y="49.5" width="82" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보통이다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNC-lV-moJ">
+                                        <rect key="frame" x="0.0" y="99" width="82" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나쁜 편이다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7u-Tm-ykc">
+                                        <rect key="frame" x="0.0" y="148.5" width="82" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="매우 나빴다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfg-4z-FgG">
+                                        <rect key="frame" x="0.0" y="198" width="82" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g1g-6p-lqd">
+                                <rect key="frame" x="22" y="228" width="200" height="245"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fnm-fb-Zbj">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="8Mr-TC-lTC"/>
+                                            <constraint firstAttribute="width" constant="200" id="XWb-b2-kgv"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_light2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="ipx-F8-cL6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3t-Bj-6ej">
+                                        <rect key="frame" x="0.0" y="49" width="200" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="R4y-sN-aNk"/>
+                                            <constraint firstAttribute="width" constant="200" id="k85-Qt-gat"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_light2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="CUS-iR-l5Q"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrT-xB-RUz">
+                                        <rect key="frame" x="0.0" y="98" width="200" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="10O-3H-0f3"/>
+                                            <constraint firstAttribute="width" constant="200" id="rLg-9T-CX1"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_light2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="zKq-hi-iUc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaM-s6-HW6">
+                                        <rect key="frame" x="0.0" y="147" width="200" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="BW1-0g-DDL"/>
+                                            <constraint firstAttribute="height" constant="49" id="tyA-wY-kp7"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_light2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="lIy-EH-7kF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrd-pz-KEO">
+                                        <rect key="frame" x="0.0" y="196" width="200" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="09s-0l-hab"/>
+                                            <constraint firstAttribute="height" constant="49" id="do3-YG-a0d"/>
+                                        </constraints>
+                                        <color key="tintColor" name="gray_229"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle" catalog="system"/>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="evaluateBtn:" destination="7gV-Yt-bga" eventType="touchUpInside" id="E2k-5A-0ao"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -5077,9 +5063,11 @@
                             <constraint firstItem="g1g-6p-lqd" firstAttribute="top" secondItem="4Ri-cc-4mT" secondAttribute="bottom" constant="60" id="Dee-OS-WSJ"/>
                             <constraint firstItem="Qad-Lr-L8f" firstAttribute="leading" secondItem="XXT-Jx-a00" secondAttribute="leading" constant="20" id="F3e-Tu-y5p"/>
                             <constraint firstItem="XXT-Jx-a00" firstAttribute="trailing" secondItem="0Mc-xg-L0P" secondAttribute="trailing" constant="20" id="MBl-MA-PLf"/>
+                            <constraint firstItem="dyi-J9-Nde" firstAttribute="centerY" secondItem="g1g-6p-lqd" secondAttribute="centerY" id="X2Q-BE-dcG"/>
                             <constraint firstItem="KOn-eS-L9M" firstAttribute="leading" secondItem="XXT-Jx-a00" secondAttribute="leading" constant="20" id="gey-Fs-qgR"/>
                             <constraint firstItem="XXT-Jx-a00" firstAttribute="top" secondItem="Qad-Lr-L8f" secondAttribute="top" constant="-11" id="kp8-eL-Sgc"/>
-                            <constraint firstItem="g1g-6p-lqd" firstAttribute="leading" secondItem="XXT-Jx-a00" secondAttribute="leading" constant="20" id="oSJ-26-28f"/>
+                            <constraint firstItem="g1g-6p-lqd" firstAttribute="leading" secondItem="XXT-Jx-a00" secondAttribute="leading" constant="22" id="oSJ-26-28f"/>
+                            <constraint firstItem="dyi-J9-Nde" firstAttribute="leading" secondItem="XXT-Jx-a00" secondAttribute="leading" constant="54" id="qua-D0-YGw"/>
                             <constraint firstItem="4Ri-cc-4mT" firstAttribute="top" secondItem="KOn-eS-L9M" secondAttribute="bottom" constant="15" id="xkA-t6-y7k"/>
                         </constraints>
                     </view>
@@ -5092,11 +5080,11 @@
                         <outletCollection property="evaluateBtns" destination="ZrT-xB-RUz" collectionClass="NSMutableArray" id="sex-Ve-7jg"/>
                         <outletCollection property="evaluateBtns" destination="oaM-s6-HW6" collectionClass="NSMutableArray" id="bx3-v2-Gt1"/>
                         <outletCollection property="evaluateBtns" destination="jrd-pz-KEO" collectionClass="NSMutableArray" id="UGN-wS-aDd"/>
-                        <outletCollection property="evaluLabel" destination="5rd-RK-WYD" collectionClass="NSMutableArray" id="w3e-GH-348"/>
-                        <outletCollection property="evaluLabel" destination="sqj-U7-6AP" collectionClass="NSMutableArray" id="PPs-Sd-S2j"/>
-                        <outletCollection property="evaluLabel" destination="cvU-yy-GEr" collectionClass="NSMutableArray" id="WNF-o1-ntU"/>
-                        <outletCollection property="evaluLabel" destination="6Om-Nq-m9P" collectionClass="NSMutableArray" id="7CG-JS-dba"/>
-                        <outletCollection property="evaluLabel" destination="nKh-tb-vSG" collectionClass="NSMutableArray" id="yyT-4C-vrO"/>
+                        <outletCollection property="evaluLabel" destination="LmA-sB-g64" collectionClass="NSMutableArray" id="y7a-7v-DKz"/>
+                        <outletCollection property="evaluLabel" destination="Dw8-Tq-6F5" collectionClass="NSMutableArray" id="Fa4-aa-Ilg"/>
+                        <outletCollection property="evaluLabel" destination="tNC-lV-moJ" collectionClass="NSMutableArray" id="kbH-rY-r4m"/>
+                        <outletCollection property="evaluLabel" destination="F7u-Tm-ykc" collectionClass="NSMutableArray" id="ehh-lz-Thx"/>
+                        <outletCollection property="evaluLabel" destination="gfg-4z-FgG" collectionClass="NSMutableArray" id="eey-6t-AJK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gM9-Co-bBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
