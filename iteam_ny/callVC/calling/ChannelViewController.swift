@@ -23,7 +23,7 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var otherImageView: UIImageView!
     
-    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IABmAf6WX3rv/YxoWOypOWI8ZRQuTpyRbiCRLyzza5HKnzfvbuoAAAAAEABdi2YtG5ybYgEAAQAbnJti"
+    let channelToken: String = "0061bc8bc4e2bff4c63a191db9a6fc44cd8IACpYbxpvBY4FcU1FhMz4xouc7CWraoYnmqBdoUD/GgKMjfvbuoAAAAAEABdi2Ytne+cYgEAAQCd75xi"
     let channelId: String = "testToken11"
     let thisStoryboard: UIStoryboard = UIStoryboard(name: "JoinPages", bundle: nil)
     
