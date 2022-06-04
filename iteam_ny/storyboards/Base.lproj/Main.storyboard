@@ -137,7 +137,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Lmr-j4-tan">
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="118"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_user1.png" translatesAutoresizingMaskIntoConstraints="NO" id="tGT-m3-9dn">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="tGT-m3-9dn">
                                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="70" id="OM5-hy-mlr"/>
@@ -184,7 +184,7 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="121"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser4.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fsv-Of-2yc">
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fsv-Of-2yc">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="70" id="EMI-cn-Zmb"/>
@@ -573,20 +573,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser10.png" translatesAutoresizingMaskIntoConstraints="NO" id="4eg-Vh-f6v">
-                                <rect key="frame" x="20" y="124" width="50" height="50"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="4eg-Vh-f6v">
+                                <rect key="frame" x="20" y="124" width="50" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="MZx-YM-z4z"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="케빈 A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IL5-OC-8dS">
-                                <rect key="frame" x="78" y="124.5" width="41" height="18"/>
+                                <rect key="frame" x="78" y="204.5" width="41" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Android 개발•공모전/해커톤/기타" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeA-l6-jGn">
-                                <rect key="frame" x="78" y="148.5" width="177" height="18"/>
+                                <rect key="frame" x="78" y="228.5" width="177" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="P8v-uD-8iw"/>
                                 </constraints>
@@ -781,7 +781,7 @@
             <objects>
                 <viewController storyboardIdentifier="UserProfileController" hidesBottomBarWhenPushed="YES" id="uxp-3j-zGf" customClass="UserProfileController" customModule="iteam_ny" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ulh-SP-oV0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1114"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q35-bZ-uJx">
@@ -799,7 +799,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Z8w-yO-Wu1">
                                                                 <rect key="frame" x="0.0" y="0.0" width="180.5" height="70"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUser5.png" translatesAutoresizingMaskIntoConstraints="NO" id="MGO-u0-1Yv">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default_130.png" translatesAutoresizingMaskIntoConstraints="NO" id="MGO-u0-1Yv">
                                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="70" id="DgR-Lz-CYz"/>
@@ -1163,7 +1163,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Wgx-xp-vRV"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlw-yp-NcI">
-                                <rect key="frame" x="0.0" y="815" width="414" height="81"/>
+                                <rect key="frame" x="0.0" y="1033" width="414" height="81"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="8Es-2E-0D8"/>
@@ -1171,7 +1171,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DF-7p-91J" customClass="ActualGradientButton2" customModule="iteam_ny" customModuleProvider="target">
-                                <rect key="frame" x="20" y="810" width="374" height="46"/>
+                                <rect key="frame" x="20" y="1028" width="374" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="Uge-e2-kTr"/>
                                     <constraint firstAttribute="width" constant="374" id="dHj-e1-3iT"/>
@@ -1208,6 +1208,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="프로필" id="SYG-PO-8vX"/>
+                    <size key="freeformSize" width="414" height="1114"/>
                     <connections>
                         <outlet property="Interest" destination="Ztj-b7-kil" id="Hvy-5R-Ab0"/>
                         <outlet property="backStack" destination="JhL-y0-ZNE" id="iaj-rg-WHW"/>
@@ -1230,7 +1231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WmW-JT-kCj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1146.376811594203" y="1325.8928571428571"/>
+            <point key="canvasLocation" x="-1146.376811594203" y="1398.8839285714284"/>
         </scene>
         <!--SetA Time View Controller-->
         <scene sceneID="Yra-gH-BF3">
@@ -3340,11 +3341,8 @@
         <image name="icTbTeamFill.png" width="32" height="32"/>
         <image name="ic_rate.png" width="24" height="24"/>
         <image name="imgLogo.png" width="266" height="65"/>
-        <image name="imgUser10.png" width="50" height="50"/>
-        <image name="imgUser4.png" width="50" height="50"/>
-        <image name="imgUser5.png" width="50" height="50"/>
+        <image name="img_default_130.png" width="130" height="130"/>
         <image name="img_logo.png" width="107" height="26"/>
-        <image name="img_user1.png" width="70" height="70"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="plus" catalog="system" width="128" height="113"/>
