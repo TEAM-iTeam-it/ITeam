@@ -114,6 +114,7 @@ class resetCharacterView: UIViewController {
         ref = Database.database().reference()
 
         ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
+        navigationController?.popViewController(animated: true)
     }
 }
     

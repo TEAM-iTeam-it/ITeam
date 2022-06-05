@@ -47,14 +47,14 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
 
     var teamTypeCount: [Int] = Array(repeating: 0, count: 9)
     var userPurpose: [String] = []
-//    var fetchCharatorCount: Int = 0 {
-//
-//        willSet {
-//            if newValue == memberList.count {
-//                configTeamTypeLoad()
-//            }
-//        }
-//    }
+    var fetchCharatorCount: Int = 0 {
+
+        willSet {
+            if newValue == memberList.count {
+                configTeamTypeLoad()
+            }
+        }
+    }
     
     @IBOutlet weak var addFriendView: UIView!
     @IBOutlet weak var memberColl: UICollectionView!
@@ -70,7 +70,6 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         alertPopupVC.delegate = self
         
         self.present(alertPopupVC, animated: true, completion: nil)
-        
     }
     
     func makeButton(){
@@ -98,6 +97,25 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         }
     }
     
+    // 액션을 코드로 추가해줘야 하기 때문에 @objc를 붙여줌
+
+     @objc func deleteStackView(sender: UIButton) {
+
+         // 클릭 했을 때 버튼의 슈퍼뷰, 즉 버튼이 속해있는 stack view를 가지고 온다
+
+         guard let entryView = sender.superview else { return }
+
+         // 0.25동안 그 스택뷰를 안 보이게 하고
+         // 완료하면 view 계층구조에서 제거한다
+         // view 계층구조에서 제거하면 stackviewe에 arragedSubview에서도 자동적으로 제거됨
+
+         UIView.animate(withDuration: 0.25, animations: {
+             entryView.isHidden = true
+         }, completion: { _ in
+             entryView.removeFromSuperview()
+         })
+     }
+    
     // 수직 스택뷰 안에 들어갈 수평 스택뷰들 만든다.
     private func createEntryView() -> UIView {
         let pickimage = GradientButton()
@@ -113,9 +131,19 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.alignment = .center
+        stack.alignment = .bottom
         stack.distribution = .fill
-        stack.spacing = 5
+        stack.spacing = 10
+        
+        let deleteButton = UIButton(type: .roundedRect)
+        deleteButton.setTitle("Delete", for: .normal)
+        //deleteButton.setImage("btn_minus@2x", for: .normal)
+        deleteButton.backgroundColor = UIColor(named: "purple_249")
+        deleteButton.tintColor = UIColor(named: "purple_249")
+        //let btnimage = UIImage(named: "btn_minus@2x")
+        //deleteButton.setBackgroundImage(btnimage, for: .normal)
+        // 삭제버튼이 눌렸다가 떨어질 때 deleteStackView를 호출하게끔 연결한다.
+        deleteButton.addTarget(self, action: #selector(deleteStackView(sender:)), for: .touchUpInside)
         
         //아래 슬라이드 바
         let numberLabel = UILabel()
@@ -126,7 +154,9 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
 //        hereBtn.backgroundColor = .black
 //        hereBtn.frame.size.height = 1
 //        hereBtn.frame.size.width = 50
+        
         stack.addArrangedSubview(pickimage)
+        stack.addArrangedSubview(deleteButton)
 //        stack.addArrangedSubview(hereBtn)
         return stack
     }
