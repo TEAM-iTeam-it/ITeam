@@ -198,5 +198,6 @@ class resetPurposeViewController: UIViewController {
         ref = Database.database().reference()
         // [ 목적 데이터 추가 ]
         ref.child("user").child(user.uid).child("userProfileDetail").updateChildValues(values)
+        navigationController?.popViewController(animated: true)
     }
 }

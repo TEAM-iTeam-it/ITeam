@@ -105,7 +105,8 @@ class MyPageModifyViewController: UIViewController  {
         let userID = Auth.auth().currentUser!.uid
         let myNickname = myNicknameTextField.text
         ref.child(userID).child("userProfile").updateChildValues(["nickname":myNickname])
-        
+        //self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
         
     }
     
