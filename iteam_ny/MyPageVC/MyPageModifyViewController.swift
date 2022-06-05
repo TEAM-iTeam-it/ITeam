@@ -22,6 +22,8 @@ class MyPageModifyViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myNicknameTextField.delegate = self
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .black
@@ -130,5 +132,15 @@ extension MyPageModifyViewController: PartDataDelegate {
         var partindex = value!.components(separatedBy: ",")
         partindex[0] = part
         partindex[1] = partDetail
+    }
+}
+extension MyPageModifyViewController: UITextFieldDelegate {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // TextField 비활성화
+        return true
     }
 }
