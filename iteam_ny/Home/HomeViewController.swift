@@ -136,7 +136,7 @@ class HomeViewController: UIViewController, PickpartDataDelegate{
         stack.spacing = 10
         
         let deleteButton = UIButton(type: .roundedRect)
-        deleteButton.setTitle("Delete", for: .normal)
+        deleteButton.setTitle("", for: .normal)
         //deleteButton.setImage("btn_minus@2x", for: .normal)
         deleteButton.backgroundColor = UIColor(named: "purple_249")
         deleteButton.tintColor = UIColor(named: "purple_249")
