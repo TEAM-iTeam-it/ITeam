@@ -116,11 +116,8 @@
 		08EB729629385C19008A9661 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EB729529385C19008A9661 /* Image.swift */; };
 		08EB729829385C3B008A9661 /* CommonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EB729729385C3B008A9661 /* CommonEmpty.swift */; };
 		08EB729A293865E3008A9661 /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB7299293865E3008A9661 /* FirebaseAnalytics.xcframework */; };
-		08EB729B293865E3008A9661 /* FirebaseAnalytics.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB7299293865E3008A9661 /* FirebaseAnalytics.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		08EB729E2938663F008A9661 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB729D2938663F008A9661 /* GoogleAppMeasurement.xcframework */; };
-		08EB729F2938663F008A9661 /* GoogleAppMeasurement.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB729D2938663F008A9661 /* GoogleAppMeasurement.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		08EB72A12938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB72A02938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
-		08EB72A22938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB72A02938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3B27FD868500A5DE47 /* Main.storyboard */; };
 		1F304C3F27FD86D000A5DE47 /* JoinPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */; };
 		1F4ABF93282924A80003A024 /* FriendRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF92282924A80003A024 /* FriendRequestCell.swift */; };
@@ -163,22 +160,6 @@
 		1FB9A54828433015004A1B8B /* FinishedTeamPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */; };
 		1FB9A54D284353D7004A1B8B /* MyPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A54C284353D7004A1B8B /* MyPartViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		08EB729C293865E3008A9661 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				08EB729F2938663F008A9661 /* GoogleAppMeasurement.xcframework in Embed Frameworks */,
-				08EB72A22938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework in Embed Frameworks */,
-				08EB729B293865E3008A9661 /* FirebaseAnalytics.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireViewController.swift; sourceTree = "<group>"; };
@@ -879,7 +860,6 @@
 				1F55CF0E2751F19100CD35EC /* Frameworks */,
 				1F55CF0F2751F19100CD35EC /* Resources */,
 				80E2D7A0BA130358CD5B99EB /* [CP] Embed Pods Frameworks */,
-				08EB729C293865E3008A9661 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
