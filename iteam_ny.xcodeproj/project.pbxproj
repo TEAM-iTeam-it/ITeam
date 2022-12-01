@@ -115,6 +115,12 @@
 		08EB729429385BE7008A9661 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EB729329385BE7008A9661 /* ViewController.swift */; };
 		08EB729629385C19008A9661 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EB729529385C19008A9661 /* Image.swift */; };
 		08EB729829385C3B008A9661 /* CommonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EB729729385C3B008A9661 /* CommonEmpty.swift */; };
+		08EB729A293865E3008A9661 /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB7299293865E3008A9661 /* FirebaseAnalytics.xcframework */; };
+		08EB729B293865E3008A9661 /* FirebaseAnalytics.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB7299293865E3008A9661 /* FirebaseAnalytics.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		08EB729E2938663F008A9661 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB729D2938663F008A9661 /* GoogleAppMeasurement.xcframework */; };
+		08EB729F2938663F008A9661 /* GoogleAppMeasurement.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB729D2938663F008A9661 /* GoogleAppMeasurement.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		08EB72A12938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB72A02938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
+		08EB72A22938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB72A02938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3B27FD868500A5DE47 /* Main.storyboard */; };
 		1F304C3F27FD86D000A5DE47 /* JoinPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */; };
 		1F4ABF93282924A80003A024 /* FriendRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4ABF92282924A80003A024 /* FriendRequestCell.swift */; };
@@ -156,8 +162,23 @@
 		1FB9A546283751BB004A1B8B /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A545283751BB004A1B8B /* GradientButton.swift */; };
 		1FB9A54828433015004A1B8B /* FinishedTeamPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */; };
 		1FB9A54D284353D7004A1B8B /* MyPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9A54C284353D7004A1B8B /* MyPartViewController.swift */; };
-		2893BAE049A576D013CDC6A5 /* Pods_iteam_ny.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		08EB729C293865E3008A9661 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				08EB729F2938663F008A9661 /* GoogleAppMeasurement.xcframework in Embed Frameworks */,
+				08EB72A22938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework in Embed Frameworks */,
+				08EB729B293865E3008A9661 /* FirebaseAnalytics.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +290,9 @@
 		08EB729329385BE7008A9661 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		08EB729529385C19008A9661 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		08EB729729385C3B008A9661 /* CommonEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonEmpty.swift; sourceTree = "<group>"; };
+		08EB7299293865E3008A9661 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
+		08EB729D2938663F008A9661 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = Pods/GoogleAppMeasurement/Frameworks/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
+		08EB72A02938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = Pods/GoogleAppMeasurement/Frameworks/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
 		1F304C3C27FD868500A5DE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JoinPages.storyboard; sourceTree = "<group>"; };
 		1F4ABF92282924A80003A024 /* FriendRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestCell.swift; sourceTree = "<group>"; };
@@ -311,7 +335,6 @@
 		1FB9A545283751BB004A1B8B /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		1FB9A54728433015004A1B8B /* FinishedTeamPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedTeamPopupViewController.swift; sourceTree = "<group>"; };
 		1FB9A54C284353D7004A1B8B /* MyPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPartViewController.swift; sourceTree = "<group>"; };
-		495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iteam_ny.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EFF204D26DA93C72DBC9AC6 /* Pods-iteam_ny.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.debug.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.debug.xcconfig"; sourceTree = "<group>"; };
 		6642C36A357F44465BFFEE7B /* Pods-iteam_ny.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iteam_ny.release.xcconfig"; path = "Target Support Files/Pods-iteam_ny/Pods-iteam_ny.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -321,21 +344,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2893BAE049A576D013CDC6A5 /* Pods_iteam_ny.framework in Frameworks */,
+				08EB729E2938663F008A9661 /* GoogleAppMeasurement.xcframework in Frameworks */,
+				08EB72A12938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */,
+				08EB729A293865E3008A9661 /* FirebaseAnalytics.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0692FB208D2964B6A486C1BC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				495AD4A52CCD66F2FD423776 /* Pods_iteam_ny.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		081F266B27F395B000F17332 /* FavorTeam */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,7 +545,7 @@
 			path = DetailTeamProfile;
 			sourceTree = "<group>";
 		};
-		08D242B727CB4839008B4FE1 /* storyboards */ = {
+		08D242B727CB4839008B4FE1 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */,
@@ -540,7 +557,7 @@
 				08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */,
 				083AFB182821559300B2AF00 /* TeamCallRequest.storyboard */,
 			);
-			path = storyboards;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		08EB7272293849CF008A9661 /* Resource */ = {
@@ -685,7 +702,7 @@
 				1F55CF122751F19100CD35EC /* Products */,
 				31B0739A0D86B84446828D2C /* Pods */,
 				1F304C3727FD855A00A5DE47 /* Recovered References */,
-				0692FB208D2964B6A486C1BC /* Frameworks */,
+				B04782BA8E805D7C147DCE78 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -703,7 +720,7 @@
 				08EB728929385744008A9661 /* Info.plist */,
 				08EB7272293849CF008A9661 /* Resource */,
 				08EB7273293849E0008A9661 /* Source */,
-				08D242B727CB4839008B4FE1 /* storyboards */,
+				08D242B727CB4839008B4FE1 /* Storyboards */,
 				0868B01427CB5ED20018464B /* Join2ViewController.swift */,
 				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
 				08B83199280955FA00135893 /* FirstEntryViewController.swift */,
@@ -840,6 +857,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B04782BA8E805D7C147DCE78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08EB72A02938664E008A9661 /* GoogleAppMeasurementIdentitySupport.xcframework */,
+				08EB729D2938663F008A9661 /* GoogleAppMeasurement.xcframework */,
+				08EB7299293865E3008A9661 /* FirebaseAnalytics.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -852,6 +879,7 @@
 				1F55CF0E2751F19100CD35EC /* Frameworks */,
 				1F55CF0F2751F19100CD35EC /* Resources */,
 				80E2D7A0BA130358CD5B99EB /* [CP] Embed Pods Frameworks */,
+				08EB729C293865E3008A9661 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
