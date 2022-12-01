@@ -279,16 +279,15 @@ class JoinViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             Auth.auth().createUser(withEmail: id, password: pw) { authResult, error in
                 if(error != nil) {
                     print("회원가입 실패")
-                    if let errorCode: AuthErrorCode = AuthErrorCode(rawValue: error!._code) {
-                        print("-> errorCode -> \(errorCode.rawValue)")
-                        switch errorCode.rawValue {
-                        case 17007:
-                            self.emailVFLabel.text = "이미 가입된 이메일입니다."
-                        case 17008:
-                            self.emailVFLabel.text = "올바르지 않은 이메일 주소입니다."
-                        default:
-                            self.emailVFLabel.text = "다시 입력해주세요."
-                        }
+                    let errorCode = AuthErrorCode(AuthErrorCode.Code(rawValue: error!._code)!)
+                    print("-> errorCode -> \(errorCode)")
+                    switch errorCode {
+                    case AuthErrorCode.quotaExceeded:
+                        self.emailVFLabel.text = "이미 가입된 이메일입니다."
+                    case AuthErrorCode.invalidEmail:
+                        self.emailVFLabel.text = "올바르지 않은 이메일 주소입니다."
+                    default:
+                        self.emailVFLabel.text = "다시 입력해주세요."
                     }
                     return
                 }
