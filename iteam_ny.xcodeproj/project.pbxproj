@@ -49,7 +49,6 @@
 		0863BCF4280BC70700AFB2B9 /* ScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863BCF3280BC70700AFB2B9 /* ScrollViewExtension.swift */; };
 		08657BE027F4874B00FDEACD /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BDF27F4874B00FDEACD /* QuestionViewController.swift */; };
 		08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE127F487DA00FDEACD /* QuestionCell.swift */; };
-		08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE527F4887100FDEACD /* SearchViewController.swift */; };
 		0865E54D2845E6EC0091E2EE /* TeamPlustDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */; };
 		0868B03727CB6D830018464B /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B03027CB6D820018464B /* UserCollectionViewCell.swift */; };
 		0868B03827CB6D830018464B /* CallClosedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B03127CB6D820018464B /* CallClosedViewController.swift */; };
@@ -203,7 +202,6 @@
 		0863BCF3280BC70700AFB2B9 /* ScrollViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewExtension.swift; sourceTree = "<group>"; };
 		08657BDF27F4874B00FDEACD /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		08657BE127F487DA00FDEACD /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
-		08657BE527F4887100FDEACD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPlustDate.swift; sourceTree = "<group>"; };
 		0868B03027CB6D820018464B /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		0868B03127CB6D820018464B /* CallClosedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallClosedViewController.swift; sourceTree = "<group>"; };
@@ -570,6 +568,23 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		082F464C296183C60094D340 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08EB729729385C3B008A9661 /* CommonEmpty.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		082F464D296183CD0094D340 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				08B83199280955FA00135893 /* FirstEntryViewController.swift */,
+				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		0833417427F342D1005B4F31 /* TeamVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,7 +858,8 @@
 		08EB727929384AD7008A9661 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				08EB729729385C3B008A9661 /* CommonEmpty.swift */,
+				082F464C296183C60094D340 /* Views */,
+				082F464D296183CD0094D340 /* Controllers */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -897,14 +913,6 @@
 			path = GoogleService;
 			sourceTree = "<group>";
 		};
-		1F304C3727FD855A00A5DE47 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				08657BE527F4887100FDEACD /* SearchViewController.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		1F55CF082751F19100CD35EC = {
 			isa = PBXGroup;
 			children = (
@@ -912,7 +920,6 @@
 				1F55CF132751F19100CD35EC /* iteam_ny */,
 				1F55CF122751F19100CD35EC /* Products */,
 				31B0739A0D86B84446828D2C /* Pods */,
-				1F304C3727FD855A00A5DE47 /* Recovered References */,
 				B04782BA8E805D7C147DCE78 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -932,8 +939,6 @@
 				08EB7272293849CF008A9661 /* Resource */,
 				08EB7273293849E0008A9661 /* Source */,
 				08D242B727CB4839008B4FE1 /* Storyboards */,
-				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
-				08B83199280955FA00135893 /* FirstEntryViewController.swift */,
 			);
 			path = iteam_ny;
 			sourceTree = "<group>";
@@ -1269,7 +1274,6 @@
 				083AFB1D2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift in Sources */,
 				086E4B502826D2CD005933CB /* ChannelTeamViewController.swift in Sources */,
 				08EB729029385BAE008A9661 /* Const.swift in Sources */,
-				08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */,
 				1F542826280598FA00F5179B /* searchViewController.swift in Sources */,
 				08657BE027F4874B00FDEACD /* QuestionViewController.swift in Sources */,
 				1F5AC97127D6BCE800146C0E /* UserProfile.swift in Sources */,
