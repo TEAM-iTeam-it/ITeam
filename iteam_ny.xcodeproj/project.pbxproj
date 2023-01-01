@@ -25,6 +25,7 @@
 		081F268527F436C600F17332 /* AllTeamListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */; };
 		0820449A2809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082044992809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift */; };
 		082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082EF64727F58D8200C36736 /* NotifyPages.storyboard */; };
+		082F463629617CD20094D340 /* TeamCallRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082F463529617CD20094D340 /* TeamCallRequest.storyboard */; };
 		082FEFE1281DC383007B4AFB /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082FEFE0281DC383007B4AFB /* ImageViewExtension.swift */; };
 		0831AF3627E112180098D753 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0831AF3527E112180098D753 /* LogInViewController.swift */; };
 		0832B26528040FD000DED89B /* DetailProfileProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0832B26428040FD000DED89B /* DetailProfileProjectTableViewCell.swift */; };
@@ -35,7 +36,6 @@
 		0833418827F35B07005B4F31 /* FavorTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */; };
 		0833418F27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */; };
 		0835C36F27EDBF5900968626 /* TeamPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0835C36E27EDBF5900968626 /* TeamPages.storyboard */; };
-		083AFB192821559300B2AF00 /* TeamCallRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 083AFB182821559300B2AF00 /* TeamCallRequest.storyboard */; };
 		083AFB1B2821560200B2AF00 /* TeamCallRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB1A2821560200B2AF00 /* TeamCallRequestViewController.swift */; };
 		083AFB1D2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB1C2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift */; };
 		083AFB1F28215C2900B2AF00 /* CallDateNTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083AFB1E28215C2900B2AF00 /* CallDateNTimeViewController.swift */; };
@@ -51,7 +51,6 @@
 		08657BE227F487DA00FDEACD /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE127F487DA00FDEACD /* QuestionCell.swift */; };
 		08657BE627F4887100FDEACD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08657BE527F4887100FDEACD /* SearchViewController.swift */; };
 		0865E54D2845E6EC0091E2EE /* TeamPlustDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */; };
-		0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B01427CB5ED20018464B /* Join2ViewController.swift */; };
 		0868B03727CB6D830018464B /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B03027CB6D820018464B /* UserCollectionViewCell.swift */; };
 		0868B03827CB6D830018464B /* CallClosedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B03127CB6D820018464B /* CallClosedViewController.swift */; };
 		0868B03927CB6D830018464B /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B03227CB6D820018464B /* ChannelViewController.swift */; };
@@ -180,6 +179,7 @@
 		081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeamListTableViewCell.swift; sourceTree = "<group>"; };
 		082044992809C4BA008DB9A1 /* DetailProfileProjectStartDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileProjectStartDateViewController.swift; sourceTree = "<group>"; };
 		082EF64727F58D8200C36736 /* NotifyPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotifyPages.storyboard; sourceTree = "<group>"; };
+		082F463529617CD20094D340 /* TeamCallRequest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeamCallRequest.storyboard; sourceTree = "<group>"; };
 		082FEFE0281DC383007B4AFB /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		0831AF3527E112180098D753 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		0832B26428040FD000DED89B /* DetailProfileProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileProjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -190,7 +190,6 @@
 		0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorTeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorTeamImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		0835C36E27EDBF5900968626 /* TeamPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamPages.storyboard; sourceTree = "<group>"; };
-		083AFB182821559300B2AF00 /* TeamCallRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamCallRequest.storyboard; sourceTree = "<group>"; };
 		083AFB1A2821560200B2AF00 /* TeamCallRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCallRequestViewController.swift; sourceTree = "<group>"; };
 		083AFB1C2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCallRequestQuestionViewController.swift; sourceTree = "<group>"; };
 		083AFB1E28215C2900B2AF00 /* CallDateNTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDateNTimeViewController.swift; sourceTree = "<group>"; };
@@ -206,7 +205,6 @@
 		08657BE127F487DA00FDEACD /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		08657BE527F4887100FDEACD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0865E54C2845E6EC0091E2EE /* TeamPlustDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPlustDate.swift; sourceTree = "<group>"; };
-		0868B01427CB5ED20018464B /* Join2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Join2ViewController.swift; sourceTree = "<group>"; };
 		0868B03027CB6D820018464B /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		0868B03127CB6D820018464B /* CallClosedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallClosedViewController.swift; sourceTree = "<group>"; };
 		0868B03227CB6D820018464B /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
@@ -337,9 +335,8 @@
 		081F266B27F395B000F17332 /* FavorTeam */ = {
 			isa = PBXGroup;
 			children = (
-				0833418527F35A80005B4F31 /* FavorTeamViewController.swift */,
-				0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */,
-				0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */,
+				082F464A29617F1A0094D340 /* Views */,
+				082F464929617F140094D340 /* Controllers */,
 			);
 			path = FavorTeam;
 			sourceTree = "<group>";
@@ -347,9 +344,8 @@
 		081F266C27F395C300F17332 /* AppTeam */ = {
 			isa = PBXGroup;
 			children = (
-				081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */,
-				081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */,
-				081F265127F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift */,
+				082F464629617ED20094D340 /* Views */,
+				082F464729617ED60094D340 /* Controllers */,
 			);
 			path = AppTeam;
 			sourceTree = "<group>";
@@ -357,9 +353,8 @@
 		081F266D27F395D300F17332 /* WebTeam */ = {
 			isa = PBXGroup;
 			children = (
-				081F265327F3903D00F17332 /* MakingWebTeamViewController.swift */,
-				081F265527F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift */,
-				081F265727F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift */,
+				082F464429617EB20094D340 /* Views */,
+				082F464329617EA70094D340 /* Controllers */,
 			);
 			path = WebTeam;
 			sourceTree = "<group>";
@@ -367,9 +362,8 @@
 		081F266E27F395E800F17332 /* GameTeam */ = {
 			isa = PBXGroup;
 			children = (
-				081F266F27F3960300F17332 /* MakingGameTeamViewController.swift */,
-				081F267127F396C500F17332 /* MakingGameTeamCollectionViewCell.swift */,
-				081F267327F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift */,
+				082F464029617E910094D340 /* Views */,
+				082F464129617E970094D340 /* Controllers */,
 			);
 			path = GameTeam;
 			sourceTree = "<group>";
@@ -391,25 +385,201 @@
 			path = DetailJoinSetting;
 			sourceTree = "<group>";
 		};
+		082F463729617CDB0094D340 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */,
+				0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */,
+				083AFB222821907600B2AF00 /* TeamQuestionTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		082F463829617DD40094D340 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		082F463929617DDC0094D340 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				08EB727D29384D19008A9661 /* JoinSuccessViewController.swift */,
+				08EB727C29384D19008A9661 /* JoinViewController.swift */,
+				0831AF3527E112180098D753 /* LogInViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		082F463A29617E300094D340 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				082F463C29617E450094D340 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		082F463B29617E3A0094D340 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */,
+				087A23E727FAEF7400E76893 /* CreateTeamPartViewController.swift */,
+				087A23F227FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift */,
+				087A23F427FB654900E76893 /* CreateTeamRegionViewController.swift */,
+				087A23FC27FC6F4000E76893 /* CallTimePickerViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		082F463C29617E450094D340 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */,
+				087A23E927FAF23800E76893 /* CreateTeamPartTableViewCell.swift */,
+				08AE41982805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift */,
+				087A23F027FB495900E76893 /* CreateTeamProfilePartCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		082F463D29617E6B0094D340 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				082F463F29617E810094D340 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		082F463E29617E710094D340 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */,
+				0841522927FD525000ADA61F /* TeamProfileBottomSheetViewController.swift */,
+				0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		082F463F29617E810094D340 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		082F464029617E910094D340 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				082F464229617E9D0094D340 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		082F464129617E970094D340 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				081F266F27F3960300F17332 /* MakingGameTeamViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		082F464229617E9D0094D340 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				081F267127F396C500F17332 /* MakingGameTeamCollectionViewCell.swift */,
+				081F267327F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		082F464329617EA70094D340 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				081F265327F3903D00F17332 /* MakingWebTeamViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		082F464429617EB20094D340 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				082F464529617EB60094D340 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		082F464529617EB60094D340 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				081F265727F3922900F17332 /* MakingWebTeamImageCollectionViewCell.swift */,
+				081F265527F390FD00F17332 /* MakingWebTeamCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		082F464629617ED20094D340 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				082F464829617EDD0094D340 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		082F464729617ED60094D340 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				081F264D27F38ADB00F17332 /* MakingAppTeamViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		082F464829617EDD0094D340 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				081F264F27F38B5900F17332 /* MakingAppTeamCollectionViewCell.swift */,
+				081F265127F38B7000F17332 /* MakingAppTeamImageCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		082F464929617F140094D340 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0833418527F35A80005B4F31 /* FavorTeamViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		082F464A29617F1A0094D340 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				082F464B29617F1F0094D340 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		082F464B29617F1F0094D340 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0833418727F35B07005B4F31 /* FavorTeamCollectionViewCell.swift */,
+				0833418E27F36912005B4F31 /* FavorTeamImagesCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		0833417427F342D1005B4F31 /* TeamVC */ = {
 			isa = PBXGroup;
 			children = (
+				0868C2E629617C1F006F6A1B /* Common */,
 				087A23E627FAEF4D00E76893 /* CreateTeam */,
 				08BFBE9B27F5AE6900A6F6B0 /* DetailTeamProfile */,
 				081F266E27F395E800F17332 /* GameTeam */,
 				081F266D27F395D300F17332 /* WebTeam */,
 				081F266C27F395C300F17332 /* AppTeam */,
 				081F266B27F395B000F17332 /* FavorTeam */,
-				081F264B27F3878000F17332 /* TeamViewController.swift */,
-				081F268127F435C700F17332 /* AllTeamViewController.swift */,
-				081F268427F436C600F17332 /* AllTeamListTableViewCell.swift */,
-				0811308C280E9030003B6D43 /* TeamProfileTeamMemberTableViewCell.swift */,
-				08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */,
-				083AFB1A2821560200B2AF00 /* TeamCallRequestViewController.swift */,
-				083AFB1C2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift */,
-				083AFB1E28215C2900B2AF00 /* CallDateNTimeViewController.swift */,
-				083AFB222821907600B2AF00 /* TeamQuestionTableViewCell.swift */,
-				083AFB262821BD0500B2AF00 /* TeamCallRequestPopupViewController.swift */,
 			);
 			path = TeamVC;
 			sourceTree = "<group>";
@@ -432,15 +602,8 @@
 		0868B02027CB6CD20018464B /* calling */ = {
 			isa = PBXGroup;
 			children = (
-				0868B03427CB6D820018464B /* AddMemberAlertViewController.swift */,
-				086E4B532826ECBB005933CB /* ReportPersonAlertViewController.swift */,
-				0868B03627CB6D820018464B /* AgoraViewController.swift */,
-				0868B03127CB6D820018464B /* CallClosedViewController.swift */,
-				086E4B512826EBE1005933CB /* CallReportViewController.swift */,
-				0868B03327CB6D820018464B /* ChannelSectionHeader.swift */,
-				0868B03227CB6D820018464B /* ChannelViewController.swift */,
-				086E4B4F2826D2CD005933CB /* ChannelTeamViewController.swift */,
-				0868B03027CB6D820018464B /* UserCollectionViewCell.swift */,
+				0868C2E129617AB1006F6A1B /* Views */,
+				0868C2E229617ABD006F6A1B /* Controllers */,
 			);
 			path = calling;
 			sourceTree = "<group>";
@@ -448,41 +611,26 @@
 		0868B02F27CB6D270018464B /* callingManage */ = {
 			isa = PBXGroup;
 			children = (
-				0868B03E27CB6D930018464B /* AnswerTableViewCell.swift */,
-				0868B04027CB6D930018464B /* CallManageViewController.swift */,
-				0868B04427CB6D930018464B /* CallRequestViewController.swift */,
-				0868B04227CB6D930018464B /* EvaluateViewController.swift */,
-				0868B04127CB6D930018464B /* RequestTableViewCell.swift */,
-				080F9C2527E9EBE00055FAF8 /* CallRequstHistoryViewController.swift */,
-				086E4B4D2826BCAE005933CB /* CallRequstTeamHistoryViewController.swift */,
-				08AFB34C281E78C0006D90B5 /* CallAgreeViewController.swift */,
-				080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */,
-				08AFB350281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift */,
-				08AFB352281F1415006D90B5 /* CallRefusePopupViewController.swift */,
-				0868B04327CB6D930018464B /* CallAnswerViewController.swift */,
-				086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */,
-				0868B03527CB6D820018464B /* ChannelWaitingViewController.swift */,
-				083AFB342821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift */,
-				083AFB372821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift */,
+				0868C2DF29617A73006F6A1B /* Views */,
+				0868C2E029617A7C006F6A1B /* Controllers */,
 			);
 			path = callingManage;
 			sourceTree = "<group>";
 		};
-		0868B04C27CB6D9D0018464B /* callVC */ = {
+		0868B04C27CB6D9D0018464B /* CallVC */ = {
 			isa = PBXGroup;
 			children = (
 				0868B02F27CB6D270018464B /* callingManage */,
 				0868B02027CB6CD20018464B /* calling */,
 			);
-			path = callVC;
+			path = CallVC;
 			sourceTree = "<group>";
 		};
 		0868B04D27CB6DC40018464B /* JoinVC */ = {
 			isa = PBXGroup;
 			children = (
-				08EB727D29384D19008A9661 /* JoinSuccessViewController.swift */,
-				08EB727C29384D19008A9661 /* JoinViewController.swift */,
-				0831AF3527E112180098D753 /* LogInViewController.swift */,
+				082F463829617DD40094D340 /* Views */,
+				082F463929617DDC0094D340 /* Controllers */,
 			);
 			path = JoinVC;
 			sourceTree = "<group>";
@@ -499,18 +647,107 @@
 			path = SettingVC;
 			sourceTree = "<group>";
 		};
+		0868C2DF29617A73006F6A1B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08AFB34E281E880D006D90B5 /* CallAgree.storyboard */,
+				0868C2E329617B65006F6A1B /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0868C2E029617A7C006F6A1B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0868B04027CB6D930018464B /* CallManageViewController.swift */,
+				0868B04427CB6D930018464B /* CallRequestViewController.swift */,
+				0868B04227CB6D930018464B /* EvaluateViewController.swift */,
+				080F9C2527E9EBE00055FAF8 /* CallRequstHistoryViewController.swift */,
+				086E4B4D2826BCAE005933CB /* CallRequstTeamHistoryViewController.swift */,
+				08AFB34C281E78C0006D90B5 /* CallAgreeViewController.swift */,
+				080F9C2327E9DEA70055FAF8 /* QuestionnaireViewController.swift */,
+				08AFB350281F050C006D90B5 /* CallRequestHistoryQuestionTableViewCell.swift */,
+				08AFB352281F1415006D90B5 /* CallRefusePopupViewController.swift */,
+				0868B04327CB6D930018464B /* CallAnswerViewController.swift */,
+				086FAF652824F54E0075737B /* CallAnswerTeamViewController.swift */,
+				0868B03527CB6D820018464B /* ChannelWaitingViewController.swift */,
+				083AFB342821F16C00B2AF00 /* CallWaitingRoomQuestionViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0868C2E129617AB1006F6A1B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0868B03327CB6D820018464B /* ChannelSectionHeader.swift */,
+				0868B03027CB6D820018464B /* UserCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0868C2E229617ABD006F6A1B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0868B03427CB6D820018464B /* AddMemberAlertViewController.swift */,
+				086E4B532826ECBB005933CB /* ReportPersonAlertViewController.swift */,
+				0868B03627CB6D820018464B /* AgoraViewController.swift */,
+				0868B03127CB6D820018464B /* CallClosedViewController.swift */,
+				086E4B512826EBE1005933CB /* CallReportViewController.swift */,
+				0868B03227CB6D820018464B /* ChannelViewController.swift */,
+				086E4B4F2826D2CD005933CB /* ChannelTeamViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0868C2E329617B65006F6A1B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0868B03E27CB6D930018464B /* AnswerTableViewCell.swift */,
+				0868B04127CB6D930018464B /* RequestTableViewCell.swift */,
+				083AFB372821F9F600B2AF00 /* CallWaitingRoomQuestionTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0868C2E429617C14006F6A1B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0835C36E27EDBF5900968626 /* TeamPages.storyboard */,
+				082F463529617CD20094D340 /* TeamCallRequest.storyboard */,
+				08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */,
+				082F463729617CDB0094D340 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0868C2E529617C19006F6A1B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				081F264B27F3878000F17332 /* TeamViewController.swift */,
+				081F268127F435C700F17332 /* AllTeamViewController.swift */,
+				08BC2938281FBF5E00C6214F /* TeamAddAlertViewController.swift */,
+				083AFB1A2821560200B2AF00 /* TeamCallRequestViewController.swift */,
+				083AFB1C2821582400B2AF00 /* TeamCallRequestQuestionViewController.swift */,
+				083AFB1E28215C2900B2AF00 /* CallDateNTimeViewController.swift */,
+				083AFB262821BD0500B2AF00 /* TeamCallRequestPopupViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0868C2E629617C1F006F6A1B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0868C2E429617C14006F6A1B /* Views */,
+				0868C2E529617C19006F6A1B /* Controllers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		087A23E627FAEF4D00E76893 /* CreateTeam */ = {
 			isa = PBXGroup;
 			children = (
-				087A23DA27F82D9200E76893 /* CreateTeamProfileImageCollectionViewCell.swift */,
-				08B2F2F227F786A8008F7085 /* CreateTeamProfileViewController.swift */,
-				087A23E727FAEF7400E76893 /* CreateTeamPartViewController.swift */,
-				087A23E927FAF23800E76893 /* CreateTeamPartTableViewCell.swift */,
-				08AE41982805D313007CBE5F /* CreateTeamProfileDetailPartTableViewCell.swift */,
-				087A23F027FB495900E76893 /* CreateTeamProfilePartCollectionViewCell.swift */,
-				087A23F227FB497A00E76893 /* CreateTeamProfilePartChipViewController.swift */,
-				087A23F427FB654900E76893 /* CreateTeamRegionViewController.swift */,
-				087A23FC27FC6F4000E76893 /* CallTimePickerViewController.swift */,
+				082F463A29617E300094D340 /* Views */,
+				082F463B29617E3A0094D340 /* Controllers */,
 			);
 			path = CreateTeam;
 			sourceTree = "<group>";
@@ -518,10 +755,8 @@
 		08BFBE9B27F5AE6900A6F6B0 /* DetailTeamProfile */ = {
 			isa = PBXGroup;
 			children = (
-				08BFBE9927F59A3900A6F6B0 /* TeamProfileViewController.swift */,
-				08BFBE9C27F5AEDC00A6F6B0 /* TeamProfileImageCollectionViewCell.swift */,
-				0841522927FD525000ADA61F /* TeamProfileBottomSheetViewController.swift */,
-				0811308A280E8C15003B6D43 /* TeamProfileTeamListViewController.swift */,
+				082F463D29617E6B0094D340 /* Views */,
+				082F463E29617E710094D340 /* Controllers */,
 			);
 			path = DetailTeamProfile;
 			sourceTree = "<group>";
@@ -529,14 +764,9 @@
 		08D242B727CB4839008B4FE1 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				1F304C3E27FD86D000A5DE47 /* JoinPages.storyboard */,
-				08AFB34E281E880D006D90B5 /* CallAgree.storyboard */,
 				1F304C3B27FD868500A5DE47 /* Main.storyboard */,
-				0835C36E27EDBF5900968626 /* TeamPages.storyboard */,
-				08B2F2F027F77A0F008F7085 /* TeamPages_AllTeams.storyboard */,
 				082EF64727F58D8200C36736 /* NotifyPages.storyboard */,
 				08BFBE9627F590D800A6F6B0 /* Mypages.storyboard */,
-				083AFB182821559300B2AF00 /* TeamCallRequest.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -598,7 +828,7 @@
 				1F55CF5B2755E2B400CD35EC /* Home */,
 				0868B05027CB6DF60018464B /* SettingVC */,
 				0868B04D27CB6DC40018464B /* JoinVC */,
-				0868B04C27CB6D9D0018464B /* callVC */,
+				0868B04C27CB6D9D0018464B /* CallVC */,
 				1F875FFC2821C8AB0051E89A /* NotifyVC */,
 				1F64AF4C280ED3C400D7B2BD /* MyPageVC */,
 				1F64AF3D280EB04100D7B2BD /* SearchVC */,
@@ -702,7 +932,6 @@
 				08EB7272293849CF008A9661 /* Resource */,
 				08EB7273293849E0008A9661 /* Source */,
 				08D242B727CB4839008B4FE1 /* Storyboards */,
-				0868B01427CB5ED20018464B /* Join2ViewController.swift */,
 				1F55CF2C2751FCA800CD35EC /* TabbarController.swift */,
 				08B83199280955FA00135893 /* FirstEntryViewController.swift */,
 			);
@@ -911,11 +1140,11 @@
 				1F304C3D27FD868500A5DE47 /* Main.storyboard in Resources */,
 				08EB727B29384B45008A9661 /* Colors.xcassets in Resources */,
 				082EF64827F58D8200C36736 /* NotifyPages.storyboard in Resources */,
-				083AFB192821559300B2AF00 /* TeamCallRequest.storyboard in Resources */,
 				0835C36F27EDBF5900968626 /* TeamPages.storyboard in Resources */,
 				1F55CF212751F19200CD35EC /* LaunchScreen.storyboard in Resources */,
 				08B2F2F127F77A0F008F7085 /* TeamPages_AllTeams.storyboard in Resources */,
 				08BFBE9727F590D800A6F6B0 /* Mypages.storyboard in Resources */,
+				082F463629617CD20094D340 /* TeamCallRequest.storyboard in Resources */,
 				1F55CF1E2751F19200CD35EC /* Assets.xcassets in Resources */,
 				1F5AC97527D6BEB600146C0E /* UserListCell.xib in Resources */,
 				08AFB34F281E880D006D90B5 /* CallAgree.storyboard in Resources */,
@@ -1007,7 +1236,6 @@
 				0863BCF4280BC70700AFB2B9 /* ScrollViewExtension.swift in Sources */,
 				0841522A27FD525000ADA61F /* TeamProfileBottomSheetViewController.swift in Sources */,
 				0833418827F35B07005B4F31 /* FavorTeamCollectionViewCell.swift in Sources */,
-				0868B01527CB5ED20018464B /* Join2ViewController.swift in Sources */,
 				087A23F127FB495900E76893 /* CreateTeamProfilePartCollectionViewCell.swift in Sources */,
 				083AFB212821708900B2AF00 /* DateExtention.swift in Sources */,
 				081F267427F3978B00F17332 /* MakingGameTeamImageCollectionViewCell.swift in Sources */,
